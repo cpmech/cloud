@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LambdaLayersConstruct synthetizes properly 1`] = `
+"{
+  \\"Resources\\": {
+    \\"LayersCommonLibs2461171F\\": {
+      \\"Type\\": \\"AWS::Lambda::LayerVersion\\",
+      \\"Properties\\": {
+        \\"Content\\": {
+          \\"S3Bucket\\": {
+            \\"Ref\\": \\"AssetParameters5f62dc150d5089f201a79912ea18fb499ae7f464bccae731f330d83e0174f19fS3BucketBB264C4C\\"
+          },
+          \\"S3Key\\": {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                {
+                  \\"Fn::Select\\": [
+                    0,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParameters5f62dc150d5089f201a79912ea18fb499ae7f464bccae731f330d83e0174f19fS3VersionKeyDFC08D8B\\"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  \\"Fn::Select\\": [
+                    1,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParameters5f62dc150d5089f201a79912ea18fb499ae7f464bccae731f330d83e0174f19fS3VersionKeyDFC08D8B\\"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        \\"CompatibleRuntimes\\": [
+          \\"nodejs8.10\\",
+          \\"nodejs10.x\\"
+        ],
+        \\"Description\\": \\"Common NodeJS Libraries\\",
+        \\"LicenseInfo\\": \\"MIT\\"
+      }
+    }
+  },
+  \\"Parameters\\": {
+    \\"AssetParameters5f62dc150d5089f201a79912ea18fb499ae7f464bccae731f330d83e0174f19fS3BucketBB264C4C\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"5f62dc150d5089f201a79912ea18fb499ae7f464bccae731f330d83e0174f19f\\\\\\"\\"
+    },
+    \\"AssetParameters5f62dc150d5089f201a79912ea18fb499ae7f464bccae731f330d83e0174f19fS3VersionKeyDFC08D8B\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 key for asset version \\\\\\"5f62dc150d5089f201a79912ea18fb499ae7f464bccae731f330d83e0174f19f\\\\\\"\\"
+    },
+    \\"AssetParameters5f62dc150d5089f201a79912ea18fb499ae7f464bccae731f330d83e0174f19fArtifactHashD64F3F0A\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"5f62dc150d5089f201a79912ea18fb499ae7f464bccae731f330d83e0174f19f\\\\\\"\\"
+    }
+  }
+}"
+`;

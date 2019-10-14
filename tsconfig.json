@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "es2015",
+    "lib": ["es6", "es2017"],
+    "outDir": "dist",
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true
+  },
+  "exclude": ["**/__integ__", "**/__tests__", "**/*.test.ts", "**/*.spec.ts", "**/*.integ.ts"]
+}

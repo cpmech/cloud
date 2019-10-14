@@ -1,0 +1,204 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` Route53ForSendingEmailConstruct synthetizes properly 1`] = `
+"{
+  \\"Resources\\": {
+    \\"ReceiveEmailSQSConstructMX95705F62\\": {
+      \\"Type\\": \\"AWS::Route53::RecordSet\\",
+      \\"Properties\\": {
+        \\"Name\\": \\"mydomain.com.\\",
+        \\"Type\\": \\"MX\\",
+        \\"HostedZoneId\\": \\"<id-of-r53-zone>\\",
+        \\"ResourceRecords\\": [
+          {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"10 inbound-smtp.\\",
+                {
+                  \\"Ref\\": \\"AWS::Region\\"
+                },
+                \\".amazonaws.com\\"
+              ]
+            ]
+          }
+        ],
+        \\"TTL\\": \\"1800\\"
+      }
+    },
+    \\"ReceiveEmailSQSConstructVerifyDomainFunctionServiceRole189D8203\\": {
+      \\"Type\\": \\"AWS::IAM::Role\\",
+      \\"Properties\\": {
+        \\"AssumeRolePolicyDocument\\": {
+          \\"Statement\\": [
+            {
+              \\"Action\\": \\"sts:AssumeRole\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Principal\\": {
+                \\"Service\\": \\"lambda.amazonaws.com\\"
+              }
+            }
+          ],
+          \\"Version\\": \\"2012-10-17\\"
+        },
+        \\"ManagedPolicyArns\\": [
+          {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:\\",
+                {
+                  \\"Ref\\": \\"AWS::Partition\\"
+                },
+                \\":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole\\"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    \\"ReceiveEmailSQSConstructVerifyDomainFunctionServiceRoleDefaultPolicy62368683\\": {
+      \\"Type\\": \\"AWS::IAM::Policy\\",
+      \\"Properties\\": {
+        \\"PolicyDocument\\": {
+          \\"Statement\\": [
+            {
+              \\"Action\\": \\"acm:DescribeCertificate\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": \\"*\\"
+            },
+            {
+              \\"Action\\": \\"ses:VerifyDomainIdentity\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": \\"*\\"
+            },
+            {
+              \\"Action\\": \\"ses:VerifyDomainDkim\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": \\"*\\"
+            },
+            {
+              \\"Action\\": \\"ses:GetIdentityVerificationAttributes\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": \\"*\\"
+            },
+            {
+              \\"Action\\": \\"ses:GetIdentityDkimAttributes\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": \\"*\\"
+            },
+            {
+              \\"Action\\": \\"ses:DeleteIdentity\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": \\"*\\"
+            },
+            {
+              \\"Action\\": \\"route53:ChangeResourceRecordSets\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": \\"arn:aws:route53:::hostedzone/<id-of-r53-zone>\\"
+            },
+            {
+              \\"Action\\": \\"route53:GetChange\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": \\"arn:aws:route53:::hostedzone/<id-of-r53-zone>\\"
+            }
+          ],
+          \\"Version\\": \\"2012-10-17\\"
+        },
+        \\"PolicyName\\": \\"ReceiveEmailSQSConstructVerifyDomainFunctionServiceRoleDefaultPolicy62368683\\",
+        \\"Roles\\": [
+          {
+            \\"Ref\\": \\"ReceiveEmailSQSConstructVerifyDomainFunctionServiceRole189D8203\\"
+          }
+        ]
+      }
+    },
+    \\"ReceiveEmailSQSConstructVerifyDomainFunctionCFCA4580\\": {
+      \\"Type\\": \\"AWS::Lambda::Function\\",
+      \\"Properties\\": {
+        \\"Code\\": {
+          \\"S3Bucket\\": {
+            \\"Ref\\": \\"AssetParameters6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93deeS3Bucket383C9EC7\\"
+          },
+          \\"S3Key\\": {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                {
+                  \\"Fn::Select\\": [
+                    0,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParameters6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93deeS3VersionKeyC0FEDEB4\\"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  \\"Fn::Select\\": [
+                    1,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParameters6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93deeS3VersionKeyC0FEDEB4\\"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        \\"Handler\\": \\"index.verifyDomain\\",
+        \\"Role\\": {
+          \\"Fn::GetAtt\\": [
+            \\"ReceiveEmailSQSConstructVerifyDomainFunctionServiceRole189D8203\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"Runtime\\": \\"nodejs8.10\\",
+        \\"Timeout\\": 60
+      },
+      \\"DependsOn\\": [
+        \\"ReceiveEmailSQSConstructVerifyDomainFunctionServiceRoleDefaultPolicy62368683\\",
+        \\"ReceiveEmailSQSConstructVerifyDomainFunctionServiceRole189D8203\\"
+      ]
+    },
+    \\"ReceiveEmailSQSConstructVerifyDomain8989B5CA\\": {
+      \\"Type\\": \\"AWS::CloudFormation::CustomResource\\",
+      \\"Properties\\": {
+        \\"ServiceToken\\": {
+          \\"Fn::GetAtt\\": [
+            \\"ReceiveEmailSQSConstructVerifyDomainFunctionCFCA4580\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"HostedZoneId\\": \\"<id-of-r53-zone>\\",
+        \\"DomainName\\": \\"mydomain.com\\",
+        \\"CertificateArn\\": \\"<arn-goes-here>\\"
+      },
+      \\"UpdateReplacePolicy\\": \\"Delete\\",
+      \\"DeletionPolicy\\": \\"Delete\\"
+    }
+  },
+  \\"Parameters\\": {
+    \\"AssetParameters6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93deeS3Bucket383C9EC7\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93dee\\\\\\"\\"
+    },
+    \\"AssetParameters6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93deeS3VersionKeyC0FEDEB4\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 key for asset version \\\\\\"6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93dee\\\\\\"\\"
+    },
+    \\"AssetParameters6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93deeArtifactHash2455E68C\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93dee\\\\\\"\\"
+    }
+  }
+}"
+`;

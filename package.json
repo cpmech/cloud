@@ -1,0 +1,25 @@
+{
+  "name": "cloud",
+  "private": true,
+  "workspaces": [
+    "az-cdk",
+    "az-cdk-crl",
+    "az-cognito",
+    "az-dynamo",
+    "az-lambda",
+    "az-senqs",
+    "basic",
+    "basic-sys",
+    "httpcodes",
+    "js2ts",
+    "lang-query-graph"
+  ],
+  "scripts": {
+    "inf": "yarn workspaces info",
+    "w": "yarn workspace",
+    "test": "lerna exec yarn test"
+  },
+  "devDependencies": {
+    "lerna": "^3.17.0"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "packages": [
+    "az-cdk",
+    "az-cdk-crl",
+    "az-cognito",
+    "az-dynamo",
+    "az-lambda",
+    "az-senqs",
+    "basic",
+    "basic-sys",
+    "httpcodes",
+    "js2ts",
+    "lang-query-graph"
+  ]
+}

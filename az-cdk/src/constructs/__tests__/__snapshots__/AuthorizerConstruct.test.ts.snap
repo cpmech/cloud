@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthorizerConstruct synthetizes properly 1`] = `
+"{
+  \\"Resources\\": {
+    \\"Authorizer5DCD7388\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Authorizer\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": \\"rest-api-id\\",
+        \\"Type\\": \\"COGNITO_USER_POOLS\\",
+        \\"IdentitySource\\": \\"method.request.header.Authorization\\",
+        \\"Name\\": \\"authorizer\\",
+        \\"ProviderARNs\\": [
+          {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:aws:cognito-idp:\\",
+                {
+                  \\"Ref\\": \\"AWS::Region\\"
+                },
+                \\":\\",
+                {
+                  \\"Ref\\": \\"AWS::AccountId\\"
+                },
+                \\":userpool/users\\"
+              ]
+            ]
+          }
+        ]
+      }
+    }
+  }
+}"
+`;

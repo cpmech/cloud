@@ -1,0 +1,121 @@
+import { Aws, Construct, RemovalPolicy } from '@aws-cdk/core';
+import {
+  PublicHostedZone,
+  ARecord,
+  AaaaRecord,
+  MxRecord,
+  RecordTarget,
+  IPublicHostedZone,
+} from '@aws-cdk/aws-route53';
+import { CloudFrontTarget } from '@aws-cdk/aws-route53-targets';
+import { Bucket } from '@aws-cdk/aws-s3';
+import { CloudFrontWebDistribution, PriceClass, AliasConfiguration } from '@aws-cdk/aws-cloudfront';
+import { VerifyDomainConstruct } from '../custom-resources/VerifyDomainConstruct';
+
+export interface IWebsiteProps {
+  domain: string; // e.g. mydomain.com
+  comment?: string; // e.g. My awesome domain
+  hostedZoneId?: string; // use an existend hosted zone, otherwise create a new (public) one
+  certificateArn?: string; // Arn of an existent and VALID certificate. Use empty or 'null' to skip use of certificate
+  errorCodesHandledByIndexHtml?: number[]; // default = 403, 404
+}
+
+// Website creates bucket, cloudformation, certificate, and route53 data for a website
+export class WebsiteConstruct extends Construct {
+  readonly cloudfrontDistributionId: string;
+
+  constructor(scope: Construct, id: string, props: IWebsiteProps) {
+    super(scope, id);
+
+    const certificateArn = props.certificateArn || 'null';
+
+    let zone: IPublicHostedZone;
+    if (props.hostedZoneId) {
+      zone = PublicHostedZone.fromHostedZoneAttributes(this, 'HostedZone', {
+        hostedZoneId: props.hostedZoneId,
+        zoneName: props.domain,
+      });
+    } else {
+      zone = new PublicHostedZone(this, 'HostedZone', {
+        zoneName: props.domain,
+        comment: props.comment,
+        caaAmazon: true,
+      });
+    }
+
+    const bucket = new Bucket(this, 'Bucket', {
+      bucketName: `${props.domain}-${id.toLowerCase()}`,
+      removalPolicy: RemovalPolicy.DESTROY,
+    });
+
+    const errorCodes = props.errorCodesHandledByIndexHtml || [403, 404];
+
+    let aliasConfiguration: AliasConfiguration | undefined;
+    if (certificateArn !== 'null') {
+      aliasConfiguration = {
+        acmCertRef: certificateArn,
+        names: [props.domain, `www.${props.domain}`],
+      };
+    }
+
+    const distribution = new CloudFrontWebDistribution(this, 'Distribution', {
+      aliasConfiguration,
+      defaultRootObject: undefined,
+      originConfigs: [
+        {
+          s3OriginSource: {
+            s3BucketSource: bucket,
+          },
+          behaviors: [
+            {
+              isDefaultBehavior: true,
+            },
+          ],
+        },
+      ],
+      priceClass: PriceClass.PRICE_CLASS_ALL,
+      errorConfigurations: errorCodes.map(code => ({
+        errorCachingMinTtl: 300,
+        errorCode: code,
+        responseCode: 200,
+        responsePagePath: '/index.html',
+      })),
+    });
+
+    this.cloudfrontDistributionId = distribution.distributionId;
+
+    const target = new CloudFrontTarget(distribution);
+
+    new ARecord(this, 'A', {
+      zone,
+      target: RecordTarget.fromAlias(target),
+    });
+
+    new AaaaRecord(this, 'AAAA', {
+      zone,
+      target: RecordTarget.fromAlias(target),
+    });
+
+    new ARecord(this, 'WWW', {
+      zone,
+      recordName: 'www',
+      target: RecordTarget.fromAlias(target),
+    });
+
+    new MxRecord(this, 'MX', {
+      zone,
+      values: [
+        {
+          priority: 10,
+          hostName: `inbound-smtp.${Aws.REGION}.amazonaws.com`,
+        },
+      ],
+    });
+
+    new VerifyDomainConstruct(this, 'VerifyDomain', {
+      hostedZoneId: zone.hostedZoneId,
+      domain: props.domain,
+      certificateArn,
+    });
+  }
+}

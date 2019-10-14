@@ -1,0 +1,53 @@
+{
+  "name": "@cpmech/az-cdk-crl",
+  "version": "0.3.0",
+  "license": "MIT",
+  "author": {
+    "name": "Dorival Pedroso",
+    "email": "dorival.pedroso@gmail.com",
+    "url": "https://github.com/cpmech"
+  },
+  "repository": "cpmech/az-cdk-crl",
+  "scripts": {
+    "tsnode": "ts-node -O '{\"module\":\"commonjs\",\"resolveJsonModule\":true}'",
+    "start": "yarn tsnode src/index.ts",
+    "build": "rm -rf dist && rollup --config rollup.config.js",
+    "test": "jest --verbose",
+    "tw": "jest --watch --verbose",
+    "cov": "yarn build && jest --coverage",
+    "integ": "jest -c jest.config-integ.js --verbose",
+    "integw": "jest -c jest.config-integ.js --verbose --watch",
+    "dist": "yarn build && yarn publish --access=public && git push && git push --tags"
+  },
+  "description": "Lambda functions implementing Custom Resources for a CDK project",
+  "keywords": [
+    "AWS",
+    "Lambda",
+    "Custom"
+  ],
+  "files": [
+    "dist"
+  ],
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.12",
+    "jest": "^24.9.0",
+    "prettier": "^1.18.2",
+    "rollup": "^1.23.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^5.1.2",
+    "rollup-plugin-typescript2": "^0.24.3",
+    "ts-jest": "^24.1.0",
+    "ts-node": "^8.4.1",
+    "tslint": "^5.20.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "@cpmech/basic": "^2.4.0",
+    "aws-sdk": "^2.548.0"
+  }
+}

@@ -1,0 +1,2720 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LambdaApiConstruct (customDomain) synthetizes properly 1`] = `
+"{
+  \\"Resources\\": {
+    \\"LambdaApiTestApiCDC7EDDF\\": {
+      \\"Type\\": \\"AWS::ApiGateway::RestApi\\",
+      \\"Properties\\": {
+        \\"Name\\": \\"TestApi\\"
+      }
+    },
+    \\"LambdaApiTestApiDeploymentC09FA65F592beb4f0e4533be32a4029259fc7dc3\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"Description\\": \\"Automatically created by the RestApi construct\\"
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApihelloidGETC46CEBC1\\",
+        \\"LambdaApiTestApihelloid2F778A8B\\",
+        \\"LambdaApiTestApihelloOPTIONS0D3F2434\\",
+        \\"LambdaApiTestApihello287B32B7\\"
+      ]
+    },
+    \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Stage\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"DeploymentId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F592beb4f0e4533be32a4029259fc7dc3\\"
+        },
+        \\"StageName\\": \\"prod\\"
+      }
+    },
+    \\"LambdaApiTestApiCloudWatchRole0731508D\\": {
+      \\"Type\\": \\"AWS::IAM::Role\\",
+      \\"Properties\\": {
+        \\"AssumeRolePolicyDocument\\": {
+          \\"Statement\\": [
+            {
+              \\"Action\\": \\"sts:AssumeRole\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Principal\\": {
+                \\"Service\\": \\"apigateway.amazonaws.com\\"
+              }
+            }
+          ],
+          \\"Version\\": \\"2012-10-17\\"
+        },
+        \\"ManagedPolicyArns\\": [
+          {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:\\",
+                {
+                  \\"Ref\\": \\"AWS::Partition\\"
+                },
+                \\":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs\\"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    \\"LambdaApiTestApiAccount4308A17A\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Account\\",
+      \\"Properties\\": {
+        \\"CloudWatchRoleArn\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiTestApiCloudWatchRole0731508D\\",
+            \\"Arn\\"
+          ]
+        }
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApiCDC7EDDF\\"
+      ]
+    },
+    \\"LambdaApiTestApihello287B32B7\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Resource\\",
+      \\"Properties\\": {
+        \\"ParentId\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiTestApiCDC7EDDF\\",
+            \\"RootResourceId\\"
+          ]
+        },
+        \\"PathPart\\": \\"hello\\",
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        }
+      }
+    },
+    \\"LambdaApiTestApihelloOPTIONS0D3F2434\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Method\\",
+      \\"Properties\\": {
+        \\"HttpMethod\\": \\"OPTIONS\\",
+        \\"ResourceId\\": {
+          \\"Ref\\": \\"LambdaApiTestApihello287B32B7\\"
+        },
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"AuthorizationType\\": \\"NONE\\",
+        \\"Integration\\": {
+          \\"IntegrationResponses\\": [
+            {
+              \\"ResponseParameters\\": {
+                \\"method.response.header.Access-Control-Allow-Headers\\": \\"'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'\\",
+                \\"method.response.header.Access-Control-Allow-Origin\\": \\"'*'\\",
+                \\"method.response.header.Access-Control-Allow-Credentials\\": \\"'false'\\",
+                \\"method.response.header.Access-Control-Allow-Methods\\": \\"'OPTIONS,GET'\\"
+              },
+              \\"StatusCode\\": \\"200\\"
+            }
+          ],
+          \\"PassthroughBehavior\\": \\"NEVER\\",
+          \\"RequestTemplates\\": {
+            \\"application/json\\": \\"{\\\\\\"statusCode\\\\\\": 200}\\"
+          },
+          \\"Type\\": \\"MOCK\\"
+        },
+        \\"MethodResponses\\": [
+          {
+            \\"ResponseParameters\\": {
+              \\"method.response.header.Access-Control-Allow-Headers\\": true,
+              \\"method.response.header.Access-Control-Allow-Methods\\": true,
+              \\"method.response.header.Access-Control-Allow-Credentials\\": true,
+              \\"method.response.header.Access-Control-Allow-Origin\\": true
+            },
+            \\"StatusCode\\": \\"200\\"
+          }
+        ]
+      }
+    },
+    \\"LambdaApiTestApihelloid2F778A8B\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Resource\\",
+      \\"Properties\\": {
+        \\"ParentId\\": {
+          \\"Ref\\": \\"LambdaApiTestApihello287B32B7\\"
+        },
+        \\"PathPart\\": \\"{id}\\",
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        }
+      }
+    },
+    \\"LambdaApiTestApihelloidGETApiPermissionStackLambdaApiTestApiCA7E01A2GEThelloid49B479D1\\": {
+      \\"Type\\": \\"AWS::Lambda::Permission\\",
+      \\"Properties\\": {
+        \\"Action\\": \\"lambda:InvokeFunction\\",
+        \\"FunctionName\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiHelloA9D6B516\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"Principal\\": \\"apigateway.amazonaws.com\\",
+        \\"SourceArn\\": {
+          \\"Fn::Join\\": [
+            \\"\\",
+            [
+              \\"arn:\\",
+              {
+                \\"Ref\\": \\"AWS::Partition\\"
+              },
+              \\":execute-api:\\",
+              {
+                \\"Ref\\": \\"AWS::Region\\"
+              },
+              \\":\\",
+              {
+                \\"Ref\\": \\"AWS::AccountId\\"
+              },
+              \\":\\",
+              {
+                \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+              },
+              \\"/\\",
+              {
+                \\"Ref\\": \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\"
+              },
+              \\"/GET/hello/{id}\\"
+            ]
+          ]
+        }
+      }
+    },
+    \\"LambdaApiTestApihelloidGETApiPermissionTestStackLambdaApiTestApiCA7E01A2GEThelloid76F978CF\\": {
+      \\"Type\\": \\"AWS::Lambda::Permission\\",
+      \\"Properties\\": {
+        \\"Action\\": \\"lambda:InvokeFunction\\",
+        \\"FunctionName\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiHelloA9D6B516\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"Principal\\": \\"apigateway.amazonaws.com\\",
+        \\"SourceArn\\": {
+          \\"Fn::Join\\": [
+            \\"\\",
+            [
+              \\"arn:\\",
+              {
+                \\"Ref\\": \\"AWS::Partition\\"
+              },
+              \\":execute-api:\\",
+              {
+                \\"Ref\\": \\"AWS::Region\\"
+              },
+              \\":\\",
+              {
+                \\"Ref\\": \\"AWS::AccountId\\"
+              },
+              \\":\\",
+              {
+                \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+              },
+              \\"/test-invoke-stage/GET/hello/{id}\\"
+            ]
+          ]
+        }
+      }
+    },
+    \\"LambdaApiTestApihelloidGETC46CEBC1\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Method\\",
+      \\"Properties\\": {
+        \\"HttpMethod\\": \\"GET\\",
+        \\"ResourceId\\": {
+          \\"Ref\\": \\"LambdaApiTestApihelloid2F778A8B\\"
+        },
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"AuthorizationType\\": \\"COGNITO_USER_POOLS\\",
+        \\"AuthorizerId\\": {
+          \\"Ref\\": \\"LambdaApiAuthorizer8AC8C11E\\"
+        },
+        \\"Integration\\": {
+          \\"IntegrationHttpMethod\\": \\"POST\\",
+          \\"Type\\": \\"AWS_PROXY\\",
+          \\"Uri\\": {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:\\",
+                {
+                  \\"Ref\\": \\"AWS::Partition\\"
+                },
+                \\":apigateway:\\",
+                {
+                  \\"Ref\\": \\"AWS::Region\\"
+                },
+                \\":lambda:path/2015-03-31/functions/\\",
+                {
+                  \\"Fn::GetAtt\\": [
+                    \\"LambdaApiHelloA9D6B516\\",
+                    \\"Arn\\"
+                  ]
+                },
+                \\"/invocations\\"
+              ]
+            ]
+          }
+        }
+      }
+    },
+    \\"LambdaApiTestApiApiDomainName455A3E11\\": {
+      \\"Type\\": \\"AWS::ApiGateway::DomainName\\",
+      \\"Properties\\": {
+        \\"DomainName\\": \\"api1-dev.mydomain.com\\",
+        \\"EndpointConfiguration\\": {
+          \\"Types\\": [
+            \\"REGIONAL\\"
+          ]
+        },
+        \\"RegionalCertificateArn\\": \\"<arn-of-certificate>\\"
+      }
+    },
+    \\"LambdaApiTestApiApiDomainNameMapStackLambdaApiTestApiCA7E01A236AB185D\\": {
+      \\"Type\\": \\"AWS::ApiGateway::BasePathMapping\\",
+      \\"Properties\\": {
+        \\"DomainName\\": {
+          \\"Ref\\": \\"LambdaApiTestApiApiDomainName455A3E11\\"
+        },
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"Stage\\": {
+          \\"Ref\\": \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\"
+        }
+      }
+    },
+    \\"LambdaApiRoute53AliasFunctionServiceRole172D112F\\": {
+      \\"Type\\": \\"AWS::IAM::Role\\",
+      \\"Properties\\": {
+        \\"AssumeRolePolicyDocument\\": {
+          \\"Statement\\": [
+            {
+              \\"Action\\": \\"sts:AssumeRole\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Principal\\": {
+                \\"Service\\": \\"lambda.amazonaws.com\\"
+              }
+            }
+          ],
+          \\"Version\\": \\"2012-10-17\\"
+        },
+        \\"ManagedPolicyArns\\": [
+          {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:\\",
+                {
+                  \\"Ref\\": \\"AWS::Partition\\"
+                },
+                \\":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole\\"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    \\"LambdaApiRoute53AliasFunctionServiceRoleDefaultPolicy895D8F07\\": {
+      \\"Type\\": \\"AWS::IAM::Policy\\",
+      \\"Properties\\": {
+        \\"PolicyDocument\\": {
+          \\"Statement\\": [
+            {
+              \\"Action\\": \\"route53:ChangeResourceRecordSets\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": \\"arn:aws:route53:::hostedzone/<hosted-zone-id>\\"
+            },
+            {
+              \\"Action\\": \\"route53:GetChange\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": \\"arn:aws:route53:::hostedzone/<hosted-zone-id>\\"
+            }
+          ],
+          \\"Version\\": \\"2012-10-17\\"
+        },
+        \\"PolicyName\\": \\"LambdaApiRoute53AliasFunctionServiceRoleDefaultPolicy895D8F07\\",
+        \\"Roles\\": [
+          {
+            \\"Ref\\": \\"LambdaApiRoute53AliasFunctionServiceRole172D112F\\"
+          }
+        ]
+      }
+    },
+    \\"LambdaApiRoute53AliasFunction1330D1C8\\": {
+      \\"Type\\": \\"AWS::Lambda::Function\\",
+      \\"Properties\\": {
+        \\"Code\\": {
+          \\"S3Bucket\\": {
+            \\"Ref\\": \\"AssetParameters6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93deeS3Bucket383C9EC7\\"
+          },
+          \\"S3Key\\": {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                {
+                  \\"Fn::Select\\": [
+                    0,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParameters6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93deeS3VersionKeyC0FEDEB4\\"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  \\"Fn::Select\\": [
+                    1,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParameters6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93deeS3VersionKeyC0FEDEB4\\"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        \\"Handler\\": \\"index.route53Alias\\",
+        \\"Role\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiRoute53AliasFunctionServiceRole172D112F\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"Runtime\\": \\"nodejs8.10\\",
+        \\"Timeout\\": 60
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiRoute53AliasFunctionServiceRoleDefaultPolicy895D8F07\\",
+        \\"LambdaApiRoute53AliasFunctionServiceRole172D112F\\"
+      ]
+    },
+    \\"LambdaApiRoute53AliasBDA45B8C\\": {
+      \\"Type\\": \\"AWS::CloudFormation::CustomResource\\",
+      \\"Properties\\": {
+        \\"ServiceToken\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiRoute53AliasFunction1330D1C8\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"HostedZoneId\\": \\"<hosted-zone-id>\\",
+        \\"DomainName\\": \\"api1-dev.mydomain.com\\",
+        \\"TheAliasTarget\\": {
+          \\"DNSName\\": {
+            \\"Fn::GetAtt\\": [
+              \\"LambdaApiTestApiApiDomainName455A3E11\\",
+              \\"RegionalDomainName\\"
+            ]
+          },
+          \\"HostedZoneId\\": \\"Z1UJRXOUMOOFQ8\\",
+          \\"EvaluateTargetHealth\\": false
+        }
+      },
+      \\"UpdateReplacePolicy\\": \\"Delete\\",
+      \\"DeletionPolicy\\": \\"Delete\\"
+    },
+    \\"LambdaApiAuthorizer8AC8C11E\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Authorizer\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"Type\\": \\"COGNITO_USER_POOLS\\",
+        \\"IdentitySource\\": \\"method.request.header.Authorization\\",
+        \\"Name\\": \\"authorizer\\",
+        \\"ProviderARNs\\": [
+          {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:aws:cognito-idp:\\",
+                {
+                  \\"Ref\\": \\"AWS::Region\\"
+                },
+                \\":\\",
+                {
+                  \\"Ref\\": \\"AWS::AccountId\\"
+                },
+                \\":userpool/us-east-1_abcdefgh\\"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    \\"LambdaApiHelloServiceRole7B3F9417\\": {
+      \\"Type\\": \\"AWS::IAM::Role\\",
+      \\"Properties\\": {
+        \\"AssumeRolePolicyDocument\\": {
+          \\"Statement\\": [
+            {
+              \\"Action\\": \\"sts:AssumeRole\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Principal\\": {
+                \\"Service\\": \\"lambda.amazonaws.com\\"
+              }
+            }
+          ],
+          \\"Version\\": \\"2012-10-17\\"
+        },
+        \\"ManagedPolicyArns\\": [
+          {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:\\",
+                {
+                  \\"Ref\\": \\"AWS::Partition\\"
+                },
+                \\":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole\\"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    \\"LambdaApiHelloA9D6B516\\": {
+      \\"Type\\": \\"AWS::Lambda::Function\\",
+      \\"Properties\\": {
+        \\"Code\\": {
+          \\"S3Bucket\\": {
+            \\"Ref\\": \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3BucketF62185CF\\"
+          },
+          \\"S3Key\\": {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                {
+                  \\"Fn::Select\\": [
+                    0,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3VersionKey2D1D9F8E\\"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  \\"Fn::Select\\": [
+                    1,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3VersionKey2D1D9F8E\\"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        \\"Handler\\": \\"index.handler\\",
+        \\"Role\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiHelloServiceRole7B3F9417\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"Runtime\\": \\"nodejs10.x\\"
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiHelloServiceRole7B3F9417\\"
+      ]
+    }
+  },
+  \\"Outputs\\": {
+    \\"LambdaApiTestApiEndpoint14C92933\\": {
+      \\"Value\\": {
+        \\"Fn::Join\\": [
+          \\"\\",
+          [
+            \\"https://\\",
+            {
+              \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+            },
+            \\".execute-api.\\",
+            {
+              \\"Ref\\": \\"AWS::Region\\"
+            },
+            \\".\\",
+            {
+              \\"Ref\\": \\"AWS::URLSuffix\\"
+            },
+            \\"/\\",
+            {
+              \\"Ref\\": \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\"
+            },
+            \\"/\\"
+          ]
+        ]
+      }
+    }
+  },
+  \\"Parameters\\": {
+    \\"AssetParameters6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93deeS3Bucket383C9EC7\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93dee\\\\\\"\\"
+    },
+    \\"AssetParameters6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93deeS3VersionKeyC0FEDEB4\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 key for asset version \\\\\\"6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93dee\\\\\\"\\"
+    },
+    \\"AssetParameters6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93deeArtifactHash2455E68C\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93dee\\\\\\"\\"
+    },
+    \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3BucketF62185CF\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"acef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980\\\\\\"\\"
+    },
+    \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3VersionKey2D1D9F8E\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 key for asset version \\\\\\"acef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980\\\\\\"\\"
+    },
+    \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980ArtifactHashE793948A\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"acef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980\\\\\\"\\"
+    }
+  }
+}"
+`;
+
+exports[`LambdaApiConstruct (layers) synthetizes properly 1`] = `
+"{
+  \\"Resources\\": {
+    \\"LayersCommonLibs2461171F\\": {
+      \\"Type\\": \\"AWS::Lambda::LayerVersion\\",
+      \\"Properties\\": {
+        \\"Content\\": {
+          \\"S3Bucket\\": {
+            \\"Ref\\": \\"AssetParameters5f62dc150d5089f201a79912ea18fb499ae7f464bccae731f330d83e0174f19fS3BucketBB264C4C\\"
+          },
+          \\"S3Key\\": {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                {
+                  \\"Fn::Select\\": [
+                    0,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParameters5f62dc150d5089f201a79912ea18fb499ae7f464bccae731f330d83e0174f19fS3VersionKeyDFC08D8B\\"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  \\"Fn::Select\\": [
+                    1,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParameters5f62dc150d5089f201a79912ea18fb499ae7f464bccae731f330d83e0174f19fS3VersionKeyDFC08D8B\\"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        \\"CompatibleRuntimes\\": [
+          \\"nodejs8.10\\",
+          \\"nodejs10.x\\"
+        ],
+        \\"Description\\": \\"Common NodeJS Libraries\\",
+        \\"LicenseInfo\\": \\"MIT\\"
+      }
+    },
+    \\"LambdaApiTestApiCDC7EDDF\\": {
+      \\"Type\\": \\"AWS::ApiGateway::RestApi\\",
+      \\"Properties\\": {
+        \\"Name\\": \\"TestApi\\"
+      }
+    },
+    \\"LambdaApiTestApiDeploymentC09FA65F592beb4f0e4533be32a4029259fc7dc3\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"Description\\": \\"Automatically created by the RestApi construct\\"
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApihelloidGETC46CEBC1\\",
+        \\"LambdaApiTestApihelloid2F778A8B\\",
+        \\"LambdaApiTestApihelloOPTIONS0D3F2434\\",
+        \\"LambdaApiTestApihello287B32B7\\"
+      ]
+    },
+    \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Stage\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"DeploymentId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F592beb4f0e4533be32a4029259fc7dc3\\"
+        },
+        \\"StageName\\": \\"prod\\"
+      }
+    },
+    \\"LambdaApiTestApiCloudWatchRole0731508D\\": {
+      \\"Type\\": \\"AWS::IAM::Role\\",
+      \\"Properties\\": {
+        \\"AssumeRolePolicyDocument\\": {
+          \\"Statement\\": [
+            {
+              \\"Action\\": \\"sts:AssumeRole\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Principal\\": {
+                \\"Service\\": \\"apigateway.amazonaws.com\\"
+              }
+            }
+          ],
+          \\"Version\\": \\"2012-10-17\\"
+        },
+        \\"ManagedPolicyArns\\": [
+          {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:\\",
+                {
+                  \\"Ref\\": \\"AWS::Partition\\"
+                },
+                \\":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs\\"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    \\"LambdaApiTestApiAccount4308A17A\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Account\\",
+      \\"Properties\\": {
+        \\"CloudWatchRoleArn\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiTestApiCloudWatchRole0731508D\\",
+            \\"Arn\\"
+          ]
+        }
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApiCDC7EDDF\\"
+      ]
+    },
+    \\"LambdaApiTestApihello287B32B7\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Resource\\",
+      \\"Properties\\": {
+        \\"ParentId\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiTestApiCDC7EDDF\\",
+            \\"RootResourceId\\"
+          ]
+        },
+        \\"PathPart\\": \\"hello\\",
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        }
+      }
+    },
+    \\"LambdaApiTestApihelloOPTIONS0D3F2434\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Method\\",
+      \\"Properties\\": {
+        \\"HttpMethod\\": \\"OPTIONS\\",
+        \\"ResourceId\\": {
+          \\"Ref\\": \\"LambdaApiTestApihello287B32B7\\"
+        },
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"AuthorizationType\\": \\"NONE\\",
+        \\"Integration\\": {
+          \\"IntegrationResponses\\": [
+            {
+              \\"ResponseParameters\\": {
+                \\"method.response.header.Access-Control-Allow-Headers\\": \\"'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'\\",
+                \\"method.response.header.Access-Control-Allow-Origin\\": \\"'*'\\",
+                \\"method.response.header.Access-Control-Allow-Credentials\\": \\"'false'\\",
+                \\"method.response.header.Access-Control-Allow-Methods\\": \\"'OPTIONS,GET'\\"
+              },
+              \\"StatusCode\\": \\"200\\"
+            }
+          ],
+          \\"PassthroughBehavior\\": \\"NEVER\\",
+          \\"RequestTemplates\\": {
+            \\"application/json\\": \\"{\\\\\\"statusCode\\\\\\": 200}\\"
+          },
+          \\"Type\\": \\"MOCK\\"
+        },
+        \\"MethodResponses\\": [
+          {
+            \\"ResponseParameters\\": {
+              \\"method.response.header.Access-Control-Allow-Headers\\": true,
+              \\"method.response.header.Access-Control-Allow-Methods\\": true,
+              \\"method.response.header.Access-Control-Allow-Credentials\\": true,
+              \\"method.response.header.Access-Control-Allow-Origin\\": true
+            },
+            \\"StatusCode\\": \\"200\\"
+          }
+        ]
+      }
+    },
+    \\"LambdaApiTestApihelloid2F778A8B\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Resource\\",
+      \\"Properties\\": {
+        \\"ParentId\\": {
+          \\"Ref\\": \\"LambdaApiTestApihello287B32B7\\"
+        },
+        \\"PathPart\\": \\"{id}\\",
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        }
+      }
+    },
+    \\"LambdaApiTestApihelloidGETApiPermissionStackLambdaApiTestApiCA7E01A2GEThelloid49B479D1\\": {
+      \\"Type\\": \\"AWS::Lambda::Permission\\",
+      \\"Properties\\": {
+        \\"Action\\": \\"lambda:InvokeFunction\\",
+        \\"FunctionName\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiHelloA9D6B516\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"Principal\\": \\"apigateway.amazonaws.com\\",
+        \\"SourceArn\\": {
+          \\"Fn::Join\\": [
+            \\"\\",
+            [
+              \\"arn:\\",
+              {
+                \\"Ref\\": \\"AWS::Partition\\"
+              },
+              \\":execute-api:\\",
+              {
+                \\"Ref\\": \\"AWS::Region\\"
+              },
+              \\":\\",
+              {
+                \\"Ref\\": \\"AWS::AccountId\\"
+              },
+              \\":\\",
+              {
+                \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+              },
+              \\"/\\",
+              {
+                \\"Ref\\": \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\"
+              },
+              \\"/GET/hello/{id}\\"
+            ]
+          ]
+        }
+      }
+    },
+    \\"LambdaApiTestApihelloidGETApiPermissionTestStackLambdaApiTestApiCA7E01A2GEThelloid76F978CF\\": {
+      \\"Type\\": \\"AWS::Lambda::Permission\\",
+      \\"Properties\\": {
+        \\"Action\\": \\"lambda:InvokeFunction\\",
+        \\"FunctionName\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiHelloA9D6B516\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"Principal\\": \\"apigateway.amazonaws.com\\",
+        \\"SourceArn\\": {
+          \\"Fn::Join\\": [
+            \\"\\",
+            [
+              \\"arn:\\",
+              {
+                \\"Ref\\": \\"AWS::Partition\\"
+              },
+              \\":execute-api:\\",
+              {
+                \\"Ref\\": \\"AWS::Region\\"
+              },
+              \\":\\",
+              {
+                \\"Ref\\": \\"AWS::AccountId\\"
+              },
+              \\":\\",
+              {
+                \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+              },
+              \\"/test-invoke-stage/GET/hello/{id}\\"
+            ]
+          ]
+        }
+      }
+    },
+    \\"LambdaApiTestApihelloidGETC46CEBC1\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Method\\",
+      \\"Properties\\": {
+        \\"HttpMethod\\": \\"GET\\",
+        \\"ResourceId\\": {
+          \\"Ref\\": \\"LambdaApiTestApihelloid2F778A8B\\"
+        },
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"AuthorizationType\\": \\"COGNITO_USER_POOLS\\",
+        \\"AuthorizerId\\": {
+          \\"Ref\\": \\"LambdaApiAuthorizer8AC8C11E\\"
+        },
+        \\"Integration\\": {
+          \\"IntegrationHttpMethod\\": \\"POST\\",
+          \\"Type\\": \\"AWS_PROXY\\",
+          \\"Uri\\": {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:\\",
+                {
+                  \\"Ref\\": \\"AWS::Partition\\"
+                },
+                \\":apigateway:\\",
+                {
+                  \\"Ref\\": \\"AWS::Region\\"
+                },
+                \\":lambda:path/2015-03-31/functions/\\",
+                {
+                  \\"Fn::GetAtt\\": [
+                    \\"LambdaApiHelloA9D6B516\\",
+                    \\"Arn\\"
+                  ]
+                },
+                \\"/invocations\\"
+              ]
+            ]
+          }
+        }
+      }
+    },
+    \\"LambdaApiAuthorizer8AC8C11E\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Authorizer\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"Type\\": \\"COGNITO_USER_POOLS\\",
+        \\"IdentitySource\\": \\"method.request.header.Authorization\\",
+        \\"Name\\": \\"authorizer\\",
+        \\"ProviderARNs\\": [
+          {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:aws:cognito-idp:\\",
+                {
+                  \\"Ref\\": \\"AWS::Region\\"
+                },
+                \\":\\",
+                {
+                  \\"Ref\\": \\"AWS::AccountId\\"
+                },
+                \\":userpool/us-east-1_abcdefgh\\"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    \\"LambdaApiHelloServiceRole7B3F9417\\": {
+      \\"Type\\": \\"AWS::IAM::Role\\",
+      \\"Properties\\": {
+        \\"AssumeRolePolicyDocument\\": {
+          \\"Statement\\": [
+            {
+              \\"Action\\": \\"sts:AssumeRole\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Principal\\": {
+                \\"Service\\": \\"lambda.amazonaws.com\\"
+              }
+            }
+          ],
+          \\"Version\\": \\"2012-10-17\\"
+        },
+        \\"ManagedPolicyArns\\": [
+          {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:\\",
+                {
+                  \\"Ref\\": \\"AWS::Partition\\"
+                },
+                \\":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole\\"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    \\"LambdaApiHelloA9D6B516\\": {
+      \\"Type\\": \\"AWS::Lambda::Function\\",
+      \\"Properties\\": {
+        \\"Code\\": {
+          \\"S3Bucket\\": {
+            \\"Ref\\": \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3BucketF62185CF\\"
+          },
+          \\"S3Key\\": {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                {
+                  \\"Fn::Select\\": [
+                    0,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3VersionKey2D1D9F8E\\"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  \\"Fn::Select\\": [
+                    1,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3VersionKey2D1D9F8E\\"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        \\"Handler\\": \\"index.handler\\",
+        \\"Role\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiHelloServiceRole7B3F9417\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"Runtime\\": \\"nodejs10.x\\",
+        \\"Layers\\": [
+          {
+            \\"Ref\\": \\"LayersCommonLibs2461171F\\"
+          }
+        ]
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiHelloServiceRole7B3F9417\\"
+      ]
+    }
+  },
+  \\"Parameters\\": {
+    \\"AssetParameters5f62dc150d5089f201a79912ea18fb499ae7f464bccae731f330d83e0174f19fS3BucketBB264C4C\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"5f62dc150d5089f201a79912ea18fb499ae7f464bccae731f330d83e0174f19f\\\\\\"\\"
+    },
+    \\"AssetParameters5f62dc150d5089f201a79912ea18fb499ae7f464bccae731f330d83e0174f19fS3VersionKeyDFC08D8B\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 key for asset version \\\\\\"5f62dc150d5089f201a79912ea18fb499ae7f464bccae731f330d83e0174f19f\\\\\\"\\"
+    },
+    \\"AssetParameters5f62dc150d5089f201a79912ea18fb499ae7f464bccae731f330d83e0174f19fArtifactHashD64F3F0A\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"5f62dc150d5089f201a79912ea18fb499ae7f464bccae731f330d83e0174f19f\\\\\\"\\"
+    },
+    \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3BucketF62185CF\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"acef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980\\\\\\"\\"
+    },
+    \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3VersionKey2D1D9F8E\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 key for asset version \\\\\\"acef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980\\\\\\"\\"
+    },
+    \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980ArtifactHashE793948A\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"acef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980\\\\\\"\\"
+    }
+  },
+  \\"Outputs\\": {
+    \\"LambdaApiTestApiEndpoint14C92933\\": {
+      \\"Value\\": {
+        \\"Fn::Join\\": [
+          \\"\\",
+          [
+            \\"https://\\",
+            {
+              \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+            },
+            \\".execute-api.\\",
+            {
+              \\"Ref\\": \\"AWS::Region\\"
+            },
+            \\".\\",
+            {
+              \\"Ref\\": \\"AWS::URLSuffix\\"
+            },
+            \\"/\\",
+            {
+              \\"Ref\\": \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\"
+            },
+            \\"/\\"
+          ]
+        ]
+      }
+    }
+  }
+}"
+`;
+
+exports[`LambdaApiConstruct (protected) synthetizes properly 1`] = `
+"{
+  \\"Resources\\": {
+    \\"LambdaApiTestApiCDC7EDDF\\": {
+      \\"Type\\": \\"AWS::ApiGateway::RestApi\\",
+      \\"Properties\\": {
+        \\"Name\\": \\"TestApi\\"
+      }
+    },
+    \\"LambdaApiTestApiDeploymentC09FA65F592beb4f0e4533be32a4029259fc7dc3\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"Description\\": \\"Automatically created by the RestApi construct\\"
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApihelloidGETC46CEBC1\\",
+        \\"LambdaApiTestApihelloid2F778A8B\\",
+        \\"LambdaApiTestApihelloOPTIONS0D3F2434\\",
+        \\"LambdaApiTestApihello287B32B7\\"
+      ]
+    },
+    \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Stage\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"DeploymentId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F592beb4f0e4533be32a4029259fc7dc3\\"
+        },
+        \\"StageName\\": \\"prod\\"
+      }
+    },
+    \\"LambdaApiTestApiCloudWatchRole0731508D\\": {
+      \\"Type\\": \\"AWS::IAM::Role\\",
+      \\"Properties\\": {
+        \\"AssumeRolePolicyDocument\\": {
+          \\"Statement\\": [
+            {
+              \\"Action\\": \\"sts:AssumeRole\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Principal\\": {
+                \\"Service\\": \\"apigateway.amazonaws.com\\"
+              }
+            }
+          ],
+          \\"Version\\": \\"2012-10-17\\"
+        },
+        \\"ManagedPolicyArns\\": [
+          {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:\\",
+                {
+                  \\"Ref\\": \\"AWS::Partition\\"
+                },
+                \\":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs\\"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    \\"LambdaApiTestApiAccount4308A17A\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Account\\",
+      \\"Properties\\": {
+        \\"CloudWatchRoleArn\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiTestApiCloudWatchRole0731508D\\",
+            \\"Arn\\"
+          ]
+        }
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApiCDC7EDDF\\"
+      ]
+    },
+    \\"LambdaApiTestApihello287B32B7\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Resource\\",
+      \\"Properties\\": {
+        \\"ParentId\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiTestApiCDC7EDDF\\",
+            \\"RootResourceId\\"
+          ]
+        },
+        \\"PathPart\\": \\"hello\\",
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        }
+      }
+    },
+    \\"LambdaApiTestApihelloOPTIONS0D3F2434\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Method\\",
+      \\"Properties\\": {
+        \\"HttpMethod\\": \\"OPTIONS\\",
+        \\"ResourceId\\": {
+          \\"Ref\\": \\"LambdaApiTestApihello287B32B7\\"
+        },
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"AuthorizationType\\": \\"NONE\\",
+        \\"Integration\\": {
+          \\"IntegrationResponses\\": [
+            {
+              \\"ResponseParameters\\": {
+                \\"method.response.header.Access-Control-Allow-Headers\\": \\"'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'\\",
+                \\"method.response.header.Access-Control-Allow-Origin\\": \\"'*'\\",
+                \\"method.response.header.Access-Control-Allow-Credentials\\": \\"'false'\\",
+                \\"method.response.header.Access-Control-Allow-Methods\\": \\"'OPTIONS,GET'\\"
+              },
+              \\"StatusCode\\": \\"200\\"
+            }
+          ],
+          \\"PassthroughBehavior\\": \\"NEVER\\",
+          \\"RequestTemplates\\": {
+            \\"application/json\\": \\"{\\\\\\"statusCode\\\\\\": 200}\\"
+          },
+          \\"Type\\": \\"MOCK\\"
+        },
+        \\"MethodResponses\\": [
+          {
+            \\"ResponseParameters\\": {
+              \\"method.response.header.Access-Control-Allow-Headers\\": true,
+              \\"method.response.header.Access-Control-Allow-Methods\\": true,
+              \\"method.response.header.Access-Control-Allow-Credentials\\": true,
+              \\"method.response.header.Access-Control-Allow-Origin\\": true
+            },
+            \\"StatusCode\\": \\"200\\"
+          }
+        ]
+      }
+    },
+    \\"LambdaApiTestApihelloid2F778A8B\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Resource\\",
+      \\"Properties\\": {
+        \\"ParentId\\": {
+          \\"Ref\\": \\"LambdaApiTestApihello287B32B7\\"
+        },
+        \\"PathPart\\": \\"{id}\\",
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        }
+      }
+    },
+    \\"LambdaApiTestApihelloidGETApiPermissionStackLambdaApiTestApiCA7E01A2GEThelloid49B479D1\\": {
+      \\"Type\\": \\"AWS::Lambda::Permission\\",
+      \\"Properties\\": {
+        \\"Action\\": \\"lambda:InvokeFunction\\",
+        \\"FunctionName\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiHelloA9D6B516\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"Principal\\": \\"apigateway.amazonaws.com\\",
+        \\"SourceArn\\": {
+          \\"Fn::Join\\": [
+            \\"\\",
+            [
+              \\"arn:\\",
+              {
+                \\"Ref\\": \\"AWS::Partition\\"
+              },
+              \\":execute-api:\\",
+              {
+                \\"Ref\\": \\"AWS::Region\\"
+              },
+              \\":\\",
+              {
+                \\"Ref\\": \\"AWS::AccountId\\"
+              },
+              \\":\\",
+              {
+                \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+              },
+              \\"/\\",
+              {
+                \\"Ref\\": \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\"
+              },
+              \\"/GET/hello/{id}\\"
+            ]
+          ]
+        }
+      }
+    },
+    \\"LambdaApiTestApihelloidGETApiPermissionTestStackLambdaApiTestApiCA7E01A2GEThelloid76F978CF\\": {
+      \\"Type\\": \\"AWS::Lambda::Permission\\",
+      \\"Properties\\": {
+        \\"Action\\": \\"lambda:InvokeFunction\\",
+        \\"FunctionName\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiHelloA9D6B516\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"Principal\\": \\"apigateway.amazonaws.com\\",
+        \\"SourceArn\\": {
+          \\"Fn::Join\\": [
+            \\"\\",
+            [
+              \\"arn:\\",
+              {
+                \\"Ref\\": \\"AWS::Partition\\"
+              },
+              \\":execute-api:\\",
+              {
+                \\"Ref\\": \\"AWS::Region\\"
+              },
+              \\":\\",
+              {
+                \\"Ref\\": \\"AWS::AccountId\\"
+              },
+              \\":\\",
+              {
+                \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+              },
+              \\"/test-invoke-stage/GET/hello/{id}\\"
+            ]
+          ]
+        }
+      }
+    },
+    \\"LambdaApiTestApihelloidGETC46CEBC1\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Method\\",
+      \\"Properties\\": {
+        \\"HttpMethod\\": \\"GET\\",
+        \\"ResourceId\\": {
+          \\"Ref\\": \\"LambdaApiTestApihelloid2F778A8B\\"
+        },
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"AuthorizationType\\": \\"COGNITO_USER_POOLS\\",
+        \\"AuthorizerId\\": {
+          \\"Ref\\": \\"LambdaApiAuthorizer8AC8C11E\\"
+        },
+        \\"Integration\\": {
+          \\"IntegrationHttpMethod\\": \\"POST\\",
+          \\"Type\\": \\"AWS_PROXY\\",
+          \\"Uri\\": {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:\\",
+                {
+                  \\"Ref\\": \\"AWS::Partition\\"
+                },
+                \\":apigateway:\\",
+                {
+                  \\"Ref\\": \\"AWS::Region\\"
+                },
+                \\":lambda:path/2015-03-31/functions/\\",
+                {
+                  \\"Fn::GetAtt\\": [
+                    \\"LambdaApiHelloA9D6B516\\",
+                    \\"Arn\\"
+                  ]
+                },
+                \\"/invocations\\"
+              ]
+            ]
+          }
+        }
+      }
+    },
+    \\"LambdaApiAuthorizer8AC8C11E\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Authorizer\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"Type\\": \\"COGNITO_USER_POOLS\\",
+        \\"IdentitySource\\": \\"method.request.header.Authorization\\",
+        \\"Name\\": \\"authorizer\\",
+        \\"ProviderARNs\\": [
+          {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:aws:cognito-idp:\\",
+                {
+                  \\"Ref\\": \\"AWS::Region\\"
+                },
+                \\":\\",
+                {
+                  \\"Ref\\": \\"AWS::AccountId\\"
+                },
+                \\":userpool/us-east-1_abcdefgh\\"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    \\"LambdaApiHelloServiceRole7B3F9417\\": {
+      \\"Type\\": \\"AWS::IAM::Role\\",
+      \\"Properties\\": {
+        \\"AssumeRolePolicyDocument\\": {
+          \\"Statement\\": [
+            {
+              \\"Action\\": \\"sts:AssumeRole\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Principal\\": {
+                \\"Service\\": \\"lambda.amazonaws.com\\"
+              }
+            }
+          ],
+          \\"Version\\": \\"2012-10-17\\"
+        },
+        \\"ManagedPolicyArns\\": [
+          {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:\\",
+                {
+                  \\"Ref\\": \\"AWS::Partition\\"
+                },
+                \\":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole\\"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    \\"LambdaApiHelloA9D6B516\\": {
+      \\"Type\\": \\"AWS::Lambda::Function\\",
+      \\"Properties\\": {
+        \\"Code\\": {
+          \\"S3Bucket\\": {
+            \\"Ref\\": \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3BucketF62185CF\\"
+          },
+          \\"S3Key\\": {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                {
+                  \\"Fn::Select\\": [
+                    0,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3VersionKey2D1D9F8E\\"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  \\"Fn::Select\\": [
+                    1,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3VersionKey2D1D9F8E\\"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        \\"Handler\\": \\"index.handler\\",
+        \\"Role\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiHelloServiceRole7B3F9417\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"Runtime\\": \\"nodejs10.x\\"
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiHelloServiceRole7B3F9417\\"
+      ]
+    }
+  },
+  \\"Outputs\\": {
+    \\"LambdaApiTestApiEndpoint14C92933\\": {
+      \\"Value\\": {
+        \\"Fn::Join\\": [
+          \\"\\",
+          [
+            \\"https://\\",
+            {
+              \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+            },
+            \\".execute-api.\\",
+            {
+              \\"Ref\\": \\"AWS::Region\\"
+            },
+            \\".\\",
+            {
+              \\"Ref\\": \\"AWS::URLSuffix\\"
+            },
+            \\"/\\",
+            {
+              \\"Ref\\": \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\"
+            },
+            \\"/\\"
+          ]
+        ]
+      }
+    }
+  },
+  \\"Parameters\\": {
+    \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3BucketF62185CF\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"acef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980\\\\\\"\\"
+    },
+    \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3VersionKey2D1D9F8E\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 key for asset version \\\\\\"acef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980\\\\\\"\\"
+    },
+    \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980ArtifactHashE793948A\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"acef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980\\\\\\"\\"
+    }
+  }
+}"
+`;
+
+exports[`LambdaApiConstruct synthetizes properly 1`] = `
+"{
+  \\"Resources\\": {
+    \\"LambdaApiTestApiCDC7EDDF\\": {
+      \\"Type\\": \\"AWS::ApiGateway::RestApi\\",
+      \\"Properties\\": {
+        \\"Name\\": \\"TestApi\\"
+      }
+    },
+    \\"LambdaApiTestApiDeploymentC09FA65F592beb4f0e4533be32a4029259fc7dc3\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"Description\\": \\"Automatically created by the RestApi construct\\"
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApihelloidGETC46CEBC1\\",
+        \\"LambdaApiTestApihelloid2F778A8B\\",
+        \\"LambdaApiTestApihelloOPTIONS0D3F2434\\",
+        \\"LambdaApiTestApihello287B32B7\\"
+      ]
+    },
+    \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Stage\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"DeploymentId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F592beb4f0e4533be32a4029259fc7dc3\\"
+        },
+        \\"StageName\\": \\"prod\\"
+      }
+    },
+    \\"LambdaApiTestApiCloudWatchRole0731508D\\": {
+      \\"Type\\": \\"AWS::IAM::Role\\",
+      \\"Properties\\": {
+        \\"AssumeRolePolicyDocument\\": {
+          \\"Statement\\": [
+            {
+              \\"Action\\": \\"sts:AssumeRole\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Principal\\": {
+                \\"Service\\": \\"apigateway.amazonaws.com\\"
+              }
+            }
+          ],
+          \\"Version\\": \\"2012-10-17\\"
+        },
+        \\"ManagedPolicyArns\\": [
+          {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:\\",
+                {
+                  \\"Ref\\": \\"AWS::Partition\\"
+                },
+                \\":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs\\"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    \\"LambdaApiTestApiAccount4308A17A\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Account\\",
+      \\"Properties\\": {
+        \\"CloudWatchRoleArn\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiTestApiCloudWatchRole0731508D\\",
+            \\"Arn\\"
+          ]
+        }
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApiCDC7EDDF\\"
+      ]
+    },
+    \\"LambdaApiTestApihello287B32B7\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Resource\\",
+      \\"Properties\\": {
+        \\"ParentId\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiTestApiCDC7EDDF\\",
+            \\"RootResourceId\\"
+          ]
+        },
+        \\"PathPart\\": \\"hello\\",
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        }
+      }
+    },
+    \\"LambdaApiTestApihelloOPTIONS0D3F2434\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Method\\",
+      \\"Properties\\": {
+        \\"HttpMethod\\": \\"OPTIONS\\",
+        \\"ResourceId\\": {
+          \\"Ref\\": \\"LambdaApiTestApihello287B32B7\\"
+        },
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"AuthorizationType\\": \\"NONE\\",
+        \\"Integration\\": {
+          \\"IntegrationResponses\\": [
+            {
+              \\"ResponseParameters\\": {
+                \\"method.response.header.Access-Control-Allow-Headers\\": \\"'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'\\",
+                \\"method.response.header.Access-Control-Allow-Origin\\": \\"'*'\\",
+                \\"method.response.header.Access-Control-Allow-Credentials\\": \\"'false'\\",
+                \\"method.response.header.Access-Control-Allow-Methods\\": \\"'OPTIONS,GET'\\"
+              },
+              \\"StatusCode\\": \\"200\\"
+            }
+          ],
+          \\"PassthroughBehavior\\": \\"NEVER\\",
+          \\"RequestTemplates\\": {
+            \\"application/json\\": \\"{\\\\\\"statusCode\\\\\\": 200}\\"
+          },
+          \\"Type\\": \\"MOCK\\"
+        },
+        \\"MethodResponses\\": [
+          {
+            \\"ResponseParameters\\": {
+              \\"method.response.header.Access-Control-Allow-Headers\\": true,
+              \\"method.response.header.Access-Control-Allow-Methods\\": true,
+              \\"method.response.header.Access-Control-Allow-Credentials\\": true,
+              \\"method.response.header.Access-Control-Allow-Origin\\": true
+            },
+            \\"StatusCode\\": \\"200\\"
+          }
+        ]
+      }
+    },
+    \\"LambdaApiTestApihelloid2F778A8B\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Resource\\",
+      \\"Properties\\": {
+        \\"ParentId\\": {
+          \\"Ref\\": \\"LambdaApiTestApihello287B32B7\\"
+        },
+        \\"PathPart\\": \\"{id}\\",
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        }
+      }
+    },
+    \\"LambdaApiTestApihelloidGETApiPermissionStackLambdaApiTestApiCA7E01A2GEThelloid49B479D1\\": {
+      \\"Type\\": \\"AWS::Lambda::Permission\\",
+      \\"Properties\\": {
+        \\"Action\\": \\"lambda:InvokeFunction\\",
+        \\"FunctionName\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiHelloA9D6B516\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"Principal\\": \\"apigateway.amazonaws.com\\",
+        \\"SourceArn\\": {
+          \\"Fn::Join\\": [
+            \\"\\",
+            [
+              \\"arn:\\",
+              {
+                \\"Ref\\": \\"AWS::Partition\\"
+              },
+              \\":execute-api:\\",
+              {
+                \\"Ref\\": \\"AWS::Region\\"
+              },
+              \\":\\",
+              {
+                \\"Ref\\": \\"AWS::AccountId\\"
+              },
+              \\":\\",
+              {
+                \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+              },
+              \\"/\\",
+              {
+                \\"Ref\\": \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\"
+              },
+              \\"/GET/hello/{id}\\"
+            ]
+          ]
+        }
+      }
+    },
+    \\"LambdaApiTestApihelloidGETApiPermissionTestStackLambdaApiTestApiCA7E01A2GEThelloid76F978CF\\": {
+      \\"Type\\": \\"AWS::Lambda::Permission\\",
+      \\"Properties\\": {
+        \\"Action\\": \\"lambda:InvokeFunction\\",
+        \\"FunctionName\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiHelloA9D6B516\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"Principal\\": \\"apigateway.amazonaws.com\\",
+        \\"SourceArn\\": {
+          \\"Fn::Join\\": [
+            \\"\\",
+            [
+              \\"arn:\\",
+              {
+                \\"Ref\\": \\"AWS::Partition\\"
+              },
+              \\":execute-api:\\",
+              {
+                \\"Ref\\": \\"AWS::Region\\"
+              },
+              \\":\\",
+              {
+                \\"Ref\\": \\"AWS::AccountId\\"
+              },
+              \\":\\",
+              {
+                \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+              },
+              \\"/test-invoke-stage/GET/hello/{id}\\"
+            ]
+          ]
+        }
+      }
+    },
+    \\"LambdaApiTestApihelloidGETC46CEBC1\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Method\\",
+      \\"Properties\\": {
+        \\"HttpMethod\\": \\"GET\\",
+        \\"ResourceId\\": {
+          \\"Ref\\": \\"LambdaApiTestApihelloid2F778A8B\\"
+        },
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"AuthorizationType\\": \\"NONE\\",
+        \\"Integration\\": {
+          \\"IntegrationHttpMethod\\": \\"POST\\",
+          \\"Type\\": \\"AWS_PROXY\\",
+          \\"Uri\\": {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:\\",
+                {
+                  \\"Ref\\": \\"AWS::Partition\\"
+                },
+                \\":apigateway:\\",
+                {
+                  \\"Ref\\": \\"AWS::Region\\"
+                },
+                \\":lambda:path/2015-03-31/functions/\\",
+                {
+                  \\"Fn::GetAtt\\": [
+                    \\"LambdaApiHelloA9D6B516\\",
+                    \\"Arn\\"
+                  ]
+                },
+                \\"/invocations\\"
+              ]
+            ]
+          }
+        }
+      }
+    },
+    \\"LambdaApiHelloServiceRole7B3F9417\\": {
+      \\"Type\\": \\"AWS::IAM::Role\\",
+      \\"Properties\\": {
+        \\"AssumeRolePolicyDocument\\": {
+          \\"Statement\\": [
+            {
+              \\"Action\\": \\"sts:AssumeRole\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Principal\\": {
+                \\"Service\\": \\"lambda.amazonaws.com\\"
+              }
+            }
+          ],
+          \\"Version\\": \\"2012-10-17\\"
+        },
+        \\"ManagedPolicyArns\\": [
+          {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:\\",
+                {
+                  \\"Ref\\": \\"AWS::Partition\\"
+                },
+                \\":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole\\"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    \\"LambdaApiHelloA9D6B516\\": {
+      \\"Type\\": \\"AWS::Lambda::Function\\",
+      \\"Properties\\": {
+        \\"Code\\": {
+          \\"S3Bucket\\": {
+            \\"Ref\\": \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3BucketF62185CF\\"
+          },
+          \\"S3Key\\": {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                {
+                  \\"Fn::Select\\": [
+                    0,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3VersionKey2D1D9F8E\\"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  \\"Fn::Select\\": [
+                    1,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3VersionKey2D1D9F8E\\"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        \\"Handler\\": \\"index.handler\\",
+        \\"Role\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiHelloServiceRole7B3F9417\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"Runtime\\": \\"nodejs10.x\\"
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiHelloServiceRole7B3F9417\\"
+      ]
+    }
+  },
+  \\"Outputs\\": {
+    \\"LambdaApiTestApiEndpoint14C92933\\": {
+      \\"Value\\": {
+        \\"Fn::Join\\": [
+          \\"\\",
+          [
+            \\"https://\\",
+            {
+              \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+            },
+            \\".execute-api.\\",
+            {
+              \\"Ref\\": \\"AWS::Region\\"
+            },
+            \\".\\",
+            {
+              \\"Ref\\": \\"AWS::URLSuffix\\"
+            },
+            \\"/\\",
+            {
+              \\"Ref\\": \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\"
+            },
+            \\"/\\"
+          ]
+        ]
+      }
+    }
+  },
+  \\"Parameters\\": {
+    \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3BucketF62185CF\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"acef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980\\\\\\"\\"
+    },
+    \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3VersionKey2D1D9F8E\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 key for asset version \\\\\\"acef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980\\\\\\"\\"
+    },
+    \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980ArtifactHashE793948A\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"acef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980\\\\\\"\\"
+    }
+  }
+}"
+`;
+
+exports[`LambdaApiConstruct synthetizes using dirDist 1`] = `
+"{
+  \\"Resources\\": {
+    \\"LambdaApiTestApiCDC7EDDF\\": {
+      \\"Type\\": \\"AWS::ApiGateway::RestApi\\",
+      \\"Properties\\": {
+        \\"Name\\": \\"TestApi\\"
+      }
+    },
+    \\"LambdaApiTestApiDeploymentC09FA65F592beb4f0e4533be32a4029259fc7dc3\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"Description\\": \\"Automatically created by the RestApi construct\\"
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApihelloidGETC46CEBC1\\",
+        \\"LambdaApiTestApihelloid2F778A8B\\",
+        \\"LambdaApiTestApihelloOPTIONS0D3F2434\\",
+        \\"LambdaApiTestApihello287B32B7\\"
+      ]
+    },
+    \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Stage\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"DeploymentId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F592beb4f0e4533be32a4029259fc7dc3\\"
+        },
+        \\"StageName\\": \\"prod\\"
+      }
+    },
+    \\"LambdaApiTestApiCloudWatchRole0731508D\\": {
+      \\"Type\\": \\"AWS::IAM::Role\\",
+      \\"Properties\\": {
+        \\"AssumeRolePolicyDocument\\": {
+          \\"Statement\\": [
+            {
+              \\"Action\\": \\"sts:AssumeRole\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Principal\\": {
+                \\"Service\\": \\"apigateway.amazonaws.com\\"
+              }
+            }
+          ],
+          \\"Version\\": \\"2012-10-17\\"
+        },
+        \\"ManagedPolicyArns\\": [
+          {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:\\",
+                {
+                  \\"Ref\\": \\"AWS::Partition\\"
+                },
+                \\":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs\\"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    \\"LambdaApiTestApiAccount4308A17A\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Account\\",
+      \\"Properties\\": {
+        \\"CloudWatchRoleArn\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiTestApiCloudWatchRole0731508D\\",
+            \\"Arn\\"
+          ]
+        }
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApiCDC7EDDF\\"
+      ]
+    },
+    \\"LambdaApiTestApihello287B32B7\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Resource\\",
+      \\"Properties\\": {
+        \\"ParentId\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiTestApiCDC7EDDF\\",
+            \\"RootResourceId\\"
+          ]
+        },
+        \\"PathPart\\": \\"hello\\",
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        }
+      }
+    },
+    \\"LambdaApiTestApihelloOPTIONS0D3F2434\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Method\\",
+      \\"Properties\\": {
+        \\"HttpMethod\\": \\"OPTIONS\\",
+        \\"ResourceId\\": {
+          \\"Ref\\": \\"LambdaApiTestApihello287B32B7\\"
+        },
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"AuthorizationType\\": \\"NONE\\",
+        \\"Integration\\": {
+          \\"IntegrationResponses\\": [
+            {
+              \\"ResponseParameters\\": {
+                \\"method.response.header.Access-Control-Allow-Headers\\": \\"'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'\\",
+                \\"method.response.header.Access-Control-Allow-Origin\\": \\"'*'\\",
+                \\"method.response.header.Access-Control-Allow-Credentials\\": \\"'false'\\",
+                \\"method.response.header.Access-Control-Allow-Methods\\": \\"'OPTIONS,GET'\\"
+              },
+              \\"StatusCode\\": \\"200\\"
+            }
+          ],
+          \\"PassthroughBehavior\\": \\"NEVER\\",
+          \\"RequestTemplates\\": {
+            \\"application/json\\": \\"{\\\\\\"statusCode\\\\\\": 200}\\"
+          },
+          \\"Type\\": \\"MOCK\\"
+        },
+        \\"MethodResponses\\": [
+          {
+            \\"ResponseParameters\\": {
+              \\"method.response.header.Access-Control-Allow-Headers\\": true,
+              \\"method.response.header.Access-Control-Allow-Methods\\": true,
+              \\"method.response.header.Access-Control-Allow-Credentials\\": true,
+              \\"method.response.header.Access-Control-Allow-Origin\\": true
+            },
+            \\"StatusCode\\": \\"200\\"
+          }
+        ]
+      }
+    },
+    \\"LambdaApiTestApihelloid2F778A8B\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Resource\\",
+      \\"Properties\\": {
+        \\"ParentId\\": {
+          \\"Ref\\": \\"LambdaApiTestApihello287B32B7\\"
+        },
+        \\"PathPart\\": \\"{id}\\",
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        }
+      }
+    },
+    \\"LambdaApiTestApihelloidGETApiPermissionStackLambdaApiTestApiCA7E01A2GEThelloid49B479D1\\": {
+      \\"Type\\": \\"AWS::Lambda::Permission\\",
+      \\"Properties\\": {
+        \\"Action\\": \\"lambda:InvokeFunction\\",
+        \\"FunctionName\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiHelloA9D6B516\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"Principal\\": \\"apigateway.amazonaws.com\\",
+        \\"SourceArn\\": {
+          \\"Fn::Join\\": [
+            \\"\\",
+            [
+              \\"arn:\\",
+              {
+                \\"Ref\\": \\"AWS::Partition\\"
+              },
+              \\":execute-api:\\",
+              {
+                \\"Ref\\": \\"AWS::Region\\"
+              },
+              \\":\\",
+              {
+                \\"Ref\\": \\"AWS::AccountId\\"
+              },
+              \\":\\",
+              {
+                \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+              },
+              \\"/\\",
+              {
+                \\"Ref\\": \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\"
+              },
+              \\"/GET/hello/{id}\\"
+            ]
+          ]
+        }
+      }
+    },
+    \\"LambdaApiTestApihelloidGETApiPermissionTestStackLambdaApiTestApiCA7E01A2GEThelloid76F978CF\\": {
+      \\"Type\\": \\"AWS::Lambda::Permission\\",
+      \\"Properties\\": {
+        \\"Action\\": \\"lambda:InvokeFunction\\",
+        \\"FunctionName\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiHelloA9D6B516\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"Principal\\": \\"apigateway.amazonaws.com\\",
+        \\"SourceArn\\": {
+          \\"Fn::Join\\": [
+            \\"\\",
+            [
+              \\"arn:\\",
+              {
+                \\"Ref\\": \\"AWS::Partition\\"
+              },
+              \\":execute-api:\\",
+              {
+                \\"Ref\\": \\"AWS::Region\\"
+              },
+              \\":\\",
+              {
+                \\"Ref\\": \\"AWS::AccountId\\"
+              },
+              \\":\\",
+              {
+                \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+              },
+              \\"/test-invoke-stage/GET/hello/{id}\\"
+            ]
+          ]
+        }
+      }
+    },
+    \\"LambdaApiTestApihelloidGETC46CEBC1\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Method\\",
+      \\"Properties\\": {
+        \\"HttpMethod\\": \\"GET\\",
+        \\"ResourceId\\": {
+          \\"Ref\\": \\"LambdaApiTestApihelloid2F778A8B\\"
+        },
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"AuthorizationType\\": \\"NONE\\",
+        \\"Integration\\": {
+          \\"IntegrationHttpMethod\\": \\"POST\\",
+          \\"Type\\": \\"AWS_PROXY\\",
+          \\"Uri\\": {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:\\",
+                {
+                  \\"Ref\\": \\"AWS::Partition\\"
+                },
+                \\":apigateway:\\",
+                {
+                  \\"Ref\\": \\"AWS::Region\\"
+                },
+                \\":lambda:path/2015-03-31/functions/\\",
+                {
+                  \\"Fn::GetAtt\\": [
+                    \\"LambdaApiHelloA9D6B516\\",
+                    \\"Arn\\"
+                  ]
+                },
+                \\"/invocations\\"
+              ]
+            ]
+          }
+        }
+      }
+    },
+    \\"LambdaApiHelloServiceRole7B3F9417\\": {
+      \\"Type\\": \\"AWS::IAM::Role\\",
+      \\"Properties\\": {
+        \\"AssumeRolePolicyDocument\\": {
+          \\"Statement\\": [
+            {
+              \\"Action\\": \\"sts:AssumeRole\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Principal\\": {
+                \\"Service\\": \\"lambda.amazonaws.com\\"
+              }
+            }
+          ],
+          \\"Version\\": \\"2012-10-17\\"
+        },
+        \\"ManagedPolicyArns\\": [
+          {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:\\",
+                {
+                  \\"Ref\\": \\"AWS::Partition\\"
+                },
+                \\":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole\\"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    \\"LambdaApiHelloA9D6B516\\": {
+      \\"Type\\": \\"AWS::Lambda::Function\\",
+      \\"Properties\\": {
+        \\"Code\\": {
+          \\"S3Bucket\\": {
+            \\"Ref\\": \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3BucketF62185CF\\"
+          },
+          \\"S3Key\\": {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                {
+                  \\"Fn::Select\\": [
+                    0,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3VersionKey2D1D9F8E\\"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  \\"Fn::Select\\": [
+                    1,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3VersionKey2D1D9F8E\\"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        \\"Handler\\": \\"index.handler\\",
+        \\"Role\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiHelloServiceRole7B3F9417\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"Runtime\\": \\"nodejs10.x\\"
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiHelloServiceRole7B3F9417\\"
+      ]
+    }
+  },
+  \\"Outputs\\": {
+    \\"LambdaApiTestApiEndpoint14C92933\\": {
+      \\"Value\\": {
+        \\"Fn::Join\\": [
+          \\"\\",
+          [
+            \\"https://\\",
+            {
+              \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+            },
+            \\".execute-api.\\",
+            {
+              \\"Ref\\": \\"AWS::Region\\"
+            },
+            \\".\\",
+            {
+              \\"Ref\\": \\"AWS::URLSuffix\\"
+            },
+            \\"/\\",
+            {
+              \\"Ref\\": \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\"
+            },
+            \\"/\\"
+          ]
+        ]
+      }
+    }
+  },
+  \\"Parameters\\": {
+    \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3BucketF62185CF\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"acef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980\\\\\\"\\"
+    },
+    \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3VersionKey2D1D9F8E\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 key for asset version \\\\\\"acef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980\\\\\\"\\"
+    },
+    \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980ArtifactHashE793948A\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"acef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980\\\\\\"\\"
+    }
+  }
+}"
+`;
+
+exports[`LambdaApiConstruct synthetizes without subroute 1`] = `
+"{
+  \\"Resources\\": {
+    \\"LambdaApiTestApiCDC7EDDF\\": {
+      \\"Type\\": \\"AWS::ApiGateway::RestApi\\",
+      \\"Properties\\": {
+        \\"Name\\": \\"TestApi\\"
+      }
+    },
+    \\"LambdaApiTestApiDeploymentC09FA65Ff8200b16ab62586678e4cb9fd483e6b6\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"Description\\": \\"Automatically created by the RestApi construct\\"
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApihelloGET86810A6E\\",
+        \\"LambdaApiTestApihelloOPTIONS0D3F2434\\",
+        \\"LambdaApiTestApihello287B32B7\\"
+      ]
+    },
+    \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Stage\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"DeploymentId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65Ff8200b16ab62586678e4cb9fd483e6b6\\"
+        },
+        \\"StageName\\": \\"prod\\"
+      }
+    },
+    \\"LambdaApiTestApiCloudWatchRole0731508D\\": {
+      \\"Type\\": \\"AWS::IAM::Role\\",
+      \\"Properties\\": {
+        \\"AssumeRolePolicyDocument\\": {
+          \\"Statement\\": [
+            {
+              \\"Action\\": \\"sts:AssumeRole\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Principal\\": {
+                \\"Service\\": \\"apigateway.amazonaws.com\\"
+              }
+            }
+          ],
+          \\"Version\\": \\"2012-10-17\\"
+        },
+        \\"ManagedPolicyArns\\": [
+          {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:\\",
+                {
+                  \\"Ref\\": \\"AWS::Partition\\"
+                },
+                \\":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs\\"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    \\"LambdaApiTestApiAccount4308A17A\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Account\\",
+      \\"Properties\\": {
+        \\"CloudWatchRoleArn\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiTestApiCloudWatchRole0731508D\\",
+            \\"Arn\\"
+          ]
+        }
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApiCDC7EDDF\\"
+      ]
+    },
+    \\"LambdaApiTestApihello287B32B7\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Resource\\",
+      \\"Properties\\": {
+        \\"ParentId\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiTestApiCDC7EDDF\\",
+            \\"RootResourceId\\"
+          ]
+        },
+        \\"PathPart\\": \\"hello\\",
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        }
+      }
+    },
+    \\"LambdaApiTestApihelloOPTIONS0D3F2434\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Method\\",
+      \\"Properties\\": {
+        \\"HttpMethod\\": \\"OPTIONS\\",
+        \\"ResourceId\\": {
+          \\"Ref\\": \\"LambdaApiTestApihello287B32B7\\"
+        },
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"AuthorizationType\\": \\"NONE\\",
+        \\"Integration\\": {
+          \\"IntegrationResponses\\": [
+            {
+              \\"ResponseParameters\\": {
+                \\"method.response.header.Access-Control-Allow-Headers\\": \\"'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'\\",
+                \\"method.response.header.Access-Control-Allow-Origin\\": \\"'*'\\",
+                \\"method.response.header.Access-Control-Allow-Credentials\\": \\"'false'\\",
+                \\"method.response.header.Access-Control-Allow-Methods\\": \\"'OPTIONS,GET'\\"
+              },
+              \\"StatusCode\\": \\"200\\"
+            }
+          ],
+          \\"PassthroughBehavior\\": \\"NEVER\\",
+          \\"RequestTemplates\\": {
+            \\"application/json\\": \\"{\\\\\\"statusCode\\\\\\": 200}\\"
+          },
+          \\"Type\\": \\"MOCK\\"
+        },
+        \\"MethodResponses\\": [
+          {
+            \\"ResponseParameters\\": {
+              \\"method.response.header.Access-Control-Allow-Headers\\": true,
+              \\"method.response.header.Access-Control-Allow-Methods\\": true,
+              \\"method.response.header.Access-Control-Allow-Credentials\\": true,
+              \\"method.response.header.Access-Control-Allow-Origin\\": true
+            },
+            \\"StatusCode\\": \\"200\\"
+          }
+        ]
+      }
+    },
+    \\"LambdaApiTestApihelloGETApiPermissionStackLambdaApiTestApiCA7E01A2GEThello7A64CBF8\\": {
+      \\"Type\\": \\"AWS::Lambda::Permission\\",
+      \\"Properties\\": {
+        \\"Action\\": \\"lambda:InvokeFunction\\",
+        \\"FunctionName\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiHelloA9D6B516\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"Principal\\": \\"apigateway.amazonaws.com\\",
+        \\"SourceArn\\": {
+          \\"Fn::Join\\": [
+            \\"\\",
+            [
+              \\"arn:\\",
+              {
+                \\"Ref\\": \\"AWS::Partition\\"
+              },
+              \\":execute-api:\\",
+              {
+                \\"Ref\\": \\"AWS::Region\\"
+              },
+              \\":\\",
+              {
+                \\"Ref\\": \\"AWS::AccountId\\"
+              },
+              \\":\\",
+              {
+                \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+              },
+              \\"/\\",
+              {
+                \\"Ref\\": \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\"
+              },
+              \\"/GET/hello\\"
+            ]
+          ]
+        }
+      }
+    },
+    \\"LambdaApiTestApihelloGETApiPermissionTestStackLambdaApiTestApiCA7E01A2GEThello66B9EB83\\": {
+      \\"Type\\": \\"AWS::Lambda::Permission\\",
+      \\"Properties\\": {
+        \\"Action\\": \\"lambda:InvokeFunction\\",
+        \\"FunctionName\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiHelloA9D6B516\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"Principal\\": \\"apigateway.amazonaws.com\\",
+        \\"SourceArn\\": {
+          \\"Fn::Join\\": [
+            \\"\\",
+            [
+              \\"arn:\\",
+              {
+                \\"Ref\\": \\"AWS::Partition\\"
+              },
+              \\":execute-api:\\",
+              {
+                \\"Ref\\": \\"AWS::Region\\"
+              },
+              \\":\\",
+              {
+                \\"Ref\\": \\"AWS::AccountId\\"
+              },
+              \\":\\",
+              {
+                \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+              },
+              \\"/test-invoke-stage/GET/hello\\"
+            ]
+          ]
+        }
+      }
+    },
+    \\"LambdaApiTestApihelloGET86810A6E\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Method\\",
+      \\"Properties\\": {
+        \\"HttpMethod\\": \\"GET\\",
+        \\"ResourceId\\": {
+          \\"Ref\\": \\"LambdaApiTestApihello287B32B7\\"
+        },
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"AuthorizationType\\": \\"NONE\\",
+        \\"Integration\\": {
+          \\"IntegrationHttpMethod\\": \\"POST\\",
+          \\"Type\\": \\"AWS_PROXY\\",
+          \\"Uri\\": {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:\\",
+                {
+                  \\"Ref\\": \\"AWS::Partition\\"
+                },
+                \\":apigateway:\\",
+                {
+                  \\"Ref\\": \\"AWS::Region\\"
+                },
+                \\":lambda:path/2015-03-31/functions/\\",
+                {
+                  \\"Fn::GetAtt\\": [
+                    \\"LambdaApiHelloA9D6B516\\",
+                    \\"Arn\\"
+                  ]
+                },
+                \\"/invocations\\"
+              ]
+            ]
+          }
+        }
+      }
+    },
+    \\"LambdaApiHelloServiceRole7B3F9417\\": {
+      \\"Type\\": \\"AWS::IAM::Role\\",
+      \\"Properties\\": {
+        \\"AssumeRolePolicyDocument\\": {
+          \\"Statement\\": [
+            {
+              \\"Action\\": \\"sts:AssumeRole\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Principal\\": {
+                \\"Service\\": \\"lambda.amazonaws.com\\"
+              }
+            }
+          ],
+          \\"Version\\": \\"2012-10-17\\"
+        },
+        \\"ManagedPolicyArns\\": [
+          {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:\\",
+                {
+                  \\"Ref\\": \\"AWS::Partition\\"
+                },
+                \\":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole\\"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    \\"LambdaApiHelloA9D6B516\\": {
+      \\"Type\\": \\"AWS::Lambda::Function\\",
+      \\"Properties\\": {
+        \\"Code\\": {
+          \\"S3Bucket\\": {
+            \\"Ref\\": \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3BucketF62185CF\\"
+          },
+          \\"S3Key\\": {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                {
+                  \\"Fn::Select\\": [
+                    0,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3VersionKey2D1D9F8E\\"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  \\"Fn::Select\\": [
+                    1,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3VersionKey2D1D9F8E\\"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        \\"Handler\\": \\"index.handler\\",
+        \\"Role\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaApiHelloServiceRole7B3F9417\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"Runtime\\": \\"nodejs10.x\\"
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiHelloServiceRole7B3F9417\\"
+      ]
+    }
+  },
+  \\"Outputs\\": {
+    \\"LambdaApiTestApiEndpoint14C92933\\": {
+      \\"Value\\": {
+        \\"Fn::Join\\": [
+          \\"\\",
+          [
+            \\"https://\\",
+            {
+              \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+            },
+            \\".execute-api.\\",
+            {
+              \\"Ref\\": \\"AWS::Region\\"
+            },
+            \\".\\",
+            {
+              \\"Ref\\": \\"AWS::URLSuffix\\"
+            },
+            \\"/\\",
+            {
+              \\"Ref\\": \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\"
+            },
+            \\"/\\"
+          ]
+        ]
+      }
+    }
+  },
+  \\"Parameters\\": {
+    \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3BucketF62185CF\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"acef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980\\\\\\"\\"
+    },
+    \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980S3VersionKey2D1D9F8E\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 key for asset version \\\\\\"acef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980\\\\\\"\\"
+    },
+    \\"AssetParametersacef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980ArtifactHashE793948A\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"acef4acd46f48674ad0880a25b6077ae3a98df8460fd9f4e1af5c476bdd4b980\\\\\\"\\"
+    }
+  }
+}"
+`;

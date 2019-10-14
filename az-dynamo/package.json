@@ -1,0 +1,50 @@
+{
+  "name": "@cpmech/az-dynamo",
+  "version": "1.11.0",
+  "license": "MIT",
+  "author": {
+    "name": "Dorival Pedroso",
+    "email": "dorival.pedroso@gmail.com",
+    "url": "https://github.com/cpmech"
+  },
+  "repository": "cpmech/az-dynamo",
+  "scripts": {
+    "build": "rm -rf dist && rollup --config rollup.config-tslib.js",
+    "ddb:run": "bash ./localdb/run_ddb.bash",
+    "ddb:prep": "bash ./localdb/prep_ddb.bash",
+    "pretest": "yarn ddb:run && yarn ddb:prep",
+    "precov": "yarn ddb:run && yarn ddb:prep",
+    "pretw": "yarn ddb:run && yarn ddb:prep",
+    "test": "jest --verbose",
+    "tw": "jest --watch --verbose",
+    "cov": "yarn build && jest --coverage",
+    "dist": "yarn test && yarn build && yarn publish --access=public"
+  },
+  "files": [
+    "dist"
+  ],
+  "description": "Auxiliary Tools for DynamoDB",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "keywords": [
+    "az-dynamo"
+  ],
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.8",
+    "jest": "^24.9.0",
+    "prettier": "^1.18.2",
+    "rollup": "^1.22.0",
+    "rollup-plugin-terser": "^5.1.2",
+    "rollup-plugin-typescript2": "^0.24.3",
+    "ts-jest": "^24.1.0",
+    "tslint": "^5.20.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.6.3"
+  },
+  "dependencies": {
+    "@cpmech/js2ts": "^0.5.0",
+    "aws-sdk": "^2.539.0"
+  }
+}

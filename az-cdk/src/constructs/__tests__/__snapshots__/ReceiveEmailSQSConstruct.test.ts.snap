@@ -1,0 +1,319 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReceiveEmailSQSConstruct synthetizes properly 1`] = `
+"{
+  \\"Resources\\": {
+    \\"ReceiveEmailSQSTopic08E880318\\": {
+      \\"Type\\": \\"AWS::SNS::Topic\\",
+      \\"Properties\\": {
+        \\"TopicName\\": \\"admin_here_com\\"
+      }
+    },
+    \\"ReceiveEmailSQSQueue0389ABB93\\": {
+      \\"Type\\": \\"AWS::SQS::Queue\\",
+      \\"Properties\\": {
+        \\"QueueName\\": \\"admin_here_com\\"
+      }
+    },
+    \\"ReceiveEmailSQSQueue0PolicyA9BF0D7F\\": {
+      \\"Type\\": \\"AWS::SQS::QueuePolicy\\",
+      \\"Properties\\": {
+        \\"PolicyDocument\\": {
+          \\"Statement\\": [
+            {
+              \\"Action\\": \\"sqs:SendMessage\\",
+              \\"Condition\\": {
+                \\"ArnEquals\\": {
+                  \\"aws:SourceArn\\": {
+                    \\"Ref\\": \\"ReceiveEmailSQSTopic08E880318\\"
+                  }
+                }
+              },
+              \\"Effect\\": \\"Allow\\",
+              \\"Principal\\": {
+                \\"Service\\": \\"sns.amazonaws.com\\"
+              },
+              \\"Resource\\": {
+                \\"Fn::GetAtt\\": [
+                  \\"ReceiveEmailSQSQueue0389ABB93\\",
+                  \\"Arn\\"
+                ]
+              }
+            }
+          ],
+          \\"Version\\": \\"2012-10-17\\"
+        },
+        \\"Queues\\": [
+          {
+            \\"Ref\\": \\"ReceiveEmailSQSQueue0389ABB93\\"
+          }
+        ]
+      }
+    },
+    \\"ReceiveEmailSQSQueue0StackReceiveEmailSQSTopic0539F7BF50F29907E\\": {
+      \\"Type\\": \\"AWS::SNS::Subscription\\",
+      \\"Properties\\": {
+        \\"Protocol\\": \\"sqs\\",
+        \\"TopicArn\\": {
+          \\"Ref\\": \\"ReceiveEmailSQSTopic08E880318\\"
+        },
+        \\"Endpoint\\": {
+          \\"Fn::GetAtt\\": [
+            \\"ReceiveEmailSQSQueue0389ABB93\\",
+            \\"Arn\\"
+          ]
+        }
+      }
+    },
+    \\"ReceiveEmailSQSTopic172D60683\\": {
+      \\"Type\\": \\"AWS::SNS::Topic\\",
+      \\"Properties\\": {
+        \\"TopicName\\": \\"tester_here_com\\"
+      }
+    },
+    \\"ReceiveEmailSQSQueue1C13C7B57\\": {
+      \\"Type\\": \\"AWS::SQS::Queue\\",
+      \\"Properties\\": {
+        \\"QueueName\\": \\"tester_here_com\\"
+      }
+    },
+    \\"ReceiveEmailSQSQueue1PolicyEB4798A5\\": {
+      \\"Type\\": \\"AWS::SQS::QueuePolicy\\",
+      \\"Properties\\": {
+        \\"PolicyDocument\\": {
+          \\"Statement\\": [
+            {
+              \\"Action\\": \\"sqs:SendMessage\\",
+              \\"Condition\\": {
+                \\"ArnEquals\\": {
+                  \\"aws:SourceArn\\": {
+                    \\"Ref\\": \\"ReceiveEmailSQSTopic172D60683\\"
+                  }
+                }
+              },
+              \\"Effect\\": \\"Allow\\",
+              \\"Principal\\": {
+                \\"Service\\": \\"sns.amazonaws.com\\"
+              },
+              \\"Resource\\": {
+                \\"Fn::GetAtt\\": [
+                  \\"ReceiveEmailSQSQueue1C13C7B57\\",
+                  \\"Arn\\"
+                ]
+              }
+            }
+          ],
+          \\"Version\\": \\"2012-10-17\\"
+        },
+        \\"Queues\\": [
+          {
+            \\"Ref\\": \\"ReceiveEmailSQSQueue1C13C7B57\\"
+          }
+        ]
+      }
+    },
+    \\"ReceiveEmailSQSQueue1StackReceiveEmailSQSTopic13E4AE9FC8AC7529D\\": {
+      \\"Type\\": \\"AWS::SNS::Subscription\\",
+      \\"Properties\\": {
+        \\"Protocol\\": \\"sqs\\",
+        \\"TopicArn\\": {
+          \\"Ref\\": \\"ReceiveEmailSQSTopic172D60683\\"
+        },
+        \\"Endpoint\\": {
+          \\"Fn::GetAtt\\": [
+            \\"ReceiveEmailSQSQueue1C13C7B57\\",
+            \\"Arn\\"
+          ]
+        }
+      }
+    },
+    \\"ReceiveEmailSQSDefaultRuleSetFunctionServiceRole7ED6552F\\": {
+      \\"Type\\": \\"AWS::IAM::Role\\",
+      \\"Properties\\": {
+        \\"AssumeRolePolicyDocument\\": {
+          \\"Statement\\": [
+            {
+              \\"Action\\": \\"sts:AssumeRole\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Principal\\": {
+                \\"Service\\": \\"lambda.amazonaws.com\\"
+              }
+            }
+          ],
+          \\"Version\\": \\"2012-10-17\\"
+        },
+        \\"ManagedPolicyArns\\": [
+          {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:\\",
+                {
+                  \\"Ref\\": \\"AWS::Partition\\"
+                },
+                \\":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole\\"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    \\"ReceiveEmailSQSDefaultRuleSetFunctionServiceRoleDefaultPolicyAC9D685E\\": {
+      \\"Type\\": \\"AWS::IAM::Policy\\",
+      \\"Properties\\": {
+        \\"PolicyDocument\\": {
+          \\"Statement\\": [
+            {
+              \\"Action\\": \\"ses:CreateReceiptRule\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": \\"*\\"
+            },
+            {
+              \\"Action\\": \\"ses:CreateReceiptRuleSet\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": \\"*\\"
+            },
+            {
+              \\"Action\\": \\"ses:DeleteReceiptRule\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": \\"*\\"
+            },
+            {
+              \\"Action\\": \\"ses:DeleteReceiptRuleSet\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": \\"*\\"
+            },
+            {
+              \\"Action\\": \\"ses:DescribeActiveReceiptRuleSet\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": \\"*\\"
+            },
+            {
+              \\"Action\\": \\"ses:DescribeReceiptRuleSet\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": \\"*\\"
+            },
+            {
+              \\"Action\\": \\"ses:ListReceiptRuleSets\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": \\"*\\"
+            },
+            {
+              \\"Action\\": \\"ses:SetActiveReceiptRuleSet\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": \\"*\\"
+            },
+            {
+              \\"Action\\": \\"ses:UpdateReceiptRule\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": \\"*\\"
+            }
+          ],
+          \\"Version\\": \\"2012-10-17\\"
+        },
+        \\"PolicyName\\": \\"ReceiveEmailSQSDefaultRuleSetFunctionServiceRoleDefaultPolicyAC9D685E\\",
+        \\"Roles\\": [
+          {
+            \\"Ref\\": \\"ReceiveEmailSQSDefaultRuleSetFunctionServiceRole7ED6552F\\"
+          }
+        ]
+      }
+    },
+    \\"ReceiveEmailSQSDefaultRuleSetFunction35E9DAB9\\": {
+      \\"Type\\": \\"AWS::Lambda::Function\\",
+      \\"Properties\\": {
+        \\"Code\\": {
+          \\"S3Bucket\\": {
+            \\"Ref\\": \\"AssetParameters6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93deeS3Bucket383C9EC7\\"
+          },
+          \\"S3Key\\": {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                {
+                  \\"Fn::Select\\": [
+                    0,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParameters6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93deeS3VersionKeyC0FEDEB4\\"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  \\"Fn::Select\\": [
+                    1,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParameters6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93deeS3VersionKeyC0FEDEB4\\"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        \\"Handler\\": \\"index.sesDefaultRuleSet\\",
+        \\"Role\\": {
+          \\"Fn::GetAtt\\": [
+            \\"ReceiveEmailSQSDefaultRuleSetFunctionServiceRole7ED6552F\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"Runtime\\": \\"nodejs8.10\\",
+        \\"Timeout\\": 60
+      },
+      \\"DependsOn\\": [
+        \\"ReceiveEmailSQSDefaultRuleSetFunctionServiceRoleDefaultPolicyAC9D685E\\",
+        \\"ReceiveEmailSQSDefaultRuleSetFunctionServiceRole7ED6552F\\"
+      ]
+    },
+    \\"ReceiveEmailSQSDefaultRuleSet45C1617D\\": {
+      \\"Type\\": \\"AWS::CloudFormation::CustomResource\\",
+      \\"Properties\\": {
+        \\"ServiceToken\\": {
+          \\"Fn::GetAtt\\": [
+            \\"ReceiveEmailSQSDefaultRuleSetFunction35E9DAB9\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"Emails\\": [
+          \\"admin@here.com\\",
+          \\"tester@here.com\\"
+        ],
+        \\"TopicArns\\": [
+          {
+            \\"Ref\\": \\"ReceiveEmailSQSTopic08E880318\\"
+          },
+          {
+            \\"Ref\\": \\"ReceiveEmailSQSTopic172D60683\\"
+          }
+        ]
+      },
+      \\"UpdateReplacePolicy\\": \\"Delete\\",
+      \\"DeletionPolicy\\": \\"Delete\\"
+    }
+  },
+  \\"Parameters\\": {
+    \\"AssetParameters6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93deeS3Bucket383C9EC7\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93dee\\\\\\"\\"
+    },
+    \\"AssetParameters6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93deeS3VersionKeyC0FEDEB4\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 key for asset version \\\\\\"6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93dee\\\\\\"\\"
+    },
+    \\"AssetParameters6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93deeArtifactHash2455E68C\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"6582f20029dc28838c59832e29418e9c30fb4cdf39ee8850825b960348d93dee\\\\\\"\\"
+    }
+  }
+}"
+`;
