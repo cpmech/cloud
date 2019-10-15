@@ -14,7 +14,7 @@
     "cov": "jest --coverage",
     "build": "rm -rf dist && rollup --config ../rollup.config.js",
     "dist": "yarn build && yarn publish --access=public && echo && git push && git push --tags && echo '🎉 DONE'",
-    "cdk": "bash ./scripts/cdk.bash",
+    "cdk": "bash ../scripts/cdk.bash",
     "integ": "jest -c jest.config-integ.js --verbose",
     "integw": "jest -c jest.config-integ.js --verbose --watch"
   },
