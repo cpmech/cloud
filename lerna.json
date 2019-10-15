@@ -12,6 +12,7 @@
     "basic",
     "basic-sys",
     "envars",
+    "envars-cli",
     "httpcodes",
     "js2ts",
     "lang-query-graph"
