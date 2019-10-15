@@ -35,7 +35,6 @@
   ],
   "devDependencies": {
     "@aws-cdk/core": "^1.10.0",
-    "@cpmech/az-cdk": "^4.2.0",
     "@types/jest": "^24.0.18",
     "@types/mailparser": "^2.4.0",
     "@types/node": "^12.7.8",
