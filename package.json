@@ -20,6 +20,7 @@
     "sync:deps": "bash ./scripts/sync_deps.bash",
     "tall": "lerna exec --concurrency 1 -- yarn test",
     "call": "lerna exec --concurrency 1 -- yarn cov",
+    "ball": "lerna exec --concurrency 1 -- yarn build",
     "ncu": "lerna exec --concurrency 1 -- ncu",
     "ncu:u": "lerna exec --concurrency 1 -- ncu -u"
   },
