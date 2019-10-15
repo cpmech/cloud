@@ -11,6 +11,7 @@
     "az-senqs",
     "basic",
     "basic-sys",
+    "envars",
     "httpcodes",
     "js2ts",
     "lang-query-graph"
