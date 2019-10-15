@@ -18,6 +18,7 @@
     "inf": "yarn workspaces info",
     "x": "bash ./scripts/yarn_workspace.bash",
     "tall": "lerna exec yarn test",
+    "call": "lerna exec yarn cov",
     "sync:deps": "bash ./scripts/sync_deps.bash"
   },
   "devDependencies": {
