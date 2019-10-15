@@ -27,18 +27,18 @@
   "types": "dist/esm/index.d.ts",
   "devDependencies": {
     "@types/graphql": "^14.5.0",
-    "@types/jest": "^24.0.18",
-    "@types/node": "^12.7.8",
+    "@types/jest": "^24.0.19",
+    "@types/node": "^12.7.12",
     "jest": "^24.9.0",
     "prettier": "^1.18.2",
-    "rollup": "^1.21.4",
+    "rollup": "^1.23.1",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-typescript2": "^0.24.3",
     "ts-jest": "^24.1.0",
     "ts-node": "^8.4.1",
     "tslint": "^5.20.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.4"
   },
   "dependencies": {
     "@cpmech/basic": "^2.5.0",
