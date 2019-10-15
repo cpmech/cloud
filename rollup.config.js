@@ -1,6 +1,6 @@
 import autoExternal from 'rollup-plugin-auto-external';
 import typescript from 'rollup-plugin-typescript2';
-// import { terser } from 'rollup-plugin-terser';
+import { terser } from 'rollup-plugin-terser';
 
 const cacheRoot = '/tmp/rollup_typescript_cache';
 
@@ -22,7 +22,7 @@ const config = ['cjs', 'esm'].map(format => {
         typescript: require('typescript'),
         tsconfigOverride: { compilerOptions: { declaration: format === 'esm' } },
       }),
-      // terser(),
+      terser(),
     ],
   };
 });

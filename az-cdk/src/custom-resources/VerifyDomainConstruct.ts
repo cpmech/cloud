@@ -2,6 +2,7 @@ import { Construct, Duration } from '@aws-cdk/core';
 import { Function, Code, Runtime } from '@aws-cdk/aws-lambda';
 import { CustomResource, CustomResourceProvider } from '@aws-cdk/aws-cloudformation';
 import { PolicyStatement } from '@aws-cdk/aws-iam';
+import { crlDir } from './crlDir';
 
 export interface IVerifyDomainProps {
   hostedZoneId: string;
@@ -16,7 +17,7 @@ export class VerifyDomainConstruct extends Construct {
     const certificateArn = props.certificateArn || 'null';
 
     const fcn = new Function(this, 'Function', {
-      code: Code.asset('node_modules/@cpmech/az-cdk-crl/dist/'),
+      code: Code.asset(crlDir),
       handler: 'index.verifyDomain',
       runtime: Runtime.NODEJS_8_10,
       timeout: Duration.minutes(1),

@@ -4,6 +4,7 @@ import { CustomResource, CustomResourceProvider } from '@aws-cdk/aws-cloudformat
 import { PolicyStatement } from '@aws-cdk/aws-iam';
 import { AliasTarget } from 'aws-sdk/clients/route53';
 import { apiGatewayHostedZoneId } from '../helpers/apiGatewayHostedZoneId';
+import { crlDir } from './crlDir';
 
 export interface IRoute53AliasProps {
   hostedZoneId: string;
@@ -17,7 +18,7 @@ export class Route53AliasConstruct extends Construct {
     super(scope, id);
 
     const fcn = new Function(this, 'Function', {
-      code: Code.asset('node_modules/@cpmech/az-cdk-crl/dist/'),
+      code: Code.asset(crlDir),
       handler: 'index.route53Alias',
       runtime: Runtime.NODEJS_8_10,
       timeout: Duration.minutes(1),
