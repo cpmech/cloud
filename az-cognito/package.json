@@ -13,9 +13,7 @@
     "tw": "jest --watch --verbose",
     "cov": "jest --coverage",
     "build": "rm -rf dist && rollup --config ../rollup.config.js",
-    "dist": "yarn build && yarn publish --access=public && echo && git push && git push --tags && echo '🎉 DONE'",
-    "integ": "jest -c jest.config-integ.js --verbose",
-    "integw": "jest -c jest.config-integ.js --verbose --watch"
+    "dist": "yarn build && yarn publish --access=public && echo && git push && git push --tags && echo '🎉 DONE'"
   },
   "files": [
     "dist"
