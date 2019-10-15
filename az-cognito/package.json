@@ -33,7 +33,6 @@
     "@types/node": "^12.7.12",
     "@types/node-fetch": "^2.5.2",
     "@types/uuid": "^3.4.5",
-    "aws-amplify": "^1.2.2",
     "jest": "^24.9.0",
     "mailparser": "^2.7.1",
     "node-fetch": "^2.6.0",
