@@ -17,4 +17,5 @@ for p in $PKGS; do
   done
 done
 
+lerna clean --yes
 yarn install
