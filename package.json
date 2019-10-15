@@ -17,9 +17,11 @@
   "scripts": {
     "inf": "yarn workspaces info",
     "x": "bash ./scripts/yarn_workspace.bash",
-    "tall": "lerna exec yarn test",
-    "call": "lerna exec yarn cov",
-    "sync:deps": "bash ./scripts/sync_deps.bash"
+    "sync:deps": "bash ./scripts/sync_deps.bash",
+    "tall": "lerna exec --concurrency 1 -- yarn test",
+    "call": "lerna exec --concurrency 1 -- yarn cov",
+    "ncu": "lerna exec --concurrency 1 -- ncu",
+    "ncu:u": "lerna exec --concurrency 1 -- ncu -u"
   },
   "devDependencies": {
     "lerna": "^3.17.0"
