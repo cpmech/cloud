@@ -7,7 +7,7 @@
     "email": "dorival.pedroso@gmail.com",
     "url": "https://github.com/cpmech"
   },
-  "repository": "cpmech/az-dynamo",
+  "repository": "cpmech/cloud",
   "scripts": {
     "test": "jest --verbose",
     "tw": "jest --watch --verbose",
@@ -28,7 +28,9 @@
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
   "keywords": [
-    "az-dynamo"
+    "Amazon",
+    "AWS",
+    "DynamoDB"
   ],
   "devDependencies": {
     "@types/jest": "^24.0.19",

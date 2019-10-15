@@ -7,7 +7,7 @@
     "email": "dorival.pedroso@gmail.com",
     "url": "https://github.com/cpmech"
   },
-  "repository": "cpmech/az-lambda",
+  "repository": "cpmech/cloud",
   "scripts": {
     "test": "jest --verbose",
     "tw": "jest --watch --verbose",
@@ -17,7 +17,9 @@
   },
   "description": "Auxiliary Tools for Lambda",
   "keywords": [
-    "az-lambda"
+    "Amazon",
+    "AwS",
+    "Lambda"
   ],
   "files": [
     "dist"

@@ -7,7 +7,7 @@
     "email": "dorival.pedroso@gmail.com",
     "url": "https://github.com/cpmech"
   },
-  "repository": "cpmech/lang-query-graph",
+  "repository": "cpmech/cloud",
   "scripts": {
     "test": "jest --verbose",
     "tw": "jest --watch --verbose",
@@ -15,7 +15,7 @@
     "build": "rm -rf dist && rollup --config ../rollup.config.js",
     "dist": "yarn build && yarn publish --access=public && echo && git push && git push --tags && echo '🎉 DONE'"
   },
-  "description": "lang-query-graph",
+  "description": "lang-query-graph (LQG <-> GQL) implements code for helping with GraphQL.",
   "keywords": [
     "graphQL"
   ],

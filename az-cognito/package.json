@@ -7,7 +7,7 @@
     "email": "dorival.pedroso@gmail.com",
     "url": "https://github.com/cpmech"
   },
-  "repository": "cpmech/az-cognito",
+  "repository": "cpmech/cloud",
   "scripts": {
     "test": "jest --verbose",
     "tw": "jest --watch --verbose",
@@ -18,12 +18,14 @@
   "files": [
     "dist"
   ],
-  "description": "az-cognito",
+  "description": "AmaZon Cognito Tools",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
   "keywords": [
-    "az-cognito"
+    "Amazon",
+    "AWS",
+    "Cognito"
   ],
   "devDependencies": {
     "@types/jest": "^24.0.19",

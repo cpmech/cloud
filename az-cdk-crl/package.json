@@ -7,7 +7,7 @@
     "email": "dorival.pedroso@gmail.com",
     "url": "https://github.com/cpmech"
   },
-  "repository": "cpmech/az-cdk-crl",
+  "repository": "cpmech/cloud",
   "scripts": {
     "test": "jest --verbose",
     "tw": "jest --watch --verbose",
@@ -17,9 +17,10 @@
   },
   "description": "Lambda functions implementing Custom Resources for a CDK project",
   "keywords": [
+    "Amazon",
     "AWS",
     "Lambda",
-    "Custom"
+    "CustomResources"
   ],
   "files": [
     "dist"

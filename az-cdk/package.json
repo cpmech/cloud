@@ -7,7 +7,7 @@
     "email": "dorival.pedroso@gmail.com",
     "url": "https://github.com/cpmech"
   },
-  "repository": "cpmech/az-cdk",
+  "repository": "cpmech/cloud",
   "scripts": {
     "test": "mkdir -p dist && jest --verbose",
     "tw": "mkdir -p dist && jest --watch --verbose",
@@ -17,10 +17,13 @@
   },
   "description": "AmaZon AWS-CDK tools",
   "keywords": [
-    "amazon",
-    "aws",
-    "cdk",
-    "cloudformation"
+    "Amazon",
+    "AWS",
+    "CDK",
+    "CloudFormation",
+    "API Gateway",
+    "Lambda",
+    "Cognito"
   ],
   "files": [
     "dist"
