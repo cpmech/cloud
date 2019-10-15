@@ -9,15 +9,11 @@
   },
   "repository": "cpmech/az-cdk-crl",
   "scripts": {
-    "tsnode": "ts-node -O '{\"module\":\"commonjs\",\"resolveJsonModule\":true}'",
-    "start": "yarn tsnode src/index.ts",
-    "build": "rm -rf dist && rollup --config rollup.config.js",
     "test": "jest --verbose",
     "tw": "jest --watch --verbose",
-    "cov": "yarn build && jest --coverage",
-    "integ": "jest -c jest.config-integ.js --verbose",
-    "integw": "jest -c jest.config-integ.js --verbose --watch",
-    "dist": "yarn build && yarn publish --access=public && git push && git push --tags"
+    "cov": "jest --coverage",
+    "build": "rm -rf dist && rollup --config rollup.config.js",
+    "dist": "yarn build && yarn publish --access=public && echo && git push && git push --tags && echo '🎉 DONE'"
   },
   "description": "Lambda functions implementing Custom Resources for a CDK project",
   "keywords": [

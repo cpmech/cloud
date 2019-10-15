@@ -9,11 +9,11 @@
   },
   "repository": "cpmech/az-lambda",
   "scripts": {
-    "build": "rm -rf dist && rollup --config rollup.config-tslib.js",
     "test": "jest --verbose",
     "tw": "jest --watch --verbose",
     "cov": "jest --coverage",
-    "dist": "yarn build && yarn publish --access=public"
+    "build": "rm -rf dist && rollup --config ../rollup.config.js",
+    "dist": "yarn build && yarn publish --access=public && echo && git push && git push --tags && echo '🎉 DONE'"
   },
   "description": "Auxiliary Tools for Lambda",
   "keywords": [

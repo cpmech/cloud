@@ -9,13 +9,11 @@
   },
   "repository": "cpmech/az-cognito",
   "scripts": {
-    "tsnode": "ts-node -O '{\"module\":\"commonjs\",\"resolveJsonModule\":true}'",
-    "start": "yarn tsnode src/index.ts",
-    "build": "rm -rf dist && rollup --config rollup.config-tslib.js",
     "test": "jest --verbose",
     "tw": "jest --watch --verbose",
     "cov": "jest --coverage",
-    "dist": "yarn build && yarn publish --access=public",
+    "build": "rm -rf dist && rollup --config ../rollup.config.js",
+    "dist": "yarn build && yarn publish --access=public && echo && git push && git push --tags && echo '🎉 DONE'",
     "integ": "jest -c jest.config-integ.js --verbose",
     "integw": "jest -c jest.config-integ.js --verbose --watch"
   },

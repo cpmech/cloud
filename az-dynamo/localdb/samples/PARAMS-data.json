@@ -1,0 +1,90 @@
+{
+  "TEST_AZDB_PARAMS": [
+    {
+      "PutRequest": {
+        "Item": {
+          "category": { "S": "calcInfo" },
+          "brState": { "S": "DF" },
+          "availableMonthlyEnergy": { "N": "150" },
+          "bandeira6meses": { "N": "0.032" },
+          "descontoEpopPct": { "N": "8.33" },
+          "epopEnergyCoef": { "N": "0.9" },
+          "icmsPct": { "N": "21" },
+          "iluminacaoPublica": { "N": "45" },
+          "limits": {
+            "M": {
+              "monophasic": {
+                "M": {
+                  "max": { "N": "100000" },
+                  "minEpop": { "N": "80" },
+                  "minProvider": { "N": "30" }
+                }
+              },
+              "biphasic": {
+                "M": {
+                  "max": { "N": "100000" },
+                  "minEpop": { "N": "100" },
+                  "minProvider": { "N": "50" }
+                }
+              },
+              "triphasic": {
+                "M": {
+                  "max": { "N": "100000" },
+                  "minEpop": { "N": "150" },
+                  "minProvider": { "N": "100" }
+                }
+              }
+            }
+          },
+          "nominalPotency": { "N": "14" },
+          "notax": { "BOOL": false },
+          "specificProduction": { "N": "1555.2" },
+          "tarifa": { "N": "0.763" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "category": { "S": "calcInfo" },
+          "brState": { "S": "GO" },
+          "availableMonthlyEnergy": { "N": "150" },
+          "bandeira6meses": { "N": "0.032" },
+          "descontoEpopPct": { "N": "8.33" },
+          "epopEnergyCoef": { "N": "0.9" },
+          "icmsPct": { "N": "29" },
+          "iluminacaoPublica": { "N": "15" },
+          "limits": {
+            "M": {
+              "monophasic": {
+                "M": {
+                  "max": { "N": "100000" },
+                  "minEpop": { "N": "80" },
+                  "minProvider": { "N": "30" }
+                }
+              },
+              "biphasic": {
+                "M": {
+                  "max": { "N": "100000" },
+                  "minEpop": { "N": "100" },
+                  "minProvider": { "N": "50" }
+                }
+              },
+              "triphasic": {
+                "M": {
+                  "max": { "N": "100000" },
+                  "minEpop": { "N": "150" },
+                  "minProvider": { "N": "100" }
+                }
+              }
+            }
+          },
+          "nominalPotency": { "N": "14" },
+          "notax": { "BOOL": false },
+          "specificProduction": { "N": "1555.2" },
+          "tarifa": { "N": "0.879" }
+        }
+      }
+    }
+  ]
+}

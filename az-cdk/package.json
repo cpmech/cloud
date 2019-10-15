@@ -9,11 +9,11 @@
   },
   "repository": "cpmech/az-cdk",
   "scripts": {
-    "build": "rm -rf dist && rollup --config rollup.config-tslib.js",
     "test": "jest --verbose",
     "tw": "jest --watch --verbose",
-    "cov": "yarn build && jest --coverage",
-    "dist": "yarn build && yarn publish --access=public && git push && git push --tags"
+    "cov": "jest --coverage",
+    "build": "rm -rf dist && rollup --config ../rollup.config.js",
+    "dist": "yarn build && yarn publish --access=public && echo && git push && git push --tags && echo '🎉 DONE'"
   },
   "description": "AmaZon AWS-CDK tools",
   "keywords": [

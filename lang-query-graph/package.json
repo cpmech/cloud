@@ -9,15 +9,11 @@
   },
   "repository": "cpmech/lang-query-graph",
   "scripts": {
-    "tsnode": "ts-node -O '{\"module\":\"commonjs\",\"resolveJsonModule\":true}'",
-    "start": "yarn tsnode src/index.ts",
-    "build": "rm -rf dist && rollup --config rollup.config-tslib.js",
     "test": "jest --verbose",
     "tw": "jest --watch --verbose",
-    "cov": "yarn build && jest --coverage",
-    "integ": "jest -c jest.config-integ.js --verbose",
-    "integw": "jest -c jest.config-integ.js --verbose --watch",
-    "dist": "yarn build && yarn publish --access=public"
+    "cov": "jest --coverage",
+    "build": "rm -rf dist && rollup --config ../rollup.config.js",
+    "dist": "yarn build && yarn publish --access=public && echo && git push && git push --tags && echo '🎉 DONE'"
   },
   "description": "lang-query-graph",
   "keywords": [

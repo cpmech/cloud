@@ -9,16 +9,16 @@
   },
   "repository": "cpmech/az-dynamo",
   "scripts": {
-    "build": "rm -rf dist && rollup --config rollup.config-tslib.js",
+    "test": "jest --verbose",
+    "tw": "jest --watch --verbose",
+    "cov": "jest --coverage",
+    "build": "rm -rf dist && rollup --config ../rollup.config.js",
+    "dist": "yarn build && yarn publish --access=public && echo && git push && git push --tags && echo '🎉 DONE'",
     "ddb:run": "bash ./localdb/run_ddb.bash",
     "ddb:prep": "bash ./localdb/prep_ddb.bash",
     "pretest": "yarn ddb:run && yarn ddb:prep",
     "precov": "yarn ddb:run && yarn ddb:prep",
-    "pretw": "yarn ddb:run && yarn ddb:prep",
-    "test": "jest --verbose",
-    "tw": "jest --watch --verbose",
-    "cov": "yarn build && jest --coverage",
-    "dist": "yarn test && yarn build && yarn publish --access=public"
+    "pretw": "yarn ddb:run && yarn ddb:prep"
   },
   "files": [
     "dist"

@@ -1,0 +1,27 @@
+{
+  "TableName": "TEST_AZDB_USERS",
+  "KeySchema": [
+    {
+      "AttributeName": "email",
+      "KeyType": "HASH"
+    },
+    {
+      "AttributeName": "aspect",
+      "KeyType": "RANGE"
+    }
+  ],
+  "AttributeDefinitions": [
+    {
+      "AttributeName": "email",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "aspect",
+      "AttributeType": "S"
+    }
+  ],
+  "ProvisionedThroughput": {
+    "ReadCapacityUnits": 5,
+    "WriteCapacityUnits": 5
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "TEST_AZDB_USERS": [
+    {
+      "PutRequest": {
+        "Item": {
+          "email": { "S": "get@operation.com" },
+          "aspect": { "S": "ACCESS" },
+          "fullName": { "S": "Tester Bot" },
+          "confirmed": { "BOOL": true },
+          "confirmMessageCount": { "N": "3" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "email": { "S": "get@operation.com" },
+          "aspect": { "S": "LOCATION" },
+          "description": { "S": "A Very Nice Place" },
+          "coordinates": {
+            "M": {
+              "x": { "N": "1.1" },
+              "y": { "N": "2.2" },
+              "z": { "N": "3.3" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "email": { "S": "increment@operation.com" },
+          "aspect": { "S": "ACCESS" },
+          "fullName": { "S": "Tester Bot" },
+          "confirmed": { "BOOL": true },
+          "confirmMessageCount": { "N": "3" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "email": { "S": "removeAttributes@operation.com" },
+          "aspect": { "S": "ACCESS" },
+          "fullName": { "S": "Tester Bot" },
+          "confirmed": { "BOOL": true },
+          "confirmMessageCount": { "N": "3" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "email": { "S": "removeItem@operation.com" },
+          "aspect": { "S": "ACCESS" },
+          "fullName": { "S": "Tester Bot" },
+          "confirmed": { "BOOL": true },
+          "confirmMessageCount": { "N": "3" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "email": { "S": "update@operation.com" },
+          "aspect": { "S": "ACCESS" },
+          "fullName": { "S": "Tester Bot" },
+          "confirmed": { "BOOL": true },
+          "confirmMessageCount": { "N": "3" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "email": { "S": "update@operation.com" },
+          "aspect": { "S": "LOCATION" },
+          "description": { "S": "A Very Nice Place" },
+          "coordinates": {
+            "M": {
+              "x": { "N": "1.1" },
+              "y": { "N": "2.2" },
+              "z": { "N": "3.3" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "email": { "S": "scan.1@operation.com" },
+          "aspect": { "S": "NAME" },
+          "fullName": { "S": "First Tester Bot" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "email": { "S": "scan.2@operation.com" },
+          "aspect": { "S": "NAME" },
+          "fullName": { "S": "Second Tester Bot" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "email": { "S": "scan.3@operation.com" },
+          "aspect": { "S": "NAME" },
+          "fullName": { "S": "Third Tester Bot" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "email": { "S": "scan.4@operation.com" },
+          "aspect": { "S": "NAME" },
+          "fullName": { "S": "Fourth Tester Bot" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "email": { "S": "scan.5@operation.com" },
+          "aspect": { "S": "NAME" },
+          "fullName": { "S": "Fifth Tester Bot" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "email": { "S": "exists@operation.com" },
+          "aspect": { "S": "ACCESS" },
+          "fullName": { "S": "Existent Item" }
+        }
+      }
+    }
+  ]
+}

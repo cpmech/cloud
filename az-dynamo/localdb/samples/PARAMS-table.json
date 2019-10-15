@@ -1,0 +1,27 @@
+{
+  "TableName": "TEST_AZDB_PARAMS",
+  "KeySchema": [
+    {
+      "AttributeName": "category",
+      "KeyType": "HASH"
+    },
+    {
+      "AttributeName": "brState",
+      "KeyType": "RANGE"
+    }
+  ],
+  "AttributeDefinitions": [
+    {
+      "AttributeName": "category",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "brState",
+      "AttributeType": "S"
+    }
+  ],
+  "ProvisionedThroughput": {
+    "ReadCapacityUnits": 5,
+    "WriteCapacityUnits": 5
+  }
+}
