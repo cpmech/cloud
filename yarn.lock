@@ -808,16 +808,6 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@cpmech/js2ts@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@cpmech/js2ts/-/js2ts-0.4.0.tgz#09552094ca31e76bc6a52360c0edc405051125f3"
-  integrity sha512-Qh8XclVOXBSfLWa1PirnDZBlMwjRAKGxeATsMYUcXoIZlv3WZuojyxha4FNG6VXZ728x7dI1ElBDXW5zieyRAg==
-
-"@cpmech/js2ts@^0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@cpmech/js2ts/-/js2ts-0.5.0.tgz#27410454dcc32d6f228e54aecf88b8a6d338a2da"
-  integrity sha512-c0FQDnTVnR4GwSG6w/b7hH3PIR/P3UiBBD8JNp1ZpoWpi1uH3DsbUmemxL2mFnqnhwTRUbW35qQnag6pwB5log==
-
 "@evocateur/libnpmaccess@^3.1.2":
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/@evocateur/libnpmaccess/-/libnpmaccess-3.1.2.tgz#ecf7f6ce6b004e9f942b098d92200be4a4b1c845"

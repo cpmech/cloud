@@ -17,7 +17,8 @@
   "scripts": {
     "inf": "yarn workspaces info",
     "w": "yarn workspace",
-    "test": "lerna exec yarn test"
+    "test": "lerna exec yarn test",
+    "sync:deps": "bash ./scripts/sync_deps.bash"
   },
   "devDependencies": {
     "lerna": "^3.17.0"
