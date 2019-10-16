@@ -12,8 +12,7 @@
     "test": "jest --verbose",
     "tw": "jest --watch --verbose",
     "cov": "jest --coverage",
-    "build": "rm -rf dist && rollup --config ../rollup.config.js",
-    "dist": "yarn build && yarn publish --access=public && echo && git push && git push --tags && echo '🎉 DONE'"
+    "build": "rm -rf dist && rollup --config ../rollup.config.js"
   },
   "description": "Tools for managing Environment Variables",
   "keywords": [

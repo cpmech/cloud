@@ -13,7 +13,6 @@
     "tw": "jest --watch --verbose",
     "cov": "jest --coverage",
     "build": "rm -rf dist && rollup --config ../rollup.config.js",
-    "dist": "yarn build && yarn publish --access=public && echo && git push && git push --tags && echo '🎉 DONE'",
     "ddb:run": "bash ./localdb/run_ddb.bash",
     "ddb:prep": "bash ./localdb/prep_ddb.bash",
     "pretest": "yarn ddb:run && yarn ddb:prep",

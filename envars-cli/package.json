@@ -13,7 +13,6 @@
     "tw": "jest --watch --verbose",
     "cov": "jest --coverage",
     "build": "rm -rf dist && rollup --config rollup.config.js && chmod +x dist/index.js",
-    "dist": "yarn build && yarn publish --access=public && echo && git push && git push --tags && echo '🎉 DONE'",
     "start": "ts-node -O '{\"module\":\"commonjs\",\"resolveJsonModule\":true}' src/index.ts --resolveJsonModule",
     "watch": "nodemon -e ts --exec yarn start"
   },
