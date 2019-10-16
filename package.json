@@ -19,6 +19,7 @@
   "scripts": {
     "inf": "yarn workspaces info",
     "x": "bash ./scripts/yarn_workspace.bash",
+    "list:unsync": "bash ./scripts/list_unsync_deps.bash",
     "sync:deps": "bash ./scripts/sync_deps.bash",
     "tall": "lerna exec --concurrency 1 -- yarn test",
     "call": "lerna exec --concurrency 1 -- yarn cov",
@@ -27,6 +28,6 @@
     "ncu:u": "lerna exec --concurrency 1 -- ncu -u"
   },
   "devDependencies": {
-    "lerna": "^3.17.0"
+    "lerna": "^3.18.1"
   }
 }

@@ -17,5 +17,7 @@ for p in $PKGS; do
   done
 done
 
-lerna clean --yes
-yarn install
+echo
+echo "Remember to call:"
+echo "lerna clean --yes"
+echo "yarn install"
