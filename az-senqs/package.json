@@ -1,6 +1,6 @@
 {
   "name": "@cpmech/az-senqs",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "license": "MIT",
   "author": {
     "name": "Dorival Pedroso",
@@ -48,7 +48,7 @@
     "uuid": "^3.3.3"
   },
   "dependencies": {
-    "@cpmech/basic": "^2.7.0",
+    "@cpmech/basic": "^2.8.0",
     "aws-sdk": "^2.550.0",
     "mailparser": "^2.7.1"
   }

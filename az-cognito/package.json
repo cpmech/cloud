@@ -1,6 +1,6 @@
 {
   "name": "@cpmech/az-cognito",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "license": "MIT",
   "author": {
     "name": "Dorival Pedroso",
@@ -44,7 +44,7 @@
     "uuid": "^3.3.3"
   },
   "dependencies": {
-    "@cpmech/basic": "^2.7.0",
+    "@cpmech/basic": "^2.8.0",
     "aws-sdk": "^2.550.0"
   }
 }
