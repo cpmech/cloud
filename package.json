@@ -25,7 +25,8 @@
     "call": "lerna exec --concurrency 1 -- yarn cov",
     "ball": "lerna exec --concurrency 1 -- yarn build",
     "ncu": "lerna exec --concurrency 1 -- ncu",
-    "ncu:u": "lerna exec --concurrency 1 -- ncu -u"
+    "ncu:u": "lerna exec --concurrency 1 -- ncu -u",
+    "prepare": "lerna exec -- yarn build"
   },
   "devDependencies": {
     "lerna": "^3.18.1"

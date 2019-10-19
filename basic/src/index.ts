@@ -4,6 +4,7 @@ export * from './email2key';
 export * from './filled';
 export * from './getObjectKeys';
 export * from './hasProp';
+export * from './Locales';
 export * from './makeGetField';
 export * from './makeSetField';
 export * from './numOnly';
