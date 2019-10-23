@@ -29,6 +29,6 @@
     "prepare": "lerna exec -- yarn build"
   },
   "devDependencies": {
-    "lerna": "^3.18.1"
+    "lerna": "^3.18.3"
   }
 }
