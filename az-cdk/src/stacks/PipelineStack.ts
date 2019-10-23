@@ -1,6 +1,6 @@
 import { Construct, Stack, StackProps, SecretValue, RemovalPolicy } from '@aws-cdk/core';
 import { Artifact, Pipeline } from '@aws-cdk/aws-codepipeline';
-import { Project, LinuxBuildImage, BuildSpec } from '@aws-cdk/aws-codebuild';
+import { PipelineProject, LinuxBuildImage, BuildSpec } from '@aws-cdk/aws-codebuild';
 import { GitHubSourceAction, CodeBuildAction } from '@aws-cdk/aws-codepipeline-actions';
 import { PolicyStatement, IRole } from '@aws-cdk/aws-iam';
 import { Bucket } from '@aws-cdk/aws-s3';
@@ -31,7 +31,7 @@ export class PipelineStack extends Stack {
       ? [`yarn cdk ${group} deploy ${stage} --require-approval never`]
       : [`npm run cdk -- ${group} deploy ${stage} --require-approval never`];
 
-    const project = new Project(this, 'Project', {
+    const project = new PipelineProject(this, 'Project', {
       environment: {
         buildImage: LinuxBuildImage.UBUNTU_14_04_NODEJS_10_14_1,
       },
