@@ -14,6 +14,7 @@ import { VerifyDomainConstruct } from '../custom-resources/VerifyDomainConstruct
 
 export interface IWebsiteProps {
   domain: string; // e.g. mydomain.com
+  prefix?: string; // e.g. 'app' for deploying app.mydomain.com ('www' will not be created then)
   comment?: string; // e.g. My awesome domain
   hostedZoneId?: string; // use an existend hosted zone, otherwise create a new (public) one
   certificateArn?: string; // Arn of an existent and VALID certificate. Use empty or 'null' to skip use of certificate
@@ -43,8 +44,10 @@ export class WebsiteConstruct extends Construct {
       });
     }
 
+    const prefixedDomain = `${props.prefix ? props.prefix + '.' : ''}${props.domain}`;
+
     const bucket = new Bucket(this, 'Bucket', {
-      bucketName: `${props.domain}-${id.toLowerCase()}`,
+      bucketName: `${prefixedDomain}-${id.toLowerCase()}`,
       removalPolicy: RemovalPolicy.DESTROY,
     });
 
@@ -54,8 +57,11 @@ export class WebsiteConstruct extends Construct {
     if (certificateArn !== 'null') {
       aliasConfiguration = {
         acmCertRef: certificateArn,
-        names: [props.domain, `www.${props.domain}`],
+        names: [prefixedDomain],
       };
+      if (!props.prefix) {
+        aliasConfiguration.names.push(`www.${props.domain}`);
+      }
     }
 
     const distribution = new CloudFrontWebDistribution(this, 'Distribution', {
@@ -86,36 +92,53 @@ export class WebsiteConstruct extends Construct {
 
     const target = new CloudFrontTarget(distribution);
 
-    new ARecord(this, 'A', {
-      zone,
-      target: RecordTarget.fromAlias(target),
-    });
+    // prefixed
+    if (props.prefix) {
+      new ARecord(this, 'A', {
+        zone,
+        recordName: props.prefix,
+        target: RecordTarget.fromAlias(target),
+      });
 
-    new AaaaRecord(this, 'AAAA', {
-      zone,
-      target: RecordTarget.fromAlias(target),
-    });
+      new AaaaRecord(this, 'AAA', {
+        zone,
+        recordName: props.prefix,
+        target: RecordTarget.fromAlias(target),
+      });
 
-    new ARecord(this, 'WWW', {
-      zone,
-      recordName: 'www',
-      target: RecordTarget.fromAlias(target),
-    });
+      // standard
+    } else {
+      new ARecord(this, 'A', {
+        zone,
+        target: RecordTarget.fromAlias(target),
+      });
 
-    new MxRecord(this, 'MX', {
-      zone,
-      values: [
-        {
-          priority: 10,
-          hostName: `inbound-smtp.${Aws.REGION}.amazonaws.com`,
-        },
-      ],
-    });
+      new AaaaRecord(this, 'AAAA', {
+        zone,
+        target: RecordTarget.fromAlias(target),
+      });
 
-    new VerifyDomainConstruct(this, 'VerifyDomain', {
-      hostedZoneId: zone.hostedZoneId,
-      domain: props.domain,
-      certificateArn,
-    });
+      new ARecord(this, 'WWW', {
+        zone,
+        recordName: 'www',
+        target: RecordTarget.fromAlias(target),
+      });
+
+      new MxRecord(this, 'MX', {
+        zone,
+        values: [
+          {
+            priority: 10,
+            hostName: `inbound-smtp.${Aws.REGION}.amazonaws.com`,
+          },
+        ],
+      });
+
+      new VerifyDomainConstruct(this, 'VerifyDomain', {
+        hostedZoneId: zone.hostedZoneId,
+        domain: props.domain,
+        certificateArn,
+      });
+    }
   }
 }

@@ -27,3 +27,17 @@ describe('WebsiteConstruct', () => {
     expect(synthAppString(app)).toMatchSnapshot();
   });
 });
+
+describe('WebsiteConstruct (prefixed)', () => {
+  it('synthetizes properly using certificateArn', () => {
+    const app = new App();
+    const stack = new Stack(app, 'Stack');
+    new WebsiteConstruct(stack, 'Website', {
+      domain: 'mydomain.com',
+      prefix: 'app',
+      comment: 'My app website',
+      certificateArn: 'arn:aws:acm:REGION:ACCOUNT:certificate/12345-678-9012345',
+    });
+    expect(synthAppString(app)).toMatchSnapshot();
+  });
+});

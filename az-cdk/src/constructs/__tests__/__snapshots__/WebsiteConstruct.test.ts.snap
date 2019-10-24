@@ -1,5 +1,145 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`WebsiteConstruct (prefixed) synthetizes properly using certificateArn 1`] = `
+"{
+  \\"Resources\\": {
+    \\"WebsiteHostedZoneD4FAEADF\\": {
+      \\"Type\\": \\"AWS::Route53::HostedZone\\",
+      \\"Properties\\": {
+        \\"Name\\": \\"mydomain.com.\\",
+        \\"HostedZoneConfig\\": {
+          \\"Comment\\": \\"My app website\\"
+        }
+      }
+    },
+    \\"WebsiteHostedZoneCaaAmazonF67E60BB\\": {
+      \\"Type\\": \\"AWS::Route53::RecordSet\\",
+      \\"Properties\\": {
+        \\"Name\\": \\"mydomain.com.\\",
+        \\"Type\\": \\"CAA\\",
+        \\"HostedZoneId\\": {
+          \\"Ref\\": \\"WebsiteHostedZoneD4FAEADF\\"
+        },
+        \\"ResourceRecords\\": [
+          \\"0 issue \\\\\\"amazon.com\\\\\\"\\"
+        ],
+        \\"TTL\\": \\"1800\\"
+      }
+    },
+    \\"WebsiteBucket4326D7C2\\": {
+      \\"Type\\": \\"AWS::S3::Bucket\\",
+      \\"Properties\\": {
+        \\"BucketName\\": \\"app.mydomain.com-website\\"
+      },
+      \\"UpdateReplacePolicy\\": \\"Delete\\",
+      \\"DeletionPolicy\\": \\"Delete\\"
+    },
+    \\"WebsiteDistributionCFDistributionD4D90A52\\": {
+      \\"Type\\": \\"AWS::CloudFront::Distribution\\",
+      \\"Properties\\": {
+        \\"DistributionConfig\\": {
+          \\"Aliases\\": [
+            \\"app.mydomain.com\\"
+          ],
+          \\"CustomErrorResponses\\": [
+            {
+              \\"ErrorCachingMinTTL\\": 300,
+              \\"ErrorCode\\": 403,
+              \\"ResponseCode\\": 200,
+              \\"ResponsePagePath\\": \\"/index.html\\"
+            },
+            {
+              \\"ErrorCachingMinTTL\\": 300,
+              \\"ErrorCode\\": 404,
+              \\"ResponseCode\\": 200,
+              \\"ResponsePagePath\\": \\"/index.html\\"
+            }
+          ],
+          \\"DefaultCacheBehavior\\": {
+            \\"AllowedMethods\\": [
+              \\"GET\\",
+              \\"HEAD\\"
+            ],
+            \\"CachedMethods\\": [
+              \\"GET\\",
+              \\"HEAD\\"
+            ],
+            \\"Compress\\": true,
+            \\"ForwardedValues\\": {
+              \\"Cookies\\": {
+                \\"Forward\\": \\"none\\"
+              },
+              \\"QueryString\\": false
+            },
+            \\"TargetOriginId\\": \\"origin1\\",
+            \\"ViewerProtocolPolicy\\": \\"redirect-to-https\\"
+          },
+          \\"DefaultRootObject\\": \\"index.html\\",
+          \\"Enabled\\": true,
+          \\"HttpVersion\\": \\"http2\\",
+          \\"IPV6Enabled\\": true,
+          \\"Origins\\": [
+            {
+              \\"DomainName\\": {
+                \\"Fn::GetAtt\\": [
+                  \\"WebsiteBucket4326D7C2\\",
+                  \\"RegionalDomainName\\"
+                ]
+              },
+              \\"Id\\": \\"origin1\\",
+              \\"S3OriginConfig\\": {}
+            }
+          ],
+          \\"PriceClass\\": \\"PriceClass_All\\",
+          \\"ViewerCertificate\\": {
+            \\"AcmCertificateArn\\": \\"arn:aws:acm:REGION:ACCOUNT:certificate/12345-678-9012345\\",
+            \\"SslSupportMethod\\": \\"sni-only\\"
+          }
+        }
+      }
+    },
+    \\"WebsiteA6C1FD492\\": {
+      \\"Type\\": \\"AWS::Route53::RecordSet\\",
+      \\"Properties\\": {
+        \\"Name\\": \\"app.mydomain.com.\\",
+        \\"Type\\": \\"A\\",
+        \\"AliasTarget\\": {
+          \\"DNSName\\": {
+            \\"Fn::GetAtt\\": [
+              \\"WebsiteDistributionCFDistributionD4D90A52\\",
+              \\"DomainName\\"
+            ]
+          },
+          \\"HostedZoneId\\": \\"Z2FDTNDATAQYW2\\"
+        },
+        \\"HostedZoneId\\": {
+          \\"Ref\\": \\"WebsiteHostedZoneD4FAEADF\\"
+        }
+      }
+    },
+    \\"WebsiteAAA2001D004\\": {
+      \\"Type\\": \\"AWS::Route53::RecordSet\\",
+      \\"Properties\\": {
+        \\"Name\\": \\"app.mydomain.com.\\",
+        \\"Type\\": \\"AAAA\\",
+        \\"AliasTarget\\": {
+          \\"DNSName\\": {
+            \\"Fn::GetAtt\\": [
+              \\"WebsiteDistributionCFDistributionD4D90A52\\",
+              \\"DomainName\\"
+            ]
+          },
+          \\"HostedZoneId\\": \\"Z2FDTNDATAQYW2\\"
+        },
+        \\"HostedZoneId\\": {
+          \\"Ref\\": \\"WebsiteHostedZoneD4FAEADF\\"
+        }
+      }
+    }
+  }
+}"
+`;
+
 exports[`WebsiteConstruct synthetizes properly 1`] = `
 "{
   \\"Resources\\": {
