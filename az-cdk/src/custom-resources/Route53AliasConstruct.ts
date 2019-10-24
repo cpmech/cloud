@@ -20,7 +20,7 @@ export class Route53AliasConstruct extends Construct {
     const fcn = new Function(this, 'Function', {
       code: Code.asset(crlDir),
       handler: 'index.route53Alias',
-      runtime: Runtime.NODEJS_8_10,
+      runtime: Runtime.NODEJS_10_X,
       timeout: Duration.minutes(1),
     });
 

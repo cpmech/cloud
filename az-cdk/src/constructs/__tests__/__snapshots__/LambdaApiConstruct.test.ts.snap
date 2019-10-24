@@ -402,7 +402,7 @@ exports[`LambdaApiConstruct (customDomain) synthetizes properly 1`] = `
             \\"Arn\\"
           ]
         },
-        \\"Runtime\\": \\"nodejs8.10\\",
+        \\"Runtime\\": \\"nodejs10.x\\",
         \\"Timeout\\": 60
       },
       \\"DependsOn\\": [
@@ -652,7 +652,6 @@ exports[`LambdaApiConstruct (layers) synthetizes properly 1`] = `
           }
         },
         \\"CompatibleRuntimes\\": [
-          \\"nodejs8.10\\",
           \\"nodejs10.x\\"
         ],
         \\"Description\\": \\"Common NodeJS Libraries\\",
