@@ -34,7 +34,7 @@
     "@types/inquirer": "^6.5.0",
     "@types/jest": "^24.0.19",
     "@types/minimist": "^1.2.0",
-    "@types/node": "^12.11.5",
+    "@types/node": "^12.11.7",
     "@types/shelljs": "^0.8.5",
     "jest": "^24.9.0",
     "nodemon": "^1.19.4",
