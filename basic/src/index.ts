@@ -2,6 +2,7 @@ export * from './allFilled';
 export * from './camelize';
 export * from './email2key';
 export * from './filled';
+export * from './formatCPF';
 export * from './getObjectKeys';
 export * from './hasProp';
 export * from './Locales';
