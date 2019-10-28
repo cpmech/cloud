@@ -16,10 +16,12 @@ export interface IWebsiteProps {
   domain: string; // e.g. mydomain.com
   prefix?: string; // e.g. 'app' for deploying app.mydomain.com ('www' will not be created then)
   skipMX?: boolean; // skip setting MX record set
+  skipVerification?: boolean; // skip domain verificaton
   comment?: string; // e.g. My awesome domain
   hostedZoneId?: string; // use an existend hosted zone, otherwise create a new (public) one
   certificateArn?: string; // Arn of an existent and VALID certificate. Use empty or 'null' to skip use of certificate
-  errorCodesHandledByIndexHtml?: number[]; // default = 403, 404
+  errorCodes?: number[]; // default = 403, 404
+  errorRoute?: string; // default = /index.html
 }
 
 // Website creates bucket, cloudformation, certificate, and route53 data for a website
@@ -30,6 +32,9 @@ export class WebsiteConstruct extends Construct {
     super(scope, id);
 
     const certificateArn = props.certificateArn || 'null';
+    const prefixedDomain = `${props.prefix ? props.prefix + '.' : ''}${props.domain}`;
+    const errorCodes = props.errorCodes || [403, 404];
+    const errorRoute = props.errorRoute || '/index.html';
 
     let zone: IPublicHostedZone;
     if (props.hostedZoneId) {
@@ -45,14 +50,10 @@ export class WebsiteConstruct extends Construct {
       });
     }
 
-    const prefixedDomain = `${props.prefix ? props.prefix + '.' : ''}${props.domain}`;
-
     const bucket = new Bucket(this, 'Bucket', {
       bucketName: `${prefixedDomain}-${id.toLowerCase()}`,
       removalPolicy: RemovalPolicy.DESTROY,
     });
-
-    const errorCodes = props.errorCodesHandledByIndexHtml || [403, 404];
 
     let aliasConfiguration: AliasConfiguration | undefined;
     if (certificateArn !== 'null') {
@@ -85,7 +86,7 @@ export class WebsiteConstruct extends Construct {
         errorCachingMinTtl: 300,
         errorCode: code,
         responseCode: 200,
-        responsePagePath: '/index.html',
+        responsePagePath: errorRoute,
       })),
     });
 
@@ -137,11 +138,13 @@ export class WebsiteConstruct extends Construct {
         });
       }
 
-      new VerifyDomainConstruct(this, 'VerifyDomain', {
-        hostedZoneId: zone.hostedZoneId,
-        domain: props.domain,
-        certificateArn,
-      });
+      if (!props.skipVerification) {
+        new VerifyDomainConstruct(this, 'VerifyDomain', {
+          hostedZoneId: zone.hostedZoneId,
+          domain: props.domain,
+          certificateArn,
+        });
+      }
     }
   }
 }
