@@ -9,6 +9,7 @@
   },
   "repository": "cpmech/cloud",
   "scripts": {
+    "type-check": "tsc --outDir /tmp/__cloud__az-cdk__",
     "test": "mkdir -p dist && jest --verbose",
     "tw": "mkdir -p dist && jest --watch --verbose",
     "cov": "mkdir -p dist && jest --coverage",

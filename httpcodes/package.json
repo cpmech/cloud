@@ -9,6 +9,7 @@
   },
   "repository": "cpmech/cloud",
   "scripts": {
+    "type-check": "tsc --outDir /tmp/__cloud__httpcodes__",
     "test": "jest --verbose",
     "tw": "jest --watch --verbose",
     "cov": "jest --coverage",
