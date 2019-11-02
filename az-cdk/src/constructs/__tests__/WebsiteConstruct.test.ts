@@ -19,7 +19,7 @@ describe('WebsiteConstruct', () => {
     const website = new WebsiteConstruct(stack, 'Website', {
       domain: 'mydomain.com',
       comment: 'My nice website',
-      certificateArn: 'arn:aws:acm:REGION:ACCOUNT:certificate/12345-678-9012345',
+      certificateArn: 'arn:aws:acm:us-east-1:ACCOUNT:certificate/12345-678-9012345',
     });
     new CfnOutput(stack, 'CloudFrontDistributionId', {
       value: website.cloudfrontDistributionId,
@@ -36,7 +36,7 @@ describe('WebsiteConstruct (prefixed)', () => {
       domain: 'mydomain.com',
       prefix: 'app',
       comment: 'My app website',
-      certificateArn: 'arn:aws:acm:REGION:ACCOUNT:certificate/12345-678-9012345',
+      certificateArn: 'arn:aws:acm:us-east-1:ACCOUNT:certificate/12345-678-9012345',
     });
     expect(synthAppString(app)).toMatchSnapshot();
   });

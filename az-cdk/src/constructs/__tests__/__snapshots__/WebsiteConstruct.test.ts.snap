@@ -92,7 +92,7 @@ exports[`WebsiteConstruct (prefixed) synthetizes properly using certificateArn 1
           ],
           \\"PriceClass\\": \\"PriceClass_All\\",
           \\"ViewerCertificate\\": {
-            \\"AcmCertificateArn\\": \\"arn:aws:acm:REGION:ACCOUNT:certificate/12345-678-9012345\\",
+            \\"AcmCertificateArn\\": \\"arn:aws:acm:us-east-1:ACCOUNT:certificate/12345-678-9012345\\",
             \\"SslSupportMethod\\": \\"sni-only\\"
           }
         }
@@ -608,7 +608,7 @@ exports[`WebsiteConstruct synthetizes properly using certificateArn 1`] = `
           ],
           \\"PriceClass\\": \\"PriceClass_All\\",
           \\"ViewerCertificate\\": {
-            \\"AcmCertificateArn\\": \\"arn:aws:acm:REGION:ACCOUNT:certificate/12345-678-9012345\\",
+            \\"AcmCertificateArn\\": \\"arn:aws:acm:us-east-1:ACCOUNT:certificate/12345-678-9012345\\",
             \\"SslSupportMethod\\": \\"sni-only\\"
           }
         }
@@ -872,7 +872,7 @@ exports[`WebsiteConstruct synthetizes properly using certificateArn 1`] = `
           \\"Ref\\": \\"WebsiteHostedZoneD4FAEADF\\"
         },
         \\"DomainName\\": \\"mydomain.com\\",
-        \\"CertificateArn\\": \\"arn:aws:acm:REGION:ACCOUNT:certificate/12345-678-9012345\\"
+        \\"CertificateArn\\": \\"arn:aws:acm:us-east-1:ACCOUNT:certificate/12345-678-9012345\\"
       },
       \\"UpdateReplacePolicy\\": \\"Delete\\",
       \\"DeletionPolicy\\": \\"Delete\\"
