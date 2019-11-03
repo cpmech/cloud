@@ -134,37 +134,3 @@ describe('LambdaApiConstruct (customDomain)', () => {
     expect(synthAppString(app)).toMatchSnapshot();
   });
 });
-
-describe('LambdaApiConstruct (DynamoDB)', () => {
-  it('synthetizes properly', () => {
-    const app = new App();
-    const stack = new Stack(app, 'Stack');
-    new LambdaApiConstruct(stack, 'LambdaApi', {
-      gatewayName: 'TestApi',
-      lambdas: [
-        {
-          filenameKey: 'index',
-          handlerName: 'handler',
-          httpMethods: ['GET'],
-          route: 'hello',
-          subroute: '{id}',
-          unprotected: true,
-          accessDynamoTables: ['USERS', 'PARAMS'],
-        },
-      ],
-      dynamoTables: [
-        {
-          name: 'USERS',
-          partitionKey: 'userId',
-          sortKey: 'aspect',
-        },
-        {
-          name: 'PARAMS',
-          partitionKey: 'category',
-          sortKey: 'brStateKey',
-        },
-      ],
-    });
-    expect(synthAppString(app)).toMatchSnapshot();
-  });
-});

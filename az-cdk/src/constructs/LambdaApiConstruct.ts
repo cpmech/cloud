@@ -3,8 +3,7 @@ import { Code, Function, Runtime } from '@aws-cdk/aws-lambda';
 import { LambdaIntegration, RestApi } from '@aws-cdk/aws-apigateway';
 import { Certificate } from '@aws-cdk/aws-certificatemanager';
 import { PolicyStatement, IRole } from '@aws-cdk/aws-iam';
-import { Table, AttributeType } from '@aws-cdk/aws-dynamodb';
-import { camelize, allFilled, hasProp } from '@cpmech/basic';
+import { camelize, allFilled } from '@cpmech/basic';
 import { LambdaLayersConstruct } from './LambdaLayersConstruct';
 import { AuthorizerConstruct } from './AuthorizerConstruct';
 import { Route53AliasConstruct } from '../custom-resources/Route53AliasConstruct';
@@ -18,7 +17,7 @@ export interface ILambdaApiSpec {
   subroute?: string; // example '{id}'
   unprotected?: boolean; // do not use cognito authorization protection
   extraPermissions?: string[]; // e.g. ['ses:SendEmail']
-  accessDynamoTables?: string[]; // names of tables to give access (tables defined in dynamoTableNames)
+  accessDynamoTables?: string[]; // names of tables to give access
 }
 
 export interface ICustomApiDomainName {
@@ -28,12 +27,6 @@ export interface ICustomApiDomainName {
   apiRegion?: string; // e.g. us-east-1
 }
 
-export interface IDynamoTable {
-  name: string; // name of table
-  partitionKey: string; // name of partiton key (the value will be string)
-  sortKey?: string; // name of sort key (the value will be string)
-}
-
 export interface ILambdaApiProps {
   gatewayName: string; // e.g. 'Myapp'
   lambdas: ILambdaApiSpec[];
@@ -41,7 +34,6 @@ export interface ILambdaApiProps {
   layers?: LambdaLayersConstruct; // lambda layers with common libs
   customDomain?: ICustomApiDomainName; // ignored if any entry is empty or 'null'
   dirDist?: string; // default = 'dist'
-  dynamoTables?: IDynamoTable[]; // create some DynamoDB tables (give access to functions using accessDynamoTables)
 }
 
 export class LambdaApiConstruct extends Construct {
@@ -78,18 +70,6 @@ export class LambdaApiConstruct extends Construct {
       authorizer = new AuthorizerConstruct(this, 'Authorizer', {
         cognitoUserPoolId: props.cognitoId,
         restApiId: api.restApiId,
-      });
-    }
-
-    const name2table: { [tableName: string]: Table } = {};
-    if (props.dynamoTables) {
-      props.dynamoTables.forEach((t, i) => {
-        const table = new Table(this, `Table${i}`, {
-          tableName: t.name,
-          partitionKey: { name: t.partitionKey, type: AttributeType.STRING },
-          sortKey: t.sortKey ? { name: t.sortKey, type: AttributeType.STRING } : undefined,
-        });
-        name2table[t.name] = table;
       });
     }
 
@@ -139,10 +119,17 @@ export class LambdaApiConstruct extends Construct {
       }
 
       if (spec.accessDynamoTables) {
-        spec.accessDynamoTables.forEach(tableName => {
-          if (hasProp(name2table, tableName)) {
-            name2table[tableName].grantReadWriteData(lambda);
-          }
+        const region = lambda.stack.region;
+        spec.accessDynamoTables.forEach(t => {
+          (lambda.role as IRole).addToPolicy(
+            new PolicyStatement({
+              actions: ['dynamodb:*'],
+              resources: [
+                `arn:aws:dynamodb:${region}:*:table/${t}`,
+                `arn:aws:dynamodb:${region}:*:table/${t}/index/*`,
+              ],
+            }),
+          );
         });
       }
     });

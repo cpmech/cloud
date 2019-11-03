@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DynamoConstruct  synthetizes properly 1`] = `
+"{
+  \\"Resources\\": {
+    \\"DynamoTable090A557D2\\": {
+      \\"Type\\": \\"AWS::DynamoDB::Table\\",
+      \\"Properties\\": {
+        \\"KeySchema\\": [
+          {
+            \\"AttributeName\\": \\"category\\",
+            \\"KeyType\\": \\"HASH\\"
+          },
+          {
+            \\"AttributeName\\": \\"key\\",
+            \\"KeyType\\": \\"RANGE\\"
+          }
+        ],
+        \\"AttributeDefinitions\\": [
+          {
+            \\"AttributeName\\": \\"category\\",
+            \\"AttributeType\\": \\"S\\"
+          },
+          {
+            \\"AttributeName\\": \\"key\\",
+            \\"AttributeType\\": \\"S\\"
+          }
+        ],
+        \\"ProvisionedThroughput\\": {
+          \\"ReadCapacityUnits\\": 5,
+          \\"WriteCapacityUnits\\": 5
+        },
+        \\"TableName\\": \\"PARAMS\\"
+      },
+      \\"UpdateReplacePolicy\\": \\"Retain\\",
+      \\"DeletionPolicy\\": \\"Retain\\"
+    },
+    \\"DynamoTable10A137A7E\\": {
+      \\"Type\\": \\"AWS::DynamoDB::Table\\",
+      \\"Properties\\": {
+        \\"KeySchema\\": [
+          {
+            \\"AttributeName\\": \\"userId\\",
+            \\"KeyType\\": \\"HASH\\"
+          },
+          {
+            \\"AttributeName\\": \\"aspect\\",
+            \\"KeyType\\": \\"RANGE\\"
+          }
+        ],
+        \\"AttributeDefinitions\\": [
+          {
+            \\"AttributeName\\": \\"userId\\",
+            \\"AttributeType\\": \\"S\\"
+          },
+          {
+            \\"AttributeName\\": \\"aspect\\",
+            \\"AttributeType\\": \\"S\\"
+          }
+        ],
+        \\"ProvisionedThroughput\\": {
+          \\"ReadCapacityUnits\\": 5,
+          \\"WriteCapacityUnits\\": 5
+        },
+        \\"TableName\\": \\"USERS\\"
+      },
+      \\"UpdateReplacePolicy\\": \\"Retain\\",
+      \\"DeletionPolicy\\": \\"Retain\\"
+    }
+  }
+}"
+`;

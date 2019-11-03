@@ -1,537 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LambdaApiConstruct (DynamoDB) synthetizes properly 1`] = `
-"{
-  \\"Resources\\": {
-    \\"LambdaApiTestApiCDC7EDDF\\": {
-      \\"Type\\": \\"AWS::ApiGateway::RestApi\\",
-      \\"Properties\\": {
-        \\"Name\\": \\"TestApi\\"
-      }
-    },
-    \\"LambdaApiTestApiDeploymentC09FA65F864a53ded60c05c99e03b0def32cd397\\": {
-      \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
-      \\"Properties\\": {
-        \\"RestApiId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
-        },
-        \\"Description\\": \\"Automatically created by the RestApi construct\\"
-      },
-      \\"DependsOn\\": [
-        \\"LambdaApiTestApihelloidGETC46CEBC1\\",
-        \\"LambdaApiTestApihelloid2F778A8B\\",
-        \\"LambdaApiTestApihelloOPTIONS0D3F2434\\",
-        \\"LambdaApiTestApihello287B32B7\\"
-      ]
-    },
-    \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\": {
-      \\"Type\\": \\"AWS::ApiGateway::Stage\\",
-      \\"Properties\\": {
-        \\"RestApiId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
-        },
-        \\"DeploymentId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F864a53ded60c05c99e03b0def32cd397\\"
-        },
-        \\"StageName\\": \\"prod\\"
-      }
-    },
-    \\"LambdaApiTestApiCloudWatchRole0731508D\\": {
-      \\"Type\\": \\"AWS::IAM::Role\\",
-      \\"Properties\\": {
-        \\"AssumeRolePolicyDocument\\": {
-          \\"Statement\\": [
-            {
-              \\"Action\\": \\"sts:AssumeRole\\",
-              \\"Effect\\": \\"Allow\\",
-              \\"Principal\\": {
-                \\"Service\\": \\"apigateway.amazonaws.com\\"
-              }
-            }
-          ],
-          \\"Version\\": \\"2012-10-17\\"
-        },
-        \\"ManagedPolicyArns\\": [
-          {
-            \\"Fn::Join\\": [
-              \\"\\",
-              [
-                \\"arn:\\",
-                {
-                  \\"Ref\\": \\"AWS::Partition\\"
-                },
-                \\":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs\\"
-              ]
-            ]
-          }
-        ]
-      }
-    },
-    \\"LambdaApiTestApiAccount4308A17A\\": {
-      \\"Type\\": \\"AWS::ApiGateway::Account\\",
-      \\"Properties\\": {
-        \\"CloudWatchRoleArn\\": {
-          \\"Fn::GetAtt\\": [
-            \\"LambdaApiTestApiCloudWatchRole0731508D\\",
-            \\"Arn\\"
-          ]
-        }
-      },
-      \\"DependsOn\\": [
-        \\"LambdaApiTestApiCDC7EDDF\\"
-      ]
-    },
-    \\"LambdaApiTestApihello287B32B7\\": {
-      \\"Type\\": \\"AWS::ApiGateway::Resource\\",
-      \\"Properties\\": {
-        \\"ParentId\\": {
-          \\"Fn::GetAtt\\": [
-            \\"LambdaApiTestApiCDC7EDDF\\",
-            \\"RootResourceId\\"
-          ]
-        },
-        \\"PathPart\\": \\"hello\\",
-        \\"RestApiId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
-        }
-      }
-    },
-    \\"LambdaApiTestApihelloOPTIONS0D3F2434\\": {
-      \\"Type\\": \\"AWS::ApiGateway::Method\\",
-      \\"Properties\\": {
-        \\"HttpMethod\\": \\"OPTIONS\\",
-        \\"ResourceId\\": {
-          \\"Ref\\": \\"LambdaApiTestApihello287B32B7\\"
-        },
-        \\"RestApiId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
-        },
-        \\"AuthorizationType\\": \\"NONE\\",
-        \\"Integration\\": {
-          \\"IntegrationResponses\\": [
-            {
-              \\"ResponseParameters\\": {
-                \\"method.response.header.Access-Control-Allow-Headers\\": \\"'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'\\",
-                \\"method.response.header.Access-Control-Allow-Origin\\": \\"'*'\\",
-                \\"method.response.header.Access-Control-Allow-Credentials\\": \\"'false'\\",
-                \\"method.response.header.Access-Control-Allow-Methods\\": \\"'OPTIONS,GET'\\"
-              },
-              \\"StatusCode\\": \\"200\\"
-            }
-          ],
-          \\"PassthroughBehavior\\": \\"NEVER\\",
-          \\"RequestTemplates\\": {
-            \\"application/json\\": \\"{\\\\\\"statusCode\\\\\\": 200}\\"
-          },
-          \\"Type\\": \\"MOCK\\"
-        },
-        \\"MethodResponses\\": [
-          {
-            \\"ResponseParameters\\": {
-              \\"method.response.header.Access-Control-Allow-Headers\\": true,
-              \\"method.response.header.Access-Control-Allow-Methods\\": true,
-              \\"method.response.header.Access-Control-Allow-Credentials\\": true,
-              \\"method.response.header.Access-Control-Allow-Origin\\": true
-            },
-            \\"StatusCode\\": \\"200\\"
-          }
-        ]
-      }
-    },
-    \\"LambdaApiTestApihelloid2F778A8B\\": {
-      \\"Type\\": \\"AWS::ApiGateway::Resource\\",
-      \\"Properties\\": {
-        \\"ParentId\\": {
-          \\"Ref\\": \\"LambdaApiTestApihello287B32B7\\"
-        },
-        \\"PathPart\\": \\"{id}\\",
-        \\"RestApiId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
-        }
-      }
-    },
-    \\"LambdaApiTestApihelloidGETApiPermissionStackLambdaApiTestApiCA7E01A2GEThelloid49B479D1\\": {
-      \\"Type\\": \\"AWS::Lambda::Permission\\",
-      \\"Properties\\": {
-        \\"Action\\": \\"lambda:InvokeFunction\\",
-        \\"FunctionName\\": {
-          \\"Fn::GetAtt\\": [
-            \\"LambdaApiHelloA9D6B516\\",
-            \\"Arn\\"
-          ]
-        },
-        \\"Principal\\": \\"apigateway.amazonaws.com\\",
-        \\"SourceArn\\": {
-          \\"Fn::Join\\": [
-            \\"\\",
-            [
-              \\"arn:\\",
-              {
-                \\"Ref\\": \\"AWS::Partition\\"
-              },
-              \\":execute-api:\\",
-              {
-                \\"Ref\\": \\"AWS::Region\\"
-              },
-              \\":\\",
-              {
-                \\"Ref\\": \\"AWS::AccountId\\"
-              },
-              \\":\\",
-              {
-                \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
-              },
-              \\"/\\",
-              {
-                \\"Ref\\": \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\"
-              },
-              \\"/GET/hello/{id}\\"
-            ]
-          ]
-        }
-      }
-    },
-    \\"LambdaApiTestApihelloidGETApiPermissionTestStackLambdaApiTestApiCA7E01A2GEThelloid76F978CF\\": {
-      \\"Type\\": \\"AWS::Lambda::Permission\\",
-      \\"Properties\\": {
-        \\"Action\\": \\"lambda:InvokeFunction\\",
-        \\"FunctionName\\": {
-          \\"Fn::GetAtt\\": [
-            \\"LambdaApiHelloA9D6B516\\",
-            \\"Arn\\"
-          ]
-        },
-        \\"Principal\\": \\"apigateway.amazonaws.com\\",
-        \\"SourceArn\\": {
-          \\"Fn::Join\\": [
-            \\"\\",
-            [
-              \\"arn:\\",
-              {
-                \\"Ref\\": \\"AWS::Partition\\"
-              },
-              \\":execute-api:\\",
-              {
-                \\"Ref\\": \\"AWS::Region\\"
-              },
-              \\":\\",
-              {
-                \\"Ref\\": \\"AWS::AccountId\\"
-              },
-              \\":\\",
-              {
-                \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
-              },
-              \\"/test-invoke-stage/GET/hello/{id}\\"
-            ]
-          ]
-        }
-      }
-    },
-    \\"LambdaApiTestApihelloidGETC46CEBC1\\": {
-      \\"Type\\": \\"AWS::ApiGateway::Method\\",
-      \\"Properties\\": {
-        \\"HttpMethod\\": \\"GET\\",
-        \\"ResourceId\\": {
-          \\"Ref\\": \\"LambdaApiTestApihelloid2F778A8B\\"
-        },
-        \\"RestApiId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
-        },
-        \\"AuthorizationType\\": \\"NONE\\",
-        \\"Integration\\": {
-          \\"IntegrationHttpMethod\\": \\"POST\\",
-          \\"Type\\": \\"AWS_PROXY\\",
-          \\"Uri\\": {
-            \\"Fn::Join\\": [
-              \\"\\",
-              [
-                \\"arn:\\",
-                {
-                  \\"Ref\\": \\"AWS::Partition\\"
-                },
-                \\":apigateway:\\",
-                {
-                  \\"Ref\\": \\"AWS::Region\\"
-                },
-                \\":lambda:path/2015-03-31/functions/\\",
-                {
-                  \\"Fn::GetAtt\\": [
-                    \\"LambdaApiHelloA9D6B516\\",
-                    \\"Arn\\"
-                  ]
-                },
-                \\"/invocations\\"
-              ]
-            ]
-          }
-        }
-      }
-    },
-    \\"LambdaApiTable0A1B79E4D\\": {
-      \\"Type\\": \\"AWS::DynamoDB::Table\\",
-      \\"Properties\\": {
-        \\"KeySchema\\": [
-          {
-            \\"AttributeName\\": \\"userId\\",
-            \\"KeyType\\": \\"HASH\\"
-          },
-          {
-            \\"AttributeName\\": \\"aspect\\",
-            \\"KeyType\\": \\"RANGE\\"
-          }
-        ],
-        \\"AttributeDefinitions\\": [
-          {
-            \\"AttributeName\\": \\"userId\\",
-            \\"AttributeType\\": \\"S\\"
-          },
-          {
-            \\"AttributeName\\": \\"aspect\\",
-            \\"AttributeType\\": \\"S\\"
-          }
-        ],
-        \\"ProvisionedThroughput\\": {
-          \\"ReadCapacityUnits\\": 5,
-          \\"WriteCapacityUnits\\": 5
-        },
-        \\"TableName\\": \\"USERS\\"
-      },
-      \\"UpdateReplacePolicy\\": \\"Retain\\",
-      \\"DeletionPolicy\\": \\"Retain\\"
-    },
-    \\"LambdaApiTable1B025DFBA\\": {
-      \\"Type\\": \\"AWS::DynamoDB::Table\\",
-      \\"Properties\\": {
-        \\"KeySchema\\": [
-          {
-            \\"AttributeName\\": \\"category\\",
-            \\"KeyType\\": \\"HASH\\"
-          },
-          {
-            \\"AttributeName\\": \\"brStateKey\\",
-            \\"KeyType\\": \\"RANGE\\"
-          }
-        ],
-        \\"AttributeDefinitions\\": [
-          {
-            \\"AttributeName\\": \\"category\\",
-            \\"AttributeType\\": \\"S\\"
-          },
-          {
-            \\"AttributeName\\": \\"brStateKey\\",
-            \\"AttributeType\\": \\"S\\"
-          }
-        ],
-        \\"ProvisionedThroughput\\": {
-          \\"ReadCapacityUnits\\": 5,
-          \\"WriteCapacityUnits\\": 5
-        },
-        \\"TableName\\": \\"PARAMS\\"
-      },
-      \\"UpdateReplacePolicy\\": \\"Retain\\",
-      \\"DeletionPolicy\\": \\"Retain\\"
-    },
-    \\"LambdaApiHelloServiceRole7B3F9417\\": {
-      \\"Type\\": \\"AWS::IAM::Role\\",
-      \\"Properties\\": {
-        \\"AssumeRolePolicyDocument\\": {
-          \\"Statement\\": [
-            {
-              \\"Action\\": \\"sts:AssumeRole\\",
-              \\"Effect\\": \\"Allow\\",
-              \\"Principal\\": {
-                \\"Service\\": \\"lambda.amazonaws.com\\"
-              }
-            }
-          ],
-          \\"Version\\": \\"2012-10-17\\"
-        },
-        \\"ManagedPolicyArns\\": [
-          {
-            \\"Fn::Join\\": [
-              \\"\\",
-              [
-                \\"arn:\\",
-                {
-                  \\"Ref\\": \\"AWS::Partition\\"
-                },
-                \\":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole\\"
-              ]
-            ]
-          }
-        ]
-      }
-    },
-    \\"LambdaApiHelloServiceRoleDefaultPolicyA20AA335\\": {
-      \\"Type\\": \\"AWS::IAM::Policy\\",
-      \\"Properties\\": {
-        \\"PolicyDocument\\": {
-          \\"Statement\\": [
-            {
-              \\"Action\\": [
-                \\"dynamodb:BatchGetItem\\",
-                \\"dynamodb:GetRecords\\",
-                \\"dynamodb:GetShardIterator\\",
-                \\"dynamodb:Query\\",
-                \\"dynamodb:GetItem\\",
-                \\"dynamodb:Scan\\",
-                \\"dynamodb:BatchWriteItem\\",
-                \\"dynamodb:PutItem\\",
-                \\"dynamodb:UpdateItem\\",
-                \\"dynamodb:DeleteItem\\"
-              ],
-              \\"Effect\\": \\"Allow\\",
-              \\"Resource\\": [
-                {
-                  \\"Fn::GetAtt\\": [
-                    \\"LambdaApiTable0A1B79E4D\\",
-                    \\"Arn\\"
-                  ]
-                },
-                {
-                  \\"Ref\\": \\"AWS::NoValue\\"
-                }
-              ]
-            },
-            {
-              \\"Action\\": [
-                \\"dynamodb:BatchGetItem\\",
-                \\"dynamodb:GetRecords\\",
-                \\"dynamodb:GetShardIterator\\",
-                \\"dynamodb:Query\\",
-                \\"dynamodb:GetItem\\",
-                \\"dynamodb:Scan\\",
-                \\"dynamodb:BatchWriteItem\\",
-                \\"dynamodb:PutItem\\",
-                \\"dynamodb:UpdateItem\\",
-                \\"dynamodb:DeleteItem\\"
-              ],
-              \\"Effect\\": \\"Allow\\",
-              \\"Resource\\": [
-                {
-                  \\"Fn::GetAtt\\": [
-                    \\"LambdaApiTable1B025DFBA\\",
-                    \\"Arn\\"
-                  ]
-                },
-                {
-                  \\"Ref\\": \\"AWS::NoValue\\"
-                }
-              ]
-            }
-          ],
-          \\"Version\\": \\"2012-10-17\\"
-        },
-        \\"PolicyName\\": \\"LambdaApiHelloServiceRoleDefaultPolicyA20AA335\\",
-        \\"Roles\\": [
-          {
-            \\"Ref\\": \\"LambdaApiHelloServiceRole7B3F9417\\"
-          }
-        ]
-      }
-    },
-    \\"LambdaApiHelloA9D6B516\\": {
-      \\"Type\\": \\"AWS::Lambda::Function\\",
-      \\"Properties\\": {
-        \\"Code\\": {
-          \\"S3Bucket\\": {
-            \\"Ref\\": \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3Bucket80338765\\"
-          },
-          \\"S3Key\\": {
-            \\"Fn::Join\\": [
-              \\"\\",
-              [
-                {
-                  \\"Fn::Select\\": [
-                    0,
-                    {
-                      \\"Fn::Split\\": [
-                        \\"||\\",
-                        {
-                          \\"Ref\\": \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3VersionKey2715114E\\"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  \\"Fn::Select\\": [
-                    1,
-                    {
-                      \\"Fn::Split\\": [
-                        \\"||\\",
-                        {
-                          \\"Ref\\": \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3VersionKey2715114E\\"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            ]
-          }
-        },
-        \\"Handler\\": \\"index.handler\\",
-        \\"Role\\": {
-          \\"Fn::GetAtt\\": [
-            \\"LambdaApiHelloServiceRole7B3F9417\\",
-            \\"Arn\\"
-          ]
-        },
-        \\"Runtime\\": \\"nodejs10.x\\"
-      },
-      \\"DependsOn\\": [
-        \\"LambdaApiHelloServiceRoleDefaultPolicyA20AA335\\",
-        \\"LambdaApiHelloServiceRole7B3F9417\\"
-      ]
-    }
-  },
-  \\"Outputs\\": {
-    \\"LambdaApiTestApiEndpoint14C92933\\": {
-      \\"Value\\": {
-        \\"Fn::Join\\": [
-          \\"\\",
-          [
-            \\"https://\\",
-            {
-              \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
-            },
-            \\".execute-api.\\",
-            {
-              \\"Ref\\": \\"AWS::Region\\"
-            },
-            \\".\\",
-            {
-              \\"Ref\\": \\"AWS::URLSuffix\\"
-            },
-            \\"/\\",
-            {
-              \\"Ref\\": \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\"
-            },
-            \\"/\\"
-          ]
-        ]
-      }
-    }
-  },
-  \\"Parameters\\": {
-    \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3Bucket80338765\\": {
-      \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 bucket for asset \\\\\\"4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712\\\\\\"\\"
-    },
-    \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3VersionKey2715114E\\": {
-      \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 key for asset version \\\\\\"4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712\\\\\\"\\"
-    },
-    \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712ArtifactHash1A70E609\\": {
-      \\"Type\\": \\"String\\",
-      \\"Description\\": \\"Artifact hash for asset \\\\\\"4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712\\\\\\"\\"
-    }
-  }
-}"
-`;
-
 exports[`LambdaApiConstruct (customDomain) synthetizes properly 1`] = `
 "{
   \\"Resources\\": {
@@ -1032,7 +500,7 @@ exports[`LambdaApiConstruct (customDomain) synthetizes properly 1`] = `
       \\"Properties\\": {
         \\"Code\\": {
           \\"S3Bucket\\": {
-            \\"Ref\\": \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3Bucket80338765\\"
+            \\"Ref\\": \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3BucketA3E41729\\"
           },
           \\"S3Key\\": {
             \\"Fn::Join\\": [
@@ -1045,7 +513,7 @@ exports[`LambdaApiConstruct (customDomain) synthetizes properly 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3VersionKey2715114E\\"
+                          \\"Ref\\": \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3VersionKeyB660427E\\"
                         }
                       ]
                     }
@@ -1058,7 +526,7 @@ exports[`LambdaApiConstruct (customDomain) synthetizes properly 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3VersionKey2715114E\\"
+                          \\"Ref\\": \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3VersionKeyB660427E\\"
                         }
                       ]
                     }
@@ -1123,17 +591,17 @@ exports[`LambdaApiConstruct (customDomain) synthetizes properly 1`] = `
       \\"Type\\": \\"String\\",
       \\"Description\\": \\"Artifact hash for asset \\\\\\"8ee8fb524eef3fdcf0c8f7b3a096bc2b85686756e8a3c7176c033e494f985168\\\\\\"\\"
     },
-    \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3Bucket80338765\\": {
+    \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3BucketA3E41729\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 bucket for asset \\\\\\"4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712\\\\\\"\\"
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"ecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68\\\\\\"\\"
     },
-    \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3VersionKey2715114E\\": {
+    \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3VersionKeyB660427E\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 key for asset version \\\\\\"4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712\\\\\\"\\"
+      \\"Description\\": \\"S3 key for asset version \\\\\\"ecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68\\\\\\"\\"
     },
-    \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712ArtifactHash1A70E609\\": {
+    \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68ArtifactHash33078015\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"Artifact hash for asset \\\\\\"4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712\\\\\\"\\"
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"ecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68\\\\\\"\\"
     }
   }
 }"
@@ -1523,7 +991,7 @@ exports[`LambdaApiConstruct (layers) synthetizes properly 1`] = `
       \\"Properties\\": {
         \\"Code\\": {
           \\"S3Bucket\\": {
-            \\"Ref\\": \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3Bucket80338765\\"
+            \\"Ref\\": \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3BucketA3E41729\\"
           },
           \\"S3Key\\": {
             \\"Fn::Join\\": [
@@ -1536,7 +1004,7 @@ exports[`LambdaApiConstruct (layers) synthetizes properly 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3VersionKey2715114E\\"
+                          \\"Ref\\": \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3VersionKeyB660427E\\"
                         }
                       ]
                     }
@@ -1549,7 +1017,7 @@ exports[`LambdaApiConstruct (layers) synthetizes properly 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3VersionKey2715114E\\"
+                          \\"Ref\\": \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3VersionKeyB660427E\\"
                         }
                       ]
                     }
@@ -1591,17 +1059,17 @@ exports[`LambdaApiConstruct (layers) synthetizes properly 1`] = `
       \\"Type\\": \\"String\\",
       \\"Description\\": \\"Artifact hash for asset \\\\\\"5f62dc150d5089f201a79912ea18fb499ae7f464bccae731f330d83e0174f19f\\\\\\"\\"
     },
-    \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3Bucket80338765\\": {
+    \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3BucketA3E41729\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 bucket for asset \\\\\\"4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712\\\\\\"\\"
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"ecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68\\\\\\"\\"
     },
-    \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3VersionKey2715114E\\": {
+    \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3VersionKeyB660427E\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 key for asset version \\\\\\"4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712\\\\\\"\\"
+      \\"Description\\": \\"S3 key for asset version \\\\\\"ecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68\\\\\\"\\"
     },
-    \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712ArtifactHash1A70E609\\": {
+    \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68ArtifactHash33078015\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"Artifact hash for asset \\\\\\"4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712\\\\\\"\\"
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"ecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68\\\\\\"\\"
     }
   },
   \\"Outputs\\": {
@@ -1971,7 +1439,7 @@ exports[`LambdaApiConstruct (protected) synthetizes properly 1`] = `
       \\"Properties\\": {
         \\"Code\\": {
           \\"S3Bucket\\": {
-            \\"Ref\\": \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3Bucket80338765\\"
+            \\"Ref\\": \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3BucketA3E41729\\"
           },
           \\"S3Key\\": {
             \\"Fn::Join\\": [
@@ -1984,7 +1452,7 @@ exports[`LambdaApiConstruct (protected) synthetizes properly 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3VersionKey2715114E\\"
+                          \\"Ref\\": \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3VersionKeyB660427E\\"
                         }
                       ]
                     }
@@ -1997,7 +1465,7 @@ exports[`LambdaApiConstruct (protected) synthetizes properly 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3VersionKey2715114E\\"
+                          \\"Ref\\": \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3VersionKeyB660427E\\"
                         }
                       ]
                     }
@@ -2050,17 +1518,17 @@ exports[`LambdaApiConstruct (protected) synthetizes properly 1`] = `
     }
   },
   \\"Parameters\\": {
-    \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3Bucket80338765\\": {
+    \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3BucketA3E41729\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 bucket for asset \\\\\\"4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712\\\\\\"\\"
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"ecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68\\\\\\"\\"
     },
-    \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3VersionKey2715114E\\": {
+    \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3VersionKeyB660427E\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 key for asset version \\\\\\"4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712\\\\\\"\\"
+      \\"Description\\": \\"S3 key for asset version \\\\\\"ecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68\\\\\\"\\"
     },
-    \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712ArtifactHash1A70E609\\": {
+    \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68ArtifactHash33078015\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"Artifact hash for asset \\\\\\"4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712\\\\\\"\\"
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"ecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68\\\\\\"\\"
     }
   }
 }"
@@ -2370,7 +1838,7 @@ exports[`LambdaApiConstruct synthetizes properly 1`] = `
       \\"Properties\\": {
         \\"Code\\": {
           \\"S3Bucket\\": {
-            \\"Ref\\": \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3Bucket80338765\\"
+            \\"Ref\\": \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3BucketA3E41729\\"
           },
           \\"S3Key\\": {
             \\"Fn::Join\\": [
@@ -2383,7 +1851,7 @@ exports[`LambdaApiConstruct synthetizes properly 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3VersionKey2715114E\\"
+                          \\"Ref\\": \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3VersionKeyB660427E\\"
                         }
                       ]
                     }
@@ -2396,7 +1864,7 @@ exports[`LambdaApiConstruct synthetizes properly 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3VersionKey2715114E\\"
+                          \\"Ref\\": \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3VersionKeyB660427E\\"
                         }
                       ]
                     }
@@ -2449,17 +1917,17 @@ exports[`LambdaApiConstruct synthetizes properly 1`] = `
     }
   },
   \\"Parameters\\": {
-    \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3Bucket80338765\\": {
+    \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3BucketA3E41729\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 bucket for asset \\\\\\"4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712\\\\\\"\\"
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"ecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68\\\\\\"\\"
     },
-    \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3VersionKey2715114E\\": {
+    \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3VersionKeyB660427E\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 key for asset version \\\\\\"4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712\\\\\\"\\"
+      \\"Description\\": \\"S3 key for asset version \\\\\\"ecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68\\\\\\"\\"
     },
-    \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712ArtifactHash1A70E609\\": {
+    \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68ArtifactHash33078015\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"Artifact hash for asset \\\\\\"4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712\\\\\\"\\"
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"ecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68\\\\\\"\\"
     }
   }
 }"
@@ -2769,7 +2237,7 @@ exports[`LambdaApiConstruct synthetizes using dirDist 1`] = `
       \\"Properties\\": {
         \\"Code\\": {
           \\"S3Bucket\\": {
-            \\"Ref\\": \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3Bucket80338765\\"
+            \\"Ref\\": \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3BucketA3E41729\\"
           },
           \\"S3Key\\": {
             \\"Fn::Join\\": [
@@ -2782,7 +2250,7 @@ exports[`LambdaApiConstruct synthetizes using dirDist 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3VersionKey2715114E\\"
+                          \\"Ref\\": \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3VersionKeyB660427E\\"
                         }
                       ]
                     }
@@ -2795,7 +2263,7 @@ exports[`LambdaApiConstruct synthetizes using dirDist 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3VersionKey2715114E\\"
+                          \\"Ref\\": \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3VersionKeyB660427E\\"
                         }
                       ]
                     }
@@ -2848,17 +2316,17 @@ exports[`LambdaApiConstruct synthetizes using dirDist 1`] = `
     }
   },
   \\"Parameters\\": {
-    \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3Bucket80338765\\": {
+    \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3BucketA3E41729\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 bucket for asset \\\\\\"4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712\\\\\\"\\"
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"ecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68\\\\\\"\\"
     },
-    \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3VersionKey2715114E\\": {
+    \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3VersionKeyB660427E\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 key for asset version \\\\\\"4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712\\\\\\"\\"
+      \\"Description\\": \\"S3 key for asset version \\\\\\"ecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68\\\\\\"\\"
     },
-    \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712ArtifactHash1A70E609\\": {
+    \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68ArtifactHash33078015\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"Artifact hash for asset \\\\\\"4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712\\\\\\"\\"
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"ecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68\\\\\\"\\"
     }
   }
 }"
@@ -3155,7 +2623,7 @@ exports[`LambdaApiConstruct synthetizes without subroute 1`] = `
       \\"Properties\\": {
         \\"Code\\": {
           \\"S3Bucket\\": {
-            \\"Ref\\": \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3Bucket80338765\\"
+            \\"Ref\\": \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3BucketA3E41729\\"
           },
           \\"S3Key\\": {
             \\"Fn::Join\\": [
@@ -3168,7 +2636,7 @@ exports[`LambdaApiConstruct synthetizes without subroute 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3VersionKey2715114E\\"
+                          \\"Ref\\": \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3VersionKeyB660427E\\"
                         }
                       ]
                     }
@@ -3181,7 +2649,7 @@ exports[`LambdaApiConstruct synthetizes without subroute 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3VersionKey2715114E\\"
+                          \\"Ref\\": \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3VersionKeyB660427E\\"
                         }
                       ]
                     }
@@ -3234,17 +2702,17 @@ exports[`LambdaApiConstruct synthetizes without subroute 1`] = `
     }
   },
   \\"Parameters\\": {
-    \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3Bucket80338765\\": {
+    \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3BucketA3E41729\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 bucket for asset \\\\\\"4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712\\\\\\"\\"
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"ecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68\\\\\\"\\"
     },
-    \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712S3VersionKey2715114E\\": {
+    \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68S3VersionKeyB660427E\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 key for asset version \\\\\\"4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712\\\\\\"\\"
+      \\"Description\\": \\"S3 key for asset version \\\\\\"ecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68\\\\\\"\\"
     },
-    \\"AssetParameters4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712ArtifactHash1A70E609\\": {
+    \\"AssetParametersecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68ArtifactHash33078015\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"Artifact hash for asset \\\\\\"4dbf3672dfb74a09bdd99a5f4c50d88b9999d37007398275925bacfc1047f712\\\\\\"\\"
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"ecee0bdf531dd9969a8bd71ee814f7c6f9c713e41205f5ddf494ded4229daf68\\\\\\"\\"
     }
   }
 }"
