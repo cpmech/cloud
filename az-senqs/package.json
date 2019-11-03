@@ -13,7 +13,10 @@
     "test": "jest --verbose",
     "tw": "jest --watch --verbose",
     "cov": "jest --coverage",
-    "build": "rm -rf dist && rollup --config ../rollup.config.js"
+    "build": "rm -rf dist && rollup --config ../rollup.config.js",
+    "integ": "jest -c jest.config-integ.js --verbose",
+    "integw": "jest -c jest.config-integ.js --verbose --watch",
+    "integc": "jest -c jest.config-integ.js --verbose --coverage"
   },
   "files": [
     "dist"
@@ -31,6 +34,7 @@
     "CDK"
   ],
   "devDependencies": {
+    "@cpmech/envars": "^0.9.0",
     "@types/jest": "^24.0.21",
     "@types/mailparser": "^2.4.0",
     "@types/node": "^12.12.5",
