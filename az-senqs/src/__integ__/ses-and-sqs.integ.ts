@@ -12,7 +12,7 @@ initEnvars(envars);
 jest.setTimeout(20000);
 
 describe('sendEmail, receiveEmail and deleteEmail', () => {
-  test('works', async () => {
+  it('works', async () => {
     const sender = `tester@${envars.DOMAIN}`;
     const receiver = `tester+${v4()}@${envars.DOMAIN}`;
 

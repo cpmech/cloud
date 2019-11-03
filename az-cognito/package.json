@@ -13,7 +13,10 @@
     "test": "jest --verbose",
     "tw": "jest --watch --verbose",
     "cov": "jest --coverage",
-    "build": "rm -rf dist && rollup --config ../rollup.config.js"
+    "build": "rm -rf dist && rollup --config ../rollup.config.js",
+    "integ": "jest -c jest.config-integ.js --verbose",
+    "integw": "jest -c jest.config-integ.js --verbose --watch",
+    "integc": "jest -c jest.config-integ.js --verbose --coverage"
   },
   "files": [
     "dist"
@@ -28,10 +31,15 @@
     "Cognito"
   ],
   "devDependencies": {
+    "@cpmech/az-senqs": "^1.10.0",
+    "@cpmech/envars": "^0.9.0",
     "@types/jest": "^24.0.21",
     "@types/node": "^12.12.5",
+    "@types/node-fetch": "^2.5.3",
     "@types/uuid": "^3.4.6",
+    "aws-amplify": "^1.2.4",
     "jest": "^24.9.0",
+    "node-fetch": "^2.6.0",
     "prettier": "^1.18.2",
     "rollup": "^1.26.2",
     "rollup-plugin-node-resolve": "^5.2.0",
