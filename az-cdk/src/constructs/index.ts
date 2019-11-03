@@ -1,5 +1,6 @@
 export * from './AuthorizerConstruct';
 export * from './CognitoConstruct';
+export * from './DynamoConstruct';
 export * from './LambdaApiConstruct';
 export * from './LambdaLayersConstruct';
 export * from './PipelineNotificationConstruct';

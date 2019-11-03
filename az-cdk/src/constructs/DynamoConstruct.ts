@@ -7,14 +7,14 @@ export interface IDynamoTable {
   sortKey?: string; // name of sort key (the value will be string)
 }
 
-export interface ILambdaApiProps {
+export interface IDynamoApiProps {
   dynamoTables: IDynamoTable[]; // create some DynamoDB tables
 }
 
 export class DynamoConstruct extends Construct {
   readonly name2table: { [tableName: string]: Table } = {};
 
-  constructor(scope: Construct, id: string, props: ILambdaApiProps) {
+  constructor(scope: Construct, id: string, props: IDynamoApiProps) {
     super(scope, id);
 
     props.dynamoTables.forEach((t, i) => {
