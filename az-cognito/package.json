@@ -55,5 +55,6 @@
   "dependencies": {
     "@cpmech/basic": "^2.12.0",
     "aws-sdk": "^2.562.0"
-  }
+  },
+  "gitHead": "84acdae5641ed9d417777864ca72c2631dc48ba7"
 }
