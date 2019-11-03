@@ -1,5 +1,11 @@
 import { Construct } from '@aws-cdk/core';
-import { UserPool, SignInType, UserPoolAttribute, CfnUserPool } from '@aws-cdk/aws-cognito';
+import {
+  UserPool,
+  SignInType,
+  UserPoolAttribute,
+  CfnUserPool,
+  UserPoolClient,
+} from '@aws-cdk/aws-cognito';
 
 export interface ICognitoProps {
   poolName: string;
@@ -8,6 +14,7 @@ export interface ICognitoProps {
 
 export class CognitoConstruct extends Construct {
   readonly poolId: string;
+  readonly clientId: string;
 
   constructor(scope: Construct, id: string, props: ICognitoProps) {
     super(scope, id);
@@ -18,7 +25,13 @@ export class CognitoConstruct extends Construct {
       autoVerifiedAttributes: [UserPoolAttribute.EMAIL],
     });
 
+    const client = new UserPoolClient(this, 'PoolCient', {
+      userPoolClientName: `${props.poolName}-client`,
+      userPool: pool,
+    });
+
     this.poolId = pool.userPoolId;
+    this.clientId = client.userPoolClientId;
 
     const region = pool.stack.region;
     const accountId = pool.stack.account;
