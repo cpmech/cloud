@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[` Route53ForSendingEmailConstruct synthetizes properly 1`] = `
+exports[`Route53WithEmailConstruct synthetizes properly 1`] = `
 "{
   \\"Resources\\": {
-    \\"ReceiveEmailSQSConstructMX95705F62\\": {
+    \\"Route53WithEmailConstructMX0F71B0EE\\": {
       \\"Type\\": \\"AWS::Route53::RecordSet\\",
       \\"Properties\\": {
         \\"Name\\": \\"mydomain.com.\\",
@@ -26,7 +26,7 @@ exports[` Route53ForSendingEmailConstruct synthetizes properly 1`] = `
         \\"TTL\\": \\"1800\\"
       }
     },
-    \\"ReceiveEmailSQSConstructVerifyDomainFunctionServiceRole189D8203\\": {
+    \\"Route53WithEmailConstructVerifyDomainFunctionServiceRole07F90F01\\": {
       \\"Type\\": \\"AWS::IAM::Role\\",
       \\"Properties\\": {
         \\"AssumeRolePolicyDocument\\": {
@@ -57,7 +57,7 @@ exports[` Route53ForSendingEmailConstruct synthetizes properly 1`] = `
         ]
       }
     },
-    \\"ReceiveEmailSQSConstructVerifyDomainFunctionServiceRoleDefaultPolicy62368683\\": {
+    \\"Route53WithEmailConstructVerifyDomainFunctionServiceRoleDefaultPolicy2AA95145\\": {
       \\"Type\\": \\"AWS::IAM::Policy\\",
       \\"Properties\\": {
         \\"PolicyDocument\\": {
@@ -105,15 +105,15 @@ exports[` Route53ForSendingEmailConstruct synthetizes properly 1`] = `
           ],
           \\"Version\\": \\"2012-10-17\\"
         },
-        \\"PolicyName\\": \\"ReceiveEmailSQSConstructVerifyDomainFunctionServiceRoleDefaultPolicy62368683\\",
+        \\"PolicyName\\": \\"Route53WithEmailConstructVerifyDomainFunctionServiceRoleDefaultPolicy2AA95145\\",
         \\"Roles\\": [
           {
-            \\"Ref\\": \\"ReceiveEmailSQSConstructVerifyDomainFunctionServiceRole189D8203\\"
+            \\"Ref\\": \\"Route53WithEmailConstructVerifyDomainFunctionServiceRole07F90F01\\"
           }
         ]
       }
     },
-    \\"ReceiveEmailSQSConstructVerifyDomainFunctionCFCA4580\\": {
+    \\"Route53WithEmailConstructVerifyDomainFunctionC1ACF451\\": {
       \\"Type\\": \\"AWS::Lambda::Function\\",
       \\"Properties\\": {
         \\"Code\\": {
@@ -157,7 +157,7 @@ exports[` Route53ForSendingEmailConstruct synthetizes properly 1`] = `
         \\"Handler\\": \\"index.verifyDomain\\",
         \\"Role\\": {
           \\"Fn::GetAtt\\": [
-            \\"ReceiveEmailSQSConstructVerifyDomainFunctionServiceRole189D8203\\",
+            \\"Route53WithEmailConstructVerifyDomainFunctionServiceRole07F90F01\\",
             \\"Arn\\"
           ]
         },
@@ -165,16 +165,16 @@ exports[` Route53ForSendingEmailConstruct synthetizes properly 1`] = `
         \\"Timeout\\": 60
       },
       \\"DependsOn\\": [
-        \\"ReceiveEmailSQSConstructVerifyDomainFunctionServiceRoleDefaultPolicy62368683\\",
-        \\"ReceiveEmailSQSConstructVerifyDomainFunctionServiceRole189D8203\\"
+        \\"Route53WithEmailConstructVerifyDomainFunctionServiceRoleDefaultPolicy2AA95145\\",
+        \\"Route53WithEmailConstructVerifyDomainFunctionServiceRole07F90F01\\"
       ]
     },
-    \\"ReceiveEmailSQSConstructVerifyDomain8989B5CA\\": {
+    \\"Route53WithEmailConstructVerifyDomainACE6F967\\": {
       \\"Type\\": \\"AWS::CloudFormation::CustomResource\\",
       \\"Properties\\": {
         \\"ServiceToken\\": {
           \\"Fn::GetAtt\\": [
-            \\"ReceiveEmailSQSConstructVerifyDomainFunctionCFCA4580\\",
+            \\"Route53WithEmailConstructVerifyDomainFunctionC1ACF451\\",
             \\"Arn\\"
           ]
         },
