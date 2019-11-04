@@ -12,6 +12,7 @@ export interface IReceiveEmailProps {
 
 export class ReceiveEmailSQSConstruct extends Construct {
   readonly topicArns: string[] = [];
+  readonly queueUrls: string[] = [];
 
   constructor(scope: Construct, id: string, props: IReceiveEmailProps) {
     super(scope, id);
@@ -22,6 +23,9 @@ export class ReceiveEmailSQSConstruct extends Construct {
       const queue = new Queue(this, `Queue${i}`, { queueName: title });
       topic.addSubscription(new SqsSubscription(queue));
       this.topicArns.push(topic.topicArn);
+      this.queueUrls.push(
+        `https://sqs.${queue.stack.region}.amazonaws.com/${queue.stack.account}/${title}`,
+      );
     }
 
     new SESDefaultRuleSetConstruct(this, 'DefaultRuleSet', {
