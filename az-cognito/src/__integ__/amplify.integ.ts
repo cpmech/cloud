@@ -12,7 +12,6 @@ import { deleteUser, findUser } from '../adminUsers';
 const envars = {
   USER_POOL_ID: '',
   USER_POOL_CLIENT_ID: '',
-  BENDER_USERNAME: '',
   QUEUE_URL: '',
 };
 
@@ -27,8 +26,6 @@ Amplify.configure({
     userPoolWebClientId: envars.USER_POOL_CLIENT_ID,
   },
 });
-
-const EMAIL = 'bender.rodriguez@futurama.space';
 
 const password = '123paSSword$';
 let email: string = '';
