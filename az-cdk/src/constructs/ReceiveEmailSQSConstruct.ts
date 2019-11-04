@@ -6,28 +6,27 @@ import { email2key } from '@cpmech/basic';
 import { SESDefaultRuleSetConstruct } from '../custom-resources/SESDefaultRuleSetConstruct';
 
 export interface IReceiveEmailProps {
-  emails: string[];
-  dropSpam?: boolean;
+  emails: string[]; // emails
+  topicNames?: string[]; // set SNS topic; default is equal to email2key(example@here.com) => example_here_com
 }
 
 export class ReceiveEmailSQSConstruct extends Construct {
+  readonly topicArns: string[] = [];
+
   constructor(scope: Construct, id: string, props: IReceiveEmailProps) {
     super(scope, id);
 
-    const topicArns: string[] = [];
-    let i = 0;
-    for (const email of props.emails) {
-      const title = email2key(email);
+    for (let i = 0; i < props.emails.length; i++) {
+      const title = props.topicNames ? props.topicNames[i] : email2key(props.emails[i]);
       const topic = new Topic(this, `Topic${i}`, { topicName: title });
       const queue = new Queue(this, `Queue${i}`, { queueName: title });
       topic.addSubscription(new SqsSubscription(queue));
-      topicArns.push(topic.topicArn);
-      i++;
+      this.topicArns.push(topic.topicArn);
     }
 
     new SESDefaultRuleSetConstruct(this, 'DefaultRuleSet', {
       emails: props.emails,
-      topicArns,
+      topicArns: this.topicArns,
     });
   }
 }

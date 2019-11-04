@@ -500,7 +500,7 @@ exports[`LambdaApiConstruct (customDomain) synthetizes properly 1`] = `
       \\"Properties\\": {
         \\"Code\\": {
           \\"S3Bucket\\": {
-            \\"Ref\\": \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3Bucket6ACF5BB0\\"
+            \\"Ref\\": \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3BucketB88FF67B\\"
           },
           \\"S3Key\\": {
             \\"Fn::Join\\": [
@@ -513,7 +513,7 @@ exports[`LambdaApiConstruct (customDomain) synthetizes properly 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3VersionKeyD975505E\\"
+                          \\"Ref\\": \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3VersionKeyA6F0EB64\\"
                         }
                       ]
                     }
@@ -526,7 +526,7 @@ exports[`LambdaApiConstruct (customDomain) synthetizes properly 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3VersionKeyD975505E\\"
+                          \\"Ref\\": \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3VersionKeyA6F0EB64\\"
                         }
                       ]
                     }
@@ -591,17 +591,17 @@ exports[`LambdaApiConstruct (customDomain) synthetizes properly 1`] = `
       \\"Type\\": \\"String\\",
       \\"Description\\": \\"Artifact hash for asset \\\\\\"8ee8fb524eef3fdcf0c8f7b3a096bc2b85686756e8a3c7176c033e494f985168\\\\\\"\\"
     },
-    \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3Bucket6ACF5BB0\\": {
+    \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3BucketB88FF67B\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 bucket for asset \\\\\\"712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577\\\\\\"\\"
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"b82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26\\\\\\"\\"
     },
-    \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3VersionKeyD975505E\\": {
+    \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3VersionKeyA6F0EB64\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 key for asset version \\\\\\"712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577\\\\\\"\\"
+      \\"Description\\": \\"S3 key for asset version \\\\\\"b82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26\\\\\\"\\"
     },
-    \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577ArtifactHash96E5E9E1\\": {
+    \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26ArtifactHashE8148F6E\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"Artifact hash for asset \\\\\\"712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577\\\\\\"\\"
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"b82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26\\\\\\"\\"
     }
   }
 }"
@@ -991,7 +991,7 @@ exports[`LambdaApiConstruct (layers) synthetizes properly 1`] = `
       \\"Properties\\": {
         \\"Code\\": {
           \\"S3Bucket\\": {
-            \\"Ref\\": \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3Bucket6ACF5BB0\\"
+            \\"Ref\\": \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3BucketB88FF67B\\"
           },
           \\"S3Key\\": {
             \\"Fn::Join\\": [
@@ -1004,7 +1004,7 @@ exports[`LambdaApiConstruct (layers) synthetizes properly 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3VersionKeyD975505E\\"
+                          \\"Ref\\": \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3VersionKeyA6F0EB64\\"
                         }
                       ]
                     }
@@ -1017,7 +1017,7 @@ exports[`LambdaApiConstruct (layers) synthetizes properly 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3VersionKeyD975505E\\"
+                          \\"Ref\\": \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3VersionKeyA6F0EB64\\"
                         }
                       ]
                     }
@@ -1059,17 +1059,17 @@ exports[`LambdaApiConstruct (layers) synthetizes properly 1`] = `
       \\"Type\\": \\"String\\",
       \\"Description\\": \\"Artifact hash for asset \\\\\\"5f62dc150d5089f201a79912ea18fb499ae7f464bccae731f330d83e0174f19f\\\\\\"\\"
     },
-    \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3Bucket6ACF5BB0\\": {
+    \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3BucketB88FF67B\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 bucket for asset \\\\\\"712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577\\\\\\"\\"
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"b82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26\\\\\\"\\"
     },
-    \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3VersionKeyD975505E\\": {
+    \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3VersionKeyA6F0EB64\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 key for asset version \\\\\\"712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577\\\\\\"\\"
+      \\"Description\\": \\"S3 key for asset version \\\\\\"b82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26\\\\\\"\\"
     },
-    \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577ArtifactHash96E5E9E1\\": {
+    \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26ArtifactHashE8148F6E\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"Artifact hash for asset \\\\\\"712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577\\\\\\"\\"
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"b82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26\\\\\\"\\"
     }
   },
   \\"Outputs\\": {
@@ -1439,7 +1439,7 @@ exports[`LambdaApiConstruct (protected) synthetizes properly 1`] = `
       \\"Properties\\": {
         \\"Code\\": {
           \\"S3Bucket\\": {
-            \\"Ref\\": \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3Bucket6ACF5BB0\\"
+            \\"Ref\\": \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3BucketB88FF67B\\"
           },
           \\"S3Key\\": {
             \\"Fn::Join\\": [
@@ -1452,7 +1452,7 @@ exports[`LambdaApiConstruct (protected) synthetizes properly 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3VersionKeyD975505E\\"
+                          \\"Ref\\": \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3VersionKeyA6F0EB64\\"
                         }
                       ]
                     }
@@ -1465,7 +1465,7 @@ exports[`LambdaApiConstruct (protected) synthetizes properly 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3VersionKeyD975505E\\"
+                          \\"Ref\\": \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3VersionKeyA6F0EB64\\"
                         }
                       ]
                     }
@@ -1518,17 +1518,17 @@ exports[`LambdaApiConstruct (protected) synthetizes properly 1`] = `
     }
   },
   \\"Parameters\\": {
-    \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3Bucket6ACF5BB0\\": {
+    \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3BucketB88FF67B\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 bucket for asset \\\\\\"712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577\\\\\\"\\"
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"b82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26\\\\\\"\\"
     },
-    \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3VersionKeyD975505E\\": {
+    \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3VersionKeyA6F0EB64\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 key for asset version \\\\\\"712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577\\\\\\"\\"
+      \\"Description\\": \\"S3 key for asset version \\\\\\"b82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26\\\\\\"\\"
     },
-    \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577ArtifactHash96E5E9E1\\": {
+    \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26ArtifactHashE8148F6E\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"Artifact hash for asset \\\\\\"712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577\\\\\\"\\"
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"b82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26\\\\\\"\\"
     }
   }
 }"
@@ -1838,7 +1838,7 @@ exports[`LambdaApiConstruct synthetizes properly 1`] = `
       \\"Properties\\": {
         \\"Code\\": {
           \\"S3Bucket\\": {
-            \\"Ref\\": \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3Bucket6ACF5BB0\\"
+            \\"Ref\\": \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3BucketB88FF67B\\"
           },
           \\"S3Key\\": {
             \\"Fn::Join\\": [
@@ -1851,7 +1851,7 @@ exports[`LambdaApiConstruct synthetizes properly 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3VersionKeyD975505E\\"
+                          \\"Ref\\": \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3VersionKeyA6F0EB64\\"
                         }
                       ]
                     }
@@ -1864,7 +1864,7 @@ exports[`LambdaApiConstruct synthetizes properly 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3VersionKeyD975505E\\"
+                          \\"Ref\\": \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3VersionKeyA6F0EB64\\"
                         }
                       ]
                     }
@@ -1917,17 +1917,17 @@ exports[`LambdaApiConstruct synthetizes properly 1`] = `
     }
   },
   \\"Parameters\\": {
-    \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3Bucket6ACF5BB0\\": {
+    \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3BucketB88FF67B\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 bucket for asset \\\\\\"712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577\\\\\\"\\"
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"b82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26\\\\\\"\\"
     },
-    \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3VersionKeyD975505E\\": {
+    \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3VersionKeyA6F0EB64\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 key for asset version \\\\\\"712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577\\\\\\"\\"
+      \\"Description\\": \\"S3 key for asset version \\\\\\"b82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26\\\\\\"\\"
     },
-    \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577ArtifactHash96E5E9E1\\": {
+    \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26ArtifactHashE8148F6E\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"Artifact hash for asset \\\\\\"712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577\\\\\\"\\"
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"b82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26\\\\\\"\\"
     }
   }
 }"
@@ -2237,7 +2237,7 @@ exports[`LambdaApiConstruct synthetizes using dirDist 1`] = `
       \\"Properties\\": {
         \\"Code\\": {
           \\"S3Bucket\\": {
-            \\"Ref\\": \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3Bucket6ACF5BB0\\"
+            \\"Ref\\": \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3BucketB88FF67B\\"
           },
           \\"S3Key\\": {
             \\"Fn::Join\\": [
@@ -2250,7 +2250,7 @@ exports[`LambdaApiConstruct synthetizes using dirDist 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3VersionKeyD975505E\\"
+                          \\"Ref\\": \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3VersionKeyA6F0EB64\\"
                         }
                       ]
                     }
@@ -2263,7 +2263,7 @@ exports[`LambdaApiConstruct synthetizes using dirDist 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3VersionKeyD975505E\\"
+                          \\"Ref\\": \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3VersionKeyA6F0EB64\\"
                         }
                       ]
                     }
@@ -2316,17 +2316,17 @@ exports[`LambdaApiConstruct synthetizes using dirDist 1`] = `
     }
   },
   \\"Parameters\\": {
-    \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3Bucket6ACF5BB0\\": {
+    \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3BucketB88FF67B\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 bucket for asset \\\\\\"712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577\\\\\\"\\"
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"b82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26\\\\\\"\\"
     },
-    \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3VersionKeyD975505E\\": {
+    \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3VersionKeyA6F0EB64\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 key for asset version \\\\\\"712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577\\\\\\"\\"
+      \\"Description\\": \\"S3 key for asset version \\\\\\"b82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26\\\\\\"\\"
     },
-    \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577ArtifactHash96E5E9E1\\": {
+    \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26ArtifactHashE8148F6E\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"Artifact hash for asset \\\\\\"712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577\\\\\\"\\"
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"b82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26\\\\\\"\\"
     }
   }
 }"
@@ -2623,7 +2623,7 @@ exports[`LambdaApiConstruct synthetizes without subroute 1`] = `
       \\"Properties\\": {
         \\"Code\\": {
           \\"S3Bucket\\": {
-            \\"Ref\\": \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3Bucket6ACF5BB0\\"
+            \\"Ref\\": \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3BucketB88FF67B\\"
           },
           \\"S3Key\\": {
             \\"Fn::Join\\": [
@@ -2636,7 +2636,7 @@ exports[`LambdaApiConstruct synthetizes without subroute 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3VersionKeyD975505E\\"
+                          \\"Ref\\": \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3VersionKeyA6F0EB64\\"
                         }
                       ]
                     }
@@ -2649,7 +2649,7 @@ exports[`LambdaApiConstruct synthetizes without subroute 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3VersionKeyD975505E\\"
+                          \\"Ref\\": \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3VersionKeyA6F0EB64\\"
                         }
                       ]
                     }
@@ -2702,17 +2702,17 @@ exports[`LambdaApiConstruct synthetizes without subroute 1`] = `
     }
   },
   \\"Parameters\\": {
-    \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3Bucket6ACF5BB0\\": {
+    \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3BucketB88FF67B\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 bucket for asset \\\\\\"712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577\\\\\\"\\"
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"b82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26\\\\\\"\\"
     },
-    \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577S3VersionKeyD975505E\\": {
+    \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26S3VersionKeyA6F0EB64\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 key for asset version \\\\\\"712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577\\\\\\"\\"
+      \\"Description\\": \\"S3 key for asset version \\\\\\"b82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26\\\\\\"\\"
     },
-    \\"AssetParameters712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577ArtifactHash96E5E9E1\\": {
+    \\"AssetParametersb82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26ArtifactHashE8148F6E\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"Artifact hash for asset \\\\\\"712f65923bf4507da9694b0ed6d170eee8dbda9e8e99551a6dcb5234708ed577\\\\\\"\\"
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"b82258393f6593e1b10b68173f34d01d7c270a76fe0e845e4f284ae24f27cd26\\\\\\"\\"
     }
   }
 }"
