@@ -7,9 +7,18 @@ import {
   UserPoolClient,
 } from '@aws-cdk/aws-cognito';
 
+// example of customAttribute:
+//   {
+//     attributeDataType: 'String',
+//     name: 'custom:accessGroup',
+//     mutable: true,
+//     required: true,
+//   },
+
 export interface ICognitoProps {
   poolName: string;
   emailSendingAccount: string;
+  customAttributes?: CfnUserPool.SchemaAttributeProperty[];
 }
 
 export class CognitoConstruct extends Construct {
@@ -42,5 +51,9 @@ export class CognitoConstruct extends Construct {
       emailSendingAccount: 'DEVELOPER',
       sourceArn: `arn:aws:ses:${region}:${accountId}:identity/${props.emailSendingAccount}`,
     };
+
+    if (props.customAttributes) {
+      cfn.schema = props.customAttributes;
+    }
   }
 }
