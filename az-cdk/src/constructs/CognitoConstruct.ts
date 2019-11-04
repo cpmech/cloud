@@ -12,7 +12,6 @@ import {
 //     attributeDataType: 'String',
 //     name: 'custom:accessGroup',
 //     mutable: true,
-//     required: true,
 //   },
 
 export interface ICognitoProps {
