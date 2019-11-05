@@ -10,7 +10,7 @@ import {
 export interface ICognitoProps {
   poolName: string;
   emailSendingAccount: string;
-  customAttributes?: string[]; // string, and mutable
+  customAttributes?: string[]; // string, and mutable. NOTE: do not prefix with custom
 }
 
 export class CognitoConstruct extends Construct {
