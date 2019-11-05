@@ -48,5 +48,6 @@
   "dependencies": {
     "@cpmech/js2ts": "^0.15.0",
     "aws-sdk": "^2.563.0"
-  }
+  },
+  "gitHead": "e0c1c25161d61776809f0231f01973029084552b"
 }

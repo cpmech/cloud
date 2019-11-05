@@ -40,5 +40,6 @@
   },
   "dependencies": {
     "rollup-plugin-terser": "^5.1.2"
-  }
+  },
+  "gitHead": "e0c1c25161d61776809f0231f01973029084552b"
 }
