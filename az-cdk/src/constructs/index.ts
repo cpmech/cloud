@@ -1,4 +1,5 @@
 export * from './AuthorizerConstruct';
+export * from './BucketsConstruct';
 export * from './CognitoConstruct';
 export * from './DynamoConstruct';
 export * from './LambdaApiConstruct';
