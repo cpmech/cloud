@@ -1,6 +1,6 @@
 {
   "name": "@cpmech/az-senqs",
-  "version": "1.13.1",
+  "version": "1.14.0",
   "license": "MIT",
   "author": {
     "name": "Dorival Pedroso",
@@ -34,7 +34,7 @@
     "CDK"
   ],
   "devDependencies": {
-    "@cpmech/envars": "^0.10.1",
+    "@cpmech/envars": "^0.11.0",
     "@types/jest": "^24.0.21",
     "@types/mailparser": "^2.4.0",
     "@types/node": "^12.12.5",
@@ -53,7 +53,7 @@
     "uuid": "^3.3.3"
   },
   "dependencies": {
-    "@cpmech/basic": "^2.13.1",
+    "@cpmech/basic": "^2.14.0",
     "aws-sdk": "^2.563.0",
     "mailparser": "^2.7.5"
   },
