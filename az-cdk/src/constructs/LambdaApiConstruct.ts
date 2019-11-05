@@ -18,6 +18,7 @@ export interface ILambdaApiSpec {
   unprotected?: boolean; // do not use cognito authorization protection
   extraPermissions?: string[]; // e.g. ['ses:SendEmail']
   accessDynamoTables?: string[]; // names of tables to give access
+  accessBuckets?: string[]; // name of buckets to give access
 }
 
 export interface ICustomApiDomainName {
@@ -128,6 +129,17 @@ export class LambdaApiConstruct extends Construct {
                 `arn:aws:dynamodb:${region}:*:table/${t}`,
                 `arn:aws:dynamodb:${region}:*:table/${t}/index/*`,
               ],
+            }),
+          );
+        });
+      }
+
+      if (spec.accessBuckets) {
+        spec.accessBuckets.forEach(b => {
+          (lambda.role as IRole).addToPolicy(
+            new PolicyStatement({
+              actions: ['s3:*'],
+              resources: [`arn:aws:s3:::${b}`, `arn:aws:s3:::${b}/*`],
             }),
           );
         });
