@@ -28,7 +28,7 @@
     "kall": "lerna exec --concurrency 1 -- yarn type-check",
     "ncu": "lerna exec --concurrency 1 -- ncu",
     "ncu:u": "lerna exec --concurrency 1 -- ncu -u",
-    "prepublishOnlyX": "yarn tall && yarn kall && yarn ball"
+    "prepublishOnly": "yarn tall && yarn kall && yarn ball"
   },
   "devDependencies": {
     "husky": "^3.0.9",
