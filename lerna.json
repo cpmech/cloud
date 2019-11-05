@@ -8,6 +8,7 @@
     "az-cognito",
     "az-dynamo",
     "az-lambda",
+    "az-s3",
     "az-senqs",
     "basic",
     "basic-sys",
