@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BucketsConstruct  synthetizes properly 1`] = `
+"{
+  \\"Resources\\": {
+    \\"BucketsBucket04F23AD6D\\": {
+      \\"Type\\": \\"AWS::S3::Bucket\\",
+      \\"Properties\\": {
+        \\"BucketName\\": \\"balde\\"
+      },
+      \\"UpdateReplacePolicy\\": \\"Delete\\",
+      \\"DeletionPolicy\\": \\"Delete\\"
+    },
+    \\"BucketsBucket1B98A5B53\\": {
+      \\"Type\\": \\"AWS::S3::Bucket\\",
+      \\"Properties\\": {
+        \\"BucketName\\": \\"deposito\\"
+      },
+      \\"UpdateReplacePolicy\\": \\"Delete\\",
+      \\"DeletionPolicy\\": \\"Delete\\"
+    }
+  }
+}"
+`;
