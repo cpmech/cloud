@@ -28,23 +28,23 @@
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
   "devDependencies": {
-    "@types/jest": "^24.0.21",
-    "@types/node": "^12.12.5",
+    "@types/jest": "^24.0.22",
+    "@types/node": "^12.12.6",
     "jest": "^24.9.0",
     "prettier": "^1.18.2",
     "rollup": "^1.26.3",
     "rollup-plugin-terser": "^5.1.2",
-    "rollup-plugin-typescript2": "^0.24.3",
+    "rollup-plugin-typescript2": "^0.25.2",
     "ts-jest": "^24.1.0",
-    "tslint": "^5.20.0",
+    "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.6.4"
+    "typescript": "^3.7.2"
   },
   "dependencies": {
     "@cpmech/httpcodes": "^1.12.0",
     "@cpmech/js2ts": "^0.17.0",
     "@types/aws-lambda": "^8.10.34",
-    "aws-sdk": "^2.563.0"
+    "aws-sdk": "^2.564.0"
   },
   "gitHead": "3b8c3043da9440da1bbd2cf4cd7cef9284859bf0"
 }

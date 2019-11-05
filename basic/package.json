@@ -26,20 +26,20 @@
     "basic"
   ],
   "devDependencies": {
-    "@types/jest": "^24.0.21",
-    "@types/node": "^12.12.5",
+    "@types/jest": "^24.0.22",
+    "@types/node": "^12.12.6",
     "jest": "^24.9.0",
     "prettier": "^1.18.2",
     "rollup": "^1.26.3",
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-terser": "^5.1.2",
-    "rollup-plugin-typescript2": "^0.24.3",
+    "rollup-plugin-typescript2": "^0.25.2",
     "ts-jest": "^24.1.0",
     "ts-node": "^8.4.1",
-    "tslint": "^5.20.0",
+    "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.6.4"
+    "typescript": "^3.7.2"
   },
   "gitHead": "3b8c3043da9440da1bbd2cf4cd7cef9284859bf0"
 }

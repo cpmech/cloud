@@ -33,9 +33,9 @@
     "@types/configstore": "^4.0.0",
     "@types/figlet": "^1.2.0",
     "@types/inquirer": "^6.5.0",
-    "@types/jest": "^24.0.21",
+    "@types/jest": "^24.0.22",
     "@types/minimist": "^1.2.0",
-    "@types/node": "^12.12.5",
+    "@types/node": "^12.12.6",
     "@types/shelljs": "^0.8.6",
     "jest": "^24.9.0",
     "nodemon": "^1.19.4",
@@ -47,12 +47,12 @@
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-terser": "^5.1.2",
-    "rollup-plugin-typescript2": "^0.24.3",
+    "rollup-plugin-typescript2": "^0.25.2",
     "ts-jest": "^24.1.0",
     "ts-node": "^8.4.1",
-    "tslint": "^5.20.0",
+    "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.6.4"
+    "typescript": "^3.7.2"
   },
   "dependencies": {
     "@cpmech/basic": "^2.15.0",
