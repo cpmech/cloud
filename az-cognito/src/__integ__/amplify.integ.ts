@@ -64,6 +64,15 @@ describe('cognito', () => {
       username: email,
       password,
     });
+
+    // The SignUp API generates a persistent UUID for your user,
+    // and uses it as the immutable username attribute internally.
+    // This UUID has the same value as the sub claim in the user identity token.
+    // tslint:disable-next-line: max-line-length
+    // Ref: https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html#user-pool-settings-aliases-settings
+    // NOTE:
+    // After singIn, use sub is in user.attributes.sub;
+
     username = res.userSub; // username = res.user.getUsername(); // <<< this gives the email instead
     console.log('>>> username = ', username);
     expect(res.userConfirmed).toBe(false);
@@ -85,6 +94,7 @@ describe('cognito', () => {
 
     console.log('5: signing in');
     const user = await Auth.signIn({ username, password });
+    expect(user.attributes.sub).toBe(username);
     expect(user.attributes.email_verified).toBe(true);
   });
 });
