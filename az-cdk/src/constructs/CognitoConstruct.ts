@@ -5,12 +5,14 @@ import {
   UserPoolAttribute,
   CfnUserPool,
   UserPoolClient,
+  UserPoolTriggers,
 } from '@aws-cdk/aws-cognito';
 
 export interface ICognitoProps {
   poolName: string;
   emailSendingAccount: string;
   customAttributes?: string[]; // string, and mutable. NOTE: do not prefix with custom
+  lambdaTriggers?: UserPoolTriggers;
 }
 
 export class CognitoConstruct extends Construct {
@@ -24,6 +26,7 @@ export class CognitoConstruct extends Construct {
       userPoolName: props.poolName,
       signInType: SignInType.EMAIL,
       autoVerifiedAttributes: [UserPoolAttribute.EMAIL],
+      lambdaTriggers: props.lambdaTriggers,
     });
 
     const client = new UserPoolClient(this, 'PoolCient', {
