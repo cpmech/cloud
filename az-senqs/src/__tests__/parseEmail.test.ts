@@ -1,4 +1,4 @@
-import { extractCodeFromEmail } from '../parseEmail';
+import { extractCodeFromEmail, extractSubjectAndMessage } from '../parseEmail';
 
 // tslint:disable-next-line: max-line-length
 const content1 = `Return-Path: <11111111111111111111111111111111111111111111111@amazonses.com>
@@ -85,5 +85,15 @@ describe('extractCodeFromEmail', () => {
   test('works (simple email)', async () => {
     const res = await extractCodeFromEmail(content2, ['Key ='], 7);
     expect(res).toBe('123-456');
+  });
+});
+
+describe('extractSubjectAndMessage', () => {
+  it('should return subject and message', async () => {
+    const res = await extractSubjectAndMessage(content1);
+    expect(res).toEqual({
+      subject: 'Your verification code',
+      message: 'Your confirmation code is 654321',
+    });
   });
 });

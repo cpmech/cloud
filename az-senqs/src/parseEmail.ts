@@ -41,3 +41,20 @@ export const extractCodeFromEmail = async (
   }
   return extractCode(message, notices, codeLen);
 };
+
+export const extractSubjectAndMessage = async (
+  emailContent: string,
+): Promise<{ subject: string; message: string }> => {
+  const res = await simpleParser(emailContent);
+  let message = '';
+  if (res.text) {
+    message = res.text;
+  }
+  if (res.html) {
+    message = String(res.html);
+  }
+  return {
+    subject: res.subject,
+    message,
+  };
+};
