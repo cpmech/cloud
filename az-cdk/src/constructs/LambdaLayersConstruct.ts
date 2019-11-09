@@ -6,7 +6,7 @@ export interface ILambdaLayersProps {
 }
 
 export class LambdaLayersConstruct extends Construct {
-  readonly layers: ILayerVersion[];
+  readonly all: ILayerVersion[];
 
   constructor(scope: Construct, id: string, props?: ILambdaLayersProps) {
     super(scope, id);
@@ -20,6 +20,6 @@ export class LambdaLayersConstruct extends Construct {
       description: 'Common NodeJS Libraries',
     });
 
-    this.layers = [layer];
+    this.all = [layer];
   }
 }

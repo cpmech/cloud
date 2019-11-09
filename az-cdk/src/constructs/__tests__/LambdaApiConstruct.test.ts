@@ -1,7 +1,6 @@
 import { App, Stack } from '@aws-cdk/core';
 import { LambdaApiConstruct, ICustomApiDomainName } from '../LambdaApiConstruct';
 import { synthAppString } from '../../helpers/synthApp';
-import { LambdaLayersConstruct } from '../LambdaLayersConstruct';
 
 describe('LambdaApiConstruct', () => {
   it('synthetizes properly', () => {
@@ -87,9 +86,6 @@ describe('LambdaApiConstruct (layers)', () => {
   it('synthetizes properly', () => {
     const app = new App();
     const stack = new Stack(app, 'Stack');
-    const layers = new LambdaLayersConstruct(stack, 'Layers', {
-      dirLayers: 'src/constructs/__tests__/lambda-layers',
-    });
     new LambdaApiConstruct(stack, 'LambdaApi', {
       gatewayName: 'TestApi',
       cognitoId: 'us-east-1_abcdefgh',
@@ -102,7 +98,8 @@ describe('LambdaApiConstruct (layers)', () => {
           subroute: '{id}',
         },
       ],
-      layers,
+      useLayers: true,
+      dirLayers: 'src/constructs/__tests__/lambda-layers',
     });
     expect(synthAppString(app)).toMatchSnapshot();
   });

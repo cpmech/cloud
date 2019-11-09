@@ -1,4 +1,4 @@
-import { Construct } from '@aws-cdk/core';
+import { Aws, Construct } from '@aws-cdk/core';
 import {
   CfnUserPool,
   CfnUserPoolClient,
@@ -8,14 +8,15 @@ import {
   UserPool,
   UserPoolAttribute,
   UserPoolClient,
-  UserPoolTriggers,
 } from '@aws-cdk/aws-cognito';
+import { Code, Function, Runtime } from '@aws-cdk/aws-lambda';
+import { IRole, PolicyStatement } from '@aws-cdk/aws-iam';
+import { LambdaLayersConstruct } from './LambdaLayersConstruct';
 
 export interface ICognitoProps {
   poolName: string;
   emailSendingAccount: string;
   customAttributes?: string[]; // string, and mutable. NOTE: do not prefix with custom
-  lambdaTriggers?: UserPoolTriggers;
   customDomain?: string;
   customDomainCertArn?: string;
   facebookClientId?: string;
@@ -25,6 +26,11 @@ export interface ICognitoProps {
   callbackUrls?: string[];
   logoutUrls?: string[];
   updateClientSettings?: boolean; // must use false for the first time
+  postConfirmTrigger?: boolean; // will need a lambda called cognitoPostConfirm.handler (uses CommonLibs layers too)
+  postConfirmSendEmail?: boolean; // postConfirm function needs access to SES to send emails
+  postConfirmDynamoTable?: string; // postConfirm function needs access to this DynamoDB Table
+  useLayers?: boolean; // lambda triggers will use layers
+  dirLayers?: string; // for lambda triggers. default = 'layers'
 }
 
 export class CognitoConstruct extends Construct {
@@ -34,12 +40,56 @@ export class CognitoConstruct extends Construct {
   constructor(scope: Construct, id: string, props: ICognitoProps) {
     super(scope, id);
 
+    // constants
+    const region = Aws.REGION;
+    const account = Aws.ACCOUNT_ID;
+
+    // postConfirmation lambda trigger
+    // tslint:disable-next-line: ban-types
+    let postConfirmation: Function | undefined;
+    if (props.postConfirmTrigger) {
+      let layers: LambdaLayersConstruct | undefined;
+      if (props.useLayers) {
+        layers = new LambdaLayersConstruct(this, 'Layers', { dirLayers: props.dirLayers });
+      }
+
+      postConfirmation = new Function(this, 'PostConfirm', {
+        runtime: Runtime.NODEJS_10_X,
+        code: Code.fromAsset('dist'),
+        handler: `cognitoPostConfirm.handler`,
+        layers: layers ? layers.all : undefined,
+      });
+
+      if (props.postConfirmSendEmail) {
+        (postConfirmation.role as IRole).addToPolicy(
+          new PolicyStatement({
+            actions: ['ses:SendEmail'],
+            resources: ['*'],
+          }),
+        );
+      }
+
+      if (props.postConfirmDynamoTable) {
+        (postConfirmation.role as IRole).addToPolicy(
+          new PolicyStatement({
+            actions: ['dynamodb:*'],
+            resources: [
+              `arn:aws:dynamodb:${region}:*:table/${props.postConfirmDynamoTable}`,
+              `arn:aws:dynamodb:${region}:*:table/${props.postConfirmDynamoTable}/index/*`,
+            ],
+          }),
+        );
+      }
+    }
+
     // pool
     const pool = new UserPool(this, 'Pool', {
       userPoolName: props.poolName,
       signInType: SignInType.EMAIL,
       autoVerifiedAttributes: [UserPoolAttribute.EMAIL],
-      lambdaTriggers: props.lambdaTriggers,
+      lambdaTriggers: {
+        postConfirmation,
+      },
     });
 
     this.poolId = pool.userPoolId;
@@ -53,15 +103,13 @@ export class CognitoConstruct extends Construct {
 
     this.clientId = client.userPoolClientId;
 
-    // constants
-    const region = pool.stack.region;
-    const accountId = pool.stack.account;
+    // cfnPool
     const cfnPool = pool.node.findChild('Resource') as CfnUserPool;
 
     // set sending email
     cfnPool.emailConfiguration = {
       emailSendingAccount: 'DEVELOPER',
-      sourceArn: `arn:aws:ses:${region}:${accountId}:identity/${props.emailSendingAccount}`,
+      sourceArn: `arn:aws:ses:${region}:${account}:identity/${props.emailSendingAccount}`,
     };
 
     // add custom attributes

@@ -34,3 +34,19 @@ describe('CognitoConstruct + Identity Providers', () => {
     expect(synthAppString(app)).toMatchSnapshot();
   });
 });
+
+describe('CognitoConstruct + Lambda Triggers', () => {
+  it('synthetizes properly', () => {
+    const app = new App();
+    const stack = new Stack(app, 'Stack');
+    new CognitoConstruct(stack, 'Cognito', {
+      poolName: 'dear-users',
+      emailSendingAccount: 'tester@sender.com',
+      postConfirmTrigger: true,
+      postConfirmSendEmail: true,
+      postConfirmDynamoTable: 'USERS',
+      dirLayers: 'src/constructs/__tests__/lambda-layers',
+    });
+    expect(synthAppString(app)).toMatchSnapshot();
+  });
+});
