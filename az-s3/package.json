@@ -33,10 +33,10 @@
   "devDependencies": {
     "@cpmech/envars": "^0.13.0",
     "@types/jest": "^24.0.22",
-    "@types/node": "^12.12.6",
+    "@types/node": "^12.12.7",
     "@types/uuid": "^3.4.6",
     "jest": "^24.9.0",
-    "prettier": "^1.18.2",
+    "prettier": "^1.19.0",
     "rollup": "^1.26.3",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-terser": "^5.1.2",
@@ -49,7 +49,7 @@
   },
   "dependencies": {
     "@cpmech/basic": "^2.16.0",
-    "aws-sdk": "^2.564.0",
+    "aws-sdk": "^2.568.0",
     "uuid": "^3.3.3"
   },
   "gitHead": "3b8c3043da9440da1bbd2cf4cd7cef9284859bf0"

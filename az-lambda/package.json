@@ -29,9 +29,9 @@
   "types": "dist/esm/index.d.ts",
   "devDependencies": {
     "@types/jest": "^24.0.22",
-    "@types/node": "^12.12.6",
+    "@types/node": "^12.12.7",
     "jest": "^24.9.0",
-    "prettier": "^1.18.2",
+    "prettier": "^1.19.0",
     "rollup": "^1.26.3",
     "rollup-plugin-terser": "^5.1.2",
     "rollup-plugin-typescript2": "^0.25.2",
@@ -43,8 +43,8 @@
   "dependencies": {
     "@cpmech/httpcodes": "^1.13.0",
     "@cpmech/js2ts": "^0.18.0",
-    "@types/aws-lambda": "^8.10.34",
-    "aws-sdk": "^2.564.0"
+    "@types/aws-lambda": "^8.10.35",
+    "aws-sdk": "^2.568.0"
   },
   "gitHead": "3b8c3043da9440da1bbd2cf4cd7cef9284859bf0"
 }
