@@ -29,6 +29,7 @@ describe('CognitoConstruct + Identity Providers', () => {
       customDomainCertArn: 'arn:aws:acm:us-east-1:1234',
       callbackUrls: ['https://localhost:3000/'],
       logoutUrls: ['https://localhost:3000/'],
+      updateClientSettings: true,
     });
     expect(synthAppString(app)).toMatchSnapshot();
   });

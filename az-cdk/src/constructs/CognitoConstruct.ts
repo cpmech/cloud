@@ -24,6 +24,7 @@ export interface ICognitoProps {
   googleClientSecret?: string;
   callbackUrls?: string[];
   logoutUrls?: string[];
+  updateClientSettings?: boolean; // must use false for the first time
 }
 
 export class CognitoConstruct extends Construct {
@@ -126,7 +127,7 @@ export class CognitoConstruct extends Construct {
     }
 
     // update pool client with IdPs data
-    if (hasIdp) {
+    if (hasIdp && props.updateClientSettings) {
       const cfnClient = client.node.findChild('Resource') as CfnUserPoolClient;
       cfnClient.allowedOAuthFlows = ['code'];
       cfnClient.allowedOAuthFlowsUserPoolClient = true;
