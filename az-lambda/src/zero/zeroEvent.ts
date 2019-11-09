@@ -20,6 +20,7 @@ export const zeroEventRequestContext: APIGatewayEventRequestContext = {
     cognitoAuthenticationType: null,
     cognitoIdentityId: null,
     cognitoIdentityPoolId: null,
+    principalOrgId: null,
     sourceIp: '',
     user: null,
     userAgent: null,
