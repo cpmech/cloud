@@ -1,5 +1,131 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`CognitoConstruct + Identity Providers synthetizes properly 1`] = `
+"{
+  \\"Resources\\": {
+    \\"CognitoPoolB9CB508B\\": {
+      \\"Type\\": \\"AWS::Cognito::UserPool\\",
+      \\"Properties\\": {
+        \\"AutoVerifiedAttributes\\": [
+          \\"email\\"
+        ],
+        \\"EmailConfiguration\\": {
+          \\"EmailSendingAccount\\": \\"DEVELOPER\\",
+          \\"SourceArn\\": {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:aws:ses:\\",
+                {
+                  \\"Ref\\": \\"AWS::Region\\"
+                },
+                \\":\\",
+                {
+                  \\"Ref\\": \\"AWS::AccountId\\"
+                },
+                \\":identity/tester@sender.com\\"
+              ]
+            ]
+          }
+        },
+        \\"LambdaConfig\\": {},
+        \\"UsernameAttributes\\": [
+          \\"email\\"
+        ],
+        \\"UserPoolName\\": \\"dear-users\\"
+      }
+    },
+    \\"CognitoPoolCient1A73565E\\": {
+      \\"Type\\": \\"AWS::Cognito::UserPoolClient\\",
+      \\"Properties\\": {
+        \\"UserPoolId\\": {
+          \\"Ref\\": \\"CognitoPoolB9CB508B\\"
+        },
+        \\"AllowedOAuthFlows\\": [
+          \\"code\\"
+        ],
+        \\"AllowedOAuthFlowsUserPoolClient\\": true,
+        \\"AllowedOAuthScopes\\": [
+          \\"phone\\",
+          \\"email\\",
+          \\"openid\\",
+          \\"aws.cognito.signin.user.admin\\",
+          \\"profile\\"
+        ],
+        \\"CallbackURLs\\": [
+          \\"https://localhost:3000/\\"
+        ],
+        \\"ClientName\\": \\"dear-users-client\\",
+        \\"DefaultRedirectURI\\": \\"https://localhost:3000/\\",
+        \\"GenerateSecret\\": false,
+        \\"LogoutURLs\\": [
+          \\"https://localhost:3000/\\"
+        ],
+        \\"SupportedIdentityProviders\\": [
+          \\"COGNITO\\",
+          \\"Facebook\\",
+          \\"Google\\"
+        ],
+        \\"WriteAttributes\\": [
+          \\"email\\",
+          \\"name\\"
+        ]
+      }
+    },
+    \\"CognitoPoolDomain2AB88D72\\": {
+      \\"Type\\": \\"AWS::Cognito::UserPoolDomain\\",
+      \\"Properties\\": {
+        \\"Domain\\": \\"https://myapp.custom.domain\\",
+        \\"UserPoolId\\": {
+          \\"Ref\\": \\"CognitoPoolB9CB508B\\"
+        },
+        \\"CustomDomainConfig\\": {
+          \\"CertificateArn\\": \\"arn:aws:acm:us-east-1:1234\\"
+        }
+      }
+    },
+    \\"CognitoPoolFacebookIdP8D179BE9\\": {
+      \\"Type\\": \\"AWS::Cognito::UserPoolIdentityProvider\\",
+      \\"Properties\\": {
+        \\"ProviderName\\": \\"Facebook\\",
+        \\"ProviderType\\": \\"Facebook\\",
+        \\"UserPoolId\\": {
+          \\"Ref\\": \\"CognitoPoolB9CB508B\\"
+        },
+        \\"AttributeMapping\\": {
+          \\"email\\": \\"email\\",
+          \\"name\\": \\"name\\"
+        },
+        \\"ProviderDetails\\": {
+          \\"client_id\\": \\"123412341\\",
+          \\"client_secret\\": \\"12341asdas12341adf\\",
+          \\"authorize_scopes\\": \\"public_profile,email\\"
+        }
+      }
+    },
+    \\"CognitoPoolGoogleIdP09966FB6\\": {
+      \\"Type\\": \\"AWS::Cognito::UserPoolIdentityProvider\\",
+      \\"Properties\\": {
+        \\"ProviderName\\": \\"Google\\",
+        \\"ProviderType\\": \\"Google\\",
+        \\"UserPoolId\\": {
+          \\"Ref\\": \\"CognitoPoolB9CB508B\\"
+        },
+        \\"AttributeMapping\\": {
+          \\"email\\": \\"email\\",
+          \\"name\\": \\"name\\"
+        },
+        \\"ProviderDetails\\": {
+          \\"client_id\\": \\"12341324.apps.googleusercontent.com\\",
+          \\"client_secret\\": \\"123412341\\",
+          \\"authorize_scopes\\": \\"profile email openid\\"
+        }
+      }
+    }
+  }
+}"
+`;
+
 exports[`CognitoConstruct synthetizes properly 1`] = `
 "{
   \\"Resources\\": {
@@ -41,7 +167,8 @@ exports[`CognitoConstruct synthetizes properly 1`] = `
         \\"UserPoolId\\": {
           \\"Ref\\": \\"CognitoPoolB9CB508B\\"
         },
-        \\"ClientName\\": \\"dear-users-client\\"
+        \\"ClientName\\": \\"dear-users-client\\",
+        \\"GenerateSecret\\": false
       }
     }
   }
