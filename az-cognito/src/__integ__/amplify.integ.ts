@@ -8,6 +8,7 @@ import { deleteEmail, receiveEmail, extractCodeFromEmail } from '@cpmech/az-senq
 import { sleep } from '@cpmech/basic';
 import { initEnvars } from '@cpmech/envars';
 import { deleteUser, findUser } from '../adminUsers';
+import { getUserAttributes, getUserData } from '../cognitoUser';
 
 const envars = {
   USER_POOL_ID: '',
@@ -17,7 +18,7 @@ const envars = {
 
 initEnvars(envars);
 
-jest.setTimeout(20000);
+jest.setTimeout(100000);
 
 Amplify.configure({
   Auth: {
@@ -77,7 +78,7 @@ describe('cognito', () => {
     console.log('>>> username = ', username);
     expect(res.userConfirmed).toBe(false);
 
-    sleep(1000);
+    await sleep(1000);
     console.log('2: receiving email');
     const r = await receiveEmail(email, envars.QUEUE_URL);
     emailReceiptHandle = r.receiptHandle;
@@ -96,5 +97,14 @@ describe('cognito', () => {
     const user = await Auth.signIn({ username, password });
     expect(user.attributes.sub).toBe(username);
     expect(user.attributes.email_verified).toBe(true);
+
+    console.log('6: get attributes');
+    const attributes = await getUserAttributes(user);
+    expect(attributes.length).toBe(3);
+    expect(attributes[1]).toEqual({ Name: 'email_verified', Value: 'true' });
+
+    console.log('7: get data');
+    const data = await getUserData(user);
+    expect(data.Username).toBe(username);
   });
 });
