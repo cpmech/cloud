@@ -1,5 +1,4 @@
 import { CognitoUser, CognitoUserAttribute, UserData } from 'amazon-cognito-identity-js';
-import jwtDecode from 'jwt-decode';
 
 export const getUserAttributes = (user: CognitoUser): Promise<CognitoUserAttribute[]> =>
   new Promise((resolve, reject) => {
