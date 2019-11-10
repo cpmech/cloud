@@ -60,6 +60,13 @@ export class CognitoConstruct extends Construct {
         layers: layers ? layers.all : undefined,
       });
 
+      (postConfirmation.role as IRole).addToPolicy(
+        new PolicyStatement({
+          actions: ['cognito-idp:*'],
+          resources: ['*'],
+        }),
+      );
+
       if (props.postConfirmSendEmail) {
         (postConfirmation.role as IRole).addToPolicy(
           new PolicyStatement({
