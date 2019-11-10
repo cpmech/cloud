@@ -8,7 +8,7 @@ import { deleteEmail, receiveEmail, extractCodeFromEmail } from '@cpmech/az-senq
 import { sleep } from '@cpmech/basic';
 import { initEnvars } from '@cpmech/envars';
 import { deleteUser, findUser } from '../adminUsers';
-import { getUserAttributes, getUserData } from '../cognitoUser';
+import { getUserAttributes, getUserData, decodePayload } from '../cognitoUser';
 
 const envars = {
   USER_POOL_ID: '',
@@ -106,5 +106,10 @@ describe('cognito', () => {
     console.log('7: get data');
     const data = await getUserData(user);
     expect(data.Username).toBe(username);
+
+    console.log('8: decoded payload');
+    const payload = decodePayload(user);
+    expect(payload.email).toBe(email);
+    expect(payload.email_verified).toBeTruthy();
   });
 });
