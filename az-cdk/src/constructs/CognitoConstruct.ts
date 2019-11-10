@@ -12,6 +12,7 @@ import {
 import { Code, Function, Runtime } from '@aws-cdk/aws-lambda';
 import { IRole, PolicyStatement } from '@aws-cdk/aws-iam';
 import { LambdaLayersConstruct } from './LambdaLayersConstruct';
+import { Iany } from '@cpmech/basic';
 
 export interface ICognitoProps {
   poolName: string;
@@ -31,6 +32,7 @@ export interface ICognitoProps {
   postConfirmDynamoTable?: string; // postConfirm function needs access to this DynamoDB Table
   useLayers?: boolean; // lambda triggers will use layers
   dirLayers?: string; // for lambda triggers. default = 'layers'
+  envars?: Iany; // environmental variables passed to lambda triggers
 }
 
 export class CognitoConstruct extends Construct {
@@ -58,6 +60,7 @@ export class CognitoConstruct extends Construct {
         code: Code.fromAsset('dist'),
         handler: `cognitoPostConfirm.handler`,
         layers: layers ? layers.all : undefined,
+        environment: props.envars,
       });
 
       (postConfirmation.role as IRole).addToPolicy(
