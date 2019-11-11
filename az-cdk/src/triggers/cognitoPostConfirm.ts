@@ -8,7 +8,7 @@ import { defaultEmailMaker } from './defaultEmailMaker';
 
 const refData = newAccess();
 
-const setAccessInUsersTable = async (usersTable: string, userId: string, email: string) => {
+const setAccessInUsersTable = async (tableUsers: string, userId: string, email: string) => {
   const inputData: IAccess = {
     ...newAccess(),
     userId,
@@ -17,16 +17,16 @@ const setAccessInUsersTable = async (usersTable: string, userId: string, email: 
   delete inputData.userId;
   delete inputData.aspect;
   const primaryKey = { userId, aspect: 'ACCESS' };
-  const newData = await update(usersTable, primaryKey, inputData);
+  const newData = await update(tableUsers, primaryKey, inputData);
   const res = any2type(refData, newData);
   if (!res) {
     throw new Error(`database is damaged`);
   }
 };
 
-export const makeHandler = (
+export const makeCognitoPostConfirmHandler = (
   defaultUserGroup?: string,
-  tableUsersPrefix?: string,
+  tableUsers?: string,
   senderEmail?: string,
   emailMaker?: IEmailMaker,
   verbose = false,
@@ -61,11 +61,11 @@ export const makeHandler = (
   }
 
   // set dynamodb table
-  if (tableUsersPrefix) {
+  if (tableUsers) {
     if (verbose) {
       console.log('... setting access in user table ...');
     }
-    await setAccessInUsersTable(tableUsersPrefix, userName, email);
+    await setAccessInUsersTable(tableUsers, userName, email);
   }
 
   // send confirmation email
