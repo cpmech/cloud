@@ -1,9 +1,9 @@
 import AWS from 'aws-sdk';
 
-export const addUserToGroup = async (
+export const adminAddUserToGroup = async (
   poolId: string,
-  userName: string,
-  groupName: string,
+  username: string,
+  group: string,
   verbose = false,
   region: string = 'us-east-1',
 ) => {
@@ -15,7 +15,7 @@ export const addUserToGroup = async (
     console.log('... creating group ...');
   }
   const groupParams = {
-    GroupName: groupName,
+    GroupName: group,
     UserPoolId: poolId,
   };
   try {
@@ -30,9 +30,9 @@ export const addUserToGroup = async (
     console.log(`... adding user to group ...`);
   }
   const addUserParams = {
-    GroupName: groupName,
+    GroupName: group,
     UserPoolId: poolId,
-    Username: userName,
+    Username: username,
   };
   await cognito.adminAddUserToGroup(addUserParams).promise();
 };

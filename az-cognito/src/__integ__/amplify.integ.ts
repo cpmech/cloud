@@ -7,8 +7,8 @@ import { v4 } from 'uuid';
 import { deleteEmail, receiveEmail, extractCodeFromEmail } from '@cpmech/az-senqs';
 import { sleep } from '@cpmech/basic';
 import { initEnvars } from '@cpmech/envars';
-import { deleteUser, findUser } from '../adminUsers';
-import { getUserAttributes, getUserData, decodePayload } from '../cognitoUser';
+import { adminDeleteUser, adminFindUserByEmail } from '../admin';
+import { getUserAttributes, getUserData, getTokenPayload } from '../cognitoUser';
 
 const envars = {
   USER_POOL_ID: '',
@@ -40,7 +40,7 @@ const cleanUp = async () => {
       console.log('... email deleted successfully ...');
     }
     if (username) {
-      await deleteUser(username, envars.USER_POOL_ID);
+      await adminDeleteUser(envars.USER_POOL_ID, username);
       console.log('... user deleted successfully ...');
     }
   } catch (err) {
@@ -89,7 +89,7 @@ describe('cognito', () => {
 
     console.log('4: confirming email with given code');
     await Auth.confirmSignUp(username, code);
-    const userJustConfirmed = await findUser(email, envars.USER_POOL_ID);
+    const userJustConfirmed = await adminFindUserByEmail(envars.USER_POOL_ID, email);
     expect(userJustConfirmed.Data.email).toBe(email);
     expect(userJustConfirmed.Data.email_verified).toBe('true');
 
@@ -108,7 +108,7 @@ describe('cognito', () => {
     expect(data.Username).toBe(username);
 
     console.log('8: decoded payload');
-    const payload = decodePayload(user);
+    const payload = getTokenPayload(user);
     expect(payload.email).toBe(email);
     expect(payload.email_verified).toBeTruthy();
   });

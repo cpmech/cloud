@@ -14,7 +14,7 @@
     "tw": "jest --watch --verbose",
     "cov": "jest --coverage",
     "build": "rm -rf dist && rollup --config ../rollup.config.js",
-    "integ": "jest -c jest.config-integ.js --verbose",
+    "integ": "jest -c jest.config-integ.js --verbose --runInBand",
     "integw": "jest -c jest.config-integ.js --verbose --watch",
     "integc": "jest -c jest.config-integ.js --verbose --coverage"
   },

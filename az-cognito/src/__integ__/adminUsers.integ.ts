@@ -1,5 +1,4 @@
-import { listUsers, findUser } from '../adminUsers';
-import { ICognitoUser } from '../types';
+import { adminListUsers, adminFindUserByEmail, ICognitoUser } from '../admin';
 import { initEnvars } from '@cpmech/envars';
 
 const envars = {
@@ -17,7 +16,7 @@ const EMAIL = 'bender.rodriguez@futurama.space';
 
 describe('listUsers', () => {
   test('works', async () => {
-    const users = await listUsers(envars.USER_POOL_ID);
+    const users = await adminListUsers(envars.USER_POOL_ID);
     const res = users.find(u => u.Data.email === EMAIL);
     const user: ICognitoUser = res as ICognitoUser;
     expect(user.Username).toBe(envars.BENDER_USERNAME);
@@ -28,7 +27,7 @@ describe('listUsers', () => {
 
 describe('findUser', () => {
   test('works', async () => {
-    const user = await findUser(EMAIL, envars.USER_POOL_ID);
+    const user = await adminFindUserByEmail(envars.USER_POOL_ID, EMAIL);
     expect(user.Username).toBe(envars.BENDER_USERNAME);
     expect(user.Data.email).toBe(EMAIL);
     expect(user.Data.email_verified).toBe('true');

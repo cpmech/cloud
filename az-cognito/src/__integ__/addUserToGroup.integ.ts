@@ -1,6 +1,5 @@
 import AWS from 'aws-sdk';
-import { findUser } from '../adminUsers';
-import { addUserToGroup } from '../addUserToGroup';
+import { adminFindUserByEmail, adminAddUserToGroup } from '../admin';
 import { initEnvars } from '@cpmech/envars';
 
 const envars = {
@@ -19,14 +18,14 @@ const EMAIL = 'bender.rodriguez@futurama.space';
 describe('addUserToGroup', () => {
   it('should add bender to travellers group', async () => {
     // get user
-    const user = await findUser(EMAIL, envars.USER_POOL_ID);
+    const user = await adminFindUserByEmail(envars.USER_POOL_ID, EMAIL);
     expect(user.Username).toBe(envars.BENDER_USERNAME);
     if (!user.Username) {
       fail('cannot get Username');
     }
 
     // add user to group
-    await addUserToGroup(envars.USER_POOL_ID, user.Username, 'travellers', true);
+    await adminAddUserToGroup(envars.USER_POOL_ID, user.Username, 'travellers', true);
     const cognito = new AWS.CognitoIdentityServiceProvider({ region: 'us-east-1' });
 
     // check
