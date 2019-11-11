@@ -26,9 +26,9 @@ describe('addUserToGroup', () => {
 
     // add user to group
     await adminAddUserToGroup(envars.USER_POOL_ID, user.Username, 'travellers', true);
-    const cognito = new AWS.CognitoIdentityServiceProvider({ region: 'us-east-1' });
 
     // check
+    const cognito = new AWS.CognitoIdentityServiceProvider({ region: 'us-east-1' });
     const res = await cognito
       .adminListGroupsForUser({
         UserPoolId: envars.USER_POOL_ID,

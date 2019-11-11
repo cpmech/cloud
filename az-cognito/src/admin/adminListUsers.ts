@@ -8,14 +8,17 @@ export const adminListUsers = async (
   region: string = 'us-east-1',
 ): Promise<ICognitoUser[]> => {
   const cognito = new AWS.CognitoIdentityServiceProvider({ region });
+
   const res = await cognito
     .listUsers({
       UserPoolId: poolId,
       AttributesToGet: attributesToGet,
     })
     .promise();
+
   if (!res.Users || res.Users.length === 0) {
     return [];
   }
+
   return res.Users.map(u => flattenAttributes(u));
 };

@@ -1,4 +1,10 @@
-import { adminListUsers, adminFindUserByEmail, ICognitoUser } from '../admin';
+import {
+  adminListUsers,
+  adminFindUserByEmail,
+  ICognitoUser,
+  adminFindUserByUsername,
+  adminGetUser,
+} from '../admin';
 import { initEnvars } from '@cpmech/envars';
 
 const envars = {
@@ -14,8 +20,8 @@ jest.setTimeout(20000);
 
 const EMAIL = 'bender.rodriguez@futurama.space';
 
-describe('listUsers', () => {
-  test('works', async () => {
+describe('adminListUsers', () => {
+  it('should list users', async () => {
     const users = await adminListUsers(envars.USER_POOL_ID);
     const res = users.find(u => u.Data.email === EMAIL);
     const user: ICognitoUser = res as ICognitoUser;
@@ -25,11 +31,45 @@ describe('listUsers', () => {
   });
 });
 
-describe('findUser', () => {
-  test('works', async () => {
+describe('adminFindUserByEmail', () => {
+  it('should find user by email', async () => {
     const user = await adminFindUserByEmail(envars.USER_POOL_ID, EMAIL);
     expect(user.Username).toBe(envars.BENDER_USERNAME);
     expect(user.Data.email).toBe(EMAIL);
     expect(user.Data.email_verified).toBe('true');
+  });
+});
+
+describe('adminFindUserByUsername', () => {
+  it('should find user by username', async () => {
+    const userByEmail = await adminFindUserByEmail(envars.USER_POOL_ID, EMAIL);
+
+    const username = userByEmail.Username;
+    if (!username) {
+      fail('cannot get username');
+    }
+
+    const user = await adminFindUserByUsername(envars.USER_POOL_ID, username);
+    expect(user.Username).toBe(envars.BENDER_USERNAME);
+    expect(user.Data.email).toBe(EMAIL);
+    expect(user.Data.email_verified).toBe('true');
+  });
+});
+
+describe('adminGetUser', () => {
+  it('shoud get user', async () => {
+    const userByEmail = await adminFindUserByEmail(envars.USER_POOL_ID, EMAIL);
+
+    const username = userByEmail.Username;
+    if (!username) {
+      fail('cannot get username');
+    }
+
+    const user = await adminGetUser(envars.USER_POOL_ID, username);
+    expect(user.UserAttributes).toEqual([
+      { Name: 'sub', Value: username },
+      { Name: 'email_verified', Value: 'true' },
+      { Name: 'email', Value: EMAIL },
+    ]);
   });
 });
