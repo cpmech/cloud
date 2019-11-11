@@ -11,12 +11,15 @@ import {
 } from '@aws-cdk/aws-cognito';
 import { Code, Function, Runtime } from '@aws-cdk/aws-lambda';
 import { IRole, PolicyStatement } from '@aws-cdk/aws-iam';
-import { LambdaLayersConstruct } from './LambdaLayersConstruct';
+import { IUserInput } from '@cpmech/az-cognito';
 import { Iany } from '@cpmech/basic';
+import { LambdaLayersConstruct } from './LambdaLayersConstruct';
+import { CognitoAddUsersConstruct } from '../custom-resources/CognitoAddUsersConstruct';
 
 export interface ICognitoProps {
   poolName: string;
   emailSendingAccount: string;
+  users?: IUserInput[]; // add some users
   customAttributes?: string[]; // string, and mutable. NOTE: do not prefix with custom
   customDomain?: string;
   customDomainCertArn?: string;
@@ -121,6 +124,15 @@ export class CognitoConstruct extends Construct {
       emailSendingAccount: 'DEVELOPER',
       sourceArn: `arn:aws:ses:${region}:${account}:identity/${props.emailSendingAccount}`,
     };
+
+    // add some users
+    if (props.users) {
+      new CognitoAddUsersConstruct(this, 'AddUsers', {
+        userPoolId: pool.userPoolId,
+        userPoolClientId: client.userPoolClientId,
+        users: props.users,
+      });
+    }
 
     // add custom attributes
     if (props.customAttributes) {

@@ -14,6 +14,30 @@ describe('CognitoConstruct', () => {
   });
 });
 
+describe('CognitoConstruct + users', () => {
+  it('synthetizes properly', () => {
+    const app = new App();
+    const stack = new Stack(app, 'Stack');
+    new CognitoConstruct(stack, 'Cognito', {
+      poolName: 'dear-users',
+      emailSendingAccount: 'tester@sender.com',
+      users: [
+        {
+          email: `tester@azcdk.xyz`,
+          password: '<pwd-goes-here>',
+          groups: 'testers',
+        },
+        {
+          email: `tester@azcdk.xyz`,
+          password: '<pwd-goes-here>',
+          groups: 'visitors,travellers',
+        },
+      ],
+    });
+    expect(synthAppString(app)).toMatchSnapshot();
+  });
+});
+
 describe('CognitoConstruct + Identity Providers', () => {
   it('synthetizes properly', () => {
     const app = new App();
