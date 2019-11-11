@@ -9,3 +9,15 @@ export interface ICognitoUser extends Omit<ICognitoUserType, 'Attributes'> {
     [key: string]: string;
   };
 }
+
+export interface IUserInput {
+  email: string;
+  password: string;
+  groups: string; // comma-separated
+}
+
+export const newUserInput = (): IUserInput => ({
+  email: '',
+  password: '',
+  groups: '',
+});

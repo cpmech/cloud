@@ -2,18 +2,7 @@ import AWS from 'aws-sdk';
 import { adminFindUsersByEmail } from './adminFindUsersByEmail';
 import { adminAddUserToGroup } from './adminAddUserToGroup';
 import { adminSetAttributes } from './adminSetAttributes';
-
-export interface IUserInput {
-  email: string;
-  password: string;
-  groups: string; // comma-separated
-}
-
-export const newUserInpit = (): IUserInput => ({
-  email: '',
-  password: '',
-  groups: '',
-});
+import { IUserInput } from './types';
 
 export const adminCreateUsers = async (
   poolId: string,
