@@ -1,16 +1,38 @@
 import { hasProp } from '@cpmech/basic';
 import { report } from './util/report';
-import { any2type } from '@cpmech/js2ts';
-import { addUserToGroup } from '@cpmech/az-cognito';
+import {
+  adminCreateUsers,
+  adminDeleteUser,
+  IUserInput,
+  adminFindUserByEmail,
+} from '@cpmech/az-cognito';
 
-const createUsers = async (UserPoolId: string, users: IUserInput) => {};
+const createUsers = async (poolId: string, clientId: string, users: IUserInput[]) => {
+  await adminCreateUsers(poolId, clientId, users);
+};
+
+const deleteUsers = async (poolId: string, users: IUserInput[]) => {
+  for (const user of users) {
+    const u = await adminFindUserByEmail(poolId, user.email);
+    if (u.Username) {
+      await adminDeleteUser(poolId, u.Username);
+    }
+  }
+};
 
 // cognitoAddUsers adds users to Cognito pool
 //
 // INPUT:
 //
+//   export interface IUserInput {
+//     email: string;
+//     password: string;
+//     groups: string; // comma-separated
+//   }
+//
 //   event.ResourceProperties {
 //     UserPoolId: string;
+//     UserPoolClientId: string;
 //     Users: IUserInput[];
 //   }
 //
@@ -23,18 +45,15 @@ export const cognitoAddUsers = async (event: any, context: any) => {
     if (!hasProp(event.ResourceProperties, 'UserPoolId')) {
       throw new Error(`ResourceProperties must have UserPoolId prop`);
     }
+    if (!hasProp(event.ResourceProperties, 'UserPoolClientId')) {
+      throw new Error(`ResourceProperties must have UserPoolClientId prop`);
+    }
     if (!hasProp(event.ResourceProperties, 'Users')) {
       throw new Error(`ResourceProperties must have Users prop`);
     }
 
     // extract input
-    const { UserPoolId, Users } = event.ResourceProperties;
-    const users = any2type(refUserInput, Users);
-
-    // check input again
-    if (!users) {
-      throw new Error(`cannot extract users data. Users = ${JSON.stringify(Users)}`);
-    }
+    const { UserPoolId, UserPoolClientId, Users } = event.ResourceProperties;
 
     // set the physical resource Id
     let resourceId = UserPoolId;
@@ -43,17 +62,17 @@ export const cognitoAddUsers = async (event: any, context: any) => {
     switch (event.RequestType) {
       case 'Create':
         console.log('..... creating users ......');
-        await createUsers(UserPoolId, users);
+        await createUsers(UserPoolId, UserPoolClientId, Users);
         break;
 
       case 'Update':
         console.log('..... updating users ......');
-        await updateUsers(UserPoolId, users);
+        await createUsers(UserPoolId, UserPoolClientId, Users);
         break;
 
       case 'Delete':
         console.log('..... deleting users ......');
-        await deleteUsers(UserPoolId, users);
+        await deleteUsers(UserPoolId, Users);
         resourceId = event.PhysicalResourceId;
         break;
 
