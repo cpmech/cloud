@@ -1,10 +1,10 @@
-import { ILambdaCognito, IEventCognito } from '@cpmech/az-lambda';
 import { sendEmail } from '@cpmech/az-senqs';
 import { adminAddUserToGroup } from '@cpmech/az-cognito';
 import { update } from '@cpmech/az-dynamo';
 import { any2type } from '@cpmech/js2ts';
-import { newAccess, IAccess, IEmailMaker } from './types';
 import { defaultEmailMaker } from './defaultEmailMaker';
+import { newAccess, IAccess, IEmailMaker } from './types';
+import { ILambdaCognito, IEventCognito } from '../types';
 
 const refData = newAccess();
 
