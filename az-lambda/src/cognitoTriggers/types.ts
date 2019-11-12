@@ -1,3 +1,7 @@
+// EMPTY indicates that sting (in DynamoDB) is empty.
+// NOTE that DynamoDB doesn't accept empty strings, that's why we need this
+export const EMPTY = '__EMPTY__';
+
 export interface IAccess {
   userId: string;
   aspect: 'ACCESS';
@@ -6,10 +10,10 @@ export interface IAccess {
 }
 
 export const newAccess = (): IAccess => ({
-  userId: '',
+  userId: EMPTY,
   aspect: 'ACCESS',
-  role: '',
-  email: '',
+  role: 'NADA',
+  email: EMPTY,
 });
 
 export interface IEmailMakerResults {

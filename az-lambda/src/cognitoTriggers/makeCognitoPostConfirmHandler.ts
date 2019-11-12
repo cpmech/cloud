@@ -1,5 +1,5 @@
 import { sendEmail } from '@cpmech/az-senqs';
-import { adminAddUserToGroup } from '@cpmech/az-cognito';
+import { adminAddUserToGroup, adminSetAttributes } from '@cpmech/az-cognito';
 import { update } from '@cpmech/az-dynamo';
 import { any2type } from '@cpmech/js2ts';
 import { defaultEmailMaker } from './defaultEmailMaker';
@@ -8,10 +8,16 @@ import { ILambdaCognito, IEventCognito } from '../types';
 
 const refData = newAccess();
 
-const setAccessInUsersTable = async (tableUsers: string, userId: string, email: string) => {
+const setAccessInUsersTable = async (
+  tableUsers: string,
+  userId: string,
+  role: string,
+  email: string,
+) => {
   const inputData: IAccess = {
     ...newAccess(),
     userId,
+    role,
     email,
   };
   delete inputData.userId;
@@ -26,6 +32,7 @@ const setAccessInUsersTable = async (tableUsers: string, userId: string, email: 
 
 export const makeCognitoPostConfirmHandler = (
   defaultUserGroup?: string,
+  defaultUserRole?: string,
   tableUsers?: string,
   senderEmail?: string,
   emailMaker?: IEmailMaker,
@@ -55,17 +62,22 @@ export const makeCognitoPostConfirmHandler = (
     }
   }
 
-  // add user to group
-  if (defaultUserGroup) {
-    await adminAddUserToGroup(event.userPoolId, userName, defaultUserGroup, verbose);
-  }
-
   // set dynamodb table
   if (tableUsers) {
     if (verbose) {
       console.log('... setting access in user table ...');
     }
-    await setAccessInUsersTable(tableUsers, userName, email);
+    await setAccessInUsersTable(tableUsers, userName, defaultUserRole || 'NADA', email);
+  }
+
+  // add user to group
+  if (defaultUserGroup) {
+    await adminAddUserToGroup(event.userPoolId, userName, defaultUserGroup, verbose);
+  }
+
+  // set email_verified attribute
+  if (status === 'EXTERNAL_PROVIDER') {
+    await adminSetAttributes(event.userPoolId, userName, { email_verified: 'true' });
   }
 
   // send confirmation email
