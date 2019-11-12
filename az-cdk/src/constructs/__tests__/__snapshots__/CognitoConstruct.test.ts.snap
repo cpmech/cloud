@@ -41,47 +41,8 @@ exports[`CognitoConstruct + Identity Providers synthetizes properly 1`] = `
         \\"UserPoolId\\": {
           \\"Ref\\": \\"CognitoPoolB9CB508B\\"
         },
-        \\"AllowedOAuthFlows\\": [
-          \\"code\\"
-        ],
-        \\"AllowedOAuthFlowsUserPoolClient\\": true,
-        \\"AllowedOAuthScopes\\": [
-          \\"phone\\",
-          \\"email\\",
-          \\"openid\\",
-          \\"aws.cognito.signin.user.admin\\",
-          \\"profile\\"
-        ],
-        \\"CallbackURLs\\": [
-          \\"https://localhost:3000/\\"
-        ],
         \\"ClientName\\": \\"dear-users-client\\",
-        \\"DefaultRedirectURI\\": \\"https://localhost:3000/\\",
-        \\"GenerateSecret\\": false,
-        \\"LogoutURLs\\": [
-          \\"https://localhost:3000/\\"
-        ],
-        \\"SupportedIdentityProviders\\": [
-          \\"COGNITO\\",
-          \\"Facebook\\",
-          \\"Google\\"
-        ],
-        \\"WriteAttributes\\": [
-          \\"email\\",
-          \\"name\\"
-        ]
-      }
-    },
-    \\"CognitoPoolDomain2AB88D72\\": {
-      \\"Type\\": \\"AWS::Cognito::UserPoolDomain\\",
-      \\"Properties\\": {
-        \\"Domain\\": \\"https://myapp.custom.domain\\",
-        \\"UserPoolId\\": {
-          \\"Ref\\": \\"CognitoPoolB9CB508B\\"
-        },
-        \\"CustomDomainConfig\\": {
-          \\"CertificateArn\\": \\"arn:aws:acm:us-east-1:1234\\"
-        }
+        \\"GenerateSecret\\": false
       }
     },
     \\"CognitoPoolFacebookIdP8D179BE9\\": {
@@ -121,6 +82,157 @@ exports[`CognitoConstruct + Identity Providers synthetizes properly 1`] = `
           \\"authorize_scopes\\": \\"profile email openid\\"
         }
       }
+    },
+    \\"CognitoEnableProvidersFunctionServiceRole74154750\\": {
+      \\"Type\\": \\"AWS::IAM::Role\\",
+      \\"Properties\\": {
+        \\"AssumeRolePolicyDocument\\": {
+          \\"Statement\\": [
+            {
+              \\"Action\\": \\"sts:AssumeRole\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Principal\\": {
+                \\"Service\\": \\"lambda.amazonaws.com\\"
+              }
+            }
+          ],
+          \\"Version\\": \\"2012-10-17\\"
+        },
+        \\"ManagedPolicyArns\\": [
+          {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:\\",
+                {
+                  \\"Ref\\": \\"AWS::Partition\\"
+                },
+                \\":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole\\"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    \\"CognitoEnableProvidersFunctionServiceRoleDefaultPolicy33F827DC\\": {
+      \\"Type\\": \\"AWS::IAM::Policy\\",
+      \\"Properties\\": {
+        \\"PolicyDocument\\": {
+          \\"Statement\\": [
+            {
+              \\"Action\\": \\"cognito-idp:*\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": \\"*\\"
+            }
+          ],
+          \\"Version\\": \\"2012-10-17\\"
+        },
+        \\"PolicyName\\": \\"CognitoEnableProvidersFunctionServiceRoleDefaultPolicy33F827DC\\",
+        \\"Roles\\": [
+          {
+            \\"Ref\\": \\"CognitoEnableProvidersFunctionServiceRole74154750\\"
+          }
+        ]
+      }
+    },
+    \\"CognitoEnableProvidersFunctionA3947580\\": {
+      \\"Type\\": \\"AWS::Lambda::Function\\",
+      \\"Properties\\": {
+        \\"Code\\": {
+          \\"S3Bucket\\": {
+            \\"Ref\\": \\"AssetParameters8ee8fb524eef3fdcf0c8f7b3a096bc2b85686756e8a3c7176c033e494f985168S3Bucket84802930\\"
+          },
+          \\"S3Key\\": {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                {
+                  \\"Fn::Select\\": [
+                    0,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParameters8ee8fb524eef3fdcf0c8f7b3a096bc2b85686756e8a3c7176c033e494f985168S3VersionKey04C3B8A9\\"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  \\"Fn::Select\\": [
+                    1,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParameters8ee8fb524eef3fdcf0c8f7b3a096bc2b85686756e8a3c7176c033e494f985168S3VersionKey04C3B8A9\\"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        \\"Handler\\": \\"index.cognitoEnableProviders\\",
+        \\"Role\\": {
+          \\"Fn::GetAtt\\": [
+            \\"CognitoEnableProvidersFunctionServiceRole74154750\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"Runtime\\": \\"nodejs10.x\\",
+        \\"Timeout\\": 60
+      },
+      \\"DependsOn\\": [
+        \\"CognitoEnableProvidersFunctionServiceRoleDefaultPolicy33F827DC\\",
+        \\"CognitoEnableProvidersFunctionServiceRole74154750\\"
+      ]
+    },
+    \\"CognitoEnableProviders63DE8C9A\\": {
+      \\"Type\\": \\"AWS::CloudFormation::CustomResource\\",
+      \\"Properties\\": {
+        \\"ServiceToken\\": {
+          \\"Fn::GetAtt\\": [
+            \\"CognitoEnableProvidersFunctionA3947580\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"UserPoolId\\": {
+          \\"Ref\\": \\"CognitoPoolB9CB508B\\"
+        },
+        \\"UserPoolClientId\\": {
+          \\"Ref\\": \\"CognitoPoolCient1A73565E\\"
+        },
+        \\"Providers\\": [
+          \\"Facebook\\",
+          \\"Google\\"
+        ],
+        \\"CallbackUrls\\": [
+          \\"https://localhost:3000/\\"
+        ],
+        \\"LogoutUrls\\": [
+          \\"https://localhost:3000/\\"
+        ]
+      },
+      \\"UpdateReplacePolicy\\": \\"Delete\\",
+      \\"DeletionPolicy\\": \\"Delete\\"
+    }
+  },
+  \\"Parameters\\": {
+    \\"AssetParameters8ee8fb524eef3fdcf0c8f7b3a096bc2b85686756e8a3c7176c033e494f985168S3Bucket84802930\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"8ee8fb524eef3fdcf0c8f7b3a096bc2b85686756e8a3c7176c033e494f985168\\\\\\"\\"
+    },
+    \\"AssetParameters8ee8fb524eef3fdcf0c8f7b3a096bc2b85686756e8a3c7176c033e494f985168S3VersionKey04C3B8A9\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 key for asset version \\\\\\"8ee8fb524eef3fdcf0c8f7b3a096bc2b85686756e8a3c7176c033e494f985168\\\\\\"\\"
+    },
+    \\"AssetParameters8ee8fb524eef3fdcf0c8f7b3a096bc2b85686756e8a3c7176c033e494f985168ArtifactHashDB14117A\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"8ee8fb524eef3fdcf0c8f7b3a096bc2b85686756e8a3c7176c033e494f985168\\\\\\"\\"
     }
   }
 }"
@@ -221,7 +333,7 @@ exports[`CognitoConstruct + Lambda Triggers synthetizes properly 1`] = `
       \\"Properties\\": {
         \\"Code\\": {
           \\"S3Bucket\\": {
-            \\"Ref\\": \\"AssetParameters88e1c24c00fd5b3e6bad8ea52e3b6c32e7d192342289c593ae3b93e16e61f8a1S3Bucket99013951\\"
+            \\"Ref\\": \\"AssetParameters1bf09b5657fcb0a3a0f23adbc09ffc7c3167e58e842d2f8153e3b6cb21a6e759S3Bucket44E0464D\\"
           },
           \\"S3Key\\": {
             \\"Fn::Join\\": [
@@ -234,7 +346,7 @@ exports[`CognitoConstruct + Lambda Triggers synthetizes properly 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters88e1c24c00fd5b3e6bad8ea52e3b6c32e7d192342289c593ae3b93e16e61f8a1S3VersionKeyD5E8111B\\"
+                          \\"Ref\\": \\"AssetParameters1bf09b5657fcb0a3a0f23adbc09ffc7c3167e58e842d2f8153e3b6cb21a6e759S3VersionKey06C33F2D\\"
                         }
                       ]
                     }
@@ -247,7 +359,7 @@ exports[`CognitoConstruct + Lambda Triggers synthetizes properly 1`] = `
                       \\"Fn::Split\\": [
                         \\"||\\",
                         {
-                          \\"Ref\\": \\"AssetParameters88e1c24c00fd5b3e6bad8ea52e3b6c32e7d192342289c593ae3b93e16e61f8a1S3VersionKeyD5E8111B\\"
+                          \\"Ref\\": \\"AssetParameters1bf09b5657fcb0a3a0f23adbc09ffc7c3167e58e842d2f8153e3b6cb21a6e759S3VersionKey06C33F2D\\"
                         }
                       ]
                     }
@@ -264,7 +376,8 @@ exports[`CognitoConstruct + Lambda Triggers synthetizes properly 1`] = `
             \\"Arn\\"
           ]
         },
-        \\"Runtime\\": \\"nodejs10.x\\"
+        \\"Runtime\\": \\"nodejs10.x\\",
+        \\"Timeout\\": 60
       },
       \\"DependsOn\\": [
         \\"CognitoPostConfirmServiceRoleDefaultPolicyD365441B\\",
@@ -335,17 +448,17 @@ exports[`CognitoConstruct + Lambda Triggers synthetizes properly 1`] = `
     }
   },
   \\"Parameters\\": {
-    \\"AssetParameters88e1c24c00fd5b3e6bad8ea52e3b6c32e7d192342289c593ae3b93e16e61f8a1S3Bucket99013951\\": {
+    \\"AssetParameters1bf09b5657fcb0a3a0f23adbc09ffc7c3167e58e842d2f8153e3b6cb21a6e759S3Bucket44E0464D\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 bucket for asset \\\\\\"88e1c24c00fd5b3e6bad8ea52e3b6c32e7d192342289c593ae3b93e16e61f8a1\\\\\\"\\"
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"1bf09b5657fcb0a3a0f23adbc09ffc7c3167e58e842d2f8153e3b6cb21a6e759\\\\\\"\\"
     },
-    \\"AssetParameters88e1c24c00fd5b3e6bad8ea52e3b6c32e7d192342289c593ae3b93e16e61f8a1S3VersionKeyD5E8111B\\": {
+    \\"AssetParameters1bf09b5657fcb0a3a0f23adbc09ffc7c3167e58e842d2f8153e3b6cb21a6e759S3VersionKey06C33F2D\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 key for asset version \\\\\\"88e1c24c00fd5b3e6bad8ea52e3b6c32e7d192342289c593ae3b93e16e61f8a1\\\\\\"\\"
+      \\"Description\\": \\"S3 key for asset version \\\\\\"1bf09b5657fcb0a3a0f23adbc09ffc7c3167e58e842d2f8153e3b6cb21a6e759\\\\\\"\\"
     },
-    \\"AssetParameters88e1c24c00fd5b3e6bad8ea52e3b6c32e7d192342289c593ae3b93e16e61f8a1ArtifactHashE8D17702\\": {
+    \\"AssetParameters1bf09b5657fcb0a3a0f23adbc09ffc7c3167e58e842d2f8153e3b6cb21a6e759ArtifactHash00C1FFD9\\": {
       \\"Type\\": \\"String\\",
-      \\"Description\\": \\"Artifact hash for asset \\\\\\"88e1c24c00fd5b3e6bad8ea52e3b6c32e7d192342289c593ae3b93e16e61f8a1\\\\\\"\\"
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"1bf09b5657fcb0a3a0f23adbc09ffc7c3167e58e842d2f8153e3b6cb21a6e759\\\\\\"\\"
     }
   }
 }"
@@ -395,159 +508,6 @@ exports[`CognitoConstruct + users synthetizes properly 1`] = `
         \\"ClientName\\": \\"dear-users-client\\",
         \\"GenerateSecret\\": false
       }
-    },
-    \\"CognitoAddUsersFunctionServiceRoleCCEFA3E7\\": {
-      \\"Type\\": \\"AWS::IAM::Role\\",
-      \\"Properties\\": {
-        \\"AssumeRolePolicyDocument\\": {
-          \\"Statement\\": [
-            {
-              \\"Action\\": \\"sts:AssumeRole\\",
-              \\"Effect\\": \\"Allow\\",
-              \\"Principal\\": {
-                \\"Service\\": \\"lambda.amazonaws.com\\"
-              }
-            }
-          ],
-          \\"Version\\": \\"2012-10-17\\"
-        },
-        \\"ManagedPolicyArns\\": [
-          {
-            \\"Fn::Join\\": [
-              \\"\\",
-              [
-                \\"arn:\\",
-                {
-                  \\"Ref\\": \\"AWS::Partition\\"
-                },
-                \\":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole\\"
-              ]
-            ]
-          }
-        ]
-      }
-    },
-    \\"CognitoAddUsersFunctionServiceRoleDefaultPolicyAEFC94E3\\": {
-      \\"Type\\": \\"AWS::IAM::Policy\\",
-      \\"Properties\\": {
-        \\"PolicyDocument\\": {
-          \\"Statement\\": [
-            {
-              \\"Action\\": \\"cognito-idp:*\\",
-              \\"Effect\\": \\"Allow\\",
-              \\"Resource\\": \\"*\\"
-            }
-          ],
-          \\"Version\\": \\"2012-10-17\\"
-        },
-        \\"PolicyName\\": \\"CognitoAddUsersFunctionServiceRoleDefaultPolicyAEFC94E3\\",
-        \\"Roles\\": [
-          {
-            \\"Ref\\": \\"CognitoAddUsersFunctionServiceRoleCCEFA3E7\\"
-          }
-        ]
-      }
-    },
-    \\"CognitoAddUsersFunctionBC0E15BB\\": {
-      \\"Type\\": \\"AWS::Lambda::Function\\",
-      \\"Properties\\": {
-        \\"Code\\": {
-          \\"S3Bucket\\": {
-            \\"Ref\\": \\"AssetParameters8ee8fb524eef3fdcf0c8f7b3a096bc2b85686756e8a3c7176c033e494f985168S3Bucket84802930\\"
-          },
-          \\"S3Key\\": {
-            \\"Fn::Join\\": [
-              \\"\\",
-              [
-                {
-                  \\"Fn::Select\\": [
-                    0,
-                    {
-                      \\"Fn::Split\\": [
-                        \\"||\\",
-                        {
-                          \\"Ref\\": \\"AssetParameters8ee8fb524eef3fdcf0c8f7b3a096bc2b85686756e8a3c7176c033e494f985168S3VersionKey04C3B8A9\\"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  \\"Fn::Select\\": [
-                    1,
-                    {
-                      \\"Fn::Split\\": [
-                        \\"||\\",
-                        {
-                          \\"Ref\\": \\"AssetParameters8ee8fb524eef3fdcf0c8f7b3a096bc2b85686756e8a3c7176c033e494f985168S3VersionKey04C3B8A9\\"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            ]
-          }
-        },
-        \\"Handler\\": \\"index.cognitoAddUsers\\",
-        \\"Role\\": {
-          \\"Fn::GetAtt\\": [
-            \\"CognitoAddUsersFunctionServiceRoleCCEFA3E7\\",
-            \\"Arn\\"
-          ]
-        },
-        \\"Runtime\\": \\"nodejs10.x\\",
-        \\"Timeout\\": 60
-      },
-      \\"DependsOn\\": [
-        \\"CognitoAddUsersFunctionServiceRoleDefaultPolicyAEFC94E3\\",
-        \\"CognitoAddUsersFunctionServiceRoleCCEFA3E7\\"
-      ]
-    },
-    \\"CognitoAddUsers48A18D69\\": {
-      \\"Type\\": \\"AWS::CloudFormation::CustomResource\\",
-      \\"Properties\\": {
-        \\"ServiceToken\\": {
-          \\"Fn::GetAtt\\": [
-            \\"CognitoAddUsersFunctionBC0E15BB\\",
-            \\"Arn\\"
-          ]
-        },
-        \\"UserPoolId\\": {
-          \\"Ref\\": \\"CognitoPoolB9CB508B\\"
-        },
-        \\"UserPoolClientId\\": {
-          \\"Ref\\": \\"CognitoPoolCient1A73565E\\"
-        },
-        \\"Users\\": [
-          {
-            \\"email\\": \\"tester@azcdk.xyz\\",
-            \\"password\\": \\"<pwd-goes-here>\\",
-            \\"groups\\": \\"testers\\"
-          },
-          {
-            \\"email\\": \\"tester@azcdk.xyz\\",
-            \\"password\\": \\"<pwd-goes-here>\\",
-            \\"groups\\": \\"visitors,travellers\\"
-          }
-        ]
-      },
-      \\"UpdateReplacePolicy\\": \\"Delete\\",
-      \\"DeletionPolicy\\": \\"Delete\\"
-    }
-  },
-  \\"Parameters\\": {
-    \\"AssetParameters8ee8fb524eef3fdcf0c8f7b3a096bc2b85686756e8a3c7176c033e494f985168S3Bucket84802930\\": {
-      \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 bucket for asset \\\\\\"8ee8fb524eef3fdcf0c8f7b3a096bc2b85686756e8a3c7176c033e494f985168\\\\\\"\\"
-    },
-    \\"AssetParameters8ee8fb524eef3fdcf0c8f7b3a096bc2b85686756e8a3c7176c033e494f985168S3VersionKey04C3B8A9\\": {
-      \\"Type\\": \\"String\\",
-      \\"Description\\": \\"S3 key for asset version \\\\\\"8ee8fb524eef3fdcf0c8f7b3a096bc2b85686756e8a3c7176c033e494f985168\\\\\\"\\"
-    },
-    \\"AssetParameters8ee8fb524eef3fdcf0c8f7b3a096bc2b85686756e8a3c7176c033e494f985168ArtifactHashDB14117A\\": {
-      \\"Type\\": \\"String\\",
-      \\"Description\\": \\"Artifact hash for asset \\\\\\"8ee8fb524eef3fdcf0c8f7b3a096bc2b85686756e8a3c7176c033e494f985168\\\\\\"\\"
     }
   }
 }"
