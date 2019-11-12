@@ -1,7 +1,6 @@
 import { Aws, Construct, Duration } from '@aws-cdk/core';
 import {
   CfnUserPool,
-  CfnUserPoolDomain,
   CfnUserPoolIdentityProvider,
   SignInType,
   UserPool,
@@ -12,14 +11,13 @@ import { Code, Function, Runtime } from '@aws-cdk/aws-lambda';
 import { IRole, PolicyStatement } from '@aws-cdk/aws-iam';
 import { Iany } from '@cpmech/basic';
 import { LambdaLayersConstruct } from './LambdaLayersConstruct';
-import { CognitoEnableProvidersConstruct } from '../custom-resources';
+import { CognitoEnableProvidersConstruct, CognitoPoolDomainConstruct } from '../custom-resources';
 
 export interface ICognitoProps {
   poolName: string;
   emailSendingAccount: string;
   customAttributes?: string[]; // string, and mutable. NOTE: do not prefix with custom
-  customDomain?: string;
-  customDomainCertArn?: string;
+  domainPrefix?: string;
   facebookClientId?: string;
   facebookClientSecret?: string;
   googleClientId?: string;
@@ -132,21 +130,9 @@ export class CognitoConstruct extends Construct {
     }
 
     // some flags
-    const hasCustomDomain = !!(props.customDomain && props.customDomainCertArn);
     const hasFacebook = !!(props.facebookClientId && props.facebookClientSecret);
     const hasGoogle = !!(props.googleClientId && props.googleClientSecret);
     const hasIdp = hasFacebook || hasGoogle;
-
-    // custom domain
-    if (hasCustomDomain) {
-      new CfnUserPoolDomain(this, 'PoolDomain', {
-        userPoolId: pool.userPoolId,
-        domain: props.customDomain as string,
-        customDomainConfig: {
-          certificateArn: props.customDomainCertArn,
-        },
-      });
-    }
 
     const providers: string[] = [];
 
@@ -196,6 +182,14 @@ export class CognitoConstruct extends Construct {
         providers,
         callbackUrls: props.callbackUrls,
         logoutUrls: props.logoutUrls,
+      });
+    }
+
+    // set pool domain
+    if (props.domainPrefix) {
+      new CognitoPoolDomainConstruct(this, 'PoolDomain', {
+        userPoolId: pool.userPoolId,
+        domainPrefix: props.domainPrefix,
       });
     }
   }

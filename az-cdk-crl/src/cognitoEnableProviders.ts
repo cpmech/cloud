@@ -28,7 +28,7 @@ const updateProviders = async (
     .promise();
 };
 
-// cognitoAddUsers adds users to Cognito pool
+// Enable federation providers
 //
 // INPUT:
 //
