@@ -1,6 +1,6 @@
-import { CognitoUser } from 'amazon-cognito-identity-js';
+import { CognitoUser, CognitoIdToken } from 'amazon-cognito-identity-js';
 
-export const getToken = (user: CognitoUser): any => {
+export const getToken = (user: CognitoUser): CognitoIdToken => {
   if (!user) {
     throw new Error('user is null');
   }
