@@ -1,7 +1,6 @@
-import { Aws, Construct } from '@aws-cdk/core';
+import { Aws, Construct, Duration } from '@aws-cdk/core';
 import {
   CfnUserPool,
-  CfnUserPoolClient,
   CfnUserPoolDomain,
   CfnUserPoolIdentityProvider,
   SignInType,
@@ -11,15 +10,13 @@ import {
 } from '@aws-cdk/aws-cognito';
 import { Code, Function, Runtime } from '@aws-cdk/aws-lambda';
 import { IRole, PolicyStatement } from '@aws-cdk/aws-iam';
-import { IUserInput } from '@cpmech/az-cognito';
 import { Iany } from '@cpmech/basic';
 import { LambdaLayersConstruct } from './LambdaLayersConstruct';
-import { CognitoAddUsersConstruct } from '../custom-resources/CognitoAddUsersConstruct';
+import { CognitoEnableProvidersConstruct } from '../custom-resources';
 
 export interface ICognitoProps {
   poolName: string;
   emailSendingAccount: string;
-  users?: IUserInput[]; // add some users
   customAttributes?: string[]; // string, and mutable. NOTE: do not prefix with custom
   customDomain?: string;
   customDomainCertArn?: string;
@@ -29,7 +26,6 @@ export interface ICognitoProps {
   googleClientSecret?: string;
   callbackUrls?: string[];
   logoutUrls?: string[];
-  updateClientSettings?: boolean; // must use false for the first time
   postConfirmTrigger?: boolean; // will need a lambda called cognitoPostConfirm.handler (uses CommonLibs layers too)
   postConfirmSendEmail?: boolean; // postConfirm function needs access to SES to send emails
   postConfirmDynamoTable?: string; // postConfirm function needs access to this DynamoDB Table
@@ -64,6 +60,7 @@ export class CognitoConstruct extends Construct {
         handler: `cognitoPostConfirm.handler`,
         layers: layers ? layers.all : undefined,
         environment: props.envars,
+        timeout: Duration.minutes(1),
       });
 
       (postConfirmation.role as IRole).addToPolicy(
@@ -125,15 +122,6 @@ export class CognitoConstruct extends Construct {
       sourceArn: `arn:aws:ses:${region}:${account}:identity/${props.emailSendingAccount}`,
     };
 
-    // add some users
-    if (props.users) {
-      new CognitoAddUsersConstruct(this, 'AddUsers', {
-        userPoolId: pool.userPoolId,
-        userPoolClientId: client.userPoolClientId,
-        users: props.users,
-      });
-    }
-
     // add custom attributes
     if (props.customAttributes) {
       cfnPool.schema = props.customAttributes.map(name => ({
@@ -160,6 +148,8 @@ export class CognitoConstruct extends Construct {
       });
     }
 
+    const providers: string[] = [];
+
     // Facebook identity provider
     if (hasFacebook) {
       new CfnUserPoolIdentityProvider(this, 'PoolFacebookIdP', {
@@ -176,6 +166,7 @@ export class CognitoConstruct extends Construct {
           name: 'name',
         },
       });
+      providers.push('Facebook');
     }
 
     // Google identity provider
@@ -194,33 +185,18 @@ export class CognitoConstruct extends Construct {
           name: 'name',
         },
       });
+      providers.push('Google');
     }
 
     // update pool client with IdPs data
-    if (hasIdp && props.updateClientSettings) {
-      const cfnClient = client.node.findChild('Resource') as CfnUserPoolClient;
-      cfnClient.allowedOAuthFlows = ['code'];
-      cfnClient.allowedOAuthFlowsUserPoolClient = true;
-      cfnClient.allowedOAuthScopes = [
-        'phone',
-        'email',
-        'openid',
-        'aws.cognito.signin.user.admin',
-        'profile',
-      ];
-      cfnClient.callbackUrLs = props.callbackUrls;
-      cfnClient.logoutUrLs = props.logoutUrls;
-      if (props.callbackUrls && props.callbackUrls.length > 0) {
-        cfnClient.defaultRedirectUri = props.callbackUrls[0];
-      }
-      cfnClient.supportedIdentityProviders = ['COGNITO'];
-      if (hasFacebook) {
-        cfnClient.supportedIdentityProviders.push('Facebook');
-      }
-      if (hasGoogle) {
-        cfnClient.supportedIdentityProviders.push('Google');
-      }
-      cfnClient.writeAttributes = ['email', 'name'];
+    if (hasIdp) {
+      new CognitoEnableProvidersConstruct(this, 'EnableProviders', {
+        userPoolId: pool.userPoolId,
+        userPoolClientId: client.userPoolClientId,
+        providers,
+        callbackUrls: props.callbackUrls,
+        logoutUrls: props.logoutUrls,
+      });
     }
   }
 }

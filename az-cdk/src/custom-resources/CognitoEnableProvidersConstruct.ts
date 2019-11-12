@@ -2,22 +2,23 @@ import { Construct, Duration } from '@aws-cdk/core';
 import { Function, Code, Runtime } from '@aws-cdk/aws-lambda';
 import { CustomResource, CustomResourceProvider } from '@aws-cdk/aws-cloudformation';
 import { PolicyStatement } from '@aws-cdk/aws-iam';
-import { IUserInput } from '@cpmech/az-cognito';
 import { crlDir } from './crlDir';
 
-export interface ICognitoAddUsersProps {
+export interface ICognitoEnableProvidersProps {
   userPoolId: string;
   userPoolClientId: string;
-  users: IUserInput[];
+  providers: string[];
+  callbackUrls?: string[];
+  logoutUrls?: string[];
 }
 
-export class CognitoAddUsersConstruct extends Construct {
-  constructor(scope: Construct, id: string, props: ICognitoAddUsersProps) {
+export class CognitoEnableProvidersConstruct extends Construct {
+  constructor(scope: Construct, id: string, props: ICognitoEnableProvidersProps) {
     super(scope, id);
 
     const fcn = new Function(this, 'Function', {
       code: Code.asset(crlDir),
-      handler: 'index.cognitoAddUsers',
+      handler: 'index.cognitoEnableProviders',
       runtime: Runtime.NODEJS_10_X,
       timeout: Duration.minutes(1),
     });
@@ -29,12 +30,17 @@ export class CognitoAddUsersConstruct extends Construct {
       }),
     );
 
+    const cbUrls = props.callbackUrls ? props.callbackUrls : ['https://localhost:3000/'];
+    const lgUrls = props.logoutUrls ? props.logoutUrls : ['https://localhost:3000/'];
+
     new CustomResource(this, 'Resource', {
       provider: CustomResourceProvider.lambda(fcn),
       properties: {
         UserPoolId: props.userPoolId,
         UserPoolClientId: props.userPoolClientId,
-        Users: props.users,
+        Providers: props.providers,
+        CallbackUrls: cbUrls,
+        LogoutUrls: lgUrls,
       },
     });
   }
