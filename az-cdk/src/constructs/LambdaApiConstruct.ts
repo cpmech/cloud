@@ -1,9 +1,9 @@
-import { Construct } from '@aws-cdk/core';
+import { Construct, Duration } from '@aws-cdk/core';
 import { Code, Function, Runtime } from '@aws-cdk/aws-lambda';
 import { LambdaIntegration, RestApi } from '@aws-cdk/aws-apigateway';
 import { Certificate } from '@aws-cdk/aws-certificatemanager';
 import { PolicyStatement, IRole } from '@aws-cdk/aws-iam';
-import { camelize, allFilled } from '@cpmech/basic';
+import { camelize, allFilled, Iany } from '@cpmech/basic';
 import { LambdaLayersConstruct } from './LambdaLayersConstruct';
 import { AuthorizerConstruct } from './AuthorizerConstruct';
 import { Route53AliasConstruct } from '../custom-resources/Route53AliasConstruct';
@@ -19,6 +19,8 @@ export interface ILambdaApiSpec {
   extraPermissions?: string[]; // e.g. ['ses:SendEmail']
   accessDynamoTables?: string[]; // names of tables to give access
   accessBuckets?: string[]; // name of buckets to give access
+  envars?: Iany; // environmental variables passed to lambda function
+  timeout?: Duration; // timeout
 }
 
 export interface ICustomApiDomainName {
@@ -90,6 +92,8 @@ export class LambdaApiConstruct extends Construct {
         code: Code.fromAsset(dirDist),
         handler: `${spec.filenameKey}.${spec.handlerName}`,
         layers: layers ? layers.all : undefined,
+        environment: spec.envars,
+        timeout: spec.timeout,
       });
 
       const integration = new LambdaIntegration(lambda);
