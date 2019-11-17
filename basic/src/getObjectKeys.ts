@@ -4,7 +4,8 @@ import { Iany } from './types';
 // NOTE: will not recurse into array
 export const getObjectKeys = (obj: Iany, useBracesToIndicateNesting: boolean = true): string[] => {
   const results: string[] = [];
-  for (const [key, value] of Object.entries(obj)) {
+  for (const key of Object.keys(obj)) {
+    const value = obj[key];
     results.push(key);
     if (typeof value === 'object' && !Array.isArray(value)) {
       if (useBracesToIndicateNesting) {
