@@ -1,5 +1,6 @@
 export * from './allFilled';
 export * from './camelize';
+export * from './cloneDeepSimple';
 export * from './email2key';
 export * from './filled';
 export * from './formatCPF';
