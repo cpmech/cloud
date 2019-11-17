@@ -33,7 +33,7 @@
   "devDependencies": {
     "@cpmech/envars": "^1.2.0",
     "@types/jest": "^24.0.23",
-    "@types/node": "^12.12.7",
+    "@types/node": "^12.12.8",
     "@types/uuid": "^3.4.6",
     "jest": "^24.9.0",
     "prettier": "^1.19.1",
@@ -42,14 +42,14 @@
     "rollup-plugin-terser": "^5.1.2",
     "rollup-plugin-typescript2": "^0.25.2",
     "ts-jest": "^24.1.0",
-    "ts-node": "^8.5.0",
+    "ts-node": "^8.5.2",
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.7.2"
   },
   "dependencies": {
     "@cpmech/basic": "^3.2.0",
-    "aws-sdk": "^2.571.0",
+    "aws-sdk": "^2.573.0",
     "uuid": "^3.3.3"
   },
   "gitHead": "3b8c3043da9440da1bbd2cf4cd7cef9284859bf0"
