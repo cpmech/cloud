@@ -18,6 +18,7 @@
     "lang-query-graph"
   ],
   "scripts": {
+    "bs": "lerna bootstrap --use-workspaces",
     "inf": "yarn workspaces info",
     "x": "bash ./scripts/yarn_workspace.bash",
     "list:unsync": "bash ./scripts/list_unsync_deps.bash",
