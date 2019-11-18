@@ -27,13 +27,13 @@
     "call": "lerna exec --concurrency 1 yarn cov",
     "ball": "lerna exec --concurrency 1 yarn build",
     "kall": "lerna exec --concurrency 1 yarn type-check",
-    "ncu": "lerna exec --concurrency 1  ncu",
-    "ncu:u": "lerna exec --concurrency 1 ncu -u",
+    "ncu": "lerna exec --concurrency 1 ncu",
+    "ncu:u": "bash ./scripts/ncu_u.bash",
     "dist": "yarn tall && yarn kall && yarn ball && lerna publish",
     "distX": "lerna publish"
   },
   "devDependencies": {
-    "husky": "^3.0.9",
-    "lerna": "^3.18.4"
+    "husky": "^3.1.0",
+    "lerna": "3.18.4"
   }
 }
