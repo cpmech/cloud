@@ -2,7 +2,7 @@ import { Iany } from './types';
 
 // cloneDeepSimple (hierarchically) creates a copy of "simple" entries of object
 // NOTE: (1) will NOT recurse into array
-//       (2) must only contain arrays of "simple" types
+//       (2) arrays must only contain "simple" types
 //       (3) simple means:  string, number, boolean
 export const cloneDeepSimple = (obj: Iany): Iany => {
   const results: Iany = {};
