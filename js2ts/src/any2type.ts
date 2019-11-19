@@ -2,52 +2,62 @@ import { Iany } from './types';
 import { hasSameProp } from './helpers';
 import { logErr } from './logErr';
 
-// any2type converts 'target' object to type specified by 'reference'. returns null on failure
-// NOTE: (1) 'target' can have more properties than 'reference' (they'll be ignored)
+// any2type (hierarchically) clones (most) entries of 'origin'
+// It also converts 'origin' object to type specified by 'reference'.
+// It returns null on failure.
+// NOTE: (1) 'origin' can have more properties than 'reference' (they'll be ignored)
 //       (2) this function is recursive (when a property is an object)
-export function any2type<T extends Iany>(
+//       (3) will NOT recurse into array
+//       (4) arrays must NOT have mixed types or objects;
+//       (5) arrays must only contain "simple" types
+//       (6) simple means:  string, number, boolean
+//           i.e arrays must be "simple" as string[], number[], boolean[]
+export function any2type<T extends Iany, K extends keyof T>(
   reference: T,
-  target: Iany | null,
+  origin: Iany | null,
   verbose: boolean = false,
 ): null | T {
   // check for non-null target
-  if (!target) {
+  if (!origin) {
     if (verbose) {
-      logErr(target);
+      logErr(origin);
     }
     return null;
   }
 
-  // make a copy of reference
-  let results: T = { ...reference };
+  // start with empty results => will be filled with reference's keys
+  const results: Iany = {};
 
   // keys of reference
-  const keys = Object.keys(reference) as Array<keyof T>;
+  const keys = Object.keys(reference);
 
   // loop over each key of reference
-  for (let i = 0; i < keys.length; i++) {
-    const key = keys[i];
-
+  for (const key of keys) {
     // check if target has the key and the property has the same type as reference
-    if (!hasSameProp(reference, target, key)) {
+    if (!hasSameProp(reference, origin, key)) {
       if (verbose) {
-        logErr(target, key as string);
+        logErr(origin, key);
       }
       return null;
     }
 
-    // check if property is object => recursion
-    if (typeof reference[key] === 'object') {
-      const res = any2type(reference[key], target[key as string]);
+    // new value
+    const value = origin[key];
+
+    // perform copy
+    if (Array.isArray(reference[key])) {
+      results[key] = value.slice(0);
+    } else if (typeof reference[key] === 'object') {
+      const res = any2type(reference[key], value, verbose);
       if (!res) {
         return null;
       }
-      results[key] = { ...res };
+      results[key] = res;
     } else {
-      results[key] = target[key as string];
+      results[key] = value;
     }
   }
 
   // results
-  return results;
+  return results as T;
 }
