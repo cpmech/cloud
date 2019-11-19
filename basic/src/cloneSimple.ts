@@ -11,7 +11,7 @@ export const cloneSimple = (obj: Iany): Iany => {
   for (const key of Object.keys(obj)) {
     const value = obj[key];
     if (Array.isArray(value)) {
-      results[key] = [...value];
+      results[key] = value.slice(0);
     } else if (typeof value === 'object') {
       results[key] = cloneSimple(value);
     } else {
