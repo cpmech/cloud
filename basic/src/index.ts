@@ -10,6 +10,7 @@ export * from './hasProp';
 export * from './Locales';
 export * from './makeGetField';
 export * from './makeSetField';
+export * from './maybeCopySimple';
 export * from './numOnly';
 export * from './sleep';
 export * from './shallowCompareArrays';
