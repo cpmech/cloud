@@ -1,6 +1,6 @@
 {
   "name": "@cpmech/envars-cli",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "license": "MIT",
   "author": {
     "name": "Dorival Pedroso",
@@ -55,7 +55,7 @@
     "typescript": "^3.7.2"
   },
   "dependencies": {
-    "@cpmech/basic": "^3.6.0",
+    "@cpmech/basic": "^3.7.0",
     "chalk": "^3.0.0",
     "clui": "^0.3.6",
     "configstore": "^5.0.0",
