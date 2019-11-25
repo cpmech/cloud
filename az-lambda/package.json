@@ -44,6 +44,7 @@
     "@cpmech/az-cognito": "^2.9.0",
     "@cpmech/az-dynamo": "^2.7.0",
     "@cpmech/az-senqs": "^2.8.0",
+    "@cpmech/basic": "^3.7.0",
     "@cpmech/httpcodes": "^2.5.0",
     "@cpmech/js2ts": "^1.6.0",
     "@types/aws-lambda": "^8.10.36",

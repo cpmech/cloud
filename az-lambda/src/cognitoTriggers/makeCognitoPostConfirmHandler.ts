@@ -1,30 +1,39 @@
+import { Iany, cloneSimple } from '@cpmech/basic';
 import { sendEmail } from '@cpmech/az-senqs';
 import { adminAddUserToGroup, adminSetAttributes } from '@cpmech/az-cognito';
 import { update } from '@cpmech/az-dynamo';
 import { any2type } from '@cpmech/js2ts';
 import { defaultEmailMaker } from './defaultEmailMaker';
-import { newAccess, IAccess, IEmailMaker } from './types';
+import { IEmailMaker } from './types';
 import { ILambdaCognito, IEventCognito } from '../types';
 
-const refData = newAccess();
+// defaultData must be a simple object with at least three fields:
+// {
+//    userId: string;
+//    aspect: string;
+//    email: string;
+// }
 
 const setAccessInUsersTable = async (
   tableUsers: string,
+  defaultData: Iany,
   userId: string,
-  role: string,
   email: string,
 ) => {
-  const inputData: IAccess = {
-    ...newAccess(),
-    userId,
-    role,
-    email,
-  };
+  const { aspect } = defaultData;
+  if (!aspect) {
+    throw new Error(
+      `aspect must be given in defaultData =\n${JSON.stringify(defaultData, undefined, 2)}`,
+    );
+  }
+  const inputData = cloneSimple(defaultData);
+  defaultData.userId = userId;
+  defaultData.email = email;
   delete inputData.userId;
   delete inputData.aspect;
-  const primaryKey = { userId, aspect: 'ACCESS' };
+  const primaryKey = { userId, aspect };
   const newData = await update(tableUsers, primaryKey, inputData);
-  const res = any2type(refData, newData);
+  const res = any2type(defaultData, newData);
   if (!res) {
     throw new Error(`database is damaged`);
   }
@@ -32,11 +41,11 @@ const setAccessInUsersTable = async (
 
 export const makeCognitoPostConfirmHandler = (
   defaultUserGroup?: string,
-  defaultUserRole?: string,
-  tableUsers?: string,
   senderEmail?: string,
-  emailMaker?: IEmailMaker,
   verbose = false,
+  emailMaker?: IEmailMaker,
+  tableUsers?: string,
+  defaultData?: Iany,
 ): ILambdaCognito => async (event: IEventCognito): Promise<any> => {
   const { userName } = event;
   const { email, name } = event.request.userAttributes;
@@ -63,11 +72,11 @@ export const makeCognitoPostConfirmHandler = (
   }
 
   // set dynamodb table
-  if (tableUsers) {
+  if (tableUsers && defaultData) {
     if (verbose) {
       console.log('... setting access in user table ...');
     }
-    await setAccessInUsersTable(tableUsers, userName, defaultUserRole || 'NADA', email);
+    await setAccessInUsersTable(tableUsers, defaultData, userName, email);
   }
 
   // add user to group
