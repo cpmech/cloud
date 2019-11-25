@@ -16,7 +16,7 @@ export class CognitoPoolDomainConstruct extends Construct {
     const fcn = new Function(this, 'Function', {
       code: Code.asset(crlDir),
       handler: 'index.cognitoPoolDomain',
-      runtime: Runtime.NODEJS_10_X,
+      runtime: Runtime.NODEJS_12_X,
       timeout: Duration.minutes(1),
     });
 

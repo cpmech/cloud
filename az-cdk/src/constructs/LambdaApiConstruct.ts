@@ -88,7 +88,7 @@ export class LambdaApiConstruct extends Construct {
       }
 
       const lambda = new Function(this, camelize(spec.route, true), {
-        runtime: Runtime.NODEJS_10_X,
+        runtime: Runtime.NODEJS_12_X,
         code: Code.fromAsset(dirDist),
         handler: `${spec.filenameKey}.${spec.handlerName}`,
         layers: layers ? layers.all : undefined,

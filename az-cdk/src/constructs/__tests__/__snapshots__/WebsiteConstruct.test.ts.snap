@@ -471,7 +471,7 @@ exports[`WebsiteConstruct synthetizes properly 1`] = `
             \\"Arn\\"
           ]
         },
-        \\"Runtime\\": \\"nodejs10.x\\",
+        \\"Runtime\\": \\"nodejs12.x\\",
         \\"Timeout\\": 60
       },
       \\"DependsOn\\": [
@@ -851,7 +851,7 @@ exports[`WebsiteConstruct synthetizes properly using certificateArn 1`] = `
             \\"Arn\\"
           ]
         },
-        \\"Runtime\\": \\"nodejs10.x\\",
+        \\"Runtime\\": \\"nodejs12.x\\",
         \\"Timeout\\": 60
       },
       \\"DependsOn\\": [

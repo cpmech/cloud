@@ -183,7 +183,7 @@ exports[`CognitoConstruct + Identity Providers synthetizes properly 1`] = `
             \\"Arn\\"
           ]
         },
-        \\"Runtime\\": \\"nodejs10.x\\",
+        \\"Runtime\\": \\"nodejs12.x\\",
         \\"Timeout\\": 60
       },
       \\"DependsOn\\": [
@@ -320,7 +320,7 @@ exports[`CognitoConstruct + Identity Providers synthetizes properly 1`] = `
             \\"Arn\\"
           ]
         },
-        \\"Runtime\\": \\"nodejs10.x\\",
+        \\"Runtime\\": \\"nodejs12.x\\",
         \\"Timeout\\": 60
       },
       \\"DependsOn\\": [
@@ -501,7 +501,7 @@ exports[`CognitoConstruct + Lambda Triggers synthetizes properly 1`] = `
             \\"Arn\\"
           ]
         },
-        \\"Runtime\\": \\"nodejs10.x\\",
+        \\"Runtime\\": \\"nodejs12.x\\",
         \\"Timeout\\": 60
       },
       \\"DependsOn\\": [

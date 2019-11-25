@@ -53,7 +53,7 @@ export class CognitoConstruct extends Construct {
       }
 
       postConfirmation = new Function(this, 'PostConfirm', {
-        runtime: Runtime.NODEJS_10_X,
+        runtime: Runtime.NODEJS_12_X,
         code: Code.fromAsset('dist'),
         handler: `cognitoPostConfirm.handler`,
         layers: layers ? layers.all : undefined,

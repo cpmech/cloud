@@ -15,7 +15,7 @@ export class LambdaLayersConstruct extends Construct {
 
     const layer = new LayerVersion(this, 'CommonLibs', {
       code: Code.fromAsset(dirLayers),
-      compatibleRuntimes: [Runtime.NODEJS_10_X],
+      compatibleRuntimes: [Runtime.NODEJS_12_X],
       license: 'MIT',
       description: 'Common NodeJS Libraries',
     });
