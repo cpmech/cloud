@@ -1,4 +1,4 @@
-import { Iany, cloneSimple } from '@cpmech/basic';
+import { Iany, cloneSimple, hasProp } from '@cpmech/basic';
 import { sendEmail } from '@cpmech/az-senqs';
 import { adminAddUserToGroup, adminSetAttributes } from '@cpmech/az-cognito';
 import { update } from '@cpmech/az-dynamo';
@@ -6,6 +6,7 @@ import { any2type } from '@cpmech/js2ts';
 import { defaultEmailMaker } from './defaultEmailMaker';
 import { IEmailMaker } from './types';
 import { ILambdaCognito, IEventCognito } from '../types';
+import { unixTimeNow } from '../helpers';
 
 // defaultData must be a simple object with at least three fields:
 // {
@@ -27,13 +28,19 @@ const setAccessInUsersTable = async (
     );
   }
   const inputData = cloneSimple(defaultData);
-  defaultData.userId = userId;
-  defaultData.email = email;
+  inputData.userId = userId;
+  inputData.email = email;
+  if (hasProp(inputData, 'createdAt')) {
+    inputData.createdAt = unixTimeNow();
+  }
+  if (hasProp(inputData, 'unixCreatedAt')) {
+    inputData.unixCreatedAt = unixTimeNow();
+  }
   delete inputData.userId;
   delete inputData.aspect;
   const primaryKey = { userId, aspect };
   const newData = await update(tableUsers, primaryKey, inputData);
-  const res = any2type(defaultData, newData);
+  const res = any2type(inputData, newData);
   if (!res) {
     throw new Error(`database is damaged`);
   }
