@@ -20,9 +20,9 @@ jest.mock('aws-sdk', () => ({
 
 describe('getUploadUrl', () => {
   it('should return url', () => {
-    expect(getUploadUrl(BUCKET)).toEqual({
-      filekey: '666666',
-      url: 'http://localhost/666666',
+    expect(getUploadUrl(BUCKET, 'pdf')).toEqual({
+      filekey: '666666.pdf',
+      url: 'http://localhost/666666.pdf',
     });
   });
 });
