@@ -3,6 +3,7 @@ export * from './camelize';
 export * from './cloneSimple';
 export * from './copySimple';
 export * from './email2key';
+export * from './fileTypeAndExt';
 export * from './filled';
 export * from './formatCPF';
 export * from './getObjectKeys';

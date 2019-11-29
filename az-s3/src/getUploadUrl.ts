@@ -1,7 +1,7 @@
 import { S3 } from 'aws-sdk';
 import { v4 } from 'uuid';
+import { FileExtension, ext2type } from '@cpmech/basic';
 import { IUploadUrl } from './types';
-import { FileExtension, ext2type } from './fileTypeAndExt';
 
 export const getUploadUrl = (
   bucket: string,
