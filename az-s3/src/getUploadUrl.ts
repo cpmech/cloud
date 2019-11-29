@@ -6,7 +6,7 @@ import { IUploadUrl } from './types';
 export const getUploadUrl = (
   bucket: string,
   fileExtension: FileExtension,
-  expiresSeconds: 60,
+  expiresSeconds: number = 60,
   region: string = 'us-east-1',
 ): IUploadUrl => {
   const s3 = new S3({ region });
