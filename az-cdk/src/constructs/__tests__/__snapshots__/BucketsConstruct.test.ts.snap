@@ -22,3 +22,59 @@ exports[`BucketsConstruct  synthetizes properly 1`] = `
   }
 }"
 `;
+
+exports[`BucketsConstruct  synthetizes properly with CORS 1`] = `
+"{
+  \\"Resources\\": {
+    \\"BucketsBucket04F23AD6D\\": {
+      \\"Type\\": \\"AWS::S3::Bucket\\",
+      \\"Properties\\": {
+        \\"BucketName\\": \\"balde\\",
+        \\"CorsConfiguration\\": {
+          \\"CorsRules\\": [
+            {
+              \\"AllowedHeaders\\": [
+                \\"*\\"
+              ],
+              \\"AllowedMethods\\": [
+                \\"GET\\",
+                \\"PUT\\",
+                \\"POST\\",
+                \\"DELETE\\"
+              ],
+              \\"AllowedOrigins\\": [
+                \\"*\\"
+              ]
+            }
+          ]
+        }
+      },
+      \\"UpdateReplacePolicy\\": \\"Delete\\",
+      \\"DeletionPolicy\\": \\"Delete\\"
+    },
+    \\"BucketsBucket1B98A5B53\\": {
+      \\"Type\\": \\"AWS::S3::Bucket\\",
+      \\"Properties\\": {
+        \\"BucketName\\": \\"deposito\\",
+        \\"CorsConfiguration\\": {
+          \\"CorsRules\\": [
+            {
+              \\"AllowedHeaders\\": [
+                \\"*\\"
+              ],
+              \\"AllowedMethods\\": [
+                \\"PUT\\"
+              ],
+              \\"AllowedOrigins\\": [
+                \\"*\\"
+              ]
+            }
+          ]
+        }
+      },
+      \\"UpdateReplacePolicy\\": \\"Delete\\",
+      \\"DeletionPolicy\\": \\"Delete\\"
+    }
+  }
+}"
+`;
