@@ -6,17 +6,15 @@ import { Iany } from './types';
 //       (3) arrays must only contain "simple" types
 //       (4) simple means:  string, number, boolean
 //           i.e arrays must be "simple" as string[], number[], boolean[]
-export const cloneSimple = (obj: Iany): Iany => {
-  const results: Iany = {};
-  for (const key of Object.keys(obj)) {
-    const value = obj[key];
-    if (Array.isArray(value)) {
-      results[key] = value.slice(0);
-    } else if (typeof value === 'object') {
-      results[key] = cloneSimple(value);
-    } else {
-      results[key] = value;
-    }
-  }
-  return results;
-};
+export const cloneSimple = <T extends Iany>(obj: T): T =>
+  Object.keys(obj).reduce(
+    (acc, curr) => ({
+      ...acc,
+      [curr]: Array.isArray(obj[curr])
+        ? obj[curr].slice(0)
+        : typeof obj[curr] === 'object'
+        ? cloneSimple(obj[curr])
+        : obj[curr],
+    }),
+    {} as T,
+  );
