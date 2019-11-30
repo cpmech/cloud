@@ -1,6 +1,11 @@
-import { FileExtensionEnum, fileExtensionEnums, fileExtensions } from './fileTypeAndExt';
+import {
+  FileExtensionEnum,
+  fileExtensionEnums,
+  fileExtensions,
+  FileExtension,
+} from './fileTypeAndExt';
 
-export const file2ext = (filename: string): string => {
+export const file2ext = (filename: string): FileExtension => {
   const array = filename.split('.');
   if (array.length < 2) {
     throw new Error('filename does not have extension');
@@ -13,10 +18,10 @@ export const file2ext = (filename: string): string => {
   if (!e) {
     throw new Error('filename does not have extension');
   }
-  return e.toLowerCase();
+  return e.toLowerCase() as FileExtension;
 };
 
-export const ext2enum = (ext: string): FileExtensionEnum => {
+export const ext2enum = (ext: FileExtension): FileExtensionEnum => {
   const extension = ext.trim().toUpperCase() as FileExtensionEnum;
   if (!fileExtensionEnums.includes(extension)) {
     throw new Error(`file extension must be in: ${fileExtensions.join(',')}`);

@@ -1,5 +1,5 @@
 import { file2ext, ext2enum } from '../file2extension';
-import { fileExtensions } from '../fileTypeAndExt';
+import { fileExtensions, FileExtension } from '../fileTypeAndExt';
 
 describe('file2ext', () => {
   it('should throw error on missing extension', () => {
@@ -22,13 +22,13 @@ describe('file2ext', () => {
 describe('ext2extension', () => {
   it('should throw error on wrong extension', () => {
     const msg = `file extension must be in: ${fileExtensions.join(',')}`;
-    expect(() => ext2enum('')).toThrowError(msg);
-    expect(() => ext2enum(' ')).toThrowError(msg);
-    expect(() => ext2enum('doc')).toThrowError(msg);
-    expect(() => ext2enum('xls')).toThrowError(msg);
-    expect(() => ext2enum('DOC')).toThrowError(msg);
-    expect(() => ext2enum('XLS')).toThrowError(msg);
-    expect(() => ext2enum('gif')).toThrowError(msg);
+    expect(() => ext2enum('' as FileExtension)).toThrowError(msg);
+    expect(() => ext2enum(' ' as FileExtension)).toThrowError(msg);
+    expect(() => ext2enum('doc' as FileExtension)).toThrowError(msg);
+    expect(() => ext2enum('xls' as FileExtension)).toThrowError(msg);
+    expect(() => ext2enum('DOC' as FileExtension)).toThrowError(msg);
+    expect(() => ext2enum('XLS' as FileExtension)).toThrowError(msg);
+    expect(() => ext2enum('gif' as FileExtension)).toThrowError(msg);
   });
 
   it('should return the right FileExtension', () => {
