@@ -3,11 +3,13 @@ import { empty2blank } from '../empty2blank';
 const files = {
   userId: 'iam-bender',
   aspect: 'FILES',
-  cpf: '__EMPTY__',
-  conta: '__EMPTY__',
-  acordo: '__EMPTY__',
-  contrato: '__EMPTY__',
-  procuracao: '__EMPTY__',
+  hello: '__EMPTY__',
+  world: '__EMPTY__',
+  nested: {
+    name: '__EMPTY__',
+    email: '__EMPTY__',
+  },
+  list: [],
 };
 
 describe('empty2blank', () => {
@@ -15,11 +17,13 @@ describe('empty2blank', () => {
     expect(empty2blank(files)).toEqual({
       userId: 'iam-bender',
       aspect: 'FILES',
-      cpf: '',
-      conta: '',
-      acordo: '',
-      contrato: '',
-      procuracao: '',
+      hello: '',
+      world: '',
+      nested: {
+        name: '',
+        email: '',
+      },
+      list: [],
     });
   });
 });
