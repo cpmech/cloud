@@ -1,6 +1,12 @@
 export type FileContentType = 'image/jpeg' | 'image/png' | 'application/pdf';
 
-export type FileExtension = 'jpg' | 'jpeg' | 'png' | 'pdf';
+export type FileExtension = 'jpeg' | 'jpg' | 'png' | 'pdf';
+
+export type FileExtensionEnum = 'JPEG' | 'JPG' | 'PNG' | 'PDF';
+
+export const fileExtensions: FileExtension[] = ['jpeg', 'jpg', 'png', 'pdf'];
+
+export const fileExtensionEnums: FileExtensionEnum[] = ['JPEG', 'JPG', 'PNG', 'PDF'];
 
 export const ext2type = (ext: FileExtension): FileContentType => {
   switch (ext) {
