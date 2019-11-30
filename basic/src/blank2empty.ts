@@ -1,4 +1,4 @@
-import { Iany } from '@cpmech/basic';
+import { Iany } from './types';
 
 // blank2empty will replace '' with empty recursively on SIMPLE objects
 // NOTE: (1) will NOT recurse into array
