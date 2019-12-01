@@ -4,7 +4,7 @@ import { LambdaIntegration, RestApi } from '@aws-cdk/aws-apigateway';
 import { Certificate } from '@aws-cdk/aws-certificatemanager';
 import { PolicyStatement, IRole } from '@aws-cdk/aws-iam';
 import { camelize, allFilled, Iany } from '@cpmech/basic';
-import { LambdaLayersConstruct } from './LambdaLayersConstruct';
+import { LambdaLayersConstruct, ILambdaLayerSpec } from './LambdaLayersConstruct';
 import { AuthorizerConstruct } from './AuthorizerConstruct';
 import { Route53AliasConstruct } from '../custom-resources/Route53AliasConstruct';
 import { addCorsToApiResource } from '../helpers/addCorsToApiResource';
@@ -21,8 +21,9 @@ export interface ILambdaApiSpec {
   accessBuckets?: string[]; // name of buckets to give access
   envars?: Iany; // environmental variables passed to lambda function
   timeout?: Duration; // timeout
-  runtime?: Runtime;
+  runtime?: Runtime; // default = NODEJS_12_X
   dirDist?: string; // default = 'dist'
+  layers?: ILambdaLayerSpec[]; // will override useLayers
 }
 
 export interface ICustomApiDomainName {
@@ -37,8 +38,7 @@ export interface ILambdaApiProps {
   lambdas: ILambdaApiSpec[];
   cognitoId?: string; // cognito Id for authorization protection. not needed if no route is protected
   customDomain?: ICustomApiDomainName; // ignored if any entry is empty or 'null'
-  useLayers?: boolean; // will use layers
-  dirLayers?: string; // default = 'layers'
+  useLayers?: boolean; // will use default layers. overridden by layers spec
 }
 
 export class LambdaApiConstruct extends Construct {
@@ -76,17 +76,21 @@ export class LambdaApiConstruct extends Construct {
       });
     }
 
-    let layers: LambdaLayersConstruct | undefined;
-    if (props.useLayers) {
-      layers = new LambdaLayersConstruct(this, 'Layers', { dirLayers: props.dirLayers });
-    }
-
     props.lambdas.forEach(spec => {
       if (!spec.unprotected && !props.cognitoId) {
         throw new Error('cognitoId is required for protected routes');
       }
 
-      const lambda = new Function(this, camelize(spec.route, true), {
+      const name = camelize(spec.route, true);
+
+      let layers: LambdaLayersConstruct | undefined;
+      if (props.useLayers || spec.layers) {
+        layers = new LambdaLayersConstruct(this, `${name}Layers`, {
+          layers: spec.layers,
+        });
+      }
+
+      const lambda = new Function(this, name, {
         runtime: spec.runtime || Runtime.NODEJS_12_X,
         code: Code.fromAsset(spec.dirDist || 'dist'),
         handler: `${spec.filenameKey}.${spec.handlerName}`,

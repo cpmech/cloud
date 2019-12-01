@@ -100,7 +100,6 @@ describe('LambdaApiConstruct (layers)', () => {
         },
       ],
       useLayers: true,
-      dirLayers: 'src/constructs/__tests__/lambda-layers',
     });
     expect(synthAppString(app)).toMatchSnapshot();
   });

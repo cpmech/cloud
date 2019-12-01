@@ -7,7 +7,12 @@ describe('LambdaLayersConstruct', () => {
     const app = new App();
     const stack = new Stack(app, 'Stack');
     new LambdaLayersConstruct(stack, 'Layers', {
-      dirLayers: 'src/constructs/__tests__/lambda-layers',
+      layers: [
+        {
+          name: 'CommonLibs',
+          dirLayer: 'src/constructs/__tests__/lambda-layers',
+        },
+      ],
     });
     expect(synthAppString(app)).toMatchSnapshot();
   });
