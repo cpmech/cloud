@@ -38,17 +38,19 @@ export class LambdaLayersConstruct extends Construct {
       props && props.list && props.list.length > 0 ? props.list : [commonLayer];
 
     specs.forEach(spec => {
+      let layer: ILayerVersion;
       if (spec.arn) {
+        layer = LayerVersion.fromLayerVersionArn(this, spec.name, spec.arn);
       } else {
-        const layer = new LayerVersion(this, spec.name, {
+        layer = new LayerVersion(this, spec.name, {
           code: Code.fromAsset(spec.dirLayer || defaultDirLayer),
           compatibleRuntimes: [spec.runtime || defaultRuntime],
           description: spec.description || defaultDescription,
           license: spec.license || defaultLicense,
         });
-        this.all.push(layer);
-        this.name2layer[spec.name] = layer;
       }
+      this.all.push(layer);
+      this.name2layer[spec.name] = layer;
     });
   }
 }
