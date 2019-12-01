@@ -1,5 +1,5 @@
 import { Construct, Duration } from '@aws-cdk/core';
-import { Code, Function, Runtime } from '@aws-cdk/aws-lambda';
+import { Code, Function, Runtime, ILayerVersion } from '@aws-cdk/aws-lambda';
 import { LambdaIntegration, RestApi } from '@aws-cdk/aws-apigateway';
 import { Certificate } from '@aws-cdk/aws-certificatemanager';
 import { PolicyStatement, IRole } from '@aws-cdk/aws-iam';
@@ -23,7 +23,8 @@ export interface ILambdaApiSpec {
   timeout?: Duration; // timeout
   runtime?: Runtime; // default = NODEJS_12_X
   dirDist?: string; // default = 'dist'
-  layers?: ILambdaLayerSpec[]; // will override useLayers
+  layers?: ILambdaLayerSpec[]; // will be appended after commonLayers enabled by useLayers
+  noCommonLayers?: boolean; // will not use commonLayers
 }
 
 export interface ICustomApiDomainName {
@@ -38,7 +39,8 @@ export interface ILambdaApiProps {
   lambdas: ILambdaApiSpec[];
   cognitoId?: string; // cognito Id for authorization protection. not needed if no route is protected
   customDomain?: ICustomApiDomainName; // ignored if any entry is empty or 'null'
-  useLayers?: boolean; // will use default layers. overridden by layers spec
+  useLayers?: boolean; // commonLayers. will use default layers. overridden by spec
+  dirLayers?: string; // default = 'layers'
 }
 
 export class LambdaApiConstruct extends Construct {
@@ -76,6 +78,19 @@ export class LambdaApiConstruct extends Construct {
       });
     }
 
+    let commonLayers: LambdaLayersConstruct | undefined;
+    if (props.useLayers) {
+      commonLayers = new LambdaLayersConstruct(this, 'Layers', {
+        layers: [
+          {
+            name: 'CommonLibs',
+            dirLayer: props.dirLayers || 'layers',
+            description: 'Common NodeJS Libraries',
+          },
+        ],
+      });
+    }
+
     props.lambdas.forEach(spec => {
       if (!spec.unprotected && !props.cognitoId) {
         throw new Error('cognitoId is required for protected routes');
@@ -83,20 +98,33 @@ export class LambdaApiConstruct extends Construct {
 
       const name = camelize(spec.route, true);
 
-      let layers: LambdaLayersConstruct | undefined;
-      if (props.useLayers || spec.layers) {
-        layers = new LambdaLayersConstruct(this, `${name}Layers`, {
+      let specLayers: LambdaLayersConstruct | undefined;
+      if (spec.layers) {
+        specLayers = new LambdaLayersConstruct(this, `${name}Layers`, {
           layers: spec.layers,
         });
+      }
+
+      let layers: ILayerVersion[] | undefined;
+      if (commonLayers && specLayers) {
+        if (spec.noCommonLayers) {
+          layers = specLayers.all; // we have both, but want only specLayers
+        } else {
+          layers = [...commonLayers.all, ...specLayers.all]; // we want both
+        }
+      } else if (commonLayers && !specLayers) {
+        layers = commonLayers.all; // we have only commonLayers
+      } else if (specLayers && !commonLayers) {
+        layers = specLayers.all; // we have only specLayers
       }
 
       const lambda = new Function(this, name, {
         runtime: spec.runtime || Runtime.NODEJS_12_X,
         code: Code.fromAsset(spec.dirDist || 'dist'),
         handler: `${spec.filenameKey}.${spec.handlerName}`,
-        layers: layers ? layers.all : undefined,
         environment: spec.envars,
         timeout: spec.timeout,
+        layers,
       });
 
       const integration = new LambdaIntegration(lambda);
