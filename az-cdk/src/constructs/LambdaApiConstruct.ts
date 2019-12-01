@@ -4,7 +4,7 @@ import { LambdaIntegration, RestApi } from '@aws-cdk/aws-apigateway';
 import { Certificate } from '@aws-cdk/aws-certificatemanager';
 import { PolicyStatement, IRole } from '@aws-cdk/aws-iam';
 import { camelize, allFilled, Iany } from '@cpmech/basic';
-import { LambdaLayersConstruct, ILambdaLayerSpec } from './LambdaLayersConstruct';
+import { LambdaLayersConstruct, ILayer, commonLayer } from './LambdaLayersConstruct';
 import { AuthorizerConstruct } from './AuthorizerConstruct';
 import { Route53AliasConstruct } from '../custom-resources/Route53AliasConstruct';
 import { addCorsToApiResource } from '../helpers/addCorsToApiResource';
@@ -23,7 +23,7 @@ export interface ILambdaApiSpec {
   timeout?: Duration; // timeout
   runtime?: Runtime; // default = NODEJS_12_X
   dirDist?: string; // default = 'dist'
-  layers?: ILambdaLayerSpec[]; // will be appended after commonLayers enabled by useLayers
+  layers?: string[]; // name of required layers
   noCommonLayers?: boolean; // will not use commonLayers
 }
 
@@ -39,8 +39,9 @@ export interface ILambdaApiProps {
   lambdas: ILambdaApiSpec[];
   cognitoId?: string; // cognito Id for authorization protection. not needed if no route is protected
   customDomain?: ICustomApiDomainName; // ignored if any entry is empty or 'null'
-  useLayers?: boolean; // commonLayers. will use default layers. overridden by spec
-  dirLayers?: string; // default = 'layers'
+  useLayers?: boolean; // commonLayers. will use default layers
+  dirLayers?: string; // commonLayers. default = 'layers'
+  specLayers?: ILayer[]; // specific layers
 }
 
 export class LambdaApiConstruct extends Construct {
@@ -78,17 +79,16 @@ export class LambdaApiConstruct extends Construct {
       });
     }
 
-    let commonLayers: LambdaLayersConstruct | undefined;
-    if (props.useLayers) {
-      commonLayers = new LambdaLayersConstruct(this, 'Layers', {
-        layers: [
-          {
-            name: 'CommonLibs',
-            dirLayer: props.dirLayers || 'layers',
-            description: 'Common NodeJS Libraries',
-          },
-        ],
-      });
+    let allLayers: LambdaLayersConstruct | undefined;
+    if (props.useLayers || props.specLayers) {
+      const list: ILayer[] = [];
+      if (props.useLayers) {
+        list.push(commonLayer);
+      }
+      if (props.specLayers) {
+        list.push(...props.specLayers);
+      }
+      allLayers = new LambdaLayersConstruct(this, 'Layers', { list });
     }
 
     props.lambdas.forEach(spec => {
@@ -96,29 +96,20 @@ export class LambdaApiConstruct extends Construct {
         throw new Error('cognitoId is required for protected routes');
       }
 
-      const name = camelize(spec.route, true);
-
-      let specLayers: LambdaLayersConstruct | undefined;
-      if (spec.layers) {
-        specLayers = new LambdaLayersConstruct(this, `${name}Layers`, {
-          layers: spec.layers,
-        });
-      }
-
       let layers: ILayerVersion[] | undefined;
-      if (commonLayers && specLayers) {
-        if (spec.noCommonLayers) {
-          layers = specLayers.all; // we have both, but want only specLayers
-        } else {
-          layers = [...commonLayers.all, ...specLayers.all]; // we want both
+      if (allLayers) {
+        layers = [];
+        if (!spec.noCommonLayers) {
+          layers.push(allLayers.name2layer[commonLayer.name]);
         }
-      } else if (commonLayers && !specLayers) {
-        layers = commonLayers.all; // we have only commonLayers
-      } else if (specLayers && !commonLayers) {
-        layers = specLayers.all; // we have only specLayers
+        if (spec.layers) {
+          for (const name of spec.layers) {
+            layers.push(allLayers.name2layer[name]);
+          }
+        }
       }
 
-      const lambda = new Function(this, name, {
+      const lambda = new Function(this, camelize(spec.route, true), {
         runtime: spec.runtime || Runtime.NODEJS_12_X,
         code: Code.fromAsset(spec.dirDist || 'dist'),
         handler: `${spec.filenameKey}.${spec.handlerName}`,

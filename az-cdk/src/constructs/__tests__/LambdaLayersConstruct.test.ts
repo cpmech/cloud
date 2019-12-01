@@ -7,7 +7,7 @@ describe('LambdaLayersConstruct', () => {
     const app = new App();
     const stack = new Stack(app, 'Stack');
     new LambdaLayersConstruct(stack, 'Layers', {
-      layers: [
+      list: [
         {
           name: 'CommonLibs',
           dirLayer: 'src/constructs/__tests__/lambda-layers',

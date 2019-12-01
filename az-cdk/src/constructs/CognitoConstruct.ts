@@ -49,7 +49,9 @@ export class CognitoConstruct extends Construct {
     if (props.postConfirmTrigger) {
       let layers: LambdaLayersConstruct | undefined;
       if (props.useLayers) {
-        layers = new LambdaLayersConstruct(this, 'Layers', { dirLayers: props.dirLayers });
+        layers = new LambdaLayersConstruct(this, 'Layers', {
+          list: [{ name: 'CommonLibs', dirLayer: props.dirLayers }],
+        });
       }
 
       postConfirmation = new Function(this, 'PostConfirm', {
