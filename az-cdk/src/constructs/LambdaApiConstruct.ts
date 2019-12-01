@@ -21,6 +21,8 @@ export interface ILambdaApiSpec {
   accessBuckets?: string[]; // name of buckets to give access
   envars?: Iany; // environmental variables passed to lambda function
   timeout?: Duration; // timeout
+  runtime?: Runtime;
+  dirDist?: string; // default = 'dist'
 }
 
 export interface ICustomApiDomainName {
@@ -37,7 +39,6 @@ export interface ILambdaApiProps {
   customDomain?: ICustomApiDomainName; // ignored if any entry is empty or 'null'
   useLayers?: boolean; // will use layers
   dirLayers?: string; // default = 'layers'
-  dirDist?: string; // default = 'dist'
 }
 
 export class LambdaApiConstruct extends Construct {
@@ -45,8 +46,6 @@ export class LambdaApiConstruct extends Construct {
 
   constructor(scope: Construct, id: string, props: ILambdaApiProps) {
     super(scope, id);
-
-    const dirDist = props.dirDist || 'dist';
 
     const api = new RestApi(this, `${props.gatewayName}`);
     this.apiUrl = api.url;
@@ -88,8 +87,8 @@ export class LambdaApiConstruct extends Construct {
       }
 
       const lambda = new Function(this, camelize(spec.route, true), {
-        runtime: Runtime.NODEJS_12_X,
-        code: Code.fromAsset(dirDist),
+        runtime: spec.runtime || Runtime.NODEJS_12_X,
+        code: Code.fromAsset(spec.dirDist || 'dist'),
         handler: `${spec.filenameKey}.${spec.handlerName}`,
         layers: layers ? layers.all : undefined,
         environment: spec.envars,

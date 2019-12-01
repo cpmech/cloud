@@ -1,6 +1,7 @@
 import { App, Stack } from '@aws-cdk/core';
 import { LambdaApiConstruct, ICustomApiDomainName } from '../LambdaApiConstruct';
 import { synthAppString } from '../../helpers/synthApp';
+import { Runtime } from '@aws-cdk/aws-lambda';
 
 describe('LambdaApiConstruct', () => {
   it('synthetizes properly', () => {
@@ -22,20 +23,20 @@ describe('LambdaApiConstruct', () => {
     expect(synthAppString(app)).toMatchSnapshot();
   });
 
-  it('synthetizes using dirDist', () => {
+  it('synthetizes using dirDist and python', () => {
     const app = new App();
     const stack = new Stack(app, 'Stack');
     new LambdaApiConstruct(stack, 'LambdaApi', {
       gatewayName: 'TestApi',
-      dirDist: 'dist',
       lambdas: [
         {
-          filenameKey: 'index',
+          filenameKey: 'lambda',
           handlerName: 'handler',
           httpMethods: ['GET'],
           route: 'hello',
-          subroute: '{id}',
           unprotected: true,
+          dirDist: 'python',
+          runtime: Runtime.PYTHON_3_7,
         },
       ],
     });
