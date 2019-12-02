@@ -21,6 +21,7 @@ export interface ILambdaApiSpec {
   accessBuckets?: string[]; // name of buckets to give access
   envars?: Iany; // environmental variables passed to lambda function
   timeout?: Duration; // timeout
+  memorySize?: number; // memory size
   runtime?: Runtime; // default = NODEJS_12_X
   dirDist?: string; // default = 'dist'
   layers?: string[]; // name of required layers
@@ -115,6 +116,7 @@ export class LambdaApiConstruct extends Construct {
         handler: `${spec.filenameKey}.${spec.handlerName}`,
         environment: spec.envars,
         timeout: spec.timeout,
+        memorySize: spec.memorySize,
         layers,
       });
 
