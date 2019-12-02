@@ -41,11 +41,17 @@ const correct2 = {
   },
 };
 
+const correct1missing = {
+  alpha: 'alpha',
+  beta: 123,
+  gamma: true,
+};
+
 const wrong1 = {
   alpha: 'alpha',
   beta: 123,
   gamma: true,
-  delta: { p: 'pval', q: { r: { s: '666' } } },
+  delta: { p: 'pval', q: { r: { s: '666' } } }, // list and nums are missing
 };
 
 const wrong2 = {};
@@ -135,6 +141,7 @@ const obj3 = {
 
 describe('any2type', () => {
   it('should clone object (typed) without modifying the referece nor the origin', () => {
+    expect(any2type(reference2, { a: 'a', b: 123, c: true })).toEqual({ a: 'a', b: 123, c: true });
     expect(any2type(reference, correct1)).toEqual(correct1);
     expect(any2type(reference, correct2)).toEqual(correct1);
     expect(any2type(ref1, obj1)).toEqual({
@@ -217,19 +224,20 @@ describe('any2type', () => {
   });
 
   it('should fail with wrong objects', () => {
-    expect(any2type(reference, wrong1)).toEqual(null);
-    expect(any2type(reference, wrong2)).toEqual(null);
-    expect(any2type(reference, wrong3)).toEqual(null);
-    expect(any2type(reference, wrong4)).toEqual(null);
-    expect(any2type(reference, wrong5)).toEqual(null);
-    expect(any2type(reference, wrong6)).toEqual(null);
-    expect(any2type(reference, wrong7)).toEqual(null);
-    expect(any2type(reference, wrong8)).toEqual(null);
-    expect(any2type(reference, wrong9)).toEqual(null);
+    expect(any2type(reference2, { a: 123, b: '123', c: true })).toBeNull();
+    expect(any2type(reference, wrong1)).toBeNull();
+    expect(any2type(reference, wrong2)).toBeNull();
+    expect(any2type(reference, wrong3)).toBeNull();
+    expect(any2type(reference, wrong4)).toBeNull();
+    expect(any2type(reference, wrong5)).toBeNull();
+    expect(any2type(reference, wrong6)).toBeNull();
+    expect(any2type(reference, wrong7)).toBeNull();
+    expect(any2type(reference, wrong8)).toBeNull();
+    expect(any2type(reference, wrong9)).toBeNull();
   });
 
   test('null object fails', () => {
-    expect(any2type(reference, null)).toEqual(null);
+    expect(any2type(reference, null)).toBeNull();
   });
 
   it('modfifying the copy should not affect the original object', () => {
@@ -300,10 +308,88 @@ describe('any2type', () => {
 
 describe('any2type (verbose mode)', () => {
   test('wrong objects fail', () => {
-    expect(any2type(reference, wrong2, true)).toEqual(null);
+    expect(any2type(reference, wrong2, true)).toBeNull();
   });
 
   test('null object fails', () => {
-    expect(any2type(reference, null, true)).toEqual(null);
+    expect(any2type(reference, null, true)).toBeNull();
+  });
+});
+
+interface Itype2 {
+  a: string;
+  b?: number;
+  c?: boolean;
+}
+
+const reference2: Itype2 = {
+  a: '',
+  b: 0,
+  c: false,
+};
+
+const type2correct1 = {
+  a: 'present',
+  b: 123,
+  c: true,
+};
+
+const type2correct2 = {
+  a: 'present',
+  b: 123,
+};
+
+const type2correct3 = {
+  a: 'present',
+};
+
+const type2correct4 = {};
+
+const type2correct5 = {
+  b: 123,
+};
+
+const type2wrong1 = {
+  a: 'present',
+  b: 123,
+  c: 123,
+};
+
+const type2wrong2 = {
+  b: '123',
+};
+
+const type2wrong3 = {
+  a: 123,
+};
+
+describe('any2type (optional fields)', () => {
+  it('should ignore optional fields and return all data if present', () => {
+    expect(
+      any2type(reference, correct1, false, { alpha: true, beta: true, gamma: true, delta: true }),
+    ).toEqual(correct1);
+    expect(any2type(reference2, type2correct1, false, { c: true })).toEqual(type2correct1);
+  });
+
+  it('should return null (error) if optional fields are present but wrong', () => {
+    expect(any2type(reference, wrong1, false, { beta: true, delta: true })).toBeNull();
+    expect(any2type(reference, wrong7, false, { beta: true, delta: true })).toBeNull();
+    expect(any2type(reference, wrong8, false, { beta: true, delta: true })).toBeNull();
+    expect(any2type(reference, wrong9, false, { beta: true, delta: true })).toBeNull();
+    expect(any2type(reference2, type2wrong1, false, { b: true, c: true })).toBeNull();
+    expect(any2type(reference2, type2wrong2, false, { a: true, b: true, c: true })).toBeNull();
+    expect(any2type(reference2, type2wrong3, false, { a: true, b: true, c: true })).toBeNull();
+  });
+
+  it('should skip optional fields if not present', () => {
+    expect(any2type(reference, correct1missing, false, { delta: true })).toEqual(correct1missing);
+    expect(any2type(reference2, type2correct2, false, { c: true })).toEqual(type2correct2);
+    expect(any2type(reference2, type2correct3, false, { b: true, c: true })).toEqual(type2correct3);
+    expect(any2type(reference2, type2correct4, false, { a: true, b: true, c: true })).toEqual(
+      type2correct4,
+    );
+    expect(any2type(reference2, type2correct5, false, { a: true, b: true, c: true })).toEqual(
+      type2correct5,
+    );
   });
 });

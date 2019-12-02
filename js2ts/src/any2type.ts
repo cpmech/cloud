@@ -12,10 +12,12 @@ import { logErr } from './logErr';
 //       (5) arrays must only contain "simple" types
 //       (6) simple means:  string, number, boolean
 //           i.e arrays must be "simple" as string[], number[], boolean[]
+//       (7) optional fields can only handle shallow (first) fields
 export function any2type<T extends Iany, K extends keyof T>(
   reference: T,
   origin: Iany | null,
   verbose: boolean = false,
+  optionalShallowFields?: { [key: string]: boolean },
 ): null | T {
   // check for non-null target
   if (!origin) {
@@ -33,6 +35,13 @@ export function any2type<T extends Iany, K extends keyof T>(
 
   // loop over each key of reference
   for (const key of keys) {
+    // skip optional fields if NOT present
+    if (optionalShallowFields) {
+      if (optionalShallowFields[key] && !Object.prototype.hasOwnProperty.call(origin, key)) {
+        continue;
+      }
+    }
+
     // check if target has the key and the property has the same type as reference
     if (!hasSameProp(reference, origin, key)) {
       if (verbose) {
