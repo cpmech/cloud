@@ -37,7 +37,7 @@
     "@types/node": "^12.12.14",
     "jest": "^24.9.0",
     "prettier": "^1.19.1",
-    "rollup": "^1.27.5",
+    "rollup": "^1.27.8",
     "rollup-plugin-terser": "^5.1.2",
     "rollup-plugin-typescript2": "^0.25.2",
     "ts-jest": "^24.2.0",
@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "@cpmech/js2ts": "^1.7.0",
-    "aws-sdk": "^2.580.0"
+    "aws-sdk": "^2.581.0"
   },
   "gitHead": "3b8c3043da9440da1bbd2cf4cd7cef9284859bf0"
 }

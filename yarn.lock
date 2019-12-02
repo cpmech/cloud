@@ -2315,10 +2315,10 @@ aws-sdk@2.518.0:
     uuid "3.3.2"
     xml2js "0.4.19"
 
-aws-sdk@^2.580.0:
-  version "2.580.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.580.0.tgz#b411168ab3b92a1c2977e9c020406af2a5b74cf7"
-  integrity sha512-YUn/LgaSjWuFDCAIOiOvyXbuRpNEzTPLbwRs3GpEmrP1hJrOChXh0p7GH61sTZdeJZarCSETUOWU5ngjpCOjKA==
+aws-sdk@^2.581.0:
+  version "2.581.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.581.0.tgz#60640dd99a70da41aa171ebf4d791754161953a0"
+  integrity sha512-Z2gulIgdVRdVVSuV27hVdrMdScU35+qkWZI6gKO7V+allk3LIfl/JbV6RGuEbCpzQg6Di/69fkN/jhbpZ+b3ig==
   dependencies:
     buffer "^4.9.1"
     events "^1.1.1"
@@ -7328,10 +7328,10 @@ rollup-pluginutils@^2.5.0, rollup-pluginutils@^2.8.1:
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@^1.27.5:
-  version "1.27.5"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.27.5.tgz#d100fb0ffd8353575cb2057152547b9abfddfe59"
-  integrity sha512-8rfVdzuTg2kt8ObD9LNJpEwUN7B6lsl3sHc5fddtgICpLjpYeSf4m2+RftBzcCaBTMi1iYX3Ez8zFT4Gj2nJjg==
+rollup@^1.27.8:
+  version "1.27.8"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.27.8.tgz#94288a957af9f4c2380b73a17494d87705997d0f"
+  integrity sha512-EVoEV5rAWl+5clnGznt1KY8PeVkzVQh/R0d2s3gHEkN7gfoyC4JmvIVuCtPbYE8NM5Ep/g+nAmvKXBjzaqTsHA==
   dependencies:
     "@types/estree" "*"
     "@types/node" "*"
