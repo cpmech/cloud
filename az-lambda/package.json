@@ -1,6 +1,6 @@
 {
   "name": "@cpmech/az-lambda",
-  "version": "2.18.0",
+  "version": "2.19.0",
   "license": "MIT",
   "author": {
     "name": "Dorival Pedroso",
@@ -41,12 +41,12 @@
     "typescript": "^3.7.2"
   },
   "dependencies": {
-    "@cpmech/az-cognito": "^2.14.0",
-    "@cpmech/az-dynamo": "^2.10.0",
-    "@cpmech/az-senqs": "^2.13.0",
-    "@cpmech/basic": "^3.12.0",
-    "@cpmech/httpcodes": "^2.7.0",
-    "@cpmech/js2ts": "^1.8.0",
+    "@cpmech/az-cognito": "^2.15.0",
+    "@cpmech/az-dynamo": "^2.11.0",
+    "@cpmech/az-senqs": "^2.14.0",
+    "@cpmech/basic": "^3.13.0",
+    "@cpmech/httpcodes": "^2.8.0",
+    "@cpmech/js2ts": "^1.9.0",
     "@types/aws-lambda": "^8.10.36",
     "aws-sdk": "^2.583.0"
   },
