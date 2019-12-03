@@ -25,4 +25,11 @@ describe('getUploadUrl', () => {
       url: 'http://localhost/666666.pdf',
     });
   });
+
+  it('should return url (using prefix)', () => {
+    expect(getUploadUrl(BUCKET, 'pdf', 'PREFIX')).toEqual({
+      filekey: 'PREFIX666666.pdf',
+      url: 'http://localhost/PREFIX666666.pdf',
+    });
+  });
 });
