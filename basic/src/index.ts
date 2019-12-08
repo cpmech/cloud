@@ -3,6 +3,7 @@ export * from './blank2empty';
 export * from './camelize';
 export * from './cloneSimple';
 export * from './copySimple';
+export * from './diffSimple';
 export * from './email2key';
 export * from './empty2blank';
 export * from './file2extension';
