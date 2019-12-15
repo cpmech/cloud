@@ -49,10 +49,6 @@ export class PipelineStack extends Stack {
             commands,
           },
         },
-        artifacts: {
-          files: [`dist/**/*`],
-          'discard-paths': 'yes',
-        },
       }),
     });
 
