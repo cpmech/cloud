@@ -33,18 +33,24 @@ afterEach(async () => {
 describe('adminCreateUsers', () => {
   it('should create two users', async () => {
     // create
-    const usernames = await adminCreateUsers(envars.USER_POOL_ID, envars.USER_POOL_CLIENT_ID, [
-      {
-        email: `tester+${v4()}@azcdk.xyz`,
-        password: '123paSSword$',
-        groups: 'testers',
-      },
-      {
-        email: `tester+${v4()}@azcdk.xyz`,
-        password: '456paSSword$',
-        groups: 'visitors,travellers',
-      },
-    ]);
+    const usernames = await adminCreateUsers(
+      envars.USER_POOL_ID,
+      envars.USER_POOL_CLIENT_ID,
+      [
+        {
+          email: `tester+${v4()}@azcdk.xyz`,
+          password: '123paSSword$',
+          groups: 'testers',
+        },
+        {
+          email: `tester+${v4()}@azcdk.xyz`,
+          password: '456paSSword$',
+          groups: 'visitors,travellers',
+        },
+      ],
+      undefined,
+      true,
+    );
     expect(usernames.length).toBe(2);
     username0 = usernames[0];
     username1 = usernames[1];
