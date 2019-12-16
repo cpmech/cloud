@@ -5,7 +5,7 @@ export const zeroContext: Context = {
   functionName: '',
   functionVersion: '',
   invokedFunctionArn: '',
-  memoryLimitInMB: 0,
+  memoryLimitInMB: '',
   awsRequestId: '',
   logGroupName: '',
   logStreamName: '',
