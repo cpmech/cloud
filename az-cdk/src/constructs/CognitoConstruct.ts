@@ -29,6 +29,7 @@ export interface ICognitoProps {
   postConfirmDynamoTable?: string; // postConfirm function needs access to this DynamoDB Table
   useLayers?: boolean; // lambda triggers will use layers
   dirLayers?: string; // for lambda triggers. default = 'layers'
+  dirDist?: string; // location of triggers [default = 'dist']
   envars?: Iany; // environmental variables passed to lambda triggers
 }
 
@@ -56,7 +57,7 @@ export class CognitoConstruct extends Construct {
 
       postConfirmation = new Function(this, 'PostConfirm', {
         runtime: Runtime.NODEJS_12_X,
-        code: Code.fromAsset('dist'),
+        code: Code.fromAsset(props.dirDist || 'dist'),
         handler: `cognitoPostConfirm.handler`,
         layers: layers ? layers.all : undefined,
         environment: props.envars,
