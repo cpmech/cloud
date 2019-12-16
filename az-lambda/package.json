@@ -1,6 +1,6 @@
 {
   "name": "@cpmech/az-lambda",
-  "version": "2.21.2",
+  "version": "2.21.3",
   "license": "MIT",
   "author": {
     "name": "Dorival Pedroso",
@@ -45,7 +45,7 @@
     "@cpmech/az-dynamo": "^2.12.1",
     "@cpmech/az-senqs": "^2.16.0",
     "@cpmech/basic": "^3.15.0",
-    "@cpmech/httpcodes": "^2.9.1",
+    "@cpmech/httpcodes": "^2.9.2",
     "@cpmech/js2ts": "^1.10.1",
     "@types/aws-lambda": "^8.10.39",
     "aws-sdk": "^2.590.0"
