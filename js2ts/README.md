@@ -1,5 +1,7 @@
 # js2ts - Converts Javascript objects to Typescript objects
 
+v1.11.0
+
 ## Installation
 
 ```bash
