@@ -57,14 +57,21 @@ export const makeCognitoPostConfirmHandler = (
   const { userName } = event;
   const { email, name } = event.request.userAttributes;
   if (verbose) {
-    console.log('>>> event = \n', JSON.stringify(event, undefined, 2));
+    console.log('... event ...');
+    console.log(event);
   }
 
   // check
   if (!userName) {
+    if (verbose) {
+      console.log('[ERROR] cannot get userName from event data');
+    }
     throw new Error('cannot get userName from event data');
   }
   if (!email) {
+    if (verbose) {
+      console.log('[ERROR] cannot get email from event data');
+    }
     throw new Error('cannot get email from event data');
   }
 
@@ -74,7 +81,7 @@ export const makeCognitoPostConfirmHandler = (
   if (status === 'EXTERNAL_PROVIDER') {
     provider = userName.split('_')[0];
     if (verbose) {
-      console.log(`account created with ${provider} credentials`);
+      console.log(`... account created with ${provider} credentials ...`);
     }
   }
 
@@ -88,11 +95,17 @@ export const makeCognitoPostConfirmHandler = (
 
   // add user to group
   if (defaultUserGroup) {
+    if (verbose) {
+      console.log('... adding user to group ...');
+    }
     await adminAddUserToGroup(event.userPoolId, userName, defaultUserGroup, verbose);
   }
 
   // set email_verified attribute
   if (status === 'EXTERNAL_PROVIDER') {
+    if (verbose) {
+      console.log('... setting email_verified attribute ...');
+    }
     await adminSetAttributes(event.userPoolId, userName, { email_verified: 'true' });
   }
 
@@ -108,5 +121,8 @@ export const makeCognitoPostConfirmHandler = (
   }
 
   // response
+  if (verbose) {
+    console.log('... done ...');
+  }
   return event;
 };
