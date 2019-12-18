@@ -66,4 +66,18 @@ describe('diffSimple', () => {
     expect(diffSimple(obj2, other2)).toBeFalsy();
     expect(diffSimple(obj3, other3)).toBeFalsy();
   });
+
+  it('should return true if one item in array is different', () => {
+    const obj = {
+      first: '1',
+      second: '2',
+      third: [1, 2, 3],
+    };
+    const other = {
+      first: '1',
+      second: '2',
+      third: [1, 1, 3],
+    };
+    expect(diffSimple(obj, other)).toBeTruthy();
+  });
 });
