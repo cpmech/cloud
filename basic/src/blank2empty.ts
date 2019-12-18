@@ -11,15 +11,13 @@ export const blank2empty = <T extends Iany>(obj: T, empty = '__EMPTY__'): T =>
   Object.keys(obj).reduce(
     (acc, curr) => ({
       ...acc,
-      [curr]: !!!obj[curr] // null or undefined
+      [curr]: !!!obj[curr] // null or undefined or ''
         ? empty
         : Array.isArray(obj[curr])
         ? obj[curr].map((x: any) => (!!x ? x : empty))
         : typeof obj[curr] === 'object' && !Array.isArray(obj[curr])
         ? blank2empty(obj[curr], empty)
-        : !!obj[curr]
-        ? obj[curr]
-        : empty,
+        : obj[curr],
     }),
     {} as T,
   );
