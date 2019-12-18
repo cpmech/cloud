@@ -3,13 +3,19 @@ import { empty2blank } from '../empty2blank';
 const files = {
   userId: 'iam-bender',
   aspect: 'FILES',
-  hello: '__EMPTY__',
+  hello: 'Hello',
   world: '__EMPTY__',
   nested: {
     name: '__EMPTY__',
     email: '__EMPTY__',
+    more: {
+      notEmpty: 'not empty',
+      empty: '__EMPTY__',
+    },
   },
-  list: [],
+  list: ['__EMPTY__', '123', '456'],
+  data: null,
+  extra: undefined,
 };
 
 describe('empty2blank', () => {
@@ -17,13 +23,19 @@ describe('empty2blank', () => {
     expect(empty2blank(files)).toEqual({
       userId: 'iam-bender',
       aspect: 'FILES',
-      hello: '',
+      hello: 'Hello',
       world: '',
       nested: {
         name: '',
         email: '',
+        more: {
+          notEmpty: 'not empty',
+          empty: '',
+        },
       },
-      list: [],
+      list: ['', '123', '456'],
+      data: '',
+      extra: '',
     });
   });
 });
