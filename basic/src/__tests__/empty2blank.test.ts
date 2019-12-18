@@ -1,6 +1,6 @@
 import { empty2blank } from '../empty2blank';
 
-const files = {
+const obj1 = {
   userId: 'iam-bender',
   aspect: 'FILES',
   hello: 'Hello',
@@ -20,7 +20,7 @@ const files = {
 
 describe('empty2blank', () => {
   it('should replace EMPTY with blank strings', () => {
-    expect(empty2blank(files)).toEqual({
+    expect(empty2blank(obj1)).toEqual({
       userId: 'iam-bender',
       aspect: 'FILES',
       hello: 'Hello',
