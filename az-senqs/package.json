@@ -35,9 +35,9 @@
   ],
   "devDependencies": {
     "@cpmech/envars": "^1.16.0",
-    "@types/jest": "^24.0.23",
+    "@types/jest": "^24.0.24",
     "@types/mailparser": "^2.7.0",
-    "@types/node": "^12.12.20",
+    "@types/node": "^12.12.21",
     "@types/uuid": "^3.4.6",
     "jest": "^24.9.0",
     "prettier": "^1.19.1",
@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "@cpmech/basic": "^3.16.0",
-    "aws-sdk": "^2.592.0",
+    "aws-sdk": "^2.593.0",
     "mailparser": "^2.7.7"
   },
   "gitHead": "3b8c3043da9440da1bbd2cf4cd7cef9284859bf0"

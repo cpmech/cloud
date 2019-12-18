@@ -33,8 +33,8 @@
     "DynamoDB"
   ],
   "devDependencies": {
-    "@types/jest": "^24.0.23",
-    "@types/node": "^12.12.20",
+    "@types/jest": "^24.0.24",
+    "@types/node": "^12.12.21",
     "jest": "^24.9.0",
     "prettier": "^1.19.1",
     "rollup": "^1.27.13",
@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "@cpmech/js2ts": "^1.11.0",
-    "aws-sdk": "^2.592.0"
+    "aws-sdk": "^2.593.0"
   },
   "gitHead": "3b8c3043da9440da1bbd2cf4cd7cef9284859bf0"
 }
