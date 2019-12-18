@@ -26,18 +26,21 @@ describe('diffSimple', () => {
       first: '1',
       second: '2',
       third: 0,
+      moreStuff1: 'I have more stuff', // ignored
     };
     const other2 = {
       first: '',
       second: {
         third: 3,
       },
+      hello: 'world',
     };
     const other3 = {
       super: 'super',
       hello: 'world',
       ultra: { nested: { structure: 'with', many: 'things', in: { it: -100 } } },
       array: ['a', '1', 'b', 'c', '666'], // nust not have mixed types or objects
+      anotherArray: ['a', 'n', 'o', 't', 'h', 'e', 'r'],
     };
     expect(diffSimple(obj1, other1)).toBeTruthy();
     expect(diffSimple(obj2, other2)).toBeTruthy();
