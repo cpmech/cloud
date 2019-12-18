@@ -30,7 +30,7 @@
   "types": "dist/esm/index.d.ts",
   "devDependencies": {
     "@types/jest": "^24.0.23",
-    "@types/node": "^12.12.17",
+    "@types/node": "^12.12.20",
     "jest": "^24.9.0",
     "prettier": "^1.19.1",
     "rollup": "^1.27.13",
@@ -47,7 +47,7 @@
     "@cpmech/az-cognito": "^2.17.0",
     "@cpmech/basic": "^3.15.0",
     "@cpmech/js2ts": "^1.10.1",
-    "aws-sdk": "^2.590.0"
+    "aws-sdk": "^2.592.0"
   },
   "gitHead": "3b8c3043da9440da1bbd2cf4cd7cef9284859bf0"
 }

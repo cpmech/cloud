@@ -27,7 +27,7 @@
   "types": "dist/esm/index.d.ts",
   "devDependencies": {
     "@types/jest": "^24.0.23",
-    "@types/node": "^12.12.17",
+    "@types/node": "^12.12.20",
     "jest": "^24.9.0",
     "prettier": "^1.19.1",
     "rollup": "^1.27.13",
