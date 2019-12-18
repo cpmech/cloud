@@ -14,6 +14,7 @@ export * from './getObjectKeys';
 export * from './hasProp';
 export * from './limitNumDecimals';
 export * from './Locales';
+export * from './logging';
 export * from './makeGetField';
 export * from './makeSetField';
 export * from './maybeCopySimple';
