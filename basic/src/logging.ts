@@ -8,9 +8,16 @@ export const setMlog = (verbose: boolean) => (MLOG_VERBOSE = verbose);
 export const setElog = (verbose: boolean) => (ELOG_VERBOSE = verbose);
 
 // mlog logs message, if verbose mode is on
-export const mlog = (message: string) => {
+export const mlog = (message: any) => {
   if (MLOG_VERBOSE) {
-    console.log(message);
+    if (
+      typeof message === 'string' ||
+      typeof message === 'number' ||
+      typeof message === 'boolean'
+    ) {
+      console.log(message);
+    }
+    console.log(JSON.stringify(message, undefined, 2));
   }
 };
 

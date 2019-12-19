@@ -17,6 +17,24 @@ describe('logging', () => {
       expect(spy).not.toHaveBeenCalled();
       spy.mockRestore();
     });
+
+    it('should handle objects and arrays', () => {
+      setMlog(true);
+      const spy = jest.spyOn(global.console, 'log').mockImplementation();
+      mlog({
+        my: 'object',
+        with: 'fields',
+        and: ['more'],
+      });
+      expect(spy).toHaveBeenCalledWith(`{
+  \"my\": \"object\",
+  \"with\": \"fields\",
+  \"and\": [
+    \"more\"
+  ]
+}`);
+      spy.mockRestore();
+    });
   });
 
   describe('elog', () => {
