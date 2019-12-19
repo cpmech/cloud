@@ -14,13 +14,13 @@ jest.mock('aws-sdk', () => ({
 
 describe('deleteObjects', () => {
   it('should delete objects', async () => {
-    const files = ['filekey1.png', 'filekey2.png'];
+    const files = ['filekey1.png', 'filekey2.png', 'inexistentFile.png'];
     fakePromise.promise.mockImplementationOnce(() =>
       Promise.resolve({
-        Deleted: [{ Key: files[0] }, { Key: files[1] }],
+        Deleted: [{ Key: files[0] }, { Key: files[1] }, { Key: undefined }],
       }),
     );
     const res = await deleteObjects(BUCKET, files);
-    expect(res).toEqual(files);
+    expect(res).toEqual(['filekey1.png', 'filekey2.png']);
   });
 });

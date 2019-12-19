@@ -6,8 +6,9 @@ export const deleteObjects = async (
   filekeys: string[],
   region: string = 'us-east-1',
   quiet = true,
-) => {
+): Promise<string[]> => {
   const s3 = new S3({ region });
+
   const res = await s3
     .deleteObjects({
       Bucket: bucket,
@@ -17,9 +18,16 @@ export const deleteObjects = async (
       },
     })
     .promise();
+
   const { Deleted } = res;
   if (!Deleted) {
     throw new Error('cannot delete objects');
   }
-  return Deleted.map(d => d.Key);
+
+  return Deleted.reduce((acc, curr) => {
+    if (curr.Key) {
+      acc.push(curr.Key);
+    }
+    return acc;
+  }, [] as string[]);
 };
