@@ -20,8 +20,9 @@ export const mlog = (message: any) => {
       typeof message === 'boolean'
     ) {
       console.log(message);
+    } else {
+      console.log(JSON.stringify(message, undefined, 2));
     }
-    console.log(JSON.stringify(message, undefined, 2));
   }
 };
 
