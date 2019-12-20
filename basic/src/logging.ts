@@ -1,11 +1,15 @@
 let MLOG_VERBOSE = true;
 let ELOG_VERBOSE = true;
+let ELOG_PREFIX = '[ERROR]';
 
 // setMlog sets message logging verbose mode
 export const setMlog = (verbose: boolean) => (MLOG_VERBOSE = verbose);
 
 // setElog sets error message logging verbose mode
 export const setElog = (verbose: boolean) => (ELOG_VERBOSE = verbose);
+
+// setElogPrefix sets error log prefix
+export const setElogPrefix = (prefix: string) => (ELOG_PREFIX = prefix);
 
 // mlog logs message, if verbose mode is on
 export const mlog = (message: any) => {
@@ -23,12 +27,18 @@ export const mlog = (message: any) => {
 
 // elog logs error, if vermobse mode is on, and returns the formatted error message
 export const elog = (error: any): string => {
-  let msg = '[ERROR] ';
-  if (error.message) {
-    msg += error.message;
+  let msg = '';
+  if (error.message && typeof error.message === 'string') {
+    error.message.replace(`${ELOG_PREFIX} `, '');
+    msg = `${ELOG_PREFIX} ${error.message}`;
   } else {
-    msg += JSON.stringify(error, undefined, 2);
+    if (typeof error === 'string' || typeof error === 'number' || typeof error === 'boolean') {
+      msg = `${ELOG_PREFIX} ${error}`;
+    } else {
+      msg = `${ELOG_PREFIX}\n${JSON.stringify(error, undefined, 2)}`;
+    }
   }
+  msg = msg.replace(`${ELOG_PREFIX} ${ELOG_PREFIX}`, ELOG_PREFIX);
   if (ELOG_VERBOSE) {
     console.log(msg);
   }

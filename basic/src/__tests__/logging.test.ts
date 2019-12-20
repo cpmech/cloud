@@ -1,4 +1,4 @@
-import { setMlog, setElog, mlog, elog } from '../logging';
+import { setMlog, setElog, setElogPrefix, mlog, elog } from '../logging';
 
 describe('logging', () => {
   describe('mlog', () => {
@@ -15,6 +15,22 @@ describe('logging', () => {
       const spy = jest.spyOn(global.console, 'log').mockImplementation();
       mlog('just testing');
       expect(spy).not.toHaveBeenCalled();
+      spy.mockRestore();
+    });
+
+    it('should handle numbers', () => {
+      setMlog(true);
+      const spy = jest.spyOn(global.console, 'log').mockImplementation();
+      mlog(123);
+      expect(spy).toHaveBeenCalledWith(123);
+      spy.mockRestore();
+    });
+
+    it('should handle booleans', () => {
+      setMlog(true);
+      const spy = jest.spyOn(global.console, 'log').mockImplementation();
+      mlog(true);
+      expect(spy).toHaveBeenCalledWith(true);
       spy.mockRestore();
     });
 
@@ -42,8 +58,10 @@ describe('logging', () => {
       setElog(true);
       const spy = jest.spyOn(global.console, 'log').mockImplementation();
       const res = elog({ customError: 'my custom error message' });
-      const correct =
-        '[ERROR] ' + JSON.stringify({ customError: 'my custom error message' }, undefined, 2);
+      const correct = `[ERROR]
+{
+  \"customError\": \"my custom error message\"
+}`;
       expect(spy).toHaveBeenCalledWith(correct);
       spy.mockRestore();
       expect(res).toBe(correct);
@@ -65,9 +83,76 @@ describe('logging', () => {
       const res = elog({ customError: 'my custom error message' });
       expect(spy).not.toHaveBeenCalled();
       spy.mockRestore();
-      expect(res).toBe(
-        '[ERROR] ' + JSON.stringify({ customError: 'my custom error message' }, undefined, 2),
-      );
+      expect(res).toBe(`[ERROR]
+{
+  \"customError\": \"my custom error message\"
+}`);
+    });
+
+    it('should handle duplicate [ERROR] prefixes', () => {
+      setElog(true);
+      const spy = jest.spyOn(global.console, 'log').mockImplementation();
+      const res = elog('[ERROR] my error');
+      const correct = '[ERROR] my error';
+      expect(spy).toHaveBeenCalledWith(correct);
+      spy.mockRestore();
+      expect(res).toBe(correct);
+    });
+
+    it('should use different prefix', () => {
+      setElog(true);
+      setElogPrefix('>>>error<<<');
+      const spy = jest.spyOn(global.console, 'log').mockImplementation();
+      const res = elog('my error');
+      setElogPrefix('[ERROR]');
+      const correct = '>>>error<<< my error';
+      expect(spy).toHaveBeenCalledWith(correct);
+      spy.mockRestore();
+      expect(res).toBe(correct);
+    });
+
+    it('should handle strings', () => {
+      setElog(true);
+      const spy = jest.spyOn(global.console, 'log').mockImplementation();
+      const res = elog('my error');
+      const correct = '[ERROR] my error';
+      expect(spy).toHaveBeenCalledWith(correct);
+      spy.mockRestore();
+      expect(res).toBe(correct);
+    });
+
+    it('should handle numbers', () => {
+      setElog(true);
+      const spy = jest.spyOn(global.console, 'log').mockImplementation();
+      const res = elog(666);
+      const correct = '[ERROR] 666';
+      expect(spy).toHaveBeenCalledWith(correct);
+      spy.mockRestore();
+      expect(res).toBe(correct);
+    });
+
+    it('should handle booleans', () => {
+      setElog(true);
+      const spy = jest.spyOn(global.console, 'log').mockImplementation();
+      const res = elog(false);
+      const correct = '[ERROR] false';
+      expect(spy).toHaveBeenCalledWith(correct);
+      spy.mockRestore();
+      expect(res).toBe(correct);
+    });
+
+    it('should handle objects', () => {
+      setElog(true);
+      const spy = jest.spyOn(global.console, 'log').mockImplementation();
+      const res = elog({ all: 'wrong', here: 'unfortunately' });
+      const correct = `[ERROR]
+{
+  \"all\": \"wrong\",
+  \"here\": \"unfortunately\"
+}`;
+      expect(spy).toHaveBeenCalledWith(correct);
+      spy.mockRestore();
+      expect(res).toBe(correct);
     });
   });
 });
