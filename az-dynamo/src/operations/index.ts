@@ -1,6 +1,7 @@
 export * from './create';
 export * from './exists';
 export * from './get';
+export * from './getMany';
 export * from './increment';
 export * from './query';
 export * from './removeAttributes';

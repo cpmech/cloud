@@ -1,5 +1,4 @@
 import AWS from 'aws-sdk';
-import { DynamoDB } from 'aws-sdk';
 import { create } from '../create';
 
 AWS.config.update({
