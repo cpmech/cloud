@@ -1,6 +1,6 @@
 {
   "name": "@cpmech/az-cdk",
-  "version": "6.7.0",
+  "version": "6.8.0",
   "license": "MIT",
   "author": {
     "name": "Dorival Pedroso",
@@ -70,7 +70,7 @@
     "@aws-cdk/core": "^1.19.0",
     "@cpmech/az-cdk-crl": "^1.25.0",
     "@cpmech/az-cognito": "^2.22.0",
-    "@cpmech/az-dynamo": "^2.16.0",
+    "@cpmech/az-dynamo": "^2.17.0",
     "@cpmech/az-senqs": "^2.21.0",
     "@cpmech/basic": "^3.20.0",
     "@cpmech/js2ts": "^1.13.0",
