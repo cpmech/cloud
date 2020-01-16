@@ -1,10 +1,11 @@
 import { Construct } from '@aws-cdk/core';
-import { Table, AttributeType } from '@aws-cdk/aws-dynamodb';
+import { Table, AttributeType, BillingMode } from '@aws-cdk/aws-dynamodb';
 
 export interface IDynamoTable {
   name: string; // name of table
   partitionKey: string; // name of partiton key (the value will be string)
   sortKey?: string; // name of sort key (the value will be string)
+  onDemand?: boolean; // if false, will not touch default provisioned values
 }
 
 export interface IDynamoApiProps {
@@ -22,6 +23,7 @@ export class DynamoConstruct extends Construct {
         tableName: t.name,
         partitionKey: { name: t.partitionKey, type: AttributeType.STRING },
         sortKey: t.sortKey ? { name: t.sortKey, type: AttributeType.STRING } : undefined,
+        billingMode: t.onDemand ? BillingMode.PAY_PER_REQUEST : undefined,
       });
       this.name2table[t.name] = table;
     });
