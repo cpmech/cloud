@@ -2,12 +2,10 @@ import { DynamoDB } from 'aws-sdk';
 import { Iany } from '@cpmech/js2ts';
 import { IPrimaryKey } from '../types';
 
-// create creates data in DB and returns the new values
-// NOTE: this function will call get twice;
-// first it will call get to check if the item already exists; then
-// it will call get again to return the update values
-// So, this is NOT EFFICIENT
-export const create = async (table: string, primaryKey: IPrimaryKey, data: Iany): Promise<Iany> => {
+// create creates data in DB
+// NOTE: this function will call get first to check if the item exists already;
+// So, this is NOT very efficient
+export const create = async (table: string, primaryKey: IPrimaryKey, data: Iany) => {
   const ddb = new DynamoDB.DocumentClient();
 
   // check if item exists already
@@ -22,7 +20,7 @@ export const create = async (table: string, primaryKey: IPrimaryKey, data: Iany)
     throw new Error(`item with key = ${JSON.stringify(primaryKey)} exists already`);
   }
 
-  // put item
+  // put item (cannot use ReturnValues)
   await ddb
     .put({
       TableName: table,
@@ -32,16 +30,4 @@ export const create = async (table: string, primaryKey: IPrimaryKey, data: Iany)
       },
     })
     .promise();
-
-  // return item
-  const createdData = await ddb
-    .get({
-      TableName: table,
-      Key: primaryKey,
-    })
-    .promise();
-  if (createdData.Item) {
-    return createdData.Item;
-  }
-  throw new Error('DynamoDB create failed with no results');
 };

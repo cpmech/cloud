@@ -24,14 +24,13 @@ describe('create operation', () => {
   describe(`${TABLE_USERS} table`, () => {
     it('should create ACCESS data', async () => {
       const key = { email: 'create@operation.com', aspect: 'ACCESS' };
-      const created = await create(TABLE_USERS, key, { a: 1, b: 2, c: { d: { e: 3 } } });
+      await create(TABLE_USERS, key, { a: 1, b: 2, c: { d: { e: 3 } } });
       const correct = {
         ...key,
         a: 1,
         b: 2,
         c: { d: { e: 3 } },
       };
-      expect(created).toEqual(correct);
       const res = await ddb.get({ TableName: TABLE_USERS, Key: key }).promise();
       expect(res.Item).toEqual(correct);
     });
@@ -40,8 +39,7 @@ describe('create operation', () => {
   describe(`${TABLE_USERS} table`, () => {
     it('should throw error on existent item', async () => {
       const key = { email: 'create@operation.com', aspect: 'ACCESS' };
-      const created = await create(TABLE_USERS, key, { a: 'a' });
-      expect(created).toEqual({ ...key, a: 'a' });
+      await create(TABLE_USERS, key, { a: 'a' });
       await expect(create(TABLE_USERS, key, { a: 'a' })).rejects.toThrowError(
         `item with key = {"email":"create@operation.com","aspect":"ACCESS"} exists already`,
       );
