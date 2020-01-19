@@ -12,15 +12,13 @@ jest.mock('aws-sdk', () => ({
   },
 }));
 
-const TABLE_USERS = 'TEST_AZDB_USERS';
+const tableName = 'TEST-AZDYN-USERS';
 
 describe('unexpected update operation', () => {
-  describe(`${TABLE_USERS} table`, () => {
-    it('should return null error on failed update', async () => {
-      fakePromise.promise.mockImplementation(() => Promise.resolve({}));
-      const key = { email: 'update@operation.com', aspect: 'ACCESS' };
-      const res = await update(TABLE_USERS, key, { fullName: 'Unexpected' });
-      expect(res).toBeNull();
-    });
+  it('should return null error on failed update', async () => {
+    fakePromise.promise.mockImplementation(() => Promise.resolve({}));
+    const key = { itemId: 'update', aspect: 'ACCESS' };
+    const res = await update(tableName, key, { fullName: 'Unexpected' });
+    expect(res).toBeNull();
   });
 });

@@ -4,23 +4,23 @@ import { removeAttributes } from '../removeAttributes';
 AWS.config.update({
   region: 'us-east-1',
   dynamodb: {
-    endpoint: 'http://localhost:8001',
+    endpoint: 'http://localhost:8008',
   },
 });
 
-const TABLE_USERS = 'TEST_AZDB_USERS';
+const tableName = 'TEST-AZDYN-USERS';
 const ddb = new AWS.DynamoDB.DocumentClient();
 
 describe('removeAttributes operation', () => {
-  describe(`${TABLE_USERS} table`, () => {
-    it('should remove ACCESS attributes from table', async () => {
-      const key = { email: 'removeAttributes@operation.com', aspect: 'ACCESS' };
-      await removeAttributes(TABLE_USERS, key, ['fullName', 'confirmed']);
-      const res = await ddb.get({ TableName: TABLE_USERS, Key: key }).promise();
-      expect(res.Item).toEqual({
-        ...key,
-        confirmMessageCount: 3,
-      });
+  it('should remove ACCESS attributes from table', async () => {
+    const key = { itemId: 'removeAttributes', aspect: 'ACCESS' };
+    await removeAttributes(tableName, key, ['fullName', 'confirmed']);
+    const res = await ddb.get({ TableName: tableName, Key: key }).promise();
+    expect(res.Item).toEqual({
+      ...key,
+      indexSK: '2020-01-19T01:02:04Z',
+      email: 'removeAttributes@operation.com',
+      confirmMessageCount: 3,
     });
   });
 });

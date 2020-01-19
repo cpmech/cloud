@@ -12,14 +12,12 @@ jest.mock('aws-sdk', () => ({
   },
 }));
 
-const TABLE_PARAMS = 'TEST_AZDB_PARAMS';
+const tableName = 'TEST-AZDYN-USERS';
 
 describe('unexpected query operation', () => {
-  describe(`${TABLE_PARAMS} table`, () => {
-    it('should return empty list on an unexpected situation', async () => {
-      fakePromise.promise.mockImplementation(() => Promise.resolve({}));
-      const res = await query(TABLE_PARAMS, 'category', 'calcInfo', 'brState', 'DF');
-      expect(res).toEqual([]);
-    });
+  it('should return empty list on an unexpected situation', async () => {
+    fakePromise.promise.mockImplementation(() => Promise.resolve({}));
+    const res = await query(tableName, 'itemId', 'get', 'aspect', 'LOCATION');
+    expect(res).toEqual([]);
   });
 });

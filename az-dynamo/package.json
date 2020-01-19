@@ -14,11 +14,11 @@
     "tw": "jest --watch --verbose",
     "cov": "jest --coverage",
     "build": "rm -rf dist && rollup --config ../rollup.config.js",
-    "ddb:run": "bash ./localdb/run_ddb.bash",
-    "ddb:prep": "bash ./localdb/prep_ddb.bash",
-    "pretest": "yarn ddb:run && yarn ddb:prep",
-    "precov": "yarn ddb:run && yarn ddb:prep",
-    "pretw": "yarn ddb:run && yarn ddb:prep"
+    "ddb:dk": "bash ./localdb/ddb_docker_run.bash",
+    "ddb:bs": "bash ./localdb/ddb_bootstrap.bash",
+    "pretest": "yarn ddb:dk && yarn ddb:bs",
+    "precov": "yarn ddb:dk && yarn ddb:bs",
+    "pretw": "yarn ddb:dk && yarn ddb:bs"
   },
   "files": [
     "dist"

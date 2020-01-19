@@ -1,10 +1,12 @@
 {
-  "TEST_AZDB_USERS": [
+  "TEST-AZDYN-USERS": [
     {
       "PutRequest": {
         "Item": {
+          "itemId": { "S": "get" },
           "email": { "S": "get@operation.com" },
           "aspect": { "S": "ACCESS" },
+          "indexSK": { "S": "2020-01-19T01:02:01Z" },
           "fullName": { "S": "Tester Bot" },
           "confirmed": { "BOOL": true },
           "confirmMessageCount": { "N": "3" }
@@ -14,8 +16,9 @@
     {
       "PutRequest": {
         "Item": {
-          "email": { "S": "get@operation.com" },
+          "itemId": { "S": "get" },
           "aspect": { "S": "LOCATION" },
+          "indexSK": { "S": "2020-01-19T01:02:02Z" },
           "description": { "S": "A Very Nice Place" },
           "coordinates": {
             "M": {
@@ -30,8 +33,10 @@
     {
       "PutRequest": {
         "Item": {
+          "itemId": { "S": "increment" },
           "email": { "S": "increment@operation.com" },
           "aspect": { "S": "ACCESS" },
+          "indexSK": { "S": "2020-01-19T01:02:03Z" },
           "fullName": { "S": "Tester Bot" },
           "confirmed": { "BOOL": true },
           "confirmMessageCount": { "N": "3" }
@@ -41,8 +46,10 @@
     {
       "PutRequest": {
         "Item": {
+          "itemId": { "S": "removeAttributes" },
           "email": { "S": "removeAttributes@operation.com" },
           "aspect": { "S": "ACCESS" },
+          "indexSK": { "S": "2020-01-19T01:02:04Z" },
           "fullName": { "S": "Tester Bot" },
           "confirmed": { "BOOL": true },
           "confirmMessageCount": { "N": "3" }
@@ -52,8 +59,10 @@
     {
       "PutRequest": {
         "Item": {
+          "itemId": { "S": "removeItem" },
           "email": { "S": "removeItem@operation.com" },
           "aspect": { "S": "ACCESS" },
+          "indexSK": { "S": "2020-01-19T01:02:05Z" },
           "fullName": { "S": "Tester Bot" },
           "confirmed": { "BOOL": true },
           "confirmMessageCount": { "N": "3" }
@@ -63,8 +72,10 @@
     {
       "PutRequest": {
         "Item": {
+          "itemId": { "S": "update" },
           "email": { "S": "update@operation.com" },
           "aspect": { "S": "ACCESS" },
+          "indexSK": { "S": "2020-01-19T01:02:06Z" },
           "fullName": { "S": "Tester Bot" },
           "confirmed": { "BOOL": true },
           "confirmMessageCount": { "N": "3" }
@@ -74,8 +85,9 @@
     {
       "PutRequest": {
         "Item": {
-          "email": { "S": "update@operation.com" },
+          "itemId": { "S": "update" },
           "aspect": { "S": "LOCATION" },
+          "indexSK": { "S": "2020-01-19T01:02:07Z" },
           "description": { "S": "A Very Nice Place" },
           "coordinates": {
             "M": {
@@ -90,8 +102,10 @@
     {
       "PutRequest": {
         "Item": {
+          "itemId": { "S": "scan.1" },
           "email": { "S": "scan.1@operation.com" },
           "aspect": { "S": "NAME" },
+          "indexSK": { "S": "2020-01-19T01:02:08Z" },
           "fullName": { "S": "First Tester Bot" }
         }
       }
@@ -99,8 +113,10 @@
     {
       "PutRequest": {
         "Item": {
+          "itemId": { "S": "scan.2" },
           "email": { "S": "scan.2@operation.com" },
           "aspect": { "S": "NAME" },
+          "indexSK": { "S": "2020-01-19T01:02:09Z" },
           "fullName": { "S": "Second Tester Bot" }
         }
       }
@@ -108,8 +124,10 @@
     {
       "PutRequest": {
         "Item": {
+          "itemId": { "S": "scan.3" },
           "email": { "S": "scan.3@operation.com" },
           "aspect": { "S": "NAME" },
+          "indexSK": { "S": "2020-01-19T01:02:10Z" },
           "fullName": { "S": "Third Tester Bot" }
         }
       }
@@ -117,8 +135,10 @@
     {
       "PutRequest": {
         "Item": {
+          "itemId": { "S": "scan.4" },
           "email": { "S": "scan.4@operation.com" },
           "aspect": { "S": "NAME" },
+          "indexSK": { "S": "2020-01-19T01:02:11Z" },
           "fullName": { "S": "Fourth Tester Bot" }
         }
       }
@@ -126,8 +146,10 @@
     {
       "PutRequest": {
         "Item": {
+          "itemId": { "S": "scan.5" },
           "email": { "S": "scan.5@operation.com" },
           "aspect": { "S": "NAME" },
+          "indexSK": { "S": "2020-01-19T01:02:12Z" },
           "fullName": { "S": "Fifth Tester Bot" }
         }
       }
@@ -135,8 +157,10 @@
     {
       "PutRequest": {
         "Item": {
+          "itemId": { "S": "exists" },
           "email": { "S": "exists@operation.com" },
           "aspect": { "S": "ACCESS" },
+          "indexSK": { "S": "2020-01-19T01:02:12Z" },
           "fullName": { "S": "Existent Item" }
         }
       }

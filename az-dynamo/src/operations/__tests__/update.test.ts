@@ -4,71 +4,90 @@ import { update } from '../update';
 AWS.config.update({
   region: 'us-east-1',
   dynamodb: {
-    endpoint: 'http://localhost:8001',
+    endpoint: 'http://localhost:8008',
   },
 });
 
-const TABLE_USERS = 'TEST_AZDB_USERS';
+const tableName = 'TEST-AZDYN-USERS';
 const ddb = new AWS.DynamoDB.DocumentClient();
 
+const cleanUp = async () => {
+  try {
+    await ddb
+      .update({
+        TableName: tableName,
+        Key: { itemId: 'update', aspect: 'ACCESS' },
+        UpdateExpression: 'set #y = :x',
+        ExpressionAttributeNames: { '#y': 'confirmMessageCount' },
+        ExpressionAttributeValues: { ':x': 3 },
+      })
+      .promise();
+  } catch (_) {}
+};
+
+afterAll(async () => await cleanUp());
+
 describe('update operation', () => {
-  describe(`${TABLE_USERS} table`, () => {
-    it('should update ACCESS data', async () => {
-      const key = { email: 'update@operation.com', aspect: 'ACCESS' };
-      const updated = await update(TABLE_USERS, key, { fullName: 'Tob Retset', confirmed: false });
-      const correct = {
-        ...key,
-        fullName: 'Tob Retset',
-        confirmed: false,
-        confirmMessageCount: 3,
-      };
-      expect(updated).toEqual(correct);
-      const res = await ddb.get({ TableName: TABLE_USERS, Key: key }).promise();
-      expect(res.Item).toEqual(correct);
-    });
+  it('should update ACCESS data', async () => {
+    const key = { itemId: 'update', aspect: 'ACCESS' };
+    const updated = await update(tableName, key, { fullName: 'Tob Retset', confirmed: false });
+    const correct = {
+      ...key,
+      indexSK: '2020-01-19T01:02:06Z',
+      email: 'update@operation.com',
+      fullName: 'Tob Retset',
+      confirmed: false,
+      confirmMessageCount: 3,
+    };
+    expect(updated).toEqual(correct);
+    const res = await ddb.get({ TableName: tableName, Key: key }).promise();
+    expect(res.Item).toEqual(correct);
+  });
 
-    it('should update LOCATION data', async () => {
-      const key = { email: 'update@operation.com', aspect: 'LOCATION' };
-      const coordinates = {
+  it('should update LOCATION data', async () => {
+    const key = { itemId: 'update', aspect: 'LOCATION' };
+    const coordinates = {
+      x: 100,
+      // <<< removing y and z
+    };
+    const updated = await update(tableName, key, { description: 'Earth', coordinates });
+    const correct = {
+      ...key,
+      indexSK: '2020-01-19T01:02:07Z',
+      description: 'Earth',
+      coordinates: {
         x: 100,
-        // <<< removing y and z
-      };
-      const updated = await update(TABLE_USERS, key, { description: 'Earth', coordinates });
-      const correct = {
-        ...key,
-        description: 'Earth',
-        coordinates: {
-          x: 100,
-        },
-      };
-      expect(updated).toEqual(correct);
-      const res = await ddb.get({ TableName: TABLE_USERS, Key: key }).promise();
-      expect(res.Item).toEqual(correct);
-    });
+      },
+    };
+    expect(updated).toEqual(correct);
+    const res = await ddb.get({ TableName: tableName, Key: key }).promise();
+    expect(res.Item).toEqual(correct);
+  });
 
-    it('should create new ACCESS data, if non-existent', async () => {
-      const key = { email: 'update.create@operation.com', aspect: 'ACCESS' };
-      const updated = await update(TABLE_USERS, key, {
-        // <<<<<<<<<<<<<<<<<<<<<<< must remove the key to call the update
-        fullName: 'New Robot',
-        confirmed: true,
-        confirmMessageCount: 8,
-      });
-      const correct = {
-        ...key,
-        fullName: 'New Robot',
-        confirmed: true,
-        confirmMessageCount: 8,
-      };
-      expect(updated).toEqual(correct);
-      const res = await ddb.get({ TableName: TABLE_USERS, Key: key }).promise();
-      expect(res.Item).toEqual(correct);
+  it('should create new ACCESS data, if non-existent', async () => {
+    const key = { itemId: 'update', aspect: 'ACCESS' };
+    const updated = await update(tableName, key, {
+      // <<<<<<<<<<<<<<<<<<<<<<< must remove the key to call the update
+      fullName: 'New Robot',
+      confirmed: true,
+      confirmMessageCount: 8,
     });
+    const correct = {
+      ...key,
+      indexSK: '2020-01-19T01:02:06Z',
+      email: 'update@operation.com',
+      fullName: 'New Robot',
+      confirmed: true,
+      confirmMessageCount: 8,
+    };
+    expect(updated).toEqual(correct);
+    const res = await ddb.get({ TableName: tableName, Key: key }).promise();
+    expect(res.Item).toEqual(correct);
+  });
 
-    it('should do nothing if input data is empty', async () => {
-      const key = { email: 'update@operation.com', aspect: 'ACCESS' };
-      const res = await update(TABLE_USERS, key, {});
-      expect(res).toBeNull();
-    });
+  it('should do nothing if input data is empty', async () => {
+    const key = { itemId: 'update', aspect: 'ACCESS' };
+    const res = await update(tableName, key, {});
+    expect(res).toBeNull();
   });
 });

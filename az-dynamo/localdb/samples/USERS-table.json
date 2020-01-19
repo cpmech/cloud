@@ -1,27 +1,32 @@
 {
-  "TableName": "TEST_AZDB_USERS",
-  "KeySchema": [
-    {
-      "AttributeName": "email",
-      "KeyType": "HASH"
-    },
-    {
-      "AttributeName": "aspect",
-      "KeyType": "RANGE"
-    }
-  ],
+  "TableName": "TEST-AZDYN-USERS",
   "AttributeDefinitions": [
-    {
-      "AttributeName": "email",
-      "AttributeType": "S"
-    },
-    {
-      "AttributeName": "aspect",
-      "AttributeType": "S"
-    }
+    { "AttributeName": "itemId", "AttributeType": "S" },
+    { "AttributeName": "aspect", "AttributeType": "S" },
+    { "AttributeName": "indexSK", "AttributeType": "S" }
+  ],
+  "KeySchema": [
+    { "AttributeName": "itemId", "KeyType": "HASH" },
+    { "AttributeName": "aspect", "KeyType": "RANGE" }
   ],
   "ProvisionedThroughput": {
     "ReadCapacityUnits": 5,
     "WriteCapacityUnits": 5
-  }
+  },
+  "GlobalSecondaryIndexes": [
+    {
+      "IndexName": "AZCDK-USERS-INDEX",
+      "KeySchema": [
+        { "AttributeName": "aspect", "KeyType": "HASH" },
+        { "AttributeName": "indexSK", "KeyType": "RANGE" }
+      ],
+      "Projection": {
+        "ProjectionType": "ALL"
+      },
+      "ProvisionedThroughput": {
+        "ReadCapacityUnits": 5,
+        "WriteCapacityUnits": 5
+      }
+    }
+  ]
 }

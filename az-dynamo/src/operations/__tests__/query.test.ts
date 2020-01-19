@@ -1,36 +1,57 @@
 import AWS from 'aws-sdk';
 import { query } from '../query';
-import { calcInfoDF, calcInfoGO } from './samples';
 
 AWS.config.update({
   region: 'us-east-1',
   dynamodb: {
-    endpoint: 'http://localhost:8001',
+    endpoint: 'http://localhost:8008',
   },
 });
 
-const TABLE_PARAMS = 'TEST_AZDB_PARAMS';
+const tableName = 'TEST-AZDYN-USERS';
 
 describe('query operation', () => {
-  describe(`${TABLE_PARAMS} table`, () => {
-    it('should return all calcInfo data', async () => {
-      const res = await query(TABLE_PARAMS, 'category', 'calcInfo');
-      expect(res).toEqual([calcInfoDF, calcInfoGO]);
-    });
+  it('should return all aspects', async () => {
+    const res = await query(tableName, 'itemId', 'get');
+    expect(res).toEqual([
+      {
+        itemId: 'get',
+        aspect: 'ACCESS',
+        indexSK: '2020-01-19T01:02:01Z',
+        email: 'get@operation.com',
+        fullName: 'Tester Bot',
+        confirmed: true,
+        confirmMessageCount: 3,
+      },
+      {
+        itemId: 'get',
+        aspect: 'LOCATION',
+        indexSK: '2020-01-19T01:02:02Z',
+        description: 'A Very Nice Place',
+        coordinates: { x: 1.1, y: 2.2, z: 3.3 },
+      },
+    ]);
+  });
 
-    it('should return DF calcInfo data', async () => {
-      const res = await query(TABLE_PARAMS, 'category', 'calcInfo', 'brState', 'DF');
-      expect(res).toEqual([calcInfoDF]);
-    });
+  it('should return only LOCATION aspect', async () => {
+    const res = await query(tableName, 'itemId', 'get', 'aspect', 'LOCATION');
+    expect(res).toEqual([
+      {
+        itemId: 'get',
+        aspect: 'LOCATION',
+        indexSK: '2020-01-19T01:02:02Z',
+        description: 'A Very Nice Place',
+        coordinates: { x: 1.1, y: 2.2, z: 3.3 },
+      },
+    ]);
+  });
 
-    it('should return empty list on inexistent partition key', async () => {
-      const res = await query(TABLE_PARAMS, 'category', '__INEXISTENT__', 'brState', 'DF');
-      expect(res).toEqual([]);
-    });
-
-    it('should return empty list on inexistent sort key', async () => {
-      const res = await query(TABLE_PARAMS, 'category', 'calcInfo', 'brState', '__INEXISTENT__');
-      expect(res).toEqual([]);
-    });
+  it('should return empty list on inexistent keys', async () => {
+    const r1 = await query(tableName, 'itemId', '__NADA__');
+    const r2 = await query(tableName, 'itemId', '__NADA__', 'aspect', 'ACCESS');
+    const r3 = await query(tableName, 'itemId', 'get', 'aspect', '__NADA__');
+    expect(r1).toEqual([]);
+    expect(r2).toEqual([]);
+    expect(r3).toEqual([]);
   });
 });

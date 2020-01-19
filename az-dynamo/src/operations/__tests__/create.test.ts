@@ -4,45 +4,53 @@ import { create } from '../create';
 AWS.config.update({
   region: 'us-east-1',
   dynamodb: {
-    endpoint: 'http://localhost:8001',
+    endpoint: 'http://localhost:8008',
   },
 });
 
-const TABLE_USERS = 'TEST_AZDB_USERS';
+const tableName = 'TEST-AZDYN-USERS';
 const ddb = new AWS.DynamoDB.DocumentClient();
 
 beforeEach(async () => {
-  await ddb
-    .delete({
-      TableName: TABLE_USERS,
-      Key: { email: 'create@operation.com', aspect: 'ACCESS' },
-    })
-    .promise();
+  try {
+    await ddb
+      .delete({
+        TableName: tableName,
+        Key: { itemId: 'create', aspect: 'ACCESS' },
+      })
+      .promise();
+  } catch (_) {}
 });
 
 describe('create operation', () => {
-  describe(`${TABLE_USERS} table`, () => {
-    it('should create ACCESS data', async () => {
-      const key = { email: 'create@operation.com', aspect: 'ACCESS' };
-      await create(TABLE_USERS, key, { a: 1, b: 2, c: { d: { e: 3 } } });
-      const correct = {
-        ...key,
-        a: 1,
-        b: 2,
-        c: { d: { e: 3 } },
-      };
-      const res = await ddb.get({ TableName: TABLE_USERS, Key: key }).promise();
-      expect(res.Item).toEqual(correct);
+  it('should create ACCESS data', async () => {
+    const key = { itemId: 'create', aspect: 'ACCESS' };
+    const email = 'create@operation.com';
+    const createdAt = new Date().toISOString();
+    await create(tableName, key, {
+      indexSK: createdAt,
+      email,
+      a: 1,
+      b: 2,
+      c: { d: { e: 3 } },
     });
+    const correct = {
+      ...key,
+      indexSK: createdAt,
+      email,
+      a: 1,
+      b: 2,
+      c: { d: { e: 3 } },
+    };
+    const res = await ddb.get({ TableName: tableName, Key: key }).promise();
+    expect(res.Item).toEqual(correct);
   });
 
-  describe(`${TABLE_USERS} table`, () => {
-    it('should throw error on existent item', async () => {
-      const key = { email: 'create@operation.com', aspect: 'ACCESS' };
-      await create(TABLE_USERS, key, { a: 'a' });
-      await expect(create(TABLE_USERS, key, { a: 'a' })).rejects.toThrowError(
-        `item with key = {"email":"create@operation.com","aspect":"ACCESS"} exists already`,
-      );
-    });
+  it('should throw error on existent item', async () => {
+    const key = { itemId: 'create', aspect: 'ACCESS' };
+    await create(tableName, key, { a: 'a' });
+    await expect(create(tableName, key, { a: 'a' })).rejects.toThrowError(
+      `item with key = {"itemId":"create","aspect":"ACCESS"} exists already`,
+    );
   });
 });
