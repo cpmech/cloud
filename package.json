@@ -15,7 +15,8 @@
     "envars-cli",
     "httpcodes",
     "js2ts",
-    "lang-query-graph"
+    "lang-query-graph",
+    "util"
   ],
   "scripts": {
     "bs": "lerna bootstrap --use-workspaces",
