@@ -26,7 +26,7 @@ export const getMany = async (
 
   // check for unprocessed keys
   if (res.UnprocessedKeys && hasProp(res.UnprocessedKeys, table)) {
-    throw new Error('dynamodb: getMany: cannot handle unprocessed keys at this time');
+    throw new Error('getMany: cannot handle unprocessed keys at this time');
   }
 
   // extract results
