@@ -40,5 +40,8 @@
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "@cpmech/basic": "^3.22.0"
   }
 }
