@@ -1,6 +1,6 @@
 {
   "name": "@cpmech/az-lambda",
-  "version": "2.29.0",
+  "version": "2.30.0",
   "license": "MIT",
   "author": {
     "name": "Dorival Pedroso",
@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@cpmech/az-cognito": "^2.24.0",
-    "@cpmech/az-dynamo": "^2.19.0",
+    "@cpmech/az-dynamo": "^2.20.0",
     "@cpmech/az-senqs": "^2.23.0",
     "@cpmech/basic": "^3.22.0",
     "@cpmech/httpcodes": "^2.14.0",
