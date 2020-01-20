@@ -38,7 +38,7 @@ const data2 = {
   ProductCategory: 'Book',
 };
 
-describe('batchGetItem', () => {
+describe('getMany', () => {
   it('should get items', async () => {
     const keys = [
       { itemId: '101', aspect: 'PRODUCT' },
