@@ -1,5 +1,5 @@
 import AWS from 'aws-sdk';
-import { tableExists } from '../table';
+import { tableExists, tableIsActive } from '../table';
 
 AWS.config.update({
   region: 'us-east-1',
@@ -10,9 +10,14 @@ AWS.config.update({
 
 const tableName = 'TEST-AZDYN-USERS';
 
-describe('tableExists', () => {
-  it('should return true', async () => {
+describe('tables', () => {
+  it('tableExists should return true', async () => {
     const res = await tableExists(tableName);
+    expect(res).toBeTruthy();
+  });
+
+  it('tableIsActive should return true', async () => {
+    const res = await tableIsActive(tableName);
     expect(res).toBeTruthy();
   });
 });
