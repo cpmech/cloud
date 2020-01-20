@@ -27,7 +27,7 @@
   ],
   "devDependencies": {
     "@types/jest": "^24.9.0",
-    "@types/node": "^13.1.7",
+    "@types/node": "^13.1.8",
     "jest": "^24.9.0",
     "prettier": "^1.19.1",
     "rollup": "^1.29.0",
@@ -39,7 +39,7 @@
     "ts-node": "^8.6.2",
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.7.4"
+    "typescript": "^3.7.5"
   },
   "gitHead": "3b8c3043da9440da1bbd2cf4cd7cef9284859bf0"
 }

@@ -37,7 +37,7 @@
     "@cpmech/envars": "^1.21.0",
     "@types/jest": "^24.9.0",
     "@types/mailparser": "^2.7.0",
-    "@types/node": "^13.1.7",
+    "@types/node": "^13.1.8",
     "@types/uuid": "^3.4.6",
     "jest": "^24.9.0",
     "prettier": "^1.19.1",
@@ -49,12 +49,12 @@
     "ts-node": "^8.6.2",
     "tslint": "^5.20.1",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.7.4",
-    "uuid": "^3.3.3"
+    "typescript": "^3.7.5",
+    "uuid": "^3.4.0"
   },
   "dependencies": {
     "@cpmech/basic": "^3.21.0",
-    "aws-sdk": "^2.604.0",
+    "aws-sdk": "^2.606.0",
     "mailparser": "^2.7.7"
   },
   "gitHead": "3b8c3043da9440da1bbd2cf4cd7cef9284859bf0"
