@@ -28,13 +28,13 @@
   "devDependencies": {
     "@types/jest": "^24.9.0",
     "@types/node": "^13.1.8",
-    "jest": "^24.9.0",
+    "jest": "^25.1.0",
     "prettier": "^1.19.1",
-    "rollup": "^1.29.0",
+    "rollup": "^1.29.1",
     "rollup-plugin-typescript2": "^0.25.3",
     "ts-jest": "^24.3.0",
     "ts-node-dev": "^1.0.0-pre.44",
-    "tslint": "^5.20.1",
+    "tslint": "^6.0.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.7.5"
   },

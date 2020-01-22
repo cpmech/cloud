@@ -34,7 +34,7 @@
     "distX": "lerna publish"
   },
   "devDependencies": {
-    "husky": "^3.1.0",
-    "lerna": "3.19.0"
+    "husky": "^4.2.0",
+    "lerna": "3.20.2"
   }
 }
