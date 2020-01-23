@@ -15,12 +15,15 @@ export const query = async (
   const data = await ddb
     .query({
       TableName: table,
-      KeyConditionExpression: rangeKeyName
-        ? `${hashKeyName} = :hkey and ${rangeKeyName} ${rangeKeyOp} :rkey`
-        : `${hashKeyName} = :hkey`,
+      ExpressionAttributeNames: rangeKeyName
+        ? { [`#${hashKeyName}`]: hashKeyName, [`#${rangeKeyName}`]: rangeKeyName }
+        : { [`#${hashKeyName}`]: hashKeyName },
       ExpressionAttributeValues: rangeKeyName
         ? { ':hkey': hashKeyValue, ':rkey': rangeKeyValue }
         : { ':hkey': hashKeyValue },
+      KeyConditionExpression: rangeKeyName
+        ? `#${hashKeyName} = :hkey and #${rangeKeyName} ${rangeKeyOp} :rkey`
+        : `#${hashKeyName} = :hkey`,
     })
     .promise();
   return data.Items ? data.Items : [];
