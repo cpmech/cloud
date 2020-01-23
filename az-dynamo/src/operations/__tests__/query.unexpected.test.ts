@@ -17,7 +17,11 @@ const tableName = 'TEST-AZDYN-USERS';
 describe('unexpected query operation', () => {
   it('should return empty list on an unexpected situation', async () => {
     fakePromise.promise.mockImplementation(() => Promise.resolve({}));
-    const res = await query(tableName, 'itemId', 'get', 'aspect', 'LOCATION');
-    expect(res).toEqual([]);
+    const r1 = await query(tableName, 'itemId', 'get');
+    const r2 = await query(tableName, 'itemId', 'get', 'aspect', 'LOCATION');
+    const r3 = await query(tableName, 'itemId', 'get', 'aspect', 'X', undefined, 'between', 'Z');
+    expect(r1).toEqual([]);
+    expect(r2).toEqual([]);
+    expect(r3).toEqual([]);
   });
 });

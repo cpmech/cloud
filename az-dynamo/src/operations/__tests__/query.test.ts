@@ -80,9 +80,11 @@ describe('query operation', () => {
     const r1 = await query(tableName, 'itemId', '__NADA__');
     const r2 = await query(tableName, 'itemId', '__NADA__', 'aspect', 'ACCESS');
     const r3 = await query(tableName, 'itemId', 'get', 'aspect', '__NADA__');
+    const r4 = await query(tableName, 'itemId', 'get', 'aspect', 'X', undefined, 'between', 'Y');
     expect(r1).toEqual([]);
     expect(r2).toEqual([]);
     expect(r3).toEqual([]);
+    expect(r4).toEqual([]);
   });
 
   it('should query using "prefix"', async () => {
