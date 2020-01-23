@@ -31,8 +31,13 @@ export const scan = async (
   const data = await ddb
     .scan({
       TableName: table,
-      FilterExpression: `${rangeKeyName} = :skey`,
-      ExpressionAttributeValues: { ':skey': rangeKeyValue },
+      ExpressionAttributeNames: {
+        [`#${rangeKeyName}`]: rangeKeyName,
+      },
+      ExpressionAttributeValues: {
+        ':skey': rangeKeyValue,
+      },
+      FilterExpression: `#${rangeKeyName} = :skey`,
     })
     .promise();
   return data.Items ? data.Items : [];
