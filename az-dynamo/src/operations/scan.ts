@@ -26,18 +26,45 @@ export const scan = async (
   table: string,
   rangeKeyName: string,
   rangeKeyValue: string,
+  index?: string, // index name
+  op: '<=' | '<' | '=' | '>' | '>=' | 'prefix' | 'between' = '=',
+  rangeKeyValue2?: string, // to be used with the 'between' op
 ): Promise<Iany[]> => {
+  // ddb object
   const ddb = new DynamoDB.DocumentClient();
+
+  // 'between' case
+  if (rangeKeyValue2) {
+    const data = await ddb
+      .scan({
+        TableName: table,
+        IndexName: index,
+        ExpressionAttributeNames: {
+          [`#${rangeKeyName}`]: rangeKeyName,
+        },
+        ExpressionAttributeValues: {
+          ':rval': rangeKeyValue,
+          ':rval2': rangeKeyValue2,
+        },
+        FilterExpression: `#${rangeKeyName} BETWEEN :rval AND :rval2`,
+      })
+      .promise();
+    return data.Items ? data.Items : [];
+  }
+
+  // default
   const data = await ddb
     .scan({
       TableName: table,
+      IndexName: index,
       ExpressionAttributeNames: {
         [`#${rangeKeyName}`]: rangeKeyName,
       },
       ExpressionAttributeValues: {
-        ':skey': rangeKeyValue,
+        ':rval': rangeKeyValue,
       },
-      FilterExpression: `#${rangeKeyName} = :skey`,
+      FilterExpression:
+        op === 'prefix' ? `begins_with(#${rangeKeyName}, :rval)` : `#${rangeKeyName} ${op} :rval`,
     })
     .promise();
   return data.Items ? data.Items : [];
