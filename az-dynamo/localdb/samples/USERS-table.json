@@ -15,7 +15,7 @@
   },
   "GlobalSecondaryIndexes": [
     {
-      "IndexName": "AZCDK-USERS-INDEX",
+      "IndexName": "USERS-INDEX",
       "KeySchema": [
         { "AttributeName": "aspect", "KeyType": "HASH" },
         { "AttributeName": "indexSK", "KeyType": "RANGE" }

@@ -105,7 +105,7 @@
           "itemId": { "S": "scan.1" },
           "email": { "S": "scan.1@operation.com" },
           "aspect": { "S": "NAME" },
-          "indexSK": { "S": "2020-01-19T01:02:08Z" },
+          "indexSK": { "S": "2020-01-01T01:02:08Z" },
           "fullName": { "S": "First Tester Bot" }
         }
       }
@@ -116,7 +116,7 @@
           "itemId": { "S": "scan.2" },
           "email": { "S": "scan.2@operation.com" },
           "aspect": { "S": "NAME" },
-          "indexSK": { "S": "2020-01-19T01:02:09Z" },
+          "indexSK": { "S": "2020-01-02T01:02:09Z" },
           "fullName": { "S": "Second Tester Bot" }
         }
       }
@@ -127,7 +127,7 @@
           "itemId": { "S": "scan.3" },
           "email": { "S": "scan.3@operation.com" },
           "aspect": { "S": "NAME" },
-          "indexSK": { "S": "2020-01-19T01:02:10Z" },
+          "indexSK": { "S": "2020-01-03T01:02:10Z" },
           "fullName": { "S": "Third Tester Bot" }
         }
       }
@@ -138,7 +138,7 @@
           "itemId": { "S": "scan.4" },
           "email": { "S": "scan.4@operation.com" },
           "aspect": { "S": "NAME" },
-          "indexSK": { "S": "2020-01-19T01:02:11Z" },
+          "indexSK": { "S": "2020-01-04T01:02:11Z" },
           "fullName": { "S": "Fourth Tester Bot" }
         }
       }
@@ -149,7 +149,7 @@
           "itemId": { "S": "scan.5" },
           "email": { "S": "scan.5@operation.com" },
           "aspect": { "S": "NAME" },
-          "indexSK": { "S": "2020-01-19T01:02:12Z" },
+          "indexSK": { "S": "2020-01-05T01:02:12Z" },
           "fullName": { "S": "Fifth Tester Bot" }
         }
       }
@@ -162,6 +162,16 @@
           "aspect": { "S": "ACCESS" },
           "indexSK": { "S": "2020-01-19T01:02:12Z" },
           "fullName": { "S": "Existent Item" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "itemId": { "S": "userId-001" },
+          "aspect": { "S": "CUSTOMER#SIGNED" },
+          "indexSK": { "S": "2020-01-23T00:00:00Z" },
+          "cliente": { "S": "customer@email.com#Cliente Name#(31)1234-5678" }
         }
       }
     }
