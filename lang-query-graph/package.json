@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@cpmech/basic": "^3.23.0",
-    "graphql": "^14.5.8",
+    "graphql": "^14.6.0",
     "graphql-tag": "^2.10.1"
   },
   "gitHead": "3b8c3043da9440da1bbd2cf4cd7cef9284859bf0"

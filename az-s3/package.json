@@ -49,7 +49,7 @@
   },
   "dependencies": {
     "@cpmech/basic": "^3.23.0",
-    "aws-sdk": "^2.609.0",
+    "aws-sdk": "^2.610.0",
     "uuid": "^3.4.0"
   },
   "gitHead": "3b8c3043da9440da1bbd2cf4cd7cef9284859bf0"
