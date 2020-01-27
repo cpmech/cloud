@@ -1,6 +1,6 @@
 {
   "name": "@cpmech/az-cognito",
-  "version": "2.25.0",
+  "version": "2.26.0",
   "license": "MIT",
   "author": {
     "name": "Dorival Pedroso",
@@ -31,7 +31,7 @@
     "Cognito"
   ],
   "devDependencies": {
-    "@cpmech/az-senqs": "^2.24.0",
+    "@cpmech/az-senqs": "^2.25.0",
     "@cpmech/envars": "^1.23.0",
     "@types/jest": "^24.9.1",
     "@types/node": "^13.5.0",
