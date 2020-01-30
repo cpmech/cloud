@@ -1,4 +1,4 @@
-import { oKeys } from '../oKeys';
+import { objKeys } from '../objKeys';
 
 describe('oKeys', () => {
   it('should return an array with the keys', () => {
@@ -7,7 +7,7 @@ describe('oKeys', () => {
       second: number;
     }
     const obj: IMyType = { first: 1, second: 2 };
-    const res = oKeys(obj);
+    const res = objKeys(obj);
     expect(obj[res[0]]).toBe(1); // typescript will not complain here
     expect(obj[res[1]]).toBe(2); // typescript will not complain here
     expect(res).toEqual(['first', 'second']);
