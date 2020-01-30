@@ -46,6 +46,7 @@
     "typescript": "^3.7.5"
   },
   "dependencies": {
+    "@cpmech/basic": "^3.23.0",
     "@cpmech/js2ts": "^1.16.0",
     "@cpmech/util": "^0.4.0",
     "aws-sdk": "^2.610.0"
