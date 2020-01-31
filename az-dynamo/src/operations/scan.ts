@@ -30,42 +30,38 @@ export const scan = async (
   op: '<=' | '<' | '=' | '>' | '>=' | 'prefix' | 'between' = '=',
   rangeKeyValue2?: string, // to be used with the 'between' op
 ): Promise<Iany[]> => {
-  // ddb object
-  const ddb = new DynamoDB.DocumentClient();
+  // params
+  const params: DynamoDB.DocumentClient.ScanInput = {
+    TableName: table,
+    IndexName: index,
+  };
 
   // 'between' case
   if (rangeKeyValue2) {
-    const data = await ddb
-      .scan({
-        TableName: table,
-        IndexName: index,
-        ExpressionAttributeNames: {
-          [`#${rangeKeyName}`]: rangeKeyName,
-        },
-        ExpressionAttributeValues: {
-          ':rval': rangeKeyValue,
-          ':rval2': rangeKeyValue2,
-        },
-        FilterExpression: `#${rangeKeyName} BETWEEN :rval AND :rval2`,
-      })
-      .promise();
-    return data.Items ? data.Items : [];
+    params.ExpressionAttributeNames = {
+      [`#${rangeKeyName}`]: rangeKeyName,
+    };
+    params.ExpressionAttributeValues = {
+      ':rval': rangeKeyValue,
+      ':rval2': rangeKeyValue2,
+    };
+    params.FilterExpression = `#${rangeKeyName} BETWEEN :rval AND :rval2`;
   }
 
   // default
-  const data = await ddb
-    .scan({
-      TableName: table,
-      IndexName: index,
-      ExpressionAttributeNames: {
-        [`#${rangeKeyName}`]: rangeKeyName,
-      },
-      ExpressionAttributeValues: {
-        ':rval': rangeKeyValue,
-      },
-      FilterExpression:
-        op === 'prefix' ? `begins_with(#${rangeKeyName}, :rval)` : `#${rangeKeyName} ${op} :rval`,
-    })
-    .promise();
+  else {
+    params.ExpressionAttributeNames = {
+      [`#${rangeKeyName}`]: rangeKeyName,
+    };
+    params.ExpressionAttributeValues = {
+      ':rval': rangeKeyValue,
+    };
+    params.FilterExpression =
+      op === 'prefix' ? `begins_with(#${rangeKeyName}, :rval)` : `#${rangeKeyName} ${op} :rval`;
+  }
+
+  // results
+  const ddb = new DynamoDB.DocumentClient();
+  const data = await ddb.scan(params).promise();
   return data.Items ? data.Items : [];
 };
