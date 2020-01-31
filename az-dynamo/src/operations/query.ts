@@ -56,8 +56,15 @@ export const query = async (
     params.KeyConditionExpression = `#${hashKeyName} = :hval`;
   }
 
-  // results
+  // perform query
   const ddb = new DynamoDB.DocumentClient();
   const data = await ddb.query(params).promise();
+
+  // check
+  if (data.LastEvaluatedKey) {
+    throw new Error('cannot handle partial results just yet');
+  }
+
+  // results
   return data.Items ? data.Items : [];
 };

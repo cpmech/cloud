@@ -60,8 +60,15 @@ export const scan = async (
       op === 'prefix' ? `begins_with(#${rangeKeyName}, :rval)` : `#${rangeKeyName} ${op} :rval`;
   }
 
-  // results
+  // perform scan
   const ddb = new DynamoDB.DocumentClient();
   const data = await ddb.scan(params).promise();
+
+  // check
+  if (data.LastEvaluatedKey) {
+    throw new Error('cannot handle partial results just yet');
+  }
+
+  // results
   return data.Items ? data.Items : [];
 };

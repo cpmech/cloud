@@ -22,4 +22,11 @@ describe('unexpected query operation', () => {
     expect(r1).toEqual([]);
     expect(r2).toEqual([]);
   });
+
+  it('should throw error due to LastEvaluatedKey', async () => {
+    fakePromise.promise.mockImplementation(() => Promise.resolve({ LastEvaluatedKey: 'somekey' }));
+    await expect(scan(tableName, 'aspect', 'NAME')).rejects.toThrowError(
+      'cannot handle partial results just yet',
+    );
+  });
 });
