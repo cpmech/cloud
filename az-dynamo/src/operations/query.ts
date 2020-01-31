@@ -13,62 +13,51 @@ export const query = async (
   op: '<=' | '<' | '=' | '>' | '>=' | 'prefix' | 'between' = '=',
   rangeKeyValue2?: string, // to be used with the 'between' op
 ): Promise<Iany[]> => {
-  // ddb object
-  const ddb = new DynamoDB.DocumentClient();
+  // params
+  const params: DynamoDB.DocumentClient.QueryInput = {
+    TableName: table,
+    IndexName: index,
+  };
 
-  // with hash and sort keys and a second value for the sort condition
+  // with hash and sort keys and a second value for the sort condition (BETWEEN)
   if (rangeKeyName && rangeKeyValue2) {
-    const data = await ddb
-      .query({
-        TableName: table,
-        IndexName: index,
-        ExpressionAttributeNames: {
-          [`#${hashKeyName}`]: hashKeyName,
-          [`#${rangeKeyName}`]: rangeKeyName,
-        },
-        ExpressionAttributeValues: {
-          ':hval': hashKeyValue,
-          ':rval': rangeKeyValue,
-          ':rval2': rangeKeyValue2,
-        },
-        KeyConditionExpression: `#${hashKeyName} = :hval and #${rangeKeyName} BETWEEN :rval AND :rval2`,
-      })
-      .promise();
-    return data.Items ? data.Items : [];
+    params.ExpressionAttributeNames = {
+      [`#${hashKeyName}`]: hashKeyName,
+      [`#${rangeKeyName}`]: rangeKeyName,
+    };
+    params.ExpressionAttributeValues = {
+      ':hval': hashKeyValue,
+      ':rval': rangeKeyValue,
+      ':rval2': rangeKeyValue2,
+    };
+    params.KeyConditionExpression = `#${hashKeyName} = :hval and #${rangeKeyName} BETWEEN :rval AND :rval2`;
   }
 
   // with hash and sort keys
-  if (rangeKeyName) {
-    const data = await ddb
-      .query({
-        TableName: table,
-        IndexName: index,
-        ExpressionAttributeNames: {
-          [`#${hashKeyName}`]: hashKeyName,
-          [`#${rangeKeyName}`]: rangeKeyName,
-        },
-        ExpressionAttributeValues: {
-          ':hval': hashKeyValue,
-          ':rval': rangeKeyValue,
-        },
-        KeyConditionExpression:
-          op === 'prefix'
-            ? `#${hashKeyName} = :hval and begins_with(#${rangeKeyName}, :rval)`
-            : `#${hashKeyName} = :hval and #${rangeKeyName} ${op} :rval`,
-      })
-      .promise();
-    return data.Items ? data.Items : [];
+  else if (rangeKeyName) {
+    params.ExpressionAttributeNames = {
+      [`#${hashKeyName}`]: hashKeyName,
+      [`#${rangeKeyName}`]: rangeKeyName,
+    };
+    params.ExpressionAttributeValues = {
+      ':hval': hashKeyValue,
+      ':rval': rangeKeyValue,
+    };
+    params.KeyConditionExpression =
+      op === 'prefix'
+        ? `#${hashKeyName} = :hval and begins_with(#${rangeKeyName}, :rval)`
+        : `#${hashKeyName} = :hval and #${rangeKeyName} ${op} :rval`;
   }
 
   // just hash key
-  const data = await ddb
-    .query({
-      TableName: table,
-      IndexName: index,
-      ExpressionAttributeNames: { [`#${hashKeyName}`]: hashKeyName },
-      ExpressionAttributeValues: { ':hval': hashKeyValue },
-      KeyConditionExpression: `#${hashKeyName} = :hval`,
-    })
-    .promise();
+  else {
+    params.ExpressionAttributeNames = { [`#${hashKeyName}`]: hashKeyName };
+    params.ExpressionAttributeValues = { ':hval': hashKeyValue };
+    params.KeyConditionExpression = `#${hashKeyName} = :hval`;
+  }
+
+  // results
+  const ddb = new DynamoDB.DocumentClient();
+  const data = await ddb.query(params).promise();
   return data.Items ? data.Items : [];
 };
