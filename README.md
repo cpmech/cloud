@@ -16,3 +16,5 @@ This monorepo includes most of my libraries for developing `cloud` projects.
 - `httpcodes` HTTP Status Codes
 - `js2ts` Converts Javascript objects to Typescript objects
 - `lang-query-graph` Language Query Graph - GraphQL tools
+- `rnd` Pseudo random numbers
+- `util` Utilities
