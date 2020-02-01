@@ -26,14 +26,14 @@
     "js2ts"
   ],
   "devDependencies": {
-    "@types/jest": "^24.9.1",
-    "@types/node": "^13.5.0",
+    "@types/jest": "^25.1.1",
+    "@types/node": "^13.7.0",
     "jest": "^25.1.0",
     "prettier": "^1.19.1",
-    "rollup": "^1.29.1",
+    "rollup": "^1.31.0",
     "rollup-plugin-terser": "^5.2.0",
     "rollup-plugin-typescript2": "^0.25.3",
-    "ts-jest": "^25.0.0",
+    "ts-jest": "^25.1.0",
     "ts-node-dev": "^1.0.0-pre.44",
     "tslint": "^6.0.0",
     "tslint-config-prettier": "^1.18.0",
