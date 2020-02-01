@@ -17,6 +17,7 @@
     "httpcodes",
     "js2ts",
     "lang-query-graph",
+    "rnd",
     "util"
   ]
 }

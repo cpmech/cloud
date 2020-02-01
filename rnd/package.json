@@ -1,0 +1,49 @@
+{
+  "name": "@cpmech/rnd",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": {
+    "name": "Dorival Pedroso",
+    "email": "dorival.pedroso@gmail.com",
+    "url": "https://github.com/cpmech"
+  },
+  "repository": "cpmech/cloud",
+  "scripts": {
+    "type-check": "tsc --outDir /tmp/__cloud__rnd__",
+    "test": "jest --verbose",
+    "tw": "jest --watch --verbose",
+    "cov": "jest --coverage",
+    "build": "rm -rf dist && rollup --config ../rollup.config.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "description": "(pseudo)Random numbers",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "keywords": [
+    "utilities"
+  ],
+  "devDependencies": {
+    "@types/jest": "^25.1.1",
+    "@types/node": "^13.7.0",
+    "@types/seedrandom": "^2.4.28",
+    "jest": "^25.1.0",
+    "prettier": "^1.19.1",
+    "rollup": "^1.31.0",
+    "rollup-plugin-auto-external": "^2.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^5.2.0",
+    "rollup-plugin-typescript2": "^0.25.3",
+    "ts-jest": "^25.1.0",
+    "ts-node": "^8.6.2",
+    "tslint": "^6.0.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "@cpmech/basic": "^3.24.0",
+    "seedrandom": "^3.0.5"
+  }
+}
