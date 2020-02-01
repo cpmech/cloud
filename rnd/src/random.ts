@@ -1,6 +1,6 @@
 import seedrandom from 'seedrandom';
 
-let random = Math.random;
+export let random = Math.random;
 
 // fixSeed fixes the seed
 export const fixSeed = (seed: string) => {
