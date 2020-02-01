@@ -43,5 +43,6 @@
   },
   "dependencies": {
     "@cpmech/basic": "^3.24.0"
-  }
+  },
+  "gitHead": "b737d0975697c8dffab27106b0ab5dc4e361aacd"
 }

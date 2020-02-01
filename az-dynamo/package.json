@@ -51,5 +51,5 @@
     "@cpmech/util": "^0.7.0",
     "aws-sdk": "^2.610.0"
   },
-  "gitHead": "3b8c3043da9440da1bbd2cf4cd7cef9284859bf0"
+  "gitHead": "b737d0975697c8dffab27106b0ab5dc4e361aacd"
 }
