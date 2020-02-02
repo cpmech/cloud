@@ -102,6 +102,26 @@
     {
       "PutRequest": {
         "Item": {
+          "itemId": { "S": "updateMany" },
+          "aspect": { "S": "DATA" },
+          "indexSK": { "S": "hello" },
+          "message": { "S": "world" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "itemId": { "S": "updateMany" },
+          "aspect": { "S": "MORE_DATA" },
+          "indexSK": { "S": "123" },
+          "value": { "N": "456" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
           "itemId": { "S": "scan.1" },
           "email": { "S": "scan.1@operation.com" },
           "aspect": { "S": "NAME" },
