@@ -3,10 +3,10 @@ import { Iany } from '@cpmech/js2ts';
 import { IPrimaryKey } from '../types';
 import { any2updateData } from '../util/any2updateData';
 
-// updateMany updates data in DB in a single transaction and returns the new values
+// updateT updates data in DB in a single transaction and returns the new values
 // NOTE: (1) up to 10 items can be updated at the same time
 //       (2) if returnItems === true, another call to the DB is made using transactGet
-export const updateMany = async (
+export const updateT = async (
   items: { table: string; primaryKey: IPrimaryKey; data: Iany }[],
   returnItems = true,
 ): Promise<null | Iany[]> => {

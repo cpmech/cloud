@@ -8,4 +8,4 @@ export * from './removeAttributes';
 export * from './removeItem';
 export * from './scan';
 export * from './update';
-export * from './updateMany';
+export * from './updateT';

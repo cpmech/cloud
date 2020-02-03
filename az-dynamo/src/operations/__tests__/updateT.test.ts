@@ -1,5 +1,5 @@
 import AWS from 'aws-sdk';
-import { updateMany } from '../updateMany';
+import { updateT } from '../updateT';
 
 AWS.config.update({
   region: 'us-east-1',
@@ -16,7 +16,7 @@ const cleanUp = async () => {
     await ddb
       .update({
         TableName: tableName,
-        Key: { itemId: 'updateMany', aspect: 'DATA' },
+        Key: { itemId: 'updateT', aspect: 'DATA' },
         UpdateExpression: 'SET #y0 = :x0, #y1 = :x1',
         ExpressionAttributeNames: { '#y0': 'indexSK', '#y1': 'message' },
         ExpressionAttributeValues: { ':x0': 'hello', ':x1': 'world' },
@@ -25,7 +25,7 @@ const cleanUp = async () => {
     await ddb
       .update({
         TableName: tableName,
-        Key: { itemId: 'updateMany', aspect: 'MORE_DATA' },
+        Key: { itemId: 'updateT', aspect: 'MORE_DATA' },
         UpdateExpression: 'SET #y0 = :x0, #y1 = :x1',
         ExpressionAttributeNames: { '#y0': 'indexSK', '#y1': 'value' },
         ExpressionAttributeValues: { ':x0': '123', ':x1': 456 },
@@ -36,15 +36,15 @@ const cleanUp = async () => {
 
 afterAll(async () => await cleanUp());
 
-describe('updateMany operation', () => {
+describe('updateT operation', () => {
   it('should update two items at the same time', async () => {
-    const key1 = { itemId: 'updateMany', aspect: 'DATA' };
-    const key2 = { itemId: 'updateMany', aspect: 'MORE_DATA' };
+    const key1 = { itemId: 'updateT', aspect: 'DATA' };
+    const key2 = { itemId: 'updateT', aspect: 'MORE_DATA' };
     const before1 = await ddb.get({ TableName: tableName, Key: key1 }).promise();
     const before2 = await ddb.get({ TableName: tableName, Key: key2 }).promise();
     expect(before1.Item).toEqual({ ...key1, indexSK: 'hello', message: 'world' });
     expect(before2.Item).toEqual({ ...key2, indexSK: '123', value: 456 });
-    const updated = await updateMany([
+    const updated = await updateT([
       { table: tableName, primaryKey: key1, data: { indexSK: 'just', message: 'changed' } },
       { table: tableName, primaryKey: key2, data: { indexSK: '666', value: -1000 } },
     ]);
@@ -68,9 +68,9 @@ describe('updateMany operation', () => {
   });
 
   it('should update two items without response', async () => {
-    const key1 = { itemId: 'updateMany', aspect: 'DATA' };
-    const key2 = { itemId: 'updateMany', aspect: 'MORE_DATA' };
-    const updated = await updateMany(
+    const key1 = { itemId: 'updateT', aspect: 'DATA' };
+    const key2 = { itemId: 'updateT', aspect: 'MORE_DATA' };
+    const updated = await updateT(
       [
         { table: tableName, primaryKey: key1, data: { indexSK: 'xxx', message: 'yyy' } },
         { table: tableName, primaryKey: key2, data: { indexSK: '000', value: 666 } },
@@ -83,13 +83,11 @@ describe('updateMany operation', () => {
   it('should throw error on wrong input', async () => {
     const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(i => ({
       table: tableName,
-      primaryKey: { itemId: 'updateMany', aspect: 'DATA' },
+      primaryKey: { itemId: 'updateT', aspect: 'DATA' },
       data: { indexSK: 'zzz' },
     }));
-    await expect(updateMany([])).rejects.toThrowError(
-      'the number of items to update must in [1, 10]',
-    );
-    await expect(updateMany(items)).rejects.toThrowError(
+    await expect(updateT([])).rejects.toThrowError('the number of items to update must in [1, 10]');
+    await expect(updateT(items)).rejects.toThrowError(
       'the number of items to update must in [1, 10]',
     );
   });

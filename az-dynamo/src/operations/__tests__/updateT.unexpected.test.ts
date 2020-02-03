@@ -1,4 +1,4 @@
-import { updateMany } from '../updateMany';
+import { updateT } from '../updateT';
 
 const fakePromise1 = { promise: jest.fn() };
 const fakePromise2 = { promise: jest.fn() };
@@ -14,15 +14,15 @@ jest.mock('aws-sdk', () => ({
 
 const tableName = 'TEST-AZDYN-USERS';
 
-describe('unexpected updateMany operation', () => {
+describe('unexpected updateT operation', () => {
   it('should return null error on failed update', async () => {
     fakePromise1.promise.mockImplementation(() => Promise.resolve({}));
     fakePromise2.promise.mockImplementation(() => Promise.resolve({}));
-    const key = { itemId: 'updateMany', aspect: 'DATA' };
-    const r1 = await updateMany([{ table: tableName, primaryKey: key, data: {} }]);
+    const key = { itemId: 'updateT', aspect: 'DATA' };
+    const r1 = await updateT([{ table: tableName, primaryKey: key, data: {} }]);
     expect(r1).toEqual([]);
     fakePromise2.promise.mockImplementation(() => Promise.resolve({ Responses: [{}] }));
-    const r2 = await updateMany([{ table: tableName, primaryKey: key, data: {} }]);
+    const r2 = await updateT([{ table: tableName, primaryKey: key, data: {} }]);
     expect(r2).toEqual([{}]);
   });
 });
