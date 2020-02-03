@@ -1,5 +1,5 @@
 import AWS from 'aws-sdk';
-import { getMany } from '../getMany';
+import { getBatch } from '../getBatch';
 
 AWS.config.update({
   region: 'us-east-1',
@@ -38,13 +38,13 @@ const data2 = {
   ProductCategory: 'Book',
 };
 
-describe('getMany', () => {
+describe('getBatch', () => {
   it('should get items', async () => {
     const keys = [
       { itemId: '101', aspect: 'PRODUCT' },
       { itemId: '102', aspect: 'PRODUCT' },
     ];
-    const res = await getMany(tableName, keys);
+    const res = await getBatch(tableName, keys);
     expect(res).toEqual([data1, data2]);
   });
 
@@ -53,7 +53,7 @@ describe('getMany', () => {
       { itemId: '101', aspect: 'PRODUCT' },
       { itemId: '102', aspect: 'PRODUCT' },
     ];
-    const res = await getMany(tableName, keys, 'itemId,Authors,PageCount');
+    const res = await getBatch(tableName, keys, 'itemId,Authors,PageCount');
     expect(res).toEqual([
       {
         itemId: data1.itemId,
@@ -73,7 +73,7 @@ describe('getMany', () => {
       { itemId: '101', aspect: 'PRODUCT' },
       { itemId: '222', aspect: 'PRODUCT' },
     ];
-    const res = await getMany(tableName, keys);
+    const res = await getBatch(tableName, keys);
     expect(res).toEqual([data1]);
   });
 
@@ -82,7 +82,7 @@ describe('getMany', () => {
       { itemId: '111', aspect: 'PRODUCT' },
       { itemId: '222', aspect: 'PRODUCT' },
     ];
-    const res = await getMany(tableName, keys);
+    const res = await getBatch(tableName, keys);
     expect(res).toEqual([]);
   });
 
@@ -91,7 +91,7 @@ describe('getMany', () => {
     for (let i = 0; i < 110; i++) {
       keys.push({ itemId: `${101 + i}`, aspect: 'PRODUCT' });
     }
-    await expect(getMany(tableName, keys, 'Id')).rejects.toThrowError(
+    await expect(getBatch(tableName, keys, 'Id')).rejects.toThrowError(
       'Too many items requested for the BatchGetItem call',
     );
   });

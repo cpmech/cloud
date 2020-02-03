@@ -2,9 +2,9 @@ import { DynamoDB } from 'aws-sdk';
 import { Iany } from '@cpmech/js2ts';
 import { hasProp } from '@cpmech/basic';
 
-// getMany gets many items from the DB
+// getBatch gets many items from the DB
 // NOTE: this function will return null if there are no items
-export const getMany = async (
+export const getBatch = async (
   table: string,
   keys: Iany[], // must be less than 100 items
   filterAttributes?: string, // comma-separated list of attributes to return; otherwise will return all
@@ -26,7 +26,7 @@ export const getMany = async (
 
   // check for unprocessed keys
   if (res.UnprocessedKeys && hasProp(res.UnprocessedKeys, table)) {
-    throw new Error('getMany: cannot handle unprocessed keys at this time');
+    throw new Error('getBatch: cannot handle unprocessed keys at this time');
   }
 
   // extract results
