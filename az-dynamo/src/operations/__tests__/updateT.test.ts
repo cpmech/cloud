@@ -86,9 +86,11 @@ describe('updateT operation', () => {
       primaryKey: { itemId: 'updateT', aspect: 'DATA' },
       data: { indexSK: 'zzz' },
     }));
-    await expect(updateT([])).rejects.toThrowError('the number of items to update must in [1, 10]');
+    await expect(updateT([])).rejects.toThrowError(
+      'the number of items to update must be in [1, 10]',
+    );
     await expect(updateT(items)).rejects.toThrowError(
-      'the number of items to update must in [1, 10]',
+      'the number of items to update must be in [1, 10]',
     );
   });
 });

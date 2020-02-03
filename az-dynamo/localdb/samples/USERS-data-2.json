@@ -146,6 +146,42 @@
           "ProductCategory": { "S": "Bicycle" }
         }
       }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "itemId": { "S": "updateAndDelete-0" },
+          "aspect": { "S": "UD_TEST" },
+          "indexSK": { "S": "1000" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "itemId": { "S": "updateAndDelete-1" },
+          "aspect": { "S": "UD_TEST" },
+          "indexSK": { "S": "1001" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "itemId": { "S": "updateAndDelete-2" },
+          "aspect": { "S": "UD_TEST" },
+          "indexSK": { "S": "1002" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "itemId": { "S": "updateAndDelete-3" },
+          "aspect": { "S": "UD_TEST" },
+          "indexSK": { "S": "1003" }
+        }
+      }
     }
   ]
 }

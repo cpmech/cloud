@@ -15,7 +15,7 @@ export const getT = async (
     },
   }));
 
-  // get data
+  // transaction
   const ddb = new DynamoDB.DocumentClient();
   const res = await ddb.transactGet({ TransactItems }).promise();
   if (res.Responses) {
