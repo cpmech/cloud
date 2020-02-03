@@ -19,10 +19,10 @@ describe('unexpected updateT operation', () => {
     fakePromise1.promise.mockImplementation(() => Promise.resolve({}));
     fakePromise2.promise.mockImplementation(() => Promise.resolve({}));
     const key = { itemId: 'updateT', aspect: 'DATA' };
-    const r1 = await updateT([{ table: tableName, primaryKey: key, data: {} }]);
+    const r1 = await updateT([{ table: tableName, primaryKey: key, data: {} }], true);
     expect(r1).toEqual([]);
     fakePromise2.promise.mockImplementation(() => Promise.resolve({ Responses: [{}] }));
-    const r2 = await updateT([{ table: tableName, primaryKey: key, data: {} }]);
+    const r2 = await updateT([{ table: tableName, primaryKey: key, data: {} }], true);
     expect(r2).toEqual([{}]);
   });
 });

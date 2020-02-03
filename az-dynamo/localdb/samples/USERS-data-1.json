@@ -102,6 +102,26 @@
     {
       "PutRequest": {
         "Item": {
+          "itemId": { "S": "getT" },
+          "aspect": { "S": "TOGET" },
+          "indexSK": { "S": "hello" },
+          "message": { "S": "world" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "itemId": { "S": "getT" },
+          "aspect": { "S": "TOGET_TOO" },
+          "indexSK": { "S": "alô" },
+          "value": { "S": "mundo" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
           "itemId": { "S": "updateT" },
           "aspect": { "S": "DATA" },
           "indexSK": { "S": "hello" },

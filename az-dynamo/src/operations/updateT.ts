@@ -3,12 +3,13 @@ import { Iany } from '@cpmech/js2ts';
 import { IPrimaryKey } from '../types';
 import { any2updateData } from '../util/any2updateData';
 
-// updateT updates data in DB in a single transaction and returns the new values
-// NOTE: (1) up to 10 items can be updated at the same time
-//       (2) if returnItems === true, another call to the DB is made using transactGet
+// updateT updates data in a single TRANSACTION
+// (even from different tables in the same region)
+// NOTE: (1) the max number of items to update is 10
+//       (2) the updated values are returned by another call to the DB
 export const updateT = async (
   items: { table: string; primaryKey: IPrimaryKey; data: Iany }[],
-  returnItems = true,
+  returnItems = false,
 ): Promise<null | Iany[]> => {
   // check
   if (items.length < 1 || items.length > 10) {
@@ -24,27 +25,25 @@ export const updateT = async (
     },
   }));
 
-  // client
+  // update data
   const ddb = new DynamoDB.DocumentClient();
-
-  // update all
   await ddb.transactWrite({ TransactItems }).promise();
 
   // response data
   if (returnItems) {
-    const TransactItemsRes = items.map(({ table, primaryKey, data }) => ({
+    const params = items.map(({ table, primaryKey }) => ({
       Get: {
         TableName: table,
         Key: primaryKey,
       },
     }));
-    const res = await ddb.transactGet({ TransactItems: TransactItemsRes }).promise();
+    const res = await ddb.transactGet({ TransactItems: params }).promise();
     if (res.Responses) {
       return res.Responses.map(r => r.Item || {});
     }
     return [];
   }
 
-  // results
+  // nothing to return
   return null;
 };

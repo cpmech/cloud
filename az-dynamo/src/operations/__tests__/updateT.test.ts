@@ -44,10 +44,13 @@ describe('updateT operation', () => {
     const before2 = await ddb.get({ TableName: tableName, Key: key2 }).promise();
     expect(before1.Item).toEqual({ ...key1, indexSK: 'hello', message: 'world' });
     expect(before2.Item).toEqual({ ...key2, indexSK: '123', value: 456 });
-    const updated = await updateT([
-      { table: tableName, primaryKey: key1, data: { indexSK: 'just', message: 'changed' } },
-      { table: tableName, primaryKey: key2, data: { indexSK: '666', value: -1000 } },
-    ]);
+    const updated = await updateT(
+      [
+        { table: tableName, primaryKey: key1, data: { indexSK: 'just', message: 'changed' } },
+        { table: tableName, primaryKey: key2, data: { indexSK: '666', value: -1000 } },
+      ],
+      true,
+    );
     const correct = [
       {
         ...key1,
@@ -70,13 +73,10 @@ describe('updateT operation', () => {
   it('should update two items without response', async () => {
     const key1 = { itemId: 'updateT', aspect: 'DATA' };
     const key2 = { itemId: 'updateT', aspect: 'MORE_DATA' };
-    const updated = await updateT(
-      [
-        { table: tableName, primaryKey: key1, data: { indexSK: 'xxx', message: 'yyy' } },
-        { table: tableName, primaryKey: key2, data: { indexSK: '000', value: 666 } },
-      ],
-      false,
-    );
+    const updated = await updateT([
+      { table: tableName, primaryKey: key1, data: { indexSK: 'xxx', message: 'yyy' } },
+      { table: tableName, primaryKey: key2, data: { indexSK: '000', value: 666 } },
+    ]);
     expect(updated).toBeNull();
   });
 
