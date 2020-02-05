@@ -1,6 +1,6 @@
 import { getDownloadUrl } from '../getDownloadUrl';
 
-const BUCKET = 'TEST_BUCKET';
+const BUCKET = 'testing-cloud-az-s3';
 
 jest.mock('aws-sdk', () => ({
   S3: jest.fn(() => ({

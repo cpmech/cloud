@@ -1,6 +1,6 @@
 import { getUploadUrl } from '../getUploadUrl';
 
-const BUCKET = 'TEST_BUCKET';
+const BUCKET = 'testing-cloud-az-s3';
 
 jest.mock('uuid', () => ({
   v4: () => '666-666',

@@ -1,6 +1,6 @@
 import { deleteObjects } from '../deleteObjects';
 
-const BUCKET = 'TEST_BUCKET';
+const BUCKET = 'testing-cloud-az-s3';
 
 const fakePromise = {
   promise: jest.fn(),
