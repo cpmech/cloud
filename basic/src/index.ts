@@ -6,8 +6,6 @@ export * from './copySimple';
 export * from './diffSimple';
 export * from './email2key';
 export * from './empty2blank';
-export * from './file2extension';
-export * from './fileTypeAndExt';
 export * from './filled';
 export * from './formatCPF';
 export * from './getObjectKeys';
