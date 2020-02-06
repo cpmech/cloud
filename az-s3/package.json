@@ -41,7 +41,7 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-terser": "^5.2.0",
     "rollup-plugin-typescript2": "^0.25.3",
-    "ts-jest": "^25.1.0",
+    "ts-jest": "^25.2.0",
     "ts-node": "^8.6.2",
     "tslint": "^6.0.0",
     "tslint-config-prettier": "^1.18.0",
@@ -50,7 +50,7 @@
   "dependencies": {
     "@cpmech/basic": "^3.24.0",
     "@cpmech/util": "^0.9.0",
-    "aws-sdk": "^2.610.0",
+    "aws-sdk": "^2.612.0",
     "uuid": "^3.4.0"
   },
   "gitHead": "3b8c3043da9440da1bbd2cf4cd7cef9284859bf0"

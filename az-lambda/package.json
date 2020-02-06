@@ -35,7 +35,7 @@
     "rollup": "^1.31.0",
     "rollup-plugin-terser": "^5.2.0",
     "rollup-plugin-typescript2": "^0.25.3",
-    "ts-jest": "^25.1.0",
+    "ts-jest": "^25.2.0",
     "tslint": "^6.0.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.7.5"
@@ -48,7 +48,7 @@
     "@cpmech/httpcodes": "^2.16.0",
     "@cpmech/js2ts": "^1.17.0",
     "@types/aws-lambda": "^8.10.40",
-    "aws-sdk": "^2.610.0"
+    "aws-sdk": "^2.612.0"
   },
   "gitHead": "b737d0975697c8dffab27106b0ab5dc4e361aacd"
 }
