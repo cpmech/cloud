@@ -17,8 +17,12 @@ jest.mock('uuid', () => ({
 }));
 
 describe('putStringObject', () => {
-  it('should put new object made up by a string data', async () => {
+  it('should put new object made up by a string data (new UUID)', async () => {
     const filekey = await putStringObject('Hello World', BUCKET);
     expect(filekey).toBe('myuuidgoeshere.txt');
+  });
+  it('should put new object made up by a string data (fixed filekey)', async () => {
+    const filekey = await putStringObject('Hello World', BUCKET, 'my-file-key.txt');
+    expect(filekey).toBe('my-file-key.txt');
   });
 });
