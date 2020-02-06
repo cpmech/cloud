@@ -1,5 +1,6 @@
 import { S3 } from 'aws-sdk';
 
+// NOTE: the given filekey should have a FileExt
 export const getDownloadUrl = (
   bucket: string,
   filekey: string,

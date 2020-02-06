@@ -21,16 +21,22 @@ Etiam semper, augue nec vestibulum mattis, leo massa vestibulum nunc, sit amet h
 Generated 3 paragraphs, 283 words, 1940 bytes of Lorem Ipsum
 `;
 
-const filekey1 = 'loremIpsum.txt';
+const filekeys = [
+  'signature_00000018-epop-coop-xxxx-123456789012.txt',
+  'signature_27a1b4de-5d0d-4911-b529-afcf3c2c192a.txt',
+  'signature_Facebook_2949576241738108.txt',
+];
 
 afterAll(async () => {
-  await deleteObjects(BUCKET, [filekey1]);
+  await deleteObjects(BUCKET, filekeys);
 });
 
 describe('putStringObject', () => {
   it('should put new object made up by a string data', async () => {
-    await putStringObject(loremIpsum, BUCKET, filekey1);
-    const data = await getStringObject(BUCKET, filekey1);
-    expect(data).toBe(loremIpsum);
+    for (const filekey of filekeys) {
+      await putStringObject(loremIpsum, BUCKET, filekey);
+      const data = await getStringObject(BUCKET, filekey);
+      expect(data).toBe(loremIpsum);
+    }
   });
 });

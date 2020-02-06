@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "@cpmech/basic": "^3.24.0",
+    "@cpmech/util": "^0.9.0",
     "aws-sdk": "^2.610.0",
     "uuid": "^3.4.0"
   },
