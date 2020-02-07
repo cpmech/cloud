@@ -33,7 +33,7 @@
   "devDependencies": {
     "@cpmech/az-senqs": "^3.0.0",
     "@cpmech/envars": "^2.0.0",
-    "@types/jest": "^25.1.1",
+    "@types/jest": "^25.1.2",
     "@types/node": "^13.7.0",
     "@types/node-fetch": "^2.5.4",
     "@types/uuid": "^3.4.7",
@@ -54,7 +54,7 @@
   "dependencies": {
     "@cpmech/basic": "^4.0.0",
     "aws-amplify": "^2.2.2",
-    "aws-sdk": "^2.612.0"
+    "aws-sdk": "^2.613.0"
   },
   "gitHead": "3b8c3043da9440da1bbd2cf4cd7cef9284859bf0"
 }

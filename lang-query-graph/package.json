@@ -27,7 +27,7 @@
   "types": "dist/esm/index.d.ts",
   "devDependencies": {
     "@types/graphql": "^14.5.0",
-    "@types/jest": "^25.1.1",
+    "@types/jest": "^25.1.2",
     "@types/node": "^13.7.0",
     "jest": "^25.1.0",
     "prettier": "^1.19.1",
