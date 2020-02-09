@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LambdaConstruct synthetizes properly 1`] = `
+"{
+  \\"Resources\\": {
+    \\"LambdaServiceRoleFC57F673\\": {
+      \\"Type\\": \\"AWS::IAM::Role\\",
+      \\"Properties\\": {
+        \\"AssumeRolePolicyDocument\\": {
+          \\"Statement\\": [
+            {
+              \\"Action\\": \\"sts:AssumeRole\\",
+              \\"Effect\\": \\"Allow\\",
+              \\"Principal\\": {
+                \\"Service\\": \\"lambda.amazonaws.com\\"
+              }
+            }
+          ],
+          \\"Version\\": \\"2012-10-17\\"
+        },
+        \\"ManagedPolicyArns\\": [
+          {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                \\"arn:\\",
+                {
+                  \\"Ref\\": \\"AWS::Partition\\"
+                },
+                \\":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole\\"
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    \\"Lambda04A6F88D\\": {
+      \\"Type\\": \\"AWS::Lambda::Function\\",
+      \\"Properties\\": {
+        \\"Code\\": {
+          \\"S3Bucket\\": {
+            \\"Ref\\": \\"AssetParameters0f6793fa57e887265d9e96c6c679271dc2a0da35d0d88165e7dcefe723a27cc0S3Bucket6637421E\\"
+          },
+          \\"S3Key\\": {
+            \\"Fn::Join\\": [
+              \\"\\",
+              [
+                {
+                  \\"Fn::Select\\": [
+                    0,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParameters0f6793fa57e887265d9e96c6c679271dc2a0da35d0d88165e7dcefe723a27cc0S3VersionKey126075E6\\"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  \\"Fn::Select\\": [
+                    1,
+                    {
+                      \\"Fn::Split\\": [
+                        \\"||\\",
+                        {
+                          \\"Ref\\": \\"AssetParameters0f6793fa57e887265d9e96c6c679271dc2a0da35d0d88165e7dcefe723a27cc0S3VersionKey126075E6\\"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        \\"Handler\\": \\"index.handler\\",
+        \\"Role\\": {
+          \\"Fn::GetAtt\\": [
+            \\"LambdaServiceRoleFC57F673\\",
+            \\"Arn\\"
+          ]
+        },
+        \\"Runtime\\": \\"nodejs12.x\\"
+      },
+      \\"DependsOn\\": [
+        \\"LambdaServiceRoleFC57F673\\"
+      ]
+    }
+  },
+  \\"Parameters\\": {
+    \\"AssetParameters0f6793fa57e887265d9e96c6c679271dc2a0da35d0d88165e7dcefe723a27cc0S3Bucket6637421E\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 bucket for asset \\\\\\"0f6793fa57e887265d9e96c6c679271dc2a0da35d0d88165e7dcefe723a27cc0\\\\\\"\\"
+    },
+    \\"AssetParameters0f6793fa57e887265d9e96c6c679271dc2a0da35d0d88165e7dcefe723a27cc0S3VersionKey126075E6\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"S3 key for asset version \\\\\\"0f6793fa57e887265d9e96c6c679271dc2a0da35d0d88165e7dcefe723a27cc0\\\\\\"\\"
+    },
+    \\"AssetParameters0f6793fa57e887265d9e96c6c679271dc2a0da35d0d88165e7dcefe723a27cc0ArtifactHash19CD2328\\": {
+      \\"Type\\": \\"String\\",
+      \\"Description\\": \\"Artifact hash for asset \\\\\\"0f6793fa57e887265d9e96c6c679271dc2a0da35d0d88165e7dcefe723a27cc0\\\\\\"\\"
+    }
+  }
+}"
+`;

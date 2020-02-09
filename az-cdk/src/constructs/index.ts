@@ -3,6 +3,7 @@ export * from './BucketsConstruct';
 export * from './CognitoConstruct';
 export * from './DynamoConstruct';
 export * from './LambdaApiConstruct';
+export * from './LambdaConstruct';
 export * from './LambdaLayersConstruct';
 export * from './PipelineNotificationConstruct';
 export * from './ReceiveEmailSQSConstruct';
