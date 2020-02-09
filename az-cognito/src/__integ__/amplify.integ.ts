@@ -10,6 +10,16 @@ import { initEnvars } from '@cpmech/envars';
 import { adminDeleteUser, adminFindUserByEmail } from '../admin';
 import { getUserAttributes, getUserData, getTokenPayload } from '../cognitoUser';
 
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+//                                                                 //
+//  the user pool name is:    az-cognito-testing                   //
+//                                                                 //
+//  NOTE: This user pool was created "by hand" in the AWS Console  //
+//                                                                 //
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+
 const envars = {
   USER_POOL_ID: '',
   USER_POOL_CLIENT_ID: '',

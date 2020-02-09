@@ -7,6 +7,16 @@ import {
 } from '../admin';
 import { initEnvars } from '@cpmech/envars';
 
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+//                                                                 //
+//  the user pool name is:    az-cognito-testing                   //
+//                                                                 //
+//  NOTE: This user pool was created "by hand" in the AWS Console  //
+//                                                                 //
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+
 const envars = {
   USER_POOL_ID: '',
   USER_POOL_CLIENT_ID: '',
