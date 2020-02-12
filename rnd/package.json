@@ -1,6 +1,6 @@
 {
   "name": "@cpmech/rnd",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "license": "MIT",
   "author": {
     "name": "Dorival Pedroso",
@@ -43,7 +43,7 @@
     "typescript": "^3.7.5"
   },
   "dependencies": {
-    "@cpmech/basic": "^4.1.0",
+    "@cpmech/basic": "^4.2.0",
     "seedrandom": "^3.0.5"
   },
   "gitHead": "b737d0975697c8dffab27106b0ab5dc4e361aacd"
