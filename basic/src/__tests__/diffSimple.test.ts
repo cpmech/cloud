@@ -83,4 +83,25 @@ describe('diffSimple', () => {
     };
     expect(diffSimple(obj, other)).toBeTruthy();
   });
+
+  it('should allow the right object to have more keys', () => {
+    expect(diffSimple({ a: 'a' }, { a: 'a', b: 'b' })).toBeFalsy();
+    const left = {
+      a: 'a',
+      b: 'b',
+    };
+    const right = {
+      a: 'a',
+      b: 'b',
+      c: 'c',
+      d: 'd',
+      e: 'e',
+      f: 'f',
+      g: 'g',
+      h: 'h',
+      i: 'i',
+      j: 'j',
+    };
+    expect(diffSimple(left, right)).toBeFalsy();
+  });
 });
