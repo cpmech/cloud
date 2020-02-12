@@ -8,6 +8,12 @@ import { any2updateData } from '../util/any2updateData';
 // NOTE: (1) the max number of items to update is 10
 //       (2) the updated values are returned by another call to the DB
 // ex: ConditionExpression: "attribute_not_exists(username)"
+//
+// The return data is retrived using the transactGet method
+// as in the getT of this library. In this case, the order is
+// the SAME as the input.
+//
+//
 export const updateT = async (
   items: {
     table: string;

@@ -4,6 +4,15 @@ import { IPrimaryKey } from '../types';
 
 // getT gets data in a single TRANSACTION
 // (even from different tables in the same region)
+//
+// From the AWS: It returns an ordered array of up to 25 ItemResponse objects,
+// each of which corresponds to the TransactGetItem object in the same position
+// in the TransactItems array
+//
+//     i.e. It returns in the SAME ORDER as the input
+//
+// Reference: https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html#transactGetItems-property
+//
 export const getT = async (
   items: { table: string; primaryKey: IPrimaryKey }[],
 ): Promise<Iany[]> => {
