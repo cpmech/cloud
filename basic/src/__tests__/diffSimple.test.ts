@@ -1,4 +1,5 @@
 import { diffSimple } from '../diffSimple';
+import { Iany } from '../types';
 
 const obj1 = {
   first: '1',
@@ -103,5 +104,58 @@ describe('diffSimple', () => {
       j: 'j',
     };
     expect(diffSimple(left, right)).toBeFalsy();
+  });
+
+  it('should handle objects with diffent types', () => {
+    const left = {
+      a: 'a',
+      b: 'b',
+    };
+    const right = {
+      a: 1,
+      b: 2,
+    };
+    expect(diffSimple(left, right as Iany)).toBeTruthy();
+  });
+
+  it('should handle right objects with null', () => {
+    const left = {
+      a: 'a',
+      b: 'b',
+    };
+    const right = {
+      a: 'a',
+      b: null,
+      c: 'c',
+      d: 'd',
+      e: 'e',
+      f: 'f',
+      g: null,
+      h: null,
+      i: null,
+      j: null,
+    };
+    expect(diffSimple(left, right as Iany)).toBeTruthy();
+  });
+
+  it('should handle left objects with null', () => {
+    const left = {
+      a: 'a',
+      b: 'b',
+      c: null,
+    };
+    const right = {
+      a: 'a',
+      b: 'b',
+      c: null,
+      d: 'd',
+      e: 'e',
+      f: 'f',
+      g: null,
+      h: null,
+      i: null,
+      j: null,
+    };
+    expect(diffSimple(left, right as Iany)).toBeFalsy();
   });
 });

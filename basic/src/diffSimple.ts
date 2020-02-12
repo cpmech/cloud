@@ -24,7 +24,7 @@ export const diffSimple = <T extends Iany, K extends keyof T>(left: T, right: T)
       if (!shallowCompareArrays(left[key], value)) {
         return true;
       }
-    } else if (typeof value === 'object') {
+    } else if (typeof left[key] === 'object' && left[key] !== null) {
       if (diffSimple(left[key], value)) {
         return true;
       }
