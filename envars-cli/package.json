@@ -58,7 +58,7 @@
     "@cpmech/basic": "^4.2.1",
     "chalk": "^3.0.0",
     "clui": "^0.3.6",
-    "configstore": "^5.0.0",
+    "configstore": "^5.0.1",
     "figlet": "^1.2.4",
     "inquirer": "^7.0.4",
     "minimist": "^1.2.0",

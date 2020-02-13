@@ -47,7 +47,7 @@
     "@cpmech/az-cognito": "^3.4.1",
     "@cpmech/basic": "^4.2.1",
     "@cpmech/js2ts": "^2.2.1",
-    "aws-sdk": "^2.616.0"
+    "aws-sdk": "^2.618.0"
   },
   "gitHead": "3b8c3043da9440da1bbd2cf4cd7cef9284859bf0"
 }
