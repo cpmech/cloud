@@ -1,6 +1,6 @@
 import AWS from 'aws-sdk';
 import { ICognitoUser } from './types';
-import { flattenAttributes } from '../helpers/flattenAttributes';
+import { flattenAttributes } from '../helpers';
 
 export const adminFindUserByUsername = async (
   poolId: string,

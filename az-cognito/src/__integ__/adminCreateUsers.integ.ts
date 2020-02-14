@@ -7,6 +7,8 @@ import {
 } from '../admin';
 import { initEnvars } from '@cpmech/envars';
 
+jest.setTimeout(20000);
+
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////
 //                                                                 //
@@ -25,8 +27,6 @@ const envars = {
 };
 
 initEnvars(envars);
-
-jest.setTimeout(20000);
 
 let username0 = '';
 let username1 = '';

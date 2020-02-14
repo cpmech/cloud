@@ -2,6 +2,8 @@ import AWS from 'aws-sdk';
 import { adminFindUserByEmail, adminAddUserToGroup } from '../admin';
 import { initEnvars } from '@cpmech/envars';
 
+jest.setTimeout(20000);
+
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////
 //                                                                 //
@@ -21,7 +23,9 @@ const envars = {
 
 initEnvars(envars);
 
-jest.setTimeout(20000);
+AWS.config.update({
+  region: 'us-east-1',
+});
 
 const EMAIL = 'bender.rodriguez@futurama.space';
 

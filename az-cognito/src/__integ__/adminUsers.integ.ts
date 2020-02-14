@@ -1,3 +1,4 @@
+import AWS from 'aws-sdk';
 import {
   adminListUsers,
   adminFindUserByEmail,
@@ -6,6 +7,8 @@ import {
   adminGetUser,
 } from '../admin';
 import { initEnvars } from '@cpmech/envars';
+
+jest.setTimeout(20000);
 
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////
@@ -25,8 +28,6 @@ const envars = {
 };
 
 initEnvars(envars);
-
-jest.setTimeout(20000);
 
 const EMAIL = 'bender.rodriguez@futurama.space';
 

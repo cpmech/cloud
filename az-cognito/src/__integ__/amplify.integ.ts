@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 (global as any).fetch = fetch;
 
+import AWS from 'aws-sdk';
 import Amplify from '@aws-amplify/core';
 import Auth from '@aws-amplify/auth';
 import { v4 } from 'uuid';
@@ -9,6 +10,8 @@ import { sleep } from '@cpmech/basic';
 import { initEnvars } from '@cpmech/envars';
 import { adminDeleteUser, adminFindUserByEmail } from '../admin';
 import { getUserAttributes, getUserData, getTokenPayload } from '../cognitoUser';
+
+jest.setTimeout(100000);
 
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////
@@ -28,7 +31,9 @@ const envars = {
 
 initEnvars(envars);
 
-jest.setTimeout(100000);
+AWS.config.update({
+  region: 'us-east-1',
+});
 
 Amplify.configure({
   Auth: {
