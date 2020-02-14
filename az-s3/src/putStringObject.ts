@@ -9,9 +9,9 @@ export const putStringObject = async (
   bucket: string,
   filekey?: string, // set filekey directly => will not use UUID
   prefix = '', // ignored if filekey is given; othewise will be pre-added to UUID
-  region = 'us-east-1',
+  s3Config?: S3.ClientConfiguration,
 ): Promise<string> => {
-  const s3 = new S3({ region });
+  const s3 = new S3(s3Config);
   if (!filekey) {
     filekey = prefix + v4().replace(/-/g, '') + '.txt';
   }

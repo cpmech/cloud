@@ -12,9 +12,9 @@ export const getUploadUrl = (
   fileExt?: FileExt, // will use UUID
   prefix = '', // ignored if filekey is given; othewise will be pre-added to UUID
   expiresSeconds = 60,
-  region = 'us-east-1',
+  s3Config?: S3.ClientConfiguration,
 ): IUploadUrl => {
-  const s3 = new S3({ region });
+  const s3 = new S3(s3Config);
   const ext = filekey ? name2fileExt(filekey) : fileExt;
   if (!ext) {
     throw new Error('file extension must be given either in filekey or via fileExt');

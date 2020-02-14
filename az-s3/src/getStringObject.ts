@@ -3,9 +3,9 @@ import { S3 } from 'aws-sdk';
 export const getStringObject = async (
   bucket: string,
   filekey: string,
-  region: string = 'us-east-1',
+  s3Config?: S3.ClientConfiguration,
 ): Promise<string> => {
-  const s3 = new S3({ region });
+  const s3 = new S3(s3Config);
   const res = await s3
     .getObject({
       Bucket: bucket,

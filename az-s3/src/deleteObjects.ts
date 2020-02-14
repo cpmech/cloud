@@ -4,10 +4,10 @@ import { S3 } from 'aws-sdk';
 export const deleteObjects = async (
   bucket: string,
   filekeys: string[],
-  region: string = 'us-east-1',
   quiet = true,
+  s3Config?: S3.ClientConfiguration,
 ): Promise<string[]> => {
-  const s3 = new S3({ region });
+  const s3 = new S3(s3Config);
 
   const res = await s3
     .deleteObjects({
