@@ -16,6 +16,6 @@ jest.mock('aws-sdk', () => ({
 
 describe('getDownloadUrl', () => {
   it('should return url', () => {
-    expect(getDownloadUrl(BUCKET, '123-456')).toBe('http://localhost/123-456');
+    expect(getDownloadUrl(BUCKET, '123-456.txt')).toBe('http://localhost/123-456.txt');
   });
 });

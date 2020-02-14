@@ -1,35 +1,25 @@
 import { S3 } from 'aws-sdk';
-import { v4 } from 'uuid';
-import { FileExt, fileExt2contentType, name2fileExt } from '@cpmech/util';
-import { IUploadUrl } from './types';
+import { fileExt2contentType, name2fileExt } from '@cpmech/util';
 
 // get upload URL
-// NOTE: (1) you can give either "filekey" or "fileExt"
-//       (2) the given filekey must have a FileExt
 export const getUploadUrl = (
   bucket: string,
-  filekey?: string, // set filekey directly => will not use UUID
-  fileExt?: FileExt, // will use UUID
-  prefix = '', // ignored if filekey is given; othewise will be pre-added to UUID
+  filekey: string,
   expiresSeconds = 60,
   s3Config?: S3.ClientConfiguration,
-): IUploadUrl => {
-  const s3 = new S3(s3Config);
-  const ext = filekey ? name2fileExt(filekey) : fileExt;
+): string => {
+  const ext = name2fileExt(filekey);
   if (!ext) {
-    throw new Error('file extension must be given either in filekey or via fileExt');
+    throw new Error('file extension must be given in filekey');
   }
-  if (!filekey) {
-    filekey = prefix + v4().replace(/-/g, '') + '.' + fileExt;
-  }
+
+  const s3 = new S3(s3Config);
   const url = s3.getSignedUrl('putObject', {
     Bucket: bucket,
     Key: filekey,
     ContentType: fileExt2contentType[ext],
     Expires: expiresSeconds,
   });
-  return {
-    filekey,
-    url,
-  };
+
+  return url;
 };

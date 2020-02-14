@@ -1,5 +1,4 @@
 import { S3 } from 'aws-sdk';
-import { v4 } from 'uuid';
 import { fileExt2contentType, name2fileExt } from '@cpmech/util';
 
 // put data on S3 and returns the filekey
@@ -7,15 +6,11 @@ import { fileExt2contentType, name2fileExt } from '@cpmech/util';
 export const putStringObject = async (
   data: string,
   bucket: string,
-  filekey?: string, // set filekey directly => will not use UUID
-  prefix = '', // ignored if filekey is given; othewise will be pre-added to UUID
+  filekey: string,
   s3Config?: S3.ClientConfiguration,
 ): Promise<string> => {
-  const s3 = new S3(s3Config);
-  if (!filekey) {
-    filekey = prefix + v4().replace(/-/g, '') + '.txt';
-  }
   const ext = name2fileExt(filekey);
+  const s3 = new S3(s3Config);
   await s3
     .putObject({
       Bucket: bucket,
