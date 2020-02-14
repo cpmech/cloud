@@ -1,6 +1,13 @@
+import AWS from 'aws-sdk';
 import { v4 } from 'uuid';
 import { initEnvars } from '@cpmech/envars';
 import { sendEmail, receiveEmail, deleteEmail, extractCodeFromEmail } from '../index';
+
+jest.setTimeout(20000);
+
+AWS.config.update({
+  region: 'us-east-1',
+});
 
 const envars = {
   DOMAIN: '',
@@ -8,8 +15,6 @@ const envars = {
 };
 
 initEnvars(envars);
-
-jest.setTimeout(20000);
 
 describe('sendEmail, receiveEmail and deleteEmail', () => {
   it('works', async () => {

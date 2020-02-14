@@ -5,7 +5,7 @@ export const sendEmail = async (
   receivers: string[],
   subject: string,
   message: string,
-  region: string = 'us-east-1',
+  sqsConfig?: AWS.SQS.ClientConfiguration,
 ) => {
   const params: AWS.SES.SendEmailRequest = {
     Destination: {
@@ -25,6 +25,6 @@ export const sendEmail = async (
     },
     Source: sender,
   };
-  const ses = new AWS.SES({ region });
+  const ses = new AWS.SES(sqsConfig);
   await ses.sendEmail(params).promise();
 };

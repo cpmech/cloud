@@ -4,9 +4,9 @@ import AWS from 'aws-sdk';
 export const deleteEmail = async (
   receiptHandle: string,
   queueUrl: string,
-  region: string = 'us-east-1',
+  sqsConfig?: AWS.SQS.ClientConfiguration,
 ) => {
-  const sqs = new AWS.SQS({ region });
+  const sqs = new AWS.SQS(sqsConfig);
   await sqs
     .deleteMessage({
       QueueUrl: queueUrl,

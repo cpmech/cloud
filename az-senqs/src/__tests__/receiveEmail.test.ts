@@ -87,21 +87,21 @@ describe('receiveEmail', () => {
 
   test('works', async () => {
     fakePromise.promise.mockImplementation(() => Promise.resolve({ Messages: data1 }));
-    const res = await receiveEmail('me@here.co', 'queue-url', 'us-east-1', 1);
+    const res = await receiveEmail('me@here.co', 'queue-url', 1);
     expect(res.content).toBe('Hello World');
     expect(res.receiptHandle).toBe(ReceiptHandle);
   });
 
   test('no Messages', async () => {
     fakePromise.promise.mockImplementation(() => Promise.resolve({}));
-    await expect(receiveEmail('me@here.co', 'queue-url', 'us-east-1', 1)).rejects.toThrowError(
+    await expect(receiveEmail('me@here.co', 'queue-url', 1)).rejects.toThrowError(
       `cannot find email sent to ${'me@here.co'}`,
     );
   });
 
   test('no ReceiptHandle and Body', async () => {
     fakePromise.promise.mockImplementation(() => Promise.resolve({ Messages: [{}] }));
-    await expect(receiveEmail('me@here.co', 'queue-url', 'us-east-1', 1)).rejects.toThrowError(
+    await expect(receiveEmail('me@here.co', 'queue-url', 1)).rejects.toThrowError(
       `cannot find email sent to ${'me@here.co'}`,
     );
   });
@@ -110,7 +110,7 @@ describe('receiveEmail', () => {
     fakePromise.promise.mockImplementation(() =>
       Promise.resolve({ Messages: [{ ReceiptHandle, Body: '{}' }] }),
     );
-    await expect(receiveEmail('me@here.co', 'queue-url', 'us-east-1', 1)).rejects.toThrowError(
+    await expect(receiveEmail('me@here.co', 'queue-url', 1)).rejects.toThrowError(
       `cannot find email sent to ${'me@here.co'}`,
     );
   });
@@ -121,7 +121,7 @@ describe('receiveEmail', () => {
         Messages: [{ ReceiptHandle, Body: JSON.stringify({ Message: '{}' }) }],
       }),
     );
-    await expect(receiveEmail('me@here.co', 'queue-url', 'us-east-1', 1)).rejects.toThrowError(
+    await expect(receiveEmail('me@here.co', 'queue-url', 1)).rejects.toThrowError(
       `cannot find email sent to ${'me@here.co'}`,
     );
   });
@@ -138,7 +138,7 @@ describe('receiveEmail', () => {
       }
     });
     try {
-      await receiveEmail('inexistent@email.co', 'queue-url', 'us-east-2', 6);
+      await receiveEmail('inexistent@email.co', 'queue-url', 6);
     } catch (_) {
       /* ok*/
     }
@@ -149,7 +149,7 @@ describe('receiveEmail', () => {
   test('skip sleep if next try is the last one', async () => {
     fakePromise.promise.mockImplementation(() => Promise.resolve({ Messages: data1 }));
     try {
-      await receiveEmail('inexistent@here.co', 'queue-url', 'us-east-1', 4);
+      await receiveEmail('inexistent@here.co', 'queue-url', 4);
     } catch (_) {
       /* ok*/
     }

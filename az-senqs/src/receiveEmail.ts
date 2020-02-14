@@ -6,11 +6,11 @@ import { IQueueEmail } from './types';
 export const receiveEmail = async (
   destination: string,
   queueUrl: string,
-  region: string = 'us-east-1',
   numberOfTrials: number = 5,
   delayMS: number = 3000,
+  sqsConfig?: AWS.SQS.ClientConfiguration,
 ): Promise<IQueueEmail> => {
-  const sqs = new AWS.SQS({ region });
+  const sqs = new AWS.SQS(sqsConfig);
   for (let i = 0; i < numberOfTrials; i++) {
     const res = await sqs
       .receiveMessage({
