@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "@cpmech/basic": "^4.3.0",
-    "aws-sdk": "^2.618.0",
+    "aws-sdk": "^2.619.0",
     "mailparser": "^2.7.7"
   },
   "gitHead": "3b8c3043da9440da1bbd2cf4cd7cef9284859bf0"

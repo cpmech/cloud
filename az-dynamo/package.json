@@ -49,7 +49,7 @@
     "@cpmech/basic": "^4.3.0",
     "@cpmech/js2ts": "^2.3.0",
     "@cpmech/util": "^1.3.0",
-    "aws-sdk": "^2.618.0"
+    "aws-sdk": "^2.619.0"
   },
   "gitHead": "b737d0975697c8dffab27106b0ab5dc4e361aacd"
 }
