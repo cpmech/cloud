@@ -4,11 +4,11 @@ import { Iany } from '@cpmech/js2ts';
 export interface IQueryInput {
   table: string;
   index?: string; // index name => will search the index instead
-  hashKeyName: string;
-  hashKeyValue: string;
-  rangeKeyName?: string;
-  rangeKeyValue?: string;
-  rangeKeyValue2?: string; // to be used with the 'between' op
+  pkName: string; // hashKeyName
+  pkValue: string; // hashKeyValue
+  skName?: string; // rangeKeyName
+  skValue?: string; // rangeKeyValue
+  skValue2?: string; // rangeKeyValue => to be used with the 'between' op
   op?: '<=' | '<' | '=' | '>' | '>=' | 'prefix' | 'between'; // default is '='
 }
 
@@ -17,11 +17,11 @@ export interface IQueryInput {
 export const query = async ({
   table,
   index,
-  hashKeyName,
-  hashKeyValue,
-  rangeKeyName,
-  rangeKeyValue,
-  rangeKeyValue2,
+  pkName: pkName,
+  pkValue: pkValue,
+  skName: skName,
+  skValue: skValue,
+  skValue2: skValue2,
   op,
 }: IQueryInput): Promise<Iany[]> => {
   // set default op
@@ -35,41 +35,41 @@ export const query = async ({
     IndexName: index,
   };
 
-  // with hash and sort keys and a second value for the sort condition (BETWEEN)
-  if (rangeKeyName && rangeKeyValue2) {
+  // with primary and sort keys and a second value for the sort condition (BETWEEN)
+  if (skName && skValue2) {
     params.ExpressionAttributeNames = {
-      [`#${hashKeyName}`]: hashKeyName,
-      [`#${rangeKeyName}`]: rangeKeyName,
+      [`#${pkName}`]: pkName,
+      [`#${skName}`]: skName,
     };
     params.ExpressionAttributeValues = {
-      ':hval': hashKeyValue,
-      ':rval': rangeKeyValue,
-      ':rval2': rangeKeyValue2,
+      ':hval': pkValue,
+      ':rval': skValue,
+      ':rval2': skValue2,
     };
-    params.KeyConditionExpression = `#${hashKeyName} = :hval and #${rangeKeyName} BETWEEN :rval AND :rval2`;
+    params.KeyConditionExpression = `#${pkName} = :hval and #${skName} BETWEEN :rval AND :rval2`;
   }
 
-  // with hash and sort keys
-  else if (rangeKeyName) {
+  // with hash (primary) and range (sort) keys
+  else if (skName) {
     params.ExpressionAttributeNames = {
-      [`#${hashKeyName}`]: hashKeyName,
-      [`#${rangeKeyName}`]: rangeKeyName,
+      [`#${pkName}`]: pkName,
+      [`#${skName}`]: skName,
     };
     params.ExpressionAttributeValues = {
-      ':hval': hashKeyValue,
-      ':rval': rangeKeyValue,
+      ':hval': pkValue,
+      ':rval': skValue,
     };
     params.KeyConditionExpression =
       op === 'prefix'
-        ? `#${hashKeyName} = :hval and begins_with(#${rangeKeyName}, :rval)`
-        : `#${hashKeyName} = :hval and #${rangeKeyName} ${op} :rval`;
+        ? `#${pkName} = :hval and begins_with(#${skName}, :rval)`
+        : `#${pkName} = :hval and #${skName} ${op} :rval`;
   }
 
-  // just hash key
+  // just hash key (primary key)
   else {
-    params.ExpressionAttributeNames = { [`#${hashKeyName}`]: hashKeyName };
-    params.ExpressionAttributeValues = { ':hval': hashKeyValue };
-    params.KeyConditionExpression = `#${hashKeyName} = :hval`;
+    params.ExpressionAttributeNames = { [`#${pkName}`]: pkName };
+    params.ExpressionAttributeValues = { ':hval': pkValue };
+    params.KeyConditionExpression = `#${pkName} = :hval`;
   }
 
   // perform query

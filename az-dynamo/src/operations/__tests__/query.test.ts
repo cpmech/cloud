@@ -67,44 +67,44 @@ const s5 = {
 
 describe('query operation', () => {
   it('should return all aspects', async () => {
-    const res = await query({ table, hashKeyName: 'itemId', hashKeyValue: 'get' });
+    const res = await query({ table, pkName: 'itemId', pkValue: 'get' });
     expect(res).toEqual([data1, data2]);
   });
 
   it('should return only LOCATION aspect', async () => {
     const res = await query({
       table,
-      hashKeyName: 'itemId',
-      hashKeyValue: 'get',
-      rangeKeyName: 'aspect',
-      rangeKeyValue: 'LOCATION',
+      pkName: 'itemId',
+      pkValue: 'get',
+      skName: 'aspect',
+      skValue: 'LOCATION',
     });
     expect(res).toEqual([data2]);
   });
 
   it('should return empty list on inexistent keys', async () => {
-    const r1 = await query({ table, hashKeyName: 'itemId', hashKeyValue: '__NADA__' });
+    const r1 = await query({ table, pkName: 'itemId', pkValue: '__NADA__' });
     const r2 = await query({
       table,
-      hashKeyName: 'itemId',
-      hashKeyValue: '__NADA__',
-      rangeKeyName: 'aspect',
-      rangeKeyValue: 'ACCESS',
+      pkName: 'itemId',
+      pkValue: '__NADA__',
+      skName: 'aspect',
+      skValue: 'ACCESS',
     });
     const r3 = await query({
       table,
-      hashKeyName: 'itemId',
-      hashKeyValue: 'get',
-      rangeKeyName: 'aspect',
-      rangeKeyValue: '__NADA__',
+      pkName: 'itemId',
+      pkValue: 'get',
+      skName: 'aspect',
+      skValue: '__NADA__',
     });
     const r4 = await query({
       table,
-      hashKeyName: 'itemId',
-      hashKeyValue: 'get',
-      rangeKeyName: 'aspect',
-      rangeKeyValue: 'X',
-      rangeKeyValue2: 'Y',
+      pkName: 'itemId',
+      pkValue: 'get',
+      skName: 'aspect',
+      skValue: 'X',
+      skValue2: 'Y',
       op: 'between',
     });
     expect(r1).toEqual([]);
@@ -116,18 +116,18 @@ describe('query operation', () => {
   it('should query using "prefix"', async () => {
     const r1 = await query({
       table,
-      hashKeyName: 'itemId',
-      hashKeyValue: 'get',
-      rangeKeyName: 'aspect',
-      rangeKeyValue: 'A',
+      pkName: 'itemId',
+      pkValue: 'get',
+      skName: 'aspect',
+      skValue: 'A',
       op: 'prefix',
     });
     const r2 = await query({
       table,
-      hashKeyName: 'itemId',
-      hashKeyValue: 'get',
-      rangeKeyName: 'aspect',
-      rangeKeyValue: 'L',
+      pkName: 'itemId',
+      pkValue: 'get',
+      skName: 'aspect',
+      skValue: 'L',
       op: 'prefix',
     });
     expect(r1).toEqual([data1]);
@@ -135,7 +135,7 @@ describe('query operation', () => {
   });
 
   it('should query the index', async () => {
-    const res = await query({ table, index, hashKeyName: 'aspect', hashKeyValue: 'NAME' });
+    const res = await query({ table, index, pkName: 'aspect', pkValue: 'NAME' });
     expect(res).toEqual([s1, s2, s3, s4, s5]);
   });
 
@@ -143,10 +143,10 @@ describe('query operation', () => {
     const res = await query({
       table,
       index,
-      hashKeyName: 'aspect',
-      hashKeyValue: 'NAME',
-      rangeKeyName: 'indexSK',
-      rangeKeyValue: '2020-01-01',
+      pkName: 'aspect',
+      pkValue: 'NAME',
+      skName: 'indexSK',
+      skValue: '2020-01-01',
       op: 'prefix',
     });
     expect(res).toEqual([s1]);
@@ -156,11 +156,11 @@ describe('query operation', () => {
     const res = await query({
       table,
       index,
-      hashKeyName: 'aspect',
-      hashKeyValue: 'NAME',
-      rangeKeyName: 'indexSK',
-      rangeKeyValue: '2020-01-01',
-      rangeKeyValue2: '2020-01-03T12:00:00Z',
+      pkName: 'aspect',
+      pkValue: 'NAME',
+      skName: 'indexSK',
+      skValue: '2020-01-01',
+      skValue2: '2020-01-03T12:00:00Z',
       op: 'between',
     });
     expect(res).toEqual([s1, s2, s3]);

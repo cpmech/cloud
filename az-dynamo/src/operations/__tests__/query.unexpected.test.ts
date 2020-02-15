@@ -12,14 +12,28 @@ jest.mock('aws-sdk', () => ({
   },
 }));
 
-const tableName = 'TEST-AZDYN-USERS';
+const table = 'TEST-AZDYN-USERS';
 
 describe('unexpected query operation', () => {
   it('should return empty list on an unexpected situation', async () => {
     fakePromise.promise.mockImplementation(() => Promise.resolve({}));
-    const r1 = await query(tableName, 'itemId', 'get');
-    const r2 = await query(tableName, 'itemId', 'get', 'aspect', 'LOCATION');
-    const r3 = await query(tableName, 'itemId', 'get', 'aspect', 'X', undefined, 'between', 'Z');
+    const r1 = await query({ table, pkName: 'itemId', pkValue: 'get' });
+    const r2 = await query({
+      table,
+      pkName: 'itemId',
+      pkValue: 'get',
+      skName: 'aspect',
+      skValue: 'LOCATION',
+    });
+    const r3 = await query({
+      table,
+      pkName: 'itemId',
+      pkValue: 'get',
+      skName: 'aspect',
+      skValue: 'X',
+      skValue2: 'Z',
+      op: 'between',
+    });
     expect(r1).toEqual([]);
     expect(r2).toEqual([]);
     expect(r3).toEqual([]);
@@ -27,7 +41,7 @@ describe('unexpected query operation', () => {
 
   it('should throw error due to LastEvaluatedKey', async () => {
     fakePromise.promise.mockImplementation(() => Promise.resolve({ LastEvaluatedKey: 'somekey' }));
-    await expect(query(tableName, 'itemId', 'get')).rejects.toThrowError(
+    await expect(query({ table, pkName: 'itemId', pkValue: 'get' })).rejects.toThrowError(
       'cannot handle partial results just yet',
     );
   });
