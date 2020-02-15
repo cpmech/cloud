@@ -7,6 +7,7 @@ import { any2updateData } from '../util/any2updateData';
 // (even from different tables in the same region)
 // NOTE: (1) the max number of items to update is 10
 //       (2) the updated values are returned by another call to the DB
+//       (3) the primaryKey (partition or sort) MAY be present in 'data'
 // ex: ConditionExpression: "attribute_not_exists(username)"
 //
 // The return data is retrived using the transactGet method
@@ -33,7 +34,7 @@ export const updateT = async (
     Update: {
       TableName: table,
       Key: primaryKey,
-      ...any2updateData(data),
+      ...any2updateData(data, Object.keys(primaryKey)),
       ConditionExpression,
     },
   }));

@@ -44,6 +44,26 @@ describe('update operation', () => {
     expect(res.Item).toEqual(correct);
   });
 
+  it('should update ACCESS data even with the primaryKey in data', async () => {
+    const key = { itemId: 'update', aspect: 'ACCESS' };
+    const updated = await update(tableName, key, {
+      ...key,
+      fullName: 'Tob Retset',
+      confirmed: false,
+    });
+    const correct = {
+      ...key,
+      indexSK: '2020-01-19T01:02:06Z',
+      email: 'update@operation.com',
+      fullName: 'Tob Retset',
+      confirmed: false,
+      confirmMessageCount: 3,
+    };
+    expect(updated).toEqual(correct);
+    const res = await ddb.get({ TableName: tableName, Key: key }).promise();
+    expect(res.Item).toEqual(correct);
+  });
+
   it('should update LOCATION data', async () => {
     const key = { itemId: 'update', aspect: 'LOCATION' };
     const coordinates = {
