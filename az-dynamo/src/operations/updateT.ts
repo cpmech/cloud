@@ -3,6 +3,13 @@ import { Iany } from '@cpmech/js2ts';
 import { IPrimaryKey } from '../types';
 import { any2updateData } from '../util/any2updateData';
 
+export interface IUpdateTItem {
+  table: string;
+  primaryKey: IPrimaryKey;
+  data: Iany;
+  ConditionExpression?: string;
+}
+
 // updateT updates data in a single TRANSACTION
 // (even from different tables in the same region)
 // NOTE: (1) the max number of items to update is 10
@@ -16,12 +23,7 @@ import { any2updateData } from '../util/any2updateData';
 //
 //
 export const updateT = async (
-  items: {
-    table: string;
-    primaryKey: IPrimaryKey;
-    data: Iany;
-    ConditionExpression?: string;
-  }[],
+  items: IUpdateTItem[],
   returnItems = false,
 ): Promise<null | Iany[]> => {
   // check

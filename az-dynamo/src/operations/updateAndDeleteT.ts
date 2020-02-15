@@ -1,7 +1,13 @@
 import { DynamoDB } from 'aws-sdk';
-import { Iany } from '@cpmech/js2ts';
 import { IPrimaryKey } from '../types';
 import { any2updateData } from '../util/any2updateData';
+import { IUpdateTItem } from './updateT';
+
+export interface IDeleteTItem {
+  table: string;
+  primaryKey: IPrimaryKey;
+  ConditionExpression?: string;
+}
 
 // updateAndDeleteT updates some data and delete other in a single TRANSACTION
 // (even from different tables in the same region)
@@ -10,17 +16,8 @@ import { any2updateData } from '../util/any2updateData';
 //       (3) the primaryKey (partition or sort) MAY be present in 'data'
 // ex: ConditionExpression: "attribute_not_exists(username)"
 export const updateAndDeleteT = async (
-  itemsUpdate: {
-    table: string;
-    primaryKey: IPrimaryKey;
-    data: Iany;
-    ConditionExpression?: string;
-  }[],
-  itemsDelete: {
-    table: string;
-    primaryKey: IPrimaryKey;
-    ConditionExpression?: string;
-  }[],
+  itemsUpdate: IUpdateTItem[],
+  itemsDelete: IDeleteTItem[],
 ) => {
   // check
   const sum = itemsUpdate.length + itemsDelete.length;

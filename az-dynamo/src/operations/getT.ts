@@ -2,6 +2,11 @@ import { DynamoDB } from 'aws-sdk';
 import { Iany } from '@cpmech/basic';
 import { IPrimaryKey } from '../types';
 
+export interface IGetTItem {
+  table: string;
+  primaryKey: IPrimaryKey;
+}
+
 // getT gets data in a single TRANSACTION
 // (even from different tables in the same region)
 //
@@ -13,9 +18,7 @@ import { IPrimaryKey } from '../types';
 //
 // Reference: https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html#transactGetItems-property
 //
-export const getT = async (
-  items: { table: string; primaryKey: IPrimaryKey }[],
-): Promise<Iany[]> => {
+export const getT = async (items: IGetTItem[]): Promise<Iany[]> => {
   // params
   const TransactItems = items.map(({ table, primaryKey }) => ({
     Get: {

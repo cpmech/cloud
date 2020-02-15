@@ -1,18 +1,34 @@
 import { DynamoDB } from 'aws-sdk';
 import { Iany } from '@cpmech/js2ts';
 
+export interface IQueryInput {
+  table: string;
+  index?: string; // index name => will search the index instead
+  hashKeyName: string;
+  hashKeyValue: string;
+  rangeKeyName?: string;
+  rangeKeyValue?: string;
+  rangeKeyValue2?: string; // to be used with the 'between' op
+  op?: '<=' | '<' | '=' | '>' | '>=' | 'prefix' | 'between'; // default is '='
+}
+
 // query returns one or more items from the DB
 // NOTE: the hashKey is essential and the rangeKey is optional
-export const query = async (
-  table: string,
-  hashKeyName: string,
-  hashKeyValue: string,
-  rangeKeyName?: string,
-  rangeKeyValue?: string,
-  index?: string, // index name
-  op: '<=' | '<' | '=' | '>' | '>=' | 'prefix' | 'between' = '=',
-  rangeKeyValue2?: string, // to be used with the 'between' op
-): Promise<Iany[]> => {
+export const query = async ({
+  table,
+  index,
+  hashKeyName,
+  hashKeyValue,
+  rangeKeyName,
+  rangeKeyValue,
+  rangeKeyValue2,
+  op,
+}: IQueryInput): Promise<Iany[]> => {
+  // set default op
+  if (!op) {
+    op = '=';
+  }
+
   // params
   const params: DynamoDB.DocumentClient.QueryInput = {
     TableName: table,
