@@ -26,8 +26,8 @@ AWS.config.update({
   },
 });
 
-const tableName = 'TEST-AZDYN-USERS';
-const tableIndex = 'USERS-INDEX';
+const table = 'TEST-AZDYN-USERS';
+const index = 'USERS-INDEX';
 
 const s1 = {
   itemId: 'scan.1',
@@ -67,19 +67,26 @@ const s5 = {
 
 describe('scan operation', () => {
   it('should filter NAME data of all users', async () => {
-    const res = await scan(tableName, 'aspect', 'NAME');
+    const res = await scan({ table, skName: 'aspect', skValue: 'NAME' });
     res.sort(sortAlpha);
     expect(res).toEqual([s1, s2, s3, s4, s5]);
   });
 
   it('should filter NAM(E) data using "prefix"', async () => {
-    const res = await scan(tableName, 'aspect', 'N', undefined, 'prefix');
+    const res = await scan({ table, skName: 'aspect', skValue: 'N', op: 'prefix' });
     res.sort(sortAlpha);
     expect(res).toEqual([s1, s2, s3, s4, s5]);
   });
 
   it('should scan the index and filter data using "between"', async () => {
-    const res = await scan(tableName, 'indexSK', '2020-01-02', tableIndex, 'between', '2020-01-04');
+    const res = await scan({
+      table,
+      index,
+      skName: 'indexSK',
+      skValue: '2020-01-02',
+      skValue2: '2020-01-04',
+      op: 'between',
+    });
     // res.sort(sortAlpha);
     expect(res).toEqual([s2, s3]);
   });

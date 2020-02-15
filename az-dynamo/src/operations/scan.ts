@@ -1,6 +1,15 @@
 import { DynamoDB } from 'aws-sdk';
 import { Iany } from '@cpmech/js2ts';
 
+export interface IScanInput {
+  table: string;
+  index?: string; // index name => will scan the index instead
+  skName: string; // rangeKeyName
+  skValue: string; // rangeKeyValue
+  skValue2?: string; // rangeKeyValue => to be used with the 'between' op
+  op?: '<=' | '<' | '=' | '>' | '>=' | 'prefix' | 'between'; // default is '='
+}
+
 // scan returns all items from the table
 // NOTE: the hashKey is not needed here, but the rangeKey is essential
 //
@@ -22,14 +31,19 @@ import { Iany } from '@cpmech/js2ts';
 //   applications can use Query instead of Scan.
 //   (For tables, you can also consider using the GetItem and BatchGetItem APIs.)
 //
-export const scan = async (
-  table: string,
-  rangeKeyName: string,
-  rangeKeyValue: string,
-  index?: string, // index name
-  op: '<=' | '<' | '=' | '>' | '>=' | 'prefix' | 'between' = '=',
-  rangeKeyValue2?: string, // to be used with the 'between' op
-): Promise<Iany[]> => {
+export const scan = async ({
+  table,
+  index,
+  skName,
+  skValue,
+  skValue2,
+  op,
+}: IScanInput): Promise<Iany[]> => {
+  // set default op
+  if (!op) {
+    op = '=';
+  }
+
   // params
   const params: DynamoDB.DocumentClient.ScanInput = {
     TableName: table,
@@ -37,27 +51,27 @@ export const scan = async (
   };
 
   // 'between' case
-  if (rangeKeyValue2) {
+  if (skValue2) {
     params.ExpressionAttributeNames = {
-      [`#${rangeKeyName}`]: rangeKeyName,
+      [`#${skName}`]: skName,
     };
     params.ExpressionAttributeValues = {
-      ':rval': rangeKeyValue,
-      ':rval2': rangeKeyValue2,
+      ':rval': skValue,
+      ':rval2': skValue2,
     };
-    params.FilterExpression = `#${rangeKeyName} BETWEEN :rval AND :rval2`;
+    params.FilterExpression = `#${skName} BETWEEN :rval AND :rval2`;
   }
 
   // default
   else {
     params.ExpressionAttributeNames = {
-      [`#${rangeKeyName}`]: rangeKeyName,
+      [`#${skName}`]: skName,
     };
     params.ExpressionAttributeValues = {
-      ':rval': rangeKeyValue,
+      ':rval': skValue,
     };
     params.FilterExpression =
-      op === 'prefix' ? `begins_with(#${rangeKeyName}, :rval)` : `#${rangeKeyName} ${op} :rval`;
+      op === 'prefix' ? `begins_with(#${skName}, :rval)` : `#${skName} ${op} :rval`;
   }
 
   // perform scan
