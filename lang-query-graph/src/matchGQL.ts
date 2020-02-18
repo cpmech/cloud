@@ -15,14 +15,14 @@ export const matchGQL = (
   const vals = getDocumentNodeValues(ast, gqlTypeName, useBracesToIndicateNesting, false);
   if (!shallowCompareArrays(keys, vals)) {
     throw new Error(
-      `object and GraphQL type are different.\nkeys of object = ${keys}\nkeys of gql = ${vals}`,
+      `object and GraphQL type are different.\nkeys of object:\n${keys}\nkeys of gql:\n${vals}`,
     );
   }
   if (gqlFragmentName) {
     const fkeys = getDocumentNodeValues(ast, gqlFragmentName, useBracesToIndicateNesting, false);
     if (!shallowCompareArrays(keys, fkeys)) {
       throw new Error(
-        `object and fragment are different.\nkeys of object = ${keys}\nkeys of fragment = ${fkeys}`,
+        `object and fragment are different.\nkeys of object:\n${keys}\nkeys of fragment:\n${fkeys}`,
       );
     }
   }

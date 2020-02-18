@@ -170,7 +170,7 @@ describe('matchGQL', () => {
         'object and GraphQL type are different',
       );
       expect(() => matchGQL(myAnotherType, ast, 'MyType')).toThrowError(
-        'object and GraphQL type are different.\nkeys of object = name,email,address,somethingElse\nkeys of gql = name,email,address',
+        'object and GraphQL type are different.\nkeys of object:\nname,email,address,somethingElse\nkeys of gql:\nname,email,address',
       );
     });
   });
@@ -182,7 +182,7 @@ describe('matchGQL', () => {
 
     it('should throw error if any is different', () => {
       expect(() => matchGQL(myType, ast, 'MyType', 'MyAnotherTypeFrag')).toThrowError(
-        'object and fragment are different.\nkeys of object = name,email,address\nkeys of fragment = name,email,address,somethingElse',
+        'object and fragment are different.\nkeys of object:\nname,email,address\nkeys of fragment:\nname,email,address,somethingElse',
       );
     });
   });
@@ -195,10 +195,10 @@ describe('matchGQL', () => {
 
     it('should throw error if object and AST are not equivalent', () => {
       expect(() => matchGQL(myNestedType, ast, 'MyAnotherNestedType')).toThrowError(
-        'object and GraphQL type are different.\nkeys of object = firstLevel,nested,{,secondLevel,nestedAgain,{,thirdLevel,},}\nkeys of gql = firstLevel,nested,{,secondLevel,nestedAgain,{,thirdLevel,nestedAgainAgain,{,fourthLevel,},},}',
+        'object and GraphQL type are different.\nkeys of object:\nfirstLevel,nested,{,secondLevel,nestedAgain,{,thirdLevel,},}\nkeys of gql:\nfirstLevel,nested,{,secondLevel,nestedAgain,{,thirdLevel,nestedAgainAgain,{,fourthLevel,},},}',
       );
       expect(() => matchGQL(myAnotherNestedType, ast, 'MyNestedType')).toThrowError(
-        'object and GraphQL type are different.\nkeys of object = firstLevel,nested,{,secondLevel,nestedAgain,{,thirdLevel,nestedAgainAgain,{,fourthLevel,},},}\nkeys of gql = firstLevel,nested,{,secondLevel,nestedAgain,{,thirdLevel,},}',
+        'object and GraphQL type are different.\nkeys of object:\nfirstLevel,nested,{,secondLevel,nestedAgain,{,thirdLevel,nestedAgainAgain,{,fourthLevel,},},}\nkeys of gql:\nfirstLevel,nested,{,secondLevel,nestedAgain,{,thirdLevel,},}',
       );
     });
   });
@@ -215,7 +215,7 @@ describe('matchGQL', () => {
       expect(() =>
         matchGQL(myNestedType, ast, 'MyNestedType', 'MyAnotherNestedTypeFrag'),
       ).toThrowError(
-        'object and fragment are different.\nkeys of object = firstLevel,nested,{,secondLevel,nestedAgain,{,thirdLevel,},}\nkeys of fragment = firstLevel,nested,{,secondLevel,nestedAgain,{,thirdLevel,nestedAgainAgain,{,fourthLevel,},},}',
+        'object and fragment are different.\nkeys of object:\nfirstLevel,nested,{,secondLevel,nestedAgain,{,thirdLevel,},}\nkeys of fragment:\nfirstLevel,nested,{,secondLevel,nestedAgain,{,thirdLevel,nestedAgainAgain,{,fourthLevel,},},}',
       );
     });
   });
