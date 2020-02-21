@@ -9,6 +9,7 @@ export const zeroEventRequestContext: APIGatewayEventRequestContext = {
   domainName: '',
   eventType: '',
   extendedRequestId: '',
+  protocol: '',
   httpMethod: '',
   identity: {
     accessKey: null,
