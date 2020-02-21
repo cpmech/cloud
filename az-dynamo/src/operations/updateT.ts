@@ -7,7 +7,7 @@ export interface IUpdateTItem {
   table: string;
   primaryKey: IPrimaryKey;
   data: Iany;
-  ConditionExpression?: string;
+  put?: boolean;
 }
 
 // updateT updates data in a single TRANSACTION
@@ -32,14 +32,22 @@ export const updateT = async (
   }
 
   // params
-  const TransactItems = items.map(({ table, primaryKey, data, ConditionExpression }) => ({
-    Update: {
-      TableName: table,
-      Key: primaryKey,
-      ...any2updateData(data, Object.keys(primaryKey)),
-      ConditionExpression,
-    },
-  }));
+  const TransactItems = items.map(({ table, primaryKey, data, put }) =>
+    put
+      ? {
+          Put: {
+            TableName: table,
+            Item: { ...primaryKey, ...data },
+          },
+        }
+      : {
+          Update: {
+            TableName: table,
+            Key: primaryKey,
+            ...any2updateData(data, Object.keys(primaryKey)),
+          },
+        },
+  );
 
   // transaction
   const ddb = new DynamoDB.DocumentClient();

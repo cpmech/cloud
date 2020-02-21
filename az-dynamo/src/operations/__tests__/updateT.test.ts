@@ -37,7 +37,7 @@ const cleanUp = async () => {
 afterAll(async () => await cleanUp());
 
 describe('updateT operation', () => {
-  it('should update two items at the same time', async () => {
+  it('should update two items at the same time (also check PUT)', async () => {
     const key1 = { itemId: 'updateT', aspect: 'DATA' };
     const key2 = { itemId: 'updateT', aspect: 'MORE_DATA' };
     const before1 = await ddb.get({ TableName: tableName, Key: key1 }).promise();
@@ -68,6 +68,30 @@ describe('updateT operation', () => {
     const r2 = await ddb.get({ TableName: tableName, Key: key2 }).promise();
     expect(r1.Item).toEqual(correct[0]);
     expect(r2.Item).toEqual(correct[1]);
+
+    // put => remove message and value
+    const updated2 = await updateT(
+      [
+        { table: tableName, primaryKey: key1, data: { indexSK: 'just' }, put: true },
+        { table: tableName, primaryKey: key2, data: { indexSK: '666' }, put: true },
+      ],
+      true,
+    );
+    const correct2 = [
+      {
+        ...key1,
+        indexSK: 'just',
+      },
+      {
+        ...key2,
+        indexSK: '666',
+      },
+    ];
+    expect(updated).toEqual(correct);
+    const s1 = await ddb.get({ TableName: tableName, Key: key1 }).promise();
+    const s2 = await ddb.get({ TableName: tableName, Key: key2 }).promise();
+    expect(s1.Item).toEqual(correct2[0]);
+    expect(s2.Item).toEqual(correct2[1]);
   });
 
   it('should update two items without response', async () => {
