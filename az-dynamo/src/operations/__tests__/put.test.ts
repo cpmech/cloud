@@ -43,4 +43,9 @@ describe('put operation', () => {
     const correct2b = { ...key2 };
     expect(added2b.Item).toEqual(correct2b);
   });
+
+  it('should return nullif there is no data to put', async () => {
+    const res = await put(tableName, {});
+    expect(res).toBeNull();
+  });
 });
