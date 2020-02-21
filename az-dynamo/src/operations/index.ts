@@ -4,6 +4,7 @@ export * from './get';
 export * from './getT';
 export * from './getBatch';
 export * from './increment';
+export * from './put';
 export * from './query';
 export * from './removeAttributes';
 export * from './removeItem';
