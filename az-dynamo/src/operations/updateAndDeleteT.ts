@@ -6,7 +6,6 @@ import { IUpdateTItem } from './updateT';
 export interface IDeleteTItem {
   table: string;
   primaryKey: IPrimaryKey;
-  ConditionExpression?: string;
 }
 
 // updateAndDeleteT updates some data and delete other in a single TRANSACTION
@@ -26,21 +25,19 @@ export const updateAndDeleteT = async (
   }
 
   // params: update
-  const pUpdate = itemsUpdate.map(({ table, primaryKey, data, ConditionExpression }) => ({
+  const pUpdate = itemsUpdate.map(({ table, primaryKey, data }) => ({
     Update: {
       TableName: table,
       Key: primaryKey,
       ...any2updateData(data, Object.keys(primaryKey)),
-      ConditionExpression,
     },
   }));
 
   // params: delete
-  const pDelete = itemsDelete.map(({ table, primaryKey, ConditionExpression }) => ({
+  const pDelete = itemsDelete.map(({ table, primaryKey }) => ({
     Delete: {
       TableName: table,
       Key: primaryKey,
-      ConditionExpression,
     },
   }));
 
