@@ -7,7 +7,6 @@ export * from './diffSimple';
 export * from './email2key';
 export * from './empty2blank';
 export * from './filled';
-export * from './formatCPF';
 export * from './getObjectKeys';
 export * from './hasProp';
 export * from './limitNumDecimals';
