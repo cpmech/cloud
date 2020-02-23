@@ -1,6 +1,6 @@
 {
   "name": "@cpmech/az-dynamo",
-  "version": "3.9.0",
+  "version": "3.10.0",
   "license": "MIT",
   "author": {
     "name": "Dorival Pedroso",
@@ -46,9 +46,9 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@cpmech/basic": "^4.4.0",
+    "@cpmech/basic": "^4.5.0",
     "@cpmech/js2ts": "^2.4.0",
-    "@cpmech/util": "^1.4.0",
+    "@cpmech/util": "^1.5.0",
     "aws-sdk": "^2.624.0"
   },
   "gitHead": "b737d0975697c8dffab27106b0ab5dc4e361aacd"
