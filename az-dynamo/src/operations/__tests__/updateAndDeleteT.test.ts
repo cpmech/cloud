@@ -18,9 +18,9 @@ const fixItem = async (i: number) => {
     .update({
       TableName: tableName,
       Key: keys[i],
-      UpdateExpression: 'SET #y0 = :x0',
-      ExpressionAttributeNames: { '#y0': 'indexSK' },
-      ExpressionAttributeValues: { ':x0': `100${i}` },
+      UpdateExpression: 'SET #y0 = :x0, #y1 = :x1',
+      ExpressionAttributeNames: { '#y0': 'indexSK', '#y1': 'message' },
+      ExpressionAttributeValues: { ':x0': `100${i}`, ':x1': `Hello 100${i}` },
     })
     .promise();
 };
@@ -44,14 +44,18 @@ describe('updateAndDeleteT operation', () => {
     const b2 = await ddb.get({ TableName: tableName, Key: keys[2] }).promise();
     const b3 = await ddb.get({ TableName: tableName, Key: keys[3] }).promise();
     [b0, b1, b2, b3].forEach((b, i) =>
-      expect(b.Item).toEqual({ ...keys[i], indexSK: String(1000 + i) }),
+      expect(b.Item).toEqual({
+        ...keys[i],
+        indexSK: `${1000 + i}`,
+        message: `Hello ${1000 + i}`,
+      }),
     );
 
     // transaction
     await updateAndDeleteT(
       [
         { table: tableName, primaryKey: keys[0], data: { indexSK: 'updated-2000' } },
-        { table: tableName, primaryKey: keys[1], data: { indexSK: 'updated-2001' } },
+        { table: tableName, primaryKey: keys[1], data: { indexSK: 'updated-2001' }, put: true },
       ],
       [
         { table: tableName, primaryKey: keys[2] },
@@ -64,9 +68,8 @@ describe('updateAndDeleteT operation', () => {
     const a1 = await ddb.get({ TableName: tableName, Key: keys[1] }).promise();
     const a2 = await ddb.get({ TableName: tableName, Key: keys[2] }).promise();
     const a3 = await ddb.get({ TableName: tableName, Key: keys[3] }).promise();
-    [a0, a1].forEach((a, i) =>
-      expect(a.Item).toEqual({ ...keys[i], indexSK: 'updated-' + String(2000 + i) }),
-    );
+    expect(a0.Item).toEqual({ ...keys[0], indexSK: 'updated-2000', message: 'Hello 1000' });
+    expect(a1.Item).toEqual({ ...keys[1], indexSK: 'updated-2001' }); // << message is gone
     [a2, a3].forEach(a => expect(a).toStrictEqual({}));
   });
 

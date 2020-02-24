@@ -25,13 +25,22 @@ export const updateAndDeleteT = async (
   }
 
   // params: update
-  const pUpdate = itemsUpdate.map(({ table, primaryKey, data }) => ({
-    Update: {
-      TableName: table,
-      Key: primaryKey,
-      ...any2updateData(data, Object.keys(primaryKey)),
-    },
-  }));
+  const pUpdate = itemsUpdate.map(({ table, primaryKey, data, put }) =>
+    put
+      ? {
+          Put: {
+            TableName: table,
+            Item: { ...primaryKey, ...data },
+          },
+        }
+      : {
+          Update: {
+            TableName: table,
+            Key: primaryKey,
+            ...any2updateData(data, Object.keys(primaryKey)),
+          },
+        },
+  );
 
   // params: delete
   const pDelete = itemsDelete.map(({ table, primaryKey }) => ({

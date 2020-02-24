@@ -152,7 +152,8 @@
         "Item": {
           "itemId": { "S": "updateAndDelete-0" },
           "aspect": { "S": "UD_TEST" },
-          "indexSK": { "S": "1000" }
+          "indexSK": { "S": "1000" },
+          "message": { "S": "Hello 1000" }
         }
       }
     },
@@ -161,7 +162,8 @@
         "Item": {
           "itemId": { "S": "updateAndDelete-1" },
           "aspect": { "S": "UD_TEST" },
-          "indexSK": { "S": "1001" }
+          "indexSK": { "S": "1001" },
+          "message": { "S": "Hello 1001" }
         }
       }
     },
@@ -170,7 +172,8 @@
         "Item": {
           "itemId": { "S": "updateAndDelete-2" },
           "aspect": { "S": "UD_TEST" },
-          "indexSK": { "S": "1002" }
+          "indexSK": { "S": "1002" },
+          "message": { "S": "Hello 1002" }
         }
       }
     },
@@ -179,7 +182,8 @@
         "Item": {
           "itemId": { "S": "updateAndDelete-3" },
           "aspect": { "S": "UD_TEST" },
-          "indexSK": { "S": "1003" }
+          "indexSK": { "S": "1003" },
+          "message": { "S": "Hello 1003" }
         }
       }
     }
