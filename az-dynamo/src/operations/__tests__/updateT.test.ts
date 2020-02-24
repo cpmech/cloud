@@ -87,7 +87,7 @@ describe('updateT operation', () => {
         indexSK: '666',
       },
     ];
-    expect(updated).toEqual(correct);
+    expect(updated2).toEqual(correct2);
     const s1 = await ddb.get({ TableName: tableName, Key: key1 }).promise();
     const s2 = await ddb.get({ TableName: tableName, Key: key2 }).promise();
     expect(s1.Item).toEqual(correct2[0]);
