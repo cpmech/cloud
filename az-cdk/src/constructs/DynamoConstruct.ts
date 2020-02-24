@@ -18,8 +18,8 @@ export interface IDynamoTable {
   pitRecovery?: boolean; // point in time recovery
   readCapacity?: number; // read capacity for the table
   writeCapacity?: number; // write capacity for the table
-  gsi?: GlobalSecondaryIndexProps;
-  lsi?: LocalSecondaryIndexProps;
+  gsis?: GlobalSecondaryIndexProps[];
+  lsis?: LocalSecondaryIndexProps[];
 }
 
 export interface IDynamoApiProps {
@@ -54,11 +54,11 @@ export class DynamoConstruct extends Construct {
       });
 
       // indices
-      if (t.gsi) {
-        table.addGlobalSecondaryIndex(t.gsi);
+      if (t.gsis) {
+        t.gsis.forEach(gsi => table.addGlobalSecondaryIndex(gsi));
       }
-      if (t.lsi) {
-        table.addLocalSecondaryIndex(t.lsi);
+      if (t.lsis) {
+        t.lsis.forEach(lsi => table.addLocalSecondaryIndex(lsi));
       }
 
       // save
