@@ -1,7 +1,11 @@
 import { Construct, Stack, StackProps, SecretValue, RemovalPolicy } from '@aws-cdk/core';
 import { Artifact, Pipeline } from '@aws-cdk/aws-codepipeline';
 import { PipelineProject, LinuxBuildImage, BuildSpec } from '@aws-cdk/aws-codebuild';
-import { GitHubSourceAction, CodeBuildAction } from '@aws-cdk/aws-codepipeline-actions';
+import {
+  GitHubSourceAction,
+  CodeBuildAction,
+  ManualApprovalAction,
+} from '@aws-cdk/aws-codepipeline-actions';
 import { PolicyStatement, IRole } from '@aws-cdk/aws-iam';
 import { Bucket } from '@aws-cdk/aws-s3';
 import { envars2cdk, Ienvars } from '../helpers/envars2cdk';
@@ -17,6 +21,7 @@ export interface IPipelineStackProps extends StackProps {
   envars?: Ienvars; // environment variables
   useYarn?: boolean; // default: use NPM
   notificationEmails?: string[]; // emails to receive notifications
+  useConfirmation?: boolean;
 }
 
 export class PipelineStack extends Stack {
@@ -87,17 +92,18 @@ export class PipelineStack extends Stack {
     const pipeline = new Pipeline(this, 'Pipeline', {
       artifactBucket: artifacts,
       restartExecutionOnUpdate: true,
-      stages: [
-        {
-          stageName: 'Source',
-          actions: [sourceAction],
-        },
-        {
-          stageName: 'Build',
-          actions: [buildAction],
-        },
-      ],
     });
+
+    pipeline.addStage({ stageName: 'Source', actions: [sourceAction] });
+
+    if (props.useConfirmation) {
+      pipeline.addStage({
+        stageName: 'Confirmation',
+        actions: [new ManualApprovalAction({ actionName: 'AreYouSure' })],
+      });
+    }
+
+    pipeline.addStage({ stageName: 'Build', actions: [buildAction] });
 
     if (props.notificationEmails) {
       new PipelineNotificationConstruct(this, `${id}PNC`, {
