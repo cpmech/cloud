@@ -22,6 +22,7 @@ export interface IPipelineStackProps extends StackProps {
   useYarn?: boolean; // default: use NPM
   notificationEmails?: string[]; // emails to receive notifications
   useConfirmation?: boolean;
+  stage?: string;
 }
 
 export class PipelineStack extends Stack {
@@ -29,7 +30,7 @@ export class PipelineStack extends Stack {
     super(scope, id, props);
 
     const group = props.group || 'service';
-    const stage = (props.envars && props.envars.stage) || '';
+    const stage = props.stage || '';
     const cmds = npmCommands(props.useYarn);
 
     const commands = props.useYarn
