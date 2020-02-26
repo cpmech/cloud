@@ -33,7 +33,7 @@
   "devDependencies": {
     "@cpmech/envars": "^2.5.0",
     "@types/jest": "^25.1.3",
-    "@types/node": "^13.7.4",
+    "@types/node": "^13.7.6",
     "jest": "^25.1.0",
     "prettier": "^1.19.1",
     "rollup": "^1.31.1",
@@ -49,7 +49,7 @@
   "dependencies": {
     "@cpmech/basic": "^4.5.0",
     "@cpmech/util": "^1.5.0",
-    "aws-sdk": "^2.624.0"
+    "aws-sdk": "^2.626.0"
   },
   "gitHead": "3b8c3043da9440da1bbd2cf4cd7cef9284859bf0"
 }
