@@ -1,6 +1,6 @@
 {
   "name": "@cpmech/lang-query-graph",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "license": "MIT",
   "author": {
     "name": "Dorival Pedroso",
@@ -41,7 +41,7 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@cpmech/basic": "^4.5.0",
+    "@cpmech/basic": "^4.6.0",
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.3"
   },
