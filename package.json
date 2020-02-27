@@ -31,7 +31,7 @@
     "kall": "lerna exec --concurrency 1 yarn type-check",
     "ncu": "lerna exec --concurrency 1 ncu",
     "ncu:u": "bash ./scripts/ncu_u.bash",
-    "dist": "yarn tall && yarn kall && yarn ball && lerna publish",
+    "dist": "yarn ball && yarn kall && yarn tall && lerna publish",
     "distX": "lerna publish"
   },
   "devDependencies": {
