@@ -13,7 +13,7 @@
     "test": "jest --verbose",
     "tw": "jest --watch --verbose",
     "cov": "jest --coverage",
-    "build": "rm -rf dist && rollup --config ../rollup.config.js"
+    "build": "rm -rf dist && rollup --config rollup.config.js"
   },
   "files": [
     "dist"
@@ -32,9 +32,6 @@
     "jest": "^25.1.0",
     "prettier": "^1.19.1",
     "rollup": "^1.31.1",
-    "rollup-plugin-auto-external": "^2.0.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-terser": "^5.2.0",
     "rollup-plugin-typescript2": "^0.26.0",
     "ts-jest": "^25.2.1",
     "ts-node": "^8.6.2",
@@ -45,6 +42,5 @@
   "dependencies": {
     "@cpmech/basic": "^4.6.0",
     "seedrandom": "^3.0.5"
-  },
-  "gitHead": "b737d0975697c8dffab27106b0ab5dc4e361aacd"
+  }
 }

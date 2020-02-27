@@ -13,7 +13,7 @@
     "test": "jest --verbose",
     "tw": "jest --watch --verbose",
     "cov": "jest --coverage",
-    "build": "rm -rf dist && rollup --config ../rollup.config.js",
+    "build": "rm -rf dist && rollup --config rollup.config.js",
     "integ": "jest -c jest.config-integ.js --verbose --runInBand",
     "integw": "jest -c jest.config-integ.js --verbose --watch",
     "integc": "jest -c jest.config-integ.js --verbose --coverage"
@@ -40,8 +40,6 @@
     "node-fetch": "^2.6.0",
     "prettier": "^1.19.1",
     "rollup": "^1.31.1",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-terser": "^5.2.0",
     "rollup-plugin-typescript2": "^0.26.0",
     "ts-jest": "^25.2.1",
     "ts-node": "^8.6.2",
@@ -55,6 +53,5 @@
     "@cpmech/basic": "^4.6.0",
     "aws-amplify": "^2.2.5",
     "aws-sdk": "^2.626.0"
-  },
-  "gitHead": "3b8c3043da9440da1bbd2cf4cd7cef9284859bf0"
+  }
 }

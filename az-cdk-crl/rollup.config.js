@@ -2,6 +2,8 @@ import resolve from 'rollup-plugin-node-resolve';
 import typescript from 'rollup-plugin-typescript2';
 import { terser } from 'rollup-plugin-terser';
 
+console.log('\n\n## az-cdk-crl ###########################################');
+
 const cacheRoot = '/tmp/rollup_typescript_cache';
 
 export default {
