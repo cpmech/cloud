@@ -52,6 +52,6 @@
     "@cpmech/az-senqs": "^3.10.0",
     "@cpmech/basic": "^4.6.0",
     "aws-amplify": "^2.2.5",
-    "aws-sdk": "^2.626.0"
+    "aws-sdk": "^2.627.0"
   }
 }

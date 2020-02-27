@@ -2465,7 +2465,7 @@ aws-sdk@2.518.0:
     uuid "3.3.2"
     xml2js "0.4.19"
 
-aws-sdk@^2.626.0:
+aws-sdk@^2.627.0:
   version "2.627.0"
   resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.627.0.tgz#e5449ad493f47e81f61a6c941be2cba2bab660ab"
   integrity sha512-78XdgRYkxpfMpmYQT8uuOClTAxlyDL81WC8TG7XHonXr3l4l+Mbo38wvIRwUiqTvuDIMMni5S5fUeugG2fZxSQ==
