@@ -28,7 +28,8 @@ export interface ICognitoProps {
   postConfirmTrigger?: boolean; // will need a lambda called cognitoPostConfirm.handler (uses CommonLibs layers too)
   postConfirmSendEmail?: boolean; // postConfirm function needs access to SES to send emails
   postConfirmDynamoTable?: string; // postConfirm function needs access to this DynamoDB Table
-  userVerificationConfig?: UserVerificationConfig;
+  noSelfSignUp?: boolean;
+  userVerification?: UserVerificationConfig;
   useLayers?: boolean; // lambda triggers will use layers
   dirLayers?: string; // for lambda triggers. default = 'layers'
   dirDist?: string; // location of triggers [default = 'dist']
@@ -103,8 +104,8 @@ export class CognitoConstruct extends Construct {
       lambdaTriggers: {
         postConfirmation,
       },
-      selfSignUpEnabled: true,
-      userVerification: props.userVerificationConfig,
+      selfSignUpEnabled: props.noSelfSignUp ? false : true,
+      userVerification: props.userVerification,
     });
 
     this.poolId = pool.userPoolId;
