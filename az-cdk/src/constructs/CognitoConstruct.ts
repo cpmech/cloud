@@ -6,6 +6,7 @@ import {
   UserPool,
   UserPoolAttribute,
   UserPoolClient,
+  UserVerificationConfig,
 } from '@aws-cdk/aws-cognito';
 import { Code, Function, Runtime } from '@aws-cdk/aws-lambda';
 import { IRole, PolicyStatement } from '@aws-cdk/aws-iam';
@@ -27,6 +28,7 @@ export interface ICognitoProps {
   postConfirmTrigger?: boolean; // will need a lambda called cognitoPostConfirm.handler (uses CommonLibs layers too)
   postConfirmSendEmail?: boolean; // postConfirm function needs access to SES to send emails
   postConfirmDynamoTable?: string; // postConfirm function needs access to this DynamoDB Table
+  userVerificationConfig?: UserVerificationConfig;
   useLayers?: boolean; // lambda triggers will use layers
   dirLayers?: string; // for lambda triggers. default = 'layers'
   dirDist?: string; // location of triggers [default = 'dist']
@@ -101,6 +103,8 @@ export class CognitoConstruct extends Construct {
       lambdaTriggers: {
         postConfirmation,
       },
+      selfSignUpEnabled: true,
+      userVerification: props.userVerificationConfig,
     });
 
     this.poolId = pool.userPoolId;
