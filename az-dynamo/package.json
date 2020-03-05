@@ -48,6 +48,6 @@
     "@cpmech/basic": "^4.8.0",
     "@cpmech/js2ts": "^2.7.0",
     "@cpmech/util": "^1.9.0",
-    "aws-sdk": "^2.633.0"
+    "aws-sdk": "^2.634.0"
   }
 }

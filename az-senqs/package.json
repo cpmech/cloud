@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "@cpmech/basic": "^4.8.0",
-    "aws-sdk": "^2.633.0",
+    "aws-sdk": "^2.634.0",
     "mailparser": "^2.7.7"
   }
 }
