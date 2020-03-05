@@ -47,6 +47,6 @@
   "dependencies": {
     "@cpmech/basic": "^4.8.0",
     "@cpmech/util": "^1.9.0",
-    "aws-sdk": "^2.630.0"
+    "aws-sdk": "^2.633.0"
   }
 }

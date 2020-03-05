@@ -43,7 +43,7 @@
     "@cpmech/basic": "^4.8.0",
     "@cpmech/httpcodes": "^3.7.0",
     "@cpmech/js2ts": "^2.7.0",
-    "@types/aws-lambda": "^8.10.45",
-    "aws-sdk": "^2.630.0"
+    "@types/aws-lambda": "^8.10.46",
+    "aws-sdk": "^2.633.0"
   }
 }

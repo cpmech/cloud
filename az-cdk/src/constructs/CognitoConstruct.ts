@@ -2,9 +2,7 @@ import { Aws, Construct, Duration } from '@aws-cdk/core';
 import {
   CfnUserPool,
   CfnUserPoolIdentityProvider,
-  SignInType,
   UserPool,
-  UserPoolAttribute,
   UserPoolClient,
   UserVerificationConfig,
 } from '@aws-cdk/aws-cognito';
@@ -99,8 +97,8 @@ export class CognitoConstruct extends Construct {
     // pool
     const pool = new UserPool(this, 'Pool', {
       userPoolName: props.poolName,
-      signInType: SignInType.EMAIL,
-      autoVerifiedAttributes: [UserPoolAttribute.EMAIL],
+      signInAliases: { email: true },
+      autoVerify: { email: true },
       lambdaTriggers: {
         postConfirmation,
       },
