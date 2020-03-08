@@ -1,6 +1,7 @@
 export * from './cpf';
 export * from './exponentialBackoff';
 export * from './fileExtAndContentType';
+export * from './formatNumber';
 export * from './isEmailValid';
 export * from './isPasswordValid';
 export * from './isValidPositiveNumber';
