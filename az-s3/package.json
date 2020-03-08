@@ -1,6 +1,6 @@
 {
   "name": "@cpmech/az-s3",
-  "version": "2.15.0",
+  "version": "2.16.0",
   "license": "MIT",
   "author": {
     "name": "Dorival Pedroso",
@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "@cpmech/basic": "^4.9.0",
-    "@cpmech/util": "^1.10.0",
+    "@cpmech/util": "^1.11.0",
     "aws-sdk": "^2.635.0"
   }
 }
