@@ -37,14 +37,14 @@
     "@cpmech/envars": "^2.10.0",
     "@types/jest": "^25.1.4",
     "@types/mailparser": "^2.7.0",
-    "@types/node": "^13.9.1",
-    "@types/uuid": "^7.0.0",
+    "@types/node": "^13.9.2",
+    "@types/uuid": "^7.0.2",
     "jest": "^25.1.0",
     "prettier": "^1.19.1",
-    "rollup": "^2.0.6",
+    "rollup": "^2.1.0",
     "rollup-plugin-typescript2": "^0.26.0",
     "ts-jest": "^25.2.1",
-    "ts-node": "^8.6.2",
+    "ts-node": "^8.7.0",
     "tslint": "^6.1.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.8.3",
@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "@cpmech/basic": "^4.10.0",
-    "aws-sdk": "^2.640.0",
+    "aws-sdk": "^2.642.0",
     "mailparser": "^2.7.7"
   }
 }
