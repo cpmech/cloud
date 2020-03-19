@@ -7,7 +7,7 @@ export interface IEmailAttachment {
   path: string;
 }
 
-export interface ISendEmailWithAttachment {
+export interface ISendEmailX {
   sender: string;
   receivers: string[];
   subject: string;
@@ -16,13 +16,15 @@ export interface ISendEmailWithAttachment {
   sqsConfig?: AWS.SQS.ClientConfiguration;
 }
 
-export const sendEmailWithAttachment = async (mail: ISendEmailWithAttachment) => {
+export const sendEmailX = async (mail: ISendEmailX) => {
   const { sender, receivers, subject, message, attachments } = mail;
   const transporter = nodemailer.createTransport({
     SES: new AWS.SES(mail.sqsConfig)
   });
 
-  const formattedAttachments = attachments!.map((a: IEmailAttachment): Attachment => ({filename: a.filename, path: a.path}));
+  const formattedAttachments = attachments?.map(
+    (a: IEmailAttachment): Attachment => ({filename: a.filename, path: a.path})
+  );
 
   return await transporter.sendMail(
     {

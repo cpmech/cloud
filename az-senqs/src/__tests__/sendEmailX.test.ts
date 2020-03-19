@@ -1,4 +1,4 @@
-import { sendEmailWithAttachment } from '../sendEmailWithAttachment';
+import { sendEmailX } from '../sendEmailX';
 import * as Mail from 'nodemailer/lib/mailer';
 
 const fakeSend = jest.fn((mail: Mail.Options) => mail);
@@ -10,9 +10,9 @@ jest.mock('nodemailer', () => ({
   })
 }));
 
-describe('sendEmailWithAttachment', () => {
+describe('sendEmailX', () => {
   test('works', async () => {
-    await sendEmailWithAttachment({
+    await sendEmailX({
         sender: 'me@here.co',
         receivers: ['me@there.co'],
         message: 'Hello',
@@ -21,7 +21,7 @@ describe('sendEmailWithAttachment', () => {
   });
 
   test('format params correctly', async () => {
-    const sentMail = await sendEmailWithAttachment({
+    const sentMail = await sendEmailX({
       sender: 'me@here.co',
       receivers: ['me@there.co'],
       message: 'Hello',
@@ -35,6 +35,23 @@ describe('sendEmailWithAttachment', () => {
       subject: 'World',
       text: 'Hello',
       attachments: [{filename: 'react-image.png', path: 'https://blog.rocketseat.com.br/content/images/2019/03/React-Hooks-Comoutilizar--motivac-o-es-eexemplos-pra-ticos.png'}],
+    });
+  });
+
+  test('works with no attachments', async () => {
+    const sentMail = await sendEmailX({
+      sender: 'me@here.co',
+      receivers: ['me@there.co'],
+      message: 'Hello',
+      subject: 'World',
+    });
+
+    expect(sentMail).toEqual({
+      from: 'me@here.co',
+      to: ['me@there.co'],
+      subject: 'World',
+      text: 'Hello',
+      attachments: undefined,
     });
   });
 });
