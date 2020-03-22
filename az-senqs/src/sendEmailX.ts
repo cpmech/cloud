@@ -19,19 +19,18 @@ export interface ISendEmailX {
 export const sendEmailX = async (mail: ISendEmailX) => {
   const { sender, receivers, subject, message, attachments } = mail;
   const transporter = nodemailer.createTransport({
-    SES: new AWS.SES(mail.sqsConfig)
+    SES: new AWS.SES(mail.sqsConfig),
   });
 
   const formattedAttachments = attachments?.map(
-    (a: IEmailAttachment): Attachment => ({filename: a.filename, path: a.path})
+    (a: IEmailAttachment): Attachment => ({ filename: a.filename, path: a.path }),
   );
 
-  return await transporter.sendMail(
-    {
-      from: sender,
-      to: receivers,
-      subject,
-      text: message,
-      attachments: formattedAttachments,
-    });
+  return await transporter.sendMail({
+    from: sender,
+    to: receivers,
+    subject,
+    text: message,
+    attachments: formattedAttachments,
+  });
 };
