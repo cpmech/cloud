@@ -54,7 +54,7 @@ export const extractSubjectAndMessage = async (
     message = String(res.html);
   }
   return {
-    subject: res.subject,
+    subject: res.subject || '',
     message,
   };
 };
