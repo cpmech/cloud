@@ -28,14 +28,14 @@
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
   "devDependencies": {
-    "@types/jest": "^25.1.4",
-    "@types/node": "^13.9.2",
-    "jest": "^25.1.0",
-    "prettier": "^2.0.1",
-    "rollup": "^2.1.0",
-    "rollup-plugin-typescript2": "^0.26.0",
-    "ts-jest": "^25.2.1",
-    "tslint": "^6.1.0",
+    "@types/jest": "^25.1.5",
+    "@types/node": "^13.11.0",
+    "jest": "^25.2.6",
+    "prettier": "^2.0.2",
+    "rollup": "^2.3.2",
+    "rollup-plugin-typescript2": "^0.27.0",
+    "ts-jest": "^25.3.0",
+    "tslint": "^6.1.1",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.8.3"
   },
@@ -43,7 +43,7 @@
     "@cpmech/basic": "^4.12.0",
     "@cpmech/httpcodes": "^3.11.0",
     "@cpmech/js2ts": "^2.11.0",
-    "@types/aws-lambda": "^8.10.46",
-    "aws-sdk": "^2.643.0"
+    "@types/aws-lambda": "^8.10.47",
+    "aws-sdk": "^2.652.0"
   }
 }
