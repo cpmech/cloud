@@ -70,7 +70,6 @@ exports[`CognitoConstruct + Identity Providers synthetizes properly 1`] = `
         },
         \\"EmailVerificationMessage\\": \\"Hello {username}, Your verification code is {####}\\",
         \\"EmailVerificationSubject\\": \\"Verify your new account\\",
-        \\"LambdaConfig\\": {},
         \\"SmsConfiguration\\": {
           \\"ExternalId\\": \\"StackCognitoPool4F622518\\",
           \\"SnsCallerArn\\": {
@@ -775,7 +774,6 @@ exports[`CognitoConstruct synthetizes properly 1`] = `
         },
         \\"EmailVerificationMessage\\": \\"Hello {username}, Your verification code is {####}\\",
         \\"EmailVerificationSubject\\": \\"Verify your new account\\",
-        \\"LambdaConfig\\": {},
         \\"SmsConfiguration\\": {
           \\"ExternalId\\": \\"StackCognitoPool4F622518\\",
           \\"SnsCallerArn\\": {
