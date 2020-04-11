@@ -29,10 +29,10 @@
   "types": "dist/esm/index.d.ts",
   "devDependencies": {
     "@types/jest": "^25.2.1",
-    "@types/node": "^13.11.0",
-    "jest": "^25.2.7",
+    "@types/node": "^13.11.1",
+    "jest": "^25.3.0",
     "prettier": "^2.0.4",
-    "rollup": "^2.3.4",
+    "rollup": "^2.6.0",
     "rollup-plugin-typescript2": "^0.27.0",
     "ts-jest": "^25.3.1",
     "tslint": "^6.1.1",
@@ -43,7 +43,7 @@
     "@cpmech/basic": "^4.14.0",
     "@cpmech/httpcodes": "^3.13.0",
     "@cpmech/js2ts": "^2.13.0",
-    "@types/aws-lambda": "^8.10.47",
-    "aws-sdk": "^2.655.0"
+    "@types/aws-lambda": "^8.10.48",
+    "aws-sdk": "^2.656.0"
   }
 }
