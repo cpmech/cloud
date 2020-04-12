@@ -4,6 +4,7 @@ export * from './fileExtAndContentType';
 export * from './formatNumber';
 export * from './isEmailValid';
 export * from './isPasswordValid';
+export * from './isValidNumber';
 export * from './isValidPositiveNumber';
 export * from './noUndef';
 export * from './objKeys';
