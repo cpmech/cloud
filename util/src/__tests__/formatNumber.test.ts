@@ -30,6 +30,19 @@ describe('formatNumber', () => {
   });
 });
 
+describe('formatNumber (useLongSep=false)', () => {
+  it('should format number without long number separator', () => {
+    expect(formatNumber('1234', false, 2, '', false)).toBe('1234');
+    expect(formatNumber('1234', true, 2, '', false)).toBe('1234');
+    expect(formatNumber('1234.56', false, 2, '', false)).toBe('1234.56');
+    expect(formatNumber('1234,56', true, 2, '', false)).toBe('1234,56');
+    expect(formatNumber('1234.567', false, 2, '', false)).toBe('1234.56');
+    expect(formatNumber('1234,567', true, 2, '', false)).toBe('1234,56');
+    expect(formatNumber('1234.5678', false, 2, '', false)).toBe('1234.56');
+    expect(formatNumber('1234,5678', true, 2, '', false)).toBe('1234,56');
+  });
+});
+
 describe('cleanNumber', () => {
   it('should remove formatting', () => {
     expect(cleanNumber('')).toBe('');
