@@ -7,10 +7,9 @@ export const formatLongNumber = (n: string, comma = ',') => {
 // ref: https://codepen.io/559wade/pen/LRzEjj
 export const formatNumber = (
   inputVal: string,
-  swapDotByComma: boolean = false,
+  swapDotByComma = false,
   numDigits = 2,
   prefix: string = '',
-  useLongSep = true,
 ) => {
   // don't validate empty input
   if (!inputVal) {
@@ -40,7 +39,7 @@ export const formatNumber = (
     }
 
     // add commas to left side of number
-    leftSide = useLongSep ? formatLongNumber(leftSide, comma) : leftSide;
+    leftSide = formatLongNumber(leftSide, comma);
 
     // Limit decimal to only numDigits digits
     rightSide = rightSide.substring(0, numDigits);
@@ -49,7 +48,7 @@ export const formatNumber = (
     inputVal = prefix + leftSide + point + rightSide;
   } else {
     // no decimal entered./ add commas to number and remove all non-digits
-    inputVal = useLongSep ? formatLongNumber(inputVal, comma) : inputVal;
+    inputVal = formatLongNumber(inputVal, comma);
     inputVal = prefix + inputVal;
   }
 

@@ -28,18 +28,13 @@ describe('formatNumber', () => {
     expect(formatNumber('0.5678', false, 2, '$ ')).toBe('$ 0.56');
     expect(formatNumber('0,5678', true, 2, 'R$ ')).toBe('R$ 0,56');
   });
-});
-
-describe('formatNumber (useLongSep=false)', () => {
-  it('should format number without long number separator', () => {
-    expect(formatNumber('1234', false, 2, '', false)).toBe('1234');
-    expect(formatNumber('1234', true, 2, '', false)).toBe('1234');
-    expect(formatNumber('1234.56', false, 2, '', false)).toBe('1234.56');
-    expect(formatNumber('1234,56', true, 2, '', false)).toBe('1234,56');
-    expect(formatNumber('1234.567', false, 2, '', false)).toBe('1234.56');
-    expect(formatNumber('1234,567', true, 2, '', false)).toBe('1234,56');
-    expect(formatNumber('1234.5678', false, 2, '', false)).toBe('1234.56');
-    expect(formatNumber('1234,5678', true, 2, '', false)).toBe('1234,56');
+  it('should handle wrong input', () => {
+    expect(formatNumber('')).toBe('');
+    expect(formatNumber('a=aa')).toBe('');
+    expect(formatNumber('123-456')).toBe('123,456');
+    expect(formatNumber('0*123')).toBe('0,123');
+    expect(formatNumber('0,134,0')).toBe('01,340');
+    expect(formatNumber('-888')).toBe('888');
   });
 });
 
