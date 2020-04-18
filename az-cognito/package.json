@@ -33,7 +33,7 @@
   "devDependencies": {
     "@cpmech/envars": "^2.15.0",
     "@types/jest": "^25.2.1",
-    "@types/node": "^13.11.1",
+    "@types/node": "^13.13.0",
     "@types/node-fetch": "^2.5.6",
     "@types/uuid": "^7.0.2",
     "jest": "^25.3.0",
@@ -41,7 +41,7 @@
     "prettier": "^2.0.4",
     "rollup": "^2.6.1",
     "rollup-plugin-typescript2": "^0.27.0",
-    "ts-jest": "^25.3.1",
+    "ts-jest": "^25.4.0",
     "ts-node": "^8.8.2",
     "tslint": "^6.1.1",
     "tslint-config-prettier": "^1.18.0",
@@ -51,7 +51,7 @@
   "dependencies": {
     "@cpmech/az-senqs": "^3.20.0",
     "@cpmech/basic": "^4.15.0",
-    "aws-amplify": "^3.0.7",
-    "aws-sdk": "^2.656.0"
+    "aws-amplify": "^3.0.8",
+    "aws-sdk": "^2.658.0"
   }
 }
