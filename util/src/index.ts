@@ -6,5 +6,6 @@ export * from './isEmailValid';
 export * from './isPasswordValid';
 export * from './isValidNumber';
 export * from './isValidPositiveNumber';
+export * from './noNull';
 export * from './noUndef';
 export * from './objKeys';

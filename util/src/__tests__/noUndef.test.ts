@@ -1,6 +1,6 @@
 import { noUndef } from '../noUndef';
 
-describe('removeUndefined', () => {
+describe('noUndef', () => {
   it('should remove entries with undefined values', () => {
     interface IMyType {
       first: number;
