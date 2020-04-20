@@ -4,7 +4,7 @@ console.log('\n\n## az-senqs #############################################');
 
 const cacheRoot = '/tmp/rollup_typescript_cache';
 
-const config = ['cjs', 'esm'].map(format => {
+const config = ['cjs', 'esm'].map((format) => {
   return {
     input: {
       index: 'src/index.ts',
@@ -15,7 +15,7 @@ const config = ['cjs', 'esm'].map(format => {
         format,
       },
     ],
-    external: ['aws-sdk', '@cpmech/basic', 'mailparser'],
+    external: ['aws-sdk', '@cpmech/basic', 'mailparser', 'nodemailer'],
     plugins: [
       typescript({
         cacheRoot,
