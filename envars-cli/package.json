@@ -37,7 +37,7 @@
     "@types/minimist": "^1.2.0",
     "@types/node": "^13.13.0",
     "@types/shelljs": "^0.8.7",
-    "jest": "^25.3.0",
+    "jest": "^25.4.0",
     "nodemon": "^2.0.3",
     "prettier": "^2.0.4",
     "rollup": "^2.6.1",
