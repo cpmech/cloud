@@ -34,10 +34,10 @@
   ],
   "devDependencies": {
     "@types/jest": "^25.2.1",
-    "@types/node": "^13.13.0",
+    "@types/node": "^13.13.2",
     "jest": "^25.4.0",
-    "prettier": "^2.0.4",
-    "rollup": "^2.6.1",
+    "prettier": "^2.0.5",
+    "rollup": "^2.7.1",
     "rollup-plugin-typescript2": "^0.27.0",
     "ts-jest": "^25.4.0",
     "tslint": "^6.1.1",
@@ -48,6 +48,6 @@
     "@cpmech/basic": "^4.17.0",
     "@cpmech/js2ts": "^2.16.0",
     "@cpmech/util": "^1.20.0",
-    "aws-sdk": "^2.658.0"
+    "aws-sdk": "^2.660.0"
   }
 }
