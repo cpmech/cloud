@@ -33,7 +33,7 @@
     "@types/node": "^13.13.2",
     "jest": "^25.4.0",
     "prettier": "^2.0.5",
-    "rollup": "^2.7.1",
+    "rollup": "^2.7.2",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-terser": "^5.3.0",
     "rollup-plugin-typescript2": "^0.27.0",
@@ -47,6 +47,6 @@
     "@cpmech/az-cognito": "^3.24.0",
     "@cpmech/basic": "^4.18.0",
     "@cpmech/js2ts": "^2.17.0",
-    "aws-sdk": "^2.660.0"
+    "aws-sdk": "^2.661.0"
   }
 }
