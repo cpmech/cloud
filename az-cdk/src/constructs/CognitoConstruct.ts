@@ -5,6 +5,7 @@ import {
   UserPool,
   UserPoolClient,
   UserVerificationConfig,
+  PasswordPolicy,
 } from '@aws-cdk/aws-cognito';
 import { Code, Function, Runtime } from '@aws-cdk/aws-lambda';
 import { IRole, PolicyStatement } from '@aws-cdk/aws-iam';
@@ -15,6 +16,7 @@ import { CognitoEnableProvidersConstruct, CognitoPoolDomainConstruct } from '../
 export interface ICognitoProps {
   poolName: string;
   emailSendingAccount: string;
+  passwordPolicy?: PasswordPolicy;
   customAttributes?: string[]; // string, and mutable. NOTE: do not prefix with custom
   domainPrefix?: string;
   facebookClientId?: string;
@@ -104,6 +106,7 @@ export class CognitoConstruct extends Construct {
       },
       selfSignUpEnabled: props.noSelfSignUp ? false : true,
       userVerification: props.userVerification,
+      passwordPolicy: props.passwordPolicy,
     });
 
     this.poolId = pool.userPoolId;
@@ -128,7 +131,7 @@ export class CognitoConstruct extends Construct {
 
     // add custom attributes
     if (props.customAttributes) {
-      cfnPool.schema = props.customAttributes.map(name => ({
+      cfnPool.schema = props.customAttributes.map((name) => ({
         attributeDataType: 'String',
         mutable: true,
         name,
