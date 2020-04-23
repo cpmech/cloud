@@ -9,6 +9,11 @@ describe('date2values', () => {
       month: '04',
       day: '23',
     });
+    expect(date2values('2020-04-21T16:16:50.304')).toStrictEqual({
+      year: '2020',
+      month: '04',
+      day: '21',
+    });
   });
   it('should handle incorrect input', () => {
     expect(date2values('')).toStrictEqual({ year: '', month: '', day: '' });
