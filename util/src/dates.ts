@@ -63,7 +63,7 @@ export const date2values = (dateISO: string): IDateValues => {
   ) {
     return { year: '', month: '', day: '' };
   }
-  const d = new Date(dateISO);
+  const d = new Date(date); // must not use dateISO, otherwise the timezone will kick in
   if (
     d.getFullYear() !== Number(year) ||
     d.getMonth() + 1 !== Number(month) ||
