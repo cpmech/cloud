@@ -1,4 +1,5 @@
 export * from './cpf';
+export * from './dates';
 export * from './exponentialBackoff';
 export * from './fileExtAndContentType';
 export * from './formatNumber';
