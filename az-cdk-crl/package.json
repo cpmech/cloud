@@ -1,6 +1,6 @@
 {
   "name": "@cpmech/az-cdk-crl",
-  "version": "2.24.0",
+  "version": "2.25.0",
   "license": "MIT",
   "author": {
     "name": "Dorival Pedroso",
@@ -44,9 +44,9 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@cpmech/az-cognito": "^3.24.0",
-    "@cpmech/basic": "^4.18.0",
-    "@cpmech/js2ts": "^2.17.0",
+    "@cpmech/az-cognito": "^3.25.0",
+    "@cpmech/basic": "^4.19.0",
+    "@cpmech/js2ts": "^2.18.0",
     "aws-sdk": "^2.661.0"
   }
 }
