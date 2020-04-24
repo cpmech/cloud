@@ -14,6 +14,7 @@ export * from './Locales';
 export * from './logging';
 export * from './makeGetField';
 export * from './makeSetField';
+export * from './mapOfList';
 export * from './maybeCopySimple';
 export * from './numOnly';
 export * from './shallowCompareArrays';

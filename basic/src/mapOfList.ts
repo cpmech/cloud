@@ -1,6 +1,5 @@
 import { cloneSimple } from './cloneSimple';
-
-export type IMapOfList = { [x: string]: any[] };
+import { IMapOfList } from './types';
 
 export const appendToMapOfList = (a: IMapOfList, key: string, item: any) => {
   if (a[key]) {
