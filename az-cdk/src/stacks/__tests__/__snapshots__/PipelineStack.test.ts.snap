@@ -83,6 +83,39 @@ exports[`PipelineStack (with notifications) synthetizes properly 1`] = `
               ]
             },
             {
+              \\"Action\\": [
+                \\"codebuild:CreateReportGroup\\",
+                \\"codebuild:CreateReport\\",
+                \\"codebuild:UpdateReport\\",
+                \\"codebuild:BatchPutTestCases\\"
+              ],
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": {
+                \\"Fn::Join\\": [
+                  \\"\\",
+                  [
+                    \\"arn:\\",
+                    {
+                      \\"Ref\\": \\"AWS::Partition\\"
+                    },
+                    \\":codebuild:\\",
+                    {
+                      \\"Ref\\": \\"AWS::Region\\"
+                    },
+                    \\":\\",
+                    {
+                      \\"Ref\\": \\"AWS::AccountId\\"
+                    },
+                    \\":report-group/\\",
+                    {
+                      \\"Ref\\": \\"ProjectC78D97AD\\"
+                    },
+                    \\"-*\\"
+                  ]
+                ]
+              }
+            },
+            {
               \\"Action\\": \\"cloudformation:*\\",
               \\"Effect\\": \\"Allow\\",
               \\"Resource\\": \\"*\\"
@@ -629,6 +662,39 @@ exports[`PipelineStack synthetizes using secretsManager 1`] = `
               ]
             },
             {
+              \\"Action\\": [
+                \\"codebuild:CreateReportGroup\\",
+                \\"codebuild:CreateReport\\",
+                \\"codebuild:UpdateReport\\",
+                \\"codebuild:BatchPutTestCases\\"
+              ],
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": {
+                \\"Fn::Join\\": [
+                  \\"\\",
+                  [
+                    \\"arn:\\",
+                    {
+                      \\"Ref\\": \\"AWS::Partition\\"
+                    },
+                    \\":codebuild:\\",
+                    {
+                      \\"Ref\\": \\"AWS::Region\\"
+                    },
+                    \\":\\",
+                    {
+                      \\"Ref\\": \\"AWS::AccountId\\"
+                    },
+                    \\":report-group/\\",
+                    {
+                      \\"Ref\\": \\"ProjectC78D97AD\\"
+                    },
+                    \\"-*\\"
+                  ]
+                ]
+              }
+            },
+            {
               \\"Action\\": \\"cloudformation:*\\",
               \\"Effect\\": \\"Allow\\",
               \\"Resource\\": \\"*\\"
@@ -1060,6 +1126,39 @@ exports[`PipelineStack synthetizes using ssmSecret 1`] = `
                   ]
                 }
               ]
+            },
+            {
+              \\"Action\\": [
+                \\"codebuild:CreateReportGroup\\",
+                \\"codebuild:CreateReport\\",
+                \\"codebuild:UpdateReport\\",
+                \\"codebuild:BatchPutTestCases\\"
+              ],
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": {
+                \\"Fn::Join\\": [
+                  \\"\\",
+                  [
+                    \\"arn:\\",
+                    {
+                      \\"Ref\\": \\"AWS::Partition\\"
+                    },
+                    \\":codebuild:\\",
+                    {
+                      \\"Ref\\": \\"AWS::Region\\"
+                    },
+                    \\":\\",
+                    {
+                      \\"Ref\\": \\"AWS::AccountId\\"
+                    },
+                    \\":report-group/\\",
+                    {
+                      \\"Ref\\": \\"ProjectC78D97AD\\"
+                    },
+                    \\"-*\\"
+                  ]
+                ]
+              }
             },
             {
               \\"Action\\": \\"cloudformation:*\\",
@@ -1505,6 +1604,39 @@ exports[`PipelineStack synthetizes using ssmSecret and NPM 1`] = `
                   ]
                 }
               ]
+            },
+            {
+              \\"Action\\": [
+                \\"codebuild:CreateReportGroup\\",
+                \\"codebuild:CreateReport\\",
+                \\"codebuild:UpdateReport\\",
+                \\"codebuild:BatchPutTestCases\\"
+              ],
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": {
+                \\"Fn::Join\\": [
+                  \\"\\",
+                  [
+                    \\"arn:\\",
+                    {
+                      \\"Ref\\": \\"AWS::Partition\\"
+                    },
+                    \\":codebuild:\\",
+                    {
+                      \\"Ref\\": \\"AWS::Region\\"
+                    },
+                    \\":\\",
+                    {
+                      \\"Ref\\": \\"AWS::AccountId\\"
+                    },
+                    \\":report-group/\\",
+                    {
+                      \\"Ref\\": \\"ProjectC78D97AD\\"
+                    },
+                    \\"-*\\"
+                  ]
+                ]
+              }
             },
             {
               \\"Action\\": \\"cloudformation:*\\",

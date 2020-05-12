@@ -84,6 +84,39 @@ exports[`WebsitePipelineStack (with notifications) synthetizes properly 1`] = `
             },
             {
               \\"Action\\": [
+                \\"codebuild:CreateReportGroup\\",
+                \\"codebuild:CreateReport\\",
+                \\"codebuild:UpdateReport\\",
+                \\"codebuild:BatchPutTestCases\\"
+              ],
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": {
+                \\"Fn::Join\\": [
+                  \\"\\",
+                  [
+                    \\"arn:\\",
+                    {
+                      \\"Ref\\": \\"AWS::Partition\\"
+                    },
+                    \\":codebuild:\\",
+                    {
+                      \\"Ref\\": \\"AWS::Region\\"
+                    },
+                    \\":\\",
+                    {
+                      \\"Ref\\": \\"AWS::AccountId\\"
+                    },
+                    \\":report-group/\\",
+                    {
+                      \\"Ref\\": \\"ProjectC78D97AD\\"
+                    },
+                    \\"-*\\"
+                  ]
+                ]
+              }
+            },
+            {
+              \\"Action\\": [
                 \\"s3:PutObject*\\",
                 \\"s3:Abort*\\"
               ],
@@ -626,6 +659,39 @@ exports[`WebsitePipelineStack synthetizes properly 1`] = `
                   ]
                 }
               ]
+            },
+            {
+              \\"Action\\": [
+                \\"codebuild:CreateReportGroup\\",
+                \\"codebuild:CreateReport\\",
+                \\"codebuild:UpdateReport\\",
+                \\"codebuild:BatchPutTestCases\\"
+              ],
+              \\"Effect\\": \\"Allow\\",
+              \\"Resource\\": {
+                \\"Fn::Join\\": [
+                  \\"\\",
+                  [
+                    \\"arn:\\",
+                    {
+                      \\"Ref\\": \\"AWS::Partition\\"
+                    },
+                    \\":codebuild:\\",
+                    {
+                      \\"Ref\\": \\"AWS::Region\\"
+                    },
+                    \\":\\",
+                    {
+                      \\"Ref\\": \\"AWS::AccountId\\"
+                    },
+                    \\":report-group/\\",
+                    {
+                      \\"Ref\\": \\"ProjectC78D97AD\\"
+                    },
+                    \\"-*\\"
+                  ]
+                ]
+              }
             },
             {
               \\"Action\\": [

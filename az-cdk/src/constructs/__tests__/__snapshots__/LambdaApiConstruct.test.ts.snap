@@ -9,7 +9,7 @@ exports[`LambdaApiConstruct (customDomain) synthetizes properly 1`] = `
         \\"Name\\": \\"TestApi\\"
       }
     },
-    \\"LambdaApiTestApiDeploymentC09FA65F864a53ded60c05c99e03b0def32cd397\\": {
+    \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\": {
       \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
       \\"Properties\\": {
         \\"RestApiId\\": {
@@ -31,7 +31,7 @@ exports[`LambdaApiConstruct (customDomain) synthetizes properly 1`] = `
           \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
         },
         \\"DeploymentId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F864a53ded60c05c99e03b0def32cd397\\"
+          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\"
         },
         \\"StageName\\": \\"prod\\"
       }
@@ -616,7 +616,7 @@ exports[`LambdaApiConstruct (dynamo and bucket) synthetizes properly 1`] = `
         \\"Name\\": \\"TestApi\\"
       }
     },
-    \\"LambdaApiTestApiDeploymentC09FA65F864a53ded60c05c99e03b0def32cd397\\": {
+    \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\": {
       \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
       \\"Properties\\": {
         \\"RestApiId\\": {
@@ -638,7 +638,7 @@ exports[`LambdaApiConstruct (dynamo and bucket) synthetizes properly 1`] = `
           \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
         },
         \\"DeploymentId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F864a53ded60c05c99e03b0def32cd397\\"
+          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\"
         },
         \\"StageName\\": \\"prod\\"
       }
@@ -1070,7 +1070,7 @@ exports[`LambdaApiConstruct (layers) synthetizes properly 1`] = `
         \\"Name\\": \\"TestApi\\"
       }
     },
-    \\"LambdaApiTestApiDeploymentC09FA65F864a53ded60c05c99e03b0def32cd397\\": {
+    \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\": {
       \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
       \\"Properties\\": {
         \\"RestApiId\\": {
@@ -1092,7 +1092,7 @@ exports[`LambdaApiConstruct (layers) synthetizes properly 1`] = `
           \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
         },
         \\"DeploymentId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F864a53ded60c05c99e03b0def32cd397\\"
+          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\"
         },
         \\"StageName\\": \\"prod\\"
       }
@@ -1566,7 +1566,7 @@ exports[`LambdaApiConstruct (protected) synthetizes properly 1`] = `
         \\"Name\\": \\"TestApi\\"
       }
     },
-    \\"LambdaApiTestApiDeploymentC09FA65F864a53ded60c05c99e03b0def32cd397\\": {
+    \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\": {
       \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
       \\"Properties\\": {
         \\"RestApiId\\": {
@@ -1588,7 +1588,7 @@ exports[`LambdaApiConstruct (protected) synthetizes properly 1`] = `
           \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
         },
         \\"DeploymentId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F864a53ded60c05c99e03b0def32cd397\\"
+          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\"
         },
         \\"StageName\\": \\"prod\\"
       }
@@ -1997,7 +1997,7 @@ exports[`LambdaApiConstruct synthetizes properly 1`] = `
         \\"Name\\": \\"TestApi\\"
       }
     },
-    \\"LambdaApiTestApiDeploymentC09FA65F864a53ded60c05c99e03b0def32cd397\\": {
+    \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\": {
       \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
       \\"Properties\\": {
         \\"RestApiId\\": {
@@ -2019,7 +2019,7 @@ exports[`LambdaApiConstruct synthetizes properly 1`] = `
           \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
         },
         \\"DeploymentId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F864a53ded60c05c99e03b0def32cd397\\"
+          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\"
         },
         \\"StageName\\": \\"prod\\"
       }
@@ -2396,7 +2396,7 @@ exports[`LambdaApiConstruct synthetizes using dirDist and python 1`] = `
         \\"Name\\": \\"TestApi\\"
       }
     },
-    \\"LambdaApiTestApiDeploymentC09FA65Fee2d4d27176318ecf48b9124cf4af0fc\\": {
+    \\"LambdaApiTestApiDeploymentC09FA65F7cc5eda69bb9e7c7542a03f11bb5690a\\": {
       \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
       \\"Properties\\": {
         \\"RestApiId\\": {
@@ -2417,7 +2417,7 @@ exports[`LambdaApiConstruct synthetizes using dirDist and python 1`] = `
           \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
         },
         \\"DeploymentId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65Fee2d4d27176318ecf48b9124cf4af0fc\\"
+          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F7cc5eda69bb9e7c7542a03f11bb5690a\\"
         },
         \\"StageName\\": \\"prod\\"
       }
@@ -2782,7 +2782,7 @@ exports[`LambdaApiConstruct synthetizes without subroute 1`] = `
         \\"Name\\": \\"TestApi\\"
       }
     },
-    \\"LambdaApiTestApiDeploymentC09FA65Fee2d4d27176318ecf48b9124cf4af0fc\\": {
+    \\"LambdaApiTestApiDeploymentC09FA65F7cc5eda69bb9e7c7542a03f11bb5690a\\": {
       \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
       \\"Properties\\": {
         \\"RestApiId\\": {
@@ -2803,7 +2803,7 @@ exports[`LambdaApiConstruct synthetizes without subroute 1`] = `
           \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
         },
         \\"DeploymentId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65Fee2d4d27176318ecf48b9124cf4af0fc\\"
+          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F7cc5eda69bb9e7c7542a03f11bb5690a\\"
         },
         \\"StageName\\": \\"prod\\"
       }
