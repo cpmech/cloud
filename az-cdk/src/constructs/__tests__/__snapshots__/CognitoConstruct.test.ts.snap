@@ -43,6 +43,18 @@ exports[`CognitoConstruct + Identity Providers synthetizes properly 1`] = `
     \\"CognitoPoolB9CB508B\\": {
       \\"Type\\": \\"AWS::Cognito::UserPool\\",
       \\"Properties\\": {
+        \\"AccountRecoverySetting\\": {
+          \\"RecoveryMechanisms\\": [
+            {
+              \\"Name\\": \\"verified_phone_number\\",
+              \\"Priority\\": 1
+            },
+            {
+              \\"Name\\": \\"verified_email\\",
+              \\"Priority\\": 2
+            }
+          ]
+        },
         \\"AdminCreateUserConfig\\": {
           \\"AllowAdminCreateUserOnly\\": false
         },
@@ -68,7 +80,7 @@ exports[`CognitoConstruct + Identity Providers synthetizes properly 1`] = `
             ]
           }
         },
-        \\"EmailVerificationMessage\\": \\"Hello {username}, Your verification code is {####}\\",
+        \\"EmailVerificationMessage\\": \\"The verification code to your new account is {####}\\",
         \\"EmailVerificationSubject\\": \\"Verify your new account\\",
         \\"SmsConfiguration\\": {
           \\"ExternalId\\": \\"StackCognitoPool4F622518\\",
@@ -86,7 +98,7 @@ exports[`CognitoConstruct + Identity Providers synthetizes properly 1`] = `
         \\"UserPoolName\\": \\"dear-users\\",
         \\"VerificationMessageTemplate\\": {
           \\"DefaultEmailOption\\": \\"CONFIRM_WITH_CODE\\",
-          \\"EmailMessage\\": \\"Hello {username}, Your verification code is {####}\\",
+          \\"EmailMessage\\": \\"The verification code to your new account is {####}\\",
           \\"EmailSubject\\": \\"Verify your new account\\",
           \\"SmsMessage\\": \\"The verification code to your new account is {####}\\"
         }
@@ -98,8 +110,26 @@ exports[`CognitoConstruct + Identity Providers synthetizes properly 1`] = `
         \\"UserPoolId\\": {
           \\"Ref\\": \\"CognitoPoolB9CB508B\\"
         },
+        \\"AllowedOAuthFlows\\": [
+          \\"implicit\\",
+          \\"code\\"
+        ],
+        \\"AllowedOAuthFlowsUserPoolClient\\": true,
+        \\"AllowedOAuthScopes\\": [
+          \\"profile\\",
+          \\"phone\\",
+          \\"email\\",
+          \\"openid\\",
+          \\"aws.cognito.signin.user.admin\\"
+        ],
+        \\"CallbackURLs\\": [
+          \\"https://example.com\\"
+        ],
         \\"ClientName\\": \\"dear-users-client\\",
-        \\"GenerateSecret\\": false
+        \\"GenerateSecret\\": false,
+        \\"SupportedIdentityProviders\\": [
+          \\"COGNITO\\"
+        ]
       }
     },
     \\"CognitoPoolFacebookIdP8D179BE9\\": {
@@ -619,6 +649,18 @@ exports[`CognitoConstruct + Lambda Triggers synthetizes properly 1`] = `
     \\"CognitoPoolB9CB508B\\": {
       \\"Type\\": \\"AWS::Cognito::UserPool\\",
       \\"Properties\\": {
+        \\"AccountRecoverySetting\\": {
+          \\"RecoveryMechanisms\\": [
+            {
+              \\"Name\\": \\"verified_phone_number\\",
+              \\"Priority\\": 1
+            },
+            {
+              \\"Name\\": \\"verified_email\\",
+              \\"Priority\\": 2
+            }
+          ]
+        },
         \\"AdminCreateUserConfig\\": {
           \\"AllowAdminCreateUserOnly\\": false
         },
@@ -644,7 +686,7 @@ exports[`CognitoConstruct + Lambda Triggers synthetizes properly 1`] = `
             ]
           }
         },
-        \\"EmailVerificationMessage\\": \\"Hello {username}, Your verification code is {####}\\",
+        \\"EmailVerificationMessage\\": \\"The verification code to your new account is {####}\\",
         \\"EmailVerificationSubject\\": \\"Verify your new account\\",
         \\"LambdaConfig\\": {
           \\"PostConfirmation\\": {
@@ -670,7 +712,7 @@ exports[`CognitoConstruct + Lambda Triggers synthetizes properly 1`] = `
         \\"UserPoolName\\": \\"dear-users\\",
         \\"VerificationMessageTemplate\\": {
           \\"DefaultEmailOption\\": \\"CONFIRM_WITH_CODE\\",
-          \\"EmailMessage\\": \\"Hello {username}, Your verification code is {####}\\",
+          \\"EmailMessage\\": \\"The verification code to your new account is {####}\\",
           \\"EmailSubject\\": \\"Verify your new account\\",
           \\"SmsMessage\\": \\"The verification code to your new account is {####}\\"
         }
@@ -682,8 +724,26 @@ exports[`CognitoConstruct + Lambda Triggers synthetizes properly 1`] = `
         \\"UserPoolId\\": {
           \\"Ref\\": \\"CognitoPoolB9CB508B\\"
         },
+        \\"AllowedOAuthFlows\\": [
+          \\"implicit\\",
+          \\"code\\"
+        ],
+        \\"AllowedOAuthFlowsUserPoolClient\\": true,
+        \\"AllowedOAuthScopes\\": [
+          \\"profile\\",
+          \\"phone\\",
+          \\"email\\",
+          \\"openid\\",
+          \\"aws.cognito.signin.user.admin\\"
+        ],
+        \\"CallbackURLs\\": [
+          \\"https://example.com\\"
+        ],
         \\"ClientName\\": \\"dear-users-client\\",
-        \\"GenerateSecret\\": false
+        \\"GenerateSecret\\": false,
+        \\"SupportedIdentityProviders\\": [
+          \\"COGNITO\\"
+        ]
       }
     }
   },
@@ -747,6 +807,18 @@ exports[`CognitoConstruct synthetizes properly 1`] = `
     \\"CognitoPoolB9CB508B\\": {
       \\"Type\\": \\"AWS::Cognito::UserPool\\",
       \\"Properties\\": {
+        \\"AccountRecoverySetting\\": {
+          \\"RecoveryMechanisms\\": [
+            {
+              \\"Name\\": \\"verified_phone_number\\",
+              \\"Priority\\": 1
+            },
+            {
+              \\"Name\\": \\"verified_email\\",
+              \\"Priority\\": 2
+            }
+          ]
+        },
         \\"AdminCreateUserConfig\\": {
           \\"AllowAdminCreateUserOnly\\": false
         },
@@ -772,7 +844,7 @@ exports[`CognitoConstruct synthetizes properly 1`] = `
             ]
           }
         },
-        \\"EmailVerificationMessage\\": \\"Hello {username}, Your verification code is {####}\\",
+        \\"EmailVerificationMessage\\": \\"The verification code to your new account is {####}\\",
         \\"EmailVerificationSubject\\": \\"Verify your new account\\",
         \\"SmsConfiguration\\": {
           \\"ExternalId\\": \\"StackCognitoPool4F622518\\",
@@ -790,7 +862,7 @@ exports[`CognitoConstruct synthetizes properly 1`] = `
         \\"UserPoolName\\": \\"dear-users\\",
         \\"VerificationMessageTemplate\\": {
           \\"DefaultEmailOption\\": \\"CONFIRM_WITH_CODE\\",
-          \\"EmailMessage\\": \\"Hello {username}, Your verification code is {####}\\",
+          \\"EmailMessage\\": \\"The verification code to your new account is {####}\\",
           \\"EmailSubject\\": \\"Verify your new account\\",
           \\"SmsMessage\\": \\"The verification code to your new account is {####}\\"
         }
@@ -802,8 +874,26 @@ exports[`CognitoConstruct synthetizes properly 1`] = `
         \\"UserPoolId\\": {
           \\"Ref\\": \\"CognitoPoolB9CB508B\\"
         },
+        \\"AllowedOAuthFlows\\": [
+          \\"implicit\\",
+          \\"code\\"
+        ],
+        \\"AllowedOAuthFlowsUserPoolClient\\": true,
+        \\"AllowedOAuthScopes\\": [
+          \\"profile\\",
+          \\"phone\\",
+          \\"email\\",
+          \\"openid\\",
+          \\"aws.cognito.signin.user.admin\\"
+        ],
+        \\"CallbackURLs\\": [
+          \\"https://example.com\\"
+        ],
         \\"ClientName\\": \\"dear-users-client\\",
-        \\"GenerateSecret\\": false
+        \\"GenerateSecret\\": false,
+        \\"SupportedIdentityProviders\\": [
+          \\"COGNITO\\"
+        ]
       }
     }
   }

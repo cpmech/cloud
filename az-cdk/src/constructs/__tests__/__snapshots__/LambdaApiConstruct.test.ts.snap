@@ -9,33 +9,6 @@ exports[`LambdaApiConstruct (customDomain) synthetizes properly 1`] = `
         \\"Name\\": \\"TestApi\\"
       }
     },
-    \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\": {
-      \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
-      \\"Properties\\": {
-        \\"RestApiId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
-        },
-        \\"Description\\": \\"Automatically created by the RestApi construct\\"
-      },
-      \\"DependsOn\\": [
-        \\"LambdaApiTestApihelloidGETC46CEBC1\\",
-        \\"LambdaApiTestApihelloid2F778A8B\\",
-        \\"LambdaApiTestApihelloOPTIONS0D3F2434\\",
-        \\"LambdaApiTestApihello287B32B7\\"
-      ]
-    },
-    \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\": {
-      \\"Type\\": \\"AWS::ApiGateway::Stage\\",
-      \\"Properties\\": {
-        \\"RestApiId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
-        },
-        \\"DeploymentId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\"
-        },
-        \\"StageName\\": \\"prod\\"
-      }
-    },
     \\"LambdaApiTestApiCloudWatchRole0731508D\\": {
       \\"Type\\": \\"AWS::IAM::Role\\",
       \\"Properties\\": {
@@ -80,6 +53,33 @@ exports[`LambdaApiConstruct (customDomain) synthetizes properly 1`] = `
       \\"DependsOn\\": [
         \\"LambdaApiTestApiCDC7EDDF\\"
       ]
+    },
+    \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"Description\\": \\"Automatically created by the RestApi construct\\"
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApihelloidGETC46CEBC1\\",
+        \\"LambdaApiTestApihelloid2F778A8B\\",
+        \\"LambdaApiTestApihelloOPTIONS0D3F2434\\",
+        \\"LambdaApiTestApihello287B32B7\\"
+      ]
+    },
+    \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Stage\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"DeploymentId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\"
+        },
+        \\"StageName\\": \\"prod\\"
+      }
     },
     \\"LambdaApiTestApihello287B32B7\\": {
       \\"Type\\": \\"AWS::ApiGateway::Resource\\",
@@ -185,7 +185,7 @@ exports[`LambdaApiConstruct (customDomain) synthetizes properly 1`] = `
               {
                 \\"Ref\\": \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\"
               },
-              \\"/GET/hello/{id}\\"
+              \\"/GET/hello/*\\"
             ]
           ]
         }
@@ -222,7 +222,7 @@ exports[`LambdaApiConstruct (customDomain) synthetizes properly 1`] = `
               {
                 \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
               },
-              \\"/test-invoke-stage/GET/hello/{id}\\"
+              \\"/test-invoke-stage/GET/hello/*\\"
             ]
           ]
         }
@@ -616,33 +616,6 @@ exports[`LambdaApiConstruct (dynamo and bucket) synthetizes properly 1`] = `
         \\"Name\\": \\"TestApi\\"
       }
     },
-    \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\": {
-      \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
-      \\"Properties\\": {
-        \\"RestApiId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
-        },
-        \\"Description\\": \\"Automatically created by the RestApi construct\\"
-      },
-      \\"DependsOn\\": [
-        \\"LambdaApiTestApihelloidGETC46CEBC1\\",
-        \\"LambdaApiTestApihelloid2F778A8B\\",
-        \\"LambdaApiTestApihelloOPTIONS0D3F2434\\",
-        \\"LambdaApiTestApihello287B32B7\\"
-      ]
-    },
-    \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\": {
-      \\"Type\\": \\"AWS::ApiGateway::Stage\\",
-      \\"Properties\\": {
-        \\"RestApiId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
-        },
-        \\"DeploymentId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\"
-        },
-        \\"StageName\\": \\"prod\\"
-      }
-    },
     \\"LambdaApiTestApiCloudWatchRole0731508D\\": {
       \\"Type\\": \\"AWS::IAM::Role\\",
       \\"Properties\\": {
@@ -687,6 +660,33 @@ exports[`LambdaApiConstruct (dynamo and bucket) synthetizes properly 1`] = `
       \\"DependsOn\\": [
         \\"LambdaApiTestApiCDC7EDDF\\"
       ]
+    },
+    \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"Description\\": \\"Automatically created by the RestApi construct\\"
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApihelloidGETC46CEBC1\\",
+        \\"LambdaApiTestApihelloid2F778A8B\\",
+        \\"LambdaApiTestApihelloOPTIONS0D3F2434\\",
+        \\"LambdaApiTestApihello287B32B7\\"
+      ]
+    },
+    \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Stage\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"DeploymentId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\"
+        },
+        \\"StageName\\": \\"prod\\"
+      }
     },
     \\"LambdaApiTestApihello287B32B7\\": {
       \\"Type\\": \\"AWS::ApiGateway::Resource\\",
@@ -792,7 +792,7 @@ exports[`LambdaApiConstruct (dynamo and bucket) synthetizes properly 1`] = `
               {
                 \\"Ref\\": \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\"
               },
-              \\"/GET/hello/{id}\\"
+              \\"/GET/hello/*\\"
             ]
           ]
         }
@@ -829,7 +829,7 @@ exports[`LambdaApiConstruct (dynamo and bucket) synthetizes properly 1`] = `
               {
                 \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
               },
-              \\"/test-invoke-stage/GET/hello/{id}\\"
+              \\"/test-invoke-stage/GET/hello/*\\"
             ]
           ]
         }
@@ -1070,33 +1070,6 @@ exports[`LambdaApiConstruct (layers) synthetizes properly 1`] = `
         \\"Name\\": \\"TestApi\\"
       }
     },
-    \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\": {
-      \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
-      \\"Properties\\": {
-        \\"RestApiId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
-        },
-        \\"Description\\": \\"Automatically created by the RestApi construct\\"
-      },
-      \\"DependsOn\\": [
-        \\"LambdaApiTestApihelloidGETC46CEBC1\\",
-        \\"LambdaApiTestApihelloid2F778A8B\\",
-        \\"LambdaApiTestApihelloOPTIONS0D3F2434\\",
-        \\"LambdaApiTestApihello287B32B7\\"
-      ]
-    },
-    \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\": {
-      \\"Type\\": \\"AWS::ApiGateway::Stage\\",
-      \\"Properties\\": {
-        \\"RestApiId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
-        },
-        \\"DeploymentId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\"
-        },
-        \\"StageName\\": \\"prod\\"
-      }
-    },
     \\"LambdaApiTestApiCloudWatchRole0731508D\\": {
       \\"Type\\": \\"AWS::IAM::Role\\",
       \\"Properties\\": {
@@ -1141,6 +1114,33 @@ exports[`LambdaApiConstruct (layers) synthetizes properly 1`] = `
       \\"DependsOn\\": [
         \\"LambdaApiTestApiCDC7EDDF\\"
       ]
+    },
+    \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"Description\\": \\"Automatically created by the RestApi construct\\"
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApihelloidGETC46CEBC1\\",
+        \\"LambdaApiTestApihelloid2F778A8B\\",
+        \\"LambdaApiTestApihelloOPTIONS0D3F2434\\",
+        \\"LambdaApiTestApihello287B32B7\\"
+      ]
+    },
+    \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Stage\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"DeploymentId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\"
+        },
+        \\"StageName\\": \\"prod\\"
+      }
     },
     \\"LambdaApiTestApihello287B32B7\\": {
       \\"Type\\": \\"AWS::ApiGateway::Resource\\",
@@ -1246,7 +1246,7 @@ exports[`LambdaApiConstruct (layers) synthetizes properly 1`] = `
               {
                 \\"Ref\\": \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\"
               },
-              \\"/GET/hello/{id}\\"
+              \\"/GET/hello/*\\"
             ]
           ]
         }
@@ -1283,7 +1283,7 @@ exports[`LambdaApiConstruct (layers) synthetizes properly 1`] = `
               {
                 \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
               },
-              \\"/test-invoke-stage/GET/hello/{id}\\"
+              \\"/test-invoke-stage/GET/hello/*\\"
             ]
           ]
         }
@@ -1566,33 +1566,6 @@ exports[`LambdaApiConstruct (protected) synthetizes properly 1`] = `
         \\"Name\\": \\"TestApi\\"
       }
     },
-    \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\": {
-      \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
-      \\"Properties\\": {
-        \\"RestApiId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
-        },
-        \\"Description\\": \\"Automatically created by the RestApi construct\\"
-      },
-      \\"DependsOn\\": [
-        \\"LambdaApiTestApihelloidGETC46CEBC1\\",
-        \\"LambdaApiTestApihelloid2F778A8B\\",
-        \\"LambdaApiTestApihelloOPTIONS0D3F2434\\",
-        \\"LambdaApiTestApihello287B32B7\\"
-      ]
-    },
-    \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\": {
-      \\"Type\\": \\"AWS::ApiGateway::Stage\\",
-      \\"Properties\\": {
-        \\"RestApiId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
-        },
-        \\"DeploymentId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\"
-        },
-        \\"StageName\\": \\"prod\\"
-      }
-    },
     \\"LambdaApiTestApiCloudWatchRole0731508D\\": {
       \\"Type\\": \\"AWS::IAM::Role\\",
       \\"Properties\\": {
@@ -1637,6 +1610,33 @@ exports[`LambdaApiConstruct (protected) synthetizes properly 1`] = `
       \\"DependsOn\\": [
         \\"LambdaApiTestApiCDC7EDDF\\"
       ]
+    },
+    \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"Description\\": \\"Automatically created by the RestApi construct\\"
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApihelloidGETC46CEBC1\\",
+        \\"LambdaApiTestApihelloid2F778A8B\\",
+        \\"LambdaApiTestApihelloOPTIONS0D3F2434\\",
+        \\"LambdaApiTestApihello287B32B7\\"
+      ]
+    },
+    \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Stage\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"DeploymentId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\"
+        },
+        \\"StageName\\": \\"prod\\"
+      }
     },
     \\"LambdaApiTestApihello287B32B7\\": {
       \\"Type\\": \\"AWS::ApiGateway::Resource\\",
@@ -1742,7 +1742,7 @@ exports[`LambdaApiConstruct (protected) synthetizes properly 1`] = `
               {
                 \\"Ref\\": \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\"
               },
-              \\"/GET/hello/{id}\\"
+              \\"/GET/hello/*\\"
             ]
           ]
         }
@@ -1779,7 +1779,7 @@ exports[`LambdaApiConstruct (protected) synthetizes properly 1`] = `
               {
                 \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
               },
-              \\"/test-invoke-stage/GET/hello/{id}\\"
+              \\"/test-invoke-stage/GET/hello/*\\"
             ]
           ]
         }
@@ -1997,33 +1997,6 @@ exports[`LambdaApiConstruct synthetizes properly 1`] = `
         \\"Name\\": \\"TestApi\\"
       }
     },
-    \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\": {
-      \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
-      \\"Properties\\": {
-        \\"RestApiId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
-        },
-        \\"Description\\": \\"Automatically created by the RestApi construct\\"
-      },
-      \\"DependsOn\\": [
-        \\"LambdaApiTestApihelloidGETC46CEBC1\\",
-        \\"LambdaApiTestApihelloid2F778A8B\\",
-        \\"LambdaApiTestApihelloOPTIONS0D3F2434\\",
-        \\"LambdaApiTestApihello287B32B7\\"
-      ]
-    },
-    \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\": {
-      \\"Type\\": \\"AWS::ApiGateway::Stage\\",
-      \\"Properties\\": {
-        \\"RestApiId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
-        },
-        \\"DeploymentId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\"
-        },
-        \\"StageName\\": \\"prod\\"
-      }
-    },
     \\"LambdaApiTestApiCloudWatchRole0731508D\\": {
       \\"Type\\": \\"AWS::IAM::Role\\",
       \\"Properties\\": {
@@ -2068,6 +2041,33 @@ exports[`LambdaApiConstruct synthetizes properly 1`] = `
       \\"DependsOn\\": [
         \\"LambdaApiTestApiCDC7EDDF\\"
       ]
+    },
+    \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"Description\\": \\"Automatically created by the RestApi construct\\"
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApihelloidGETC46CEBC1\\",
+        \\"LambdaApiTestApihelloid2F778A8B\\",
+        \\"LambdaApiTestApihelloOPTIONS0D3F2434\\",
+        \\"LambdaApiTestApihello287B32B7\\"
+      ]
+    },
+    \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Stage\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"DeploymentId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\"
+        },
+        \\"StageName\\": \\"prod\\"
+      }
     },
     \\"LambdaApiTestApihello287B32B7\\": {
       \\"Type\\": \\"AWS::ApiGateway::Resource\\",
@@ -2173,7 +2173,7 @@ exports[`LambdaApiConstruct synthetizes properly 1`] = `
               {
                 \\"Ref\\": \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\"
               },
-              \\"/GET/hello/{id}\\"
+              \\"/GET/hello/*\\"
             ]
           ]
         }
@@ -2210,7 +2210,7 @@ exports[`LambdaApiConstruct synthetizes properly 1`] = `
               {
                 \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
               },
-              \\"/test-invoke-stage/GET/hello/{id}\\"
+              \\"/test-invoke-stage/GET/hello/*\\"
             ]
           ]
         }
@@ -2396,32 +2396,6 @@ exports[`LambdaApiConstruct synthetizes using dirDist and python 1`] = `
         \\"Name\\": \\"TestApi\\"
       }
     },
-    \\"LambdaApiTestApiDeploymentC09FA65F7cc5eda69bb9e7c7542a03f11bb5690a\\": {
-      \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
-      \\"Properties\\": {
-        \\"RestApiId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
-        },
-        \\"Description\\": \\"Automatically created by the RestApi construct\\"
-      },
-      \\"DependsOn\\": [
-        \\"LambdaApiTestApihelloGET86810A6E\\",
-        \\"LambdaApiTestApihelloOPTIONS0D3F2434\\",
-        \\"LambdaApiTestApihello287B32B7\\"
-      ]
-    },
-    \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\": {
-      \\"Type\\": \\"AWS::ApiGateway::Stage\\",
-      \\"Properties\\": {
-        \\"RestApiId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
-        },
-        \\"DeploymentId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F7cc5eda69bb9e7c7542a03f11bb5690a\\"
-        },
-        \\"StageName\\": \\"prod\\"
-      }
-    },
     \\"LambdaApiTestApiCloudWatchRole0731508D\\": {
       \\"Type\\": \\"AWS::IAM::Role\\",
       \\"Properties\\": {
@@ -2466,6 +2440,32 @@ exports[`LambdaApiConstruct synthetizes using dirDist and python 1`] = `
       \\"DependsOn\\": [
         \\"LambdaApiTestApiCDC7EDDF\\"
       ]
+    },
+    \\"LambdaApiTestApiDeploymentC09FA65F7cc5eda69bb9e7c7542a03f11bb5690a\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"Description\\": \\"Automatically created by the RestApi construct\\"
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApihelloGET86810A6E\\",
+        \\"LambdaApiTestApihelloOPTIONS0D3F2434\\",
+        \\"LambdaApiTestApihello287B32B7\\"
+      ]
+    },
+    \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Stage\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"DeploymentId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F7cc5eda69bb9e7c7542a03f11bb5690a\\"
+        },
+        \\"StageName\\": \\"prod\\"
+      }
     },
     \\"LambdaApiTestApihello287B32B7\\": {
       \\"Type\\": \\"AWS::ApiGateway::Resource\\",
@@ -2782,32 +2782,6 @@ exports[`LambdaApiConstruct synthetizes without subroute 1`] = `
         \\"Name\\": \\"TestApi\\"
       }
     },
-    \\"LambdaApiTestApiDeploymentC09FA65F7cc5eda69bb9e7c7542a03f11bb5690a\\": {
-      \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
-      \\"Properties\\": {
-        \\"RestApiId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
-        },
-        \\"Description\\": \\"Automatically created by the RestApi construct\\"
-      },
-      \\"DependsOn\\": [
-        \\"LambdaApiTestApihelloGET86810A6E\\",
-        \\"LambdaApiTestApihelloOPTIONS0D3F2434\\",
-        \\"LambdaApiTestApihello287B32B7\\"
-      ]
-    },
-    \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\": {
-      \\"Type\\": \\"AWS::ApiGateway::Stage\\",
-      \\"Properties\\": {
-        \\"RestApiId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
-        },
-        \\"DeploymentId\\": {
-          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F7cc5eda69bb9e7c7542a03f11bb5690a\\"
-        },
-        \\"StageName\\": \\"prod\\"
-      }
-    },
     \\"LambdaApiTestApiCloudWatchRole0731508D\\": {
       \\"Type\\": \\"AWS::IAM::Role\\",
       \\"Properties\\": {
@@ -2852,6 +2826,32 @@ exports[`LambdaApiConstruct synthetizes without subroute 1`] = `
       \\"DependsOn\\": [
         \\"LambdaApiTestApiCDC7EDDF\\"
       ]
+    },
+    \\"LambdaApiTestApiDeploymentC09FA65F7cc5eda69bb9e7c7542a03f11bb5690a\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Deployment\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"Description\\": \\"Automatically created by the RestApi construct\\"
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApihelloGET86810A6E\\",
+        \\"LambdaApiTestApihelloOPTIONS0D3F2434\\",
+        \\"LambdaApiTestApihello287B32B7\\"
+      ]
+    },
+    \\"LambdaApiTestApiDeploymentStageprod7DCB485F\\": {
+      \\"Type\\": \\"AWS::ApiGateway::Stage\\",
+      \\"Properties\\": {
+        \\"RestApiId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
+        },
+        \\"DeploymentId\\": {
+          \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F7cc5eda69bb9e7c7542a03f11bb5690a\\"
+        },
+        \\"StageName\\": \\"prod\\"
+      }
     },
     \\"LambdaApiTestApihello287B32B7\\": {
       \\"Type\\": \\"AWS::ApiGateway::Resource\\",

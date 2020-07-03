@@ -33,21 +33,21 @@
     "DynamoDB"
   ],
   "devDependencies": {
-    "@types/jest": "^25.2.1",
-    "@types/node": "^13.13.5",
-    "jest": "^25.4.0",
+    "@types/jest": "^26.0.3",
+    "@types/node": "^14.0.14",
+    "jest": "^26.1.0",
     "prettier": "^2.0.5",
-    "rollup": "^2.9.1",
-    "rollup-plugin-typescript2": "^0.27.0",
-    "ts-jest": "^25.5.1",
+    "rollup": "^2.18.2",
+    "rollup-plugin-typescript2": "^0.27.1",
+    "ts-jest": "^26.1.1",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.6"
   },
   "dependencies": {
     "@cpmech/basic": "^4.20.1",
     "@cpmech/js2ts": "^2.18.0",
     "@cpmech/util": "^1.23.1",
-    "aws-sdk": "^2.674.0"
+    "aws-sdk": "^2.709.0"
   }
 }
