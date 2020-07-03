@@ -1,6 +1,6 @@
 {
   "name": "@cpmech/envars",
-  "version": "2.20.1",
+  "version": "2.21.0",
   "license": "MIT",
   "author": {
     "name": "Dorival Pedroso",
@@ -39,6 +39,6 @@
     "typescript": "^3.9.6"
   },
   "dependencies": {
-    "@cpmech/basic": "^4.20.1"
+    "@cpmech/basic": "^4.21.0"
   }
 }
