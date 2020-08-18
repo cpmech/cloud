@@ -80,6 +80,8 @@ exports[`WebsiteConstruct (prefixed) synthetizes properly using certificateArn 1
           \\"IPV6Enabled\\": true,
           \\"Origins\\": [
             {
+              \\"ConnectionAttempts\\": 3,
+              \\"ConnectionTimeout\\": 10,
               \\"DomainName\\": {
                 \\"Fn::GetAtt\\": [
                   \\"WebsiteBucket4326D7C2\\",
@@ -110,7 +112,15 @@ exports[`WebsiteConstruct (prefixed) synthetizes properly using certificateArn 1
               \\"DomainName\\"
             ]
           },
-          \\"HostedZoneId\\": \\"Z2FDTNDATAQYW2\\"
+          \\"HostedZoneId\\": {
+            \\"Fn::FindInMap\\": [
+              \\"AWSCloudFrontPartitionHostedZoneIdMap\\",
+              {
+                \\"Ref\\": \\"AWS::Partition\\"
+              },
+              \\"zoneId\\"
+            ]
+          }
         },
         \\"HostedZoneId\\": {
           \\"Ref\\": \\"WebsiteHostedZoneD4FAEADF\\"
@@ -129,11 +139,29 @@ exports[`WebsiteConstruct (prefixed) synthetizes properly using certificateArn 1
               \\"DomainName\\"
             ]
           },
-          \\"HostedZoneId\\": \\"Z2FDTNDATAQYW2\\"
+          \\"HostedZoneId\\": {
+            \\"Fn::FindInMap\\": [
+              \\"AWSCloudFrontPartitionHostedZoneIdMap\\",
+              {
+                \\"Ref\\": \\"AWS::Partition\\"
+              },
+              \\"zoneId\\"
+            ]
+          }
         },
         \\"HostedZoneId\\": {
           \\"Ref\\": \\"WebsiteHostedZoneD4FAEADF\\"
         }
+      }
+    }
+  },
+  \\"Mappings\\": {
+    \\"AWSCloudFrontPartitionHostedZoneIdMap\\": {
+      \\"aws\\": {
+        \\"zoneId\\": \\"Z2FDTNDATAQYW2\\"
+      },
+      \\"aws-cn\\": {
+        \\"zoneId\\": \\"Z3RFFRIM2A3IF5\\"
       }
     }
   }
@@ -217,6 +245,8 @@ exports[`WebsiteConstruct synthetizes properly 1`] = `
           \\"IPV6Enabled\\": true,
           \\"Origins\\": [
             {
+              \\"ConnectionAttempts\\": 3,
+              \\"ConnectionTimeout\\": 10,
               \\"DomainName\\": {
                 \\"Fn::GetAtt\\": [
                   \\"WebsiteBucket4326D7C2\\",
@@ -246,7 +276,15 @@ exports[`WebsiteConstruct synthetizes properly 1`] = `
               \\"DomainName\\"
             ]
           },
-          \\"HostedZoneId\\": \\"Z2FDTNDATAQYW2\\"
+          \\"HostedZoneId\\": {
+            \\"Fn::FindInMap\\": [
+              \\"AWSCloudFrontPartitionHostedZoneIdMap\\",
+              {
+                \\"Ref\\": \\"AWS::Partition\\"
+              },
+              \\"zoneId\\"
+            ]
+          }
         },
         \\"HostedZoneId\\": {
           \\"Ref\\": \\"WebsiteHostedZoneD4FAEADF\\"
@@ -265,7 +303,15 @@ exports[`WebsiteConstruct synthetizes properly 1`] = `
               \\"DomainName\\"
             ]
           },
-          \\"HostedZoneId\\": \\"Z2FDTNDATAQYW2\\"
+          \\"HostedZoneId\\": {
+            \\"Fn::FindInMap\\": [
+              \\"AWSCloudFrontPartitionHostedZoneIdMap\\",
+              {
+                \\"Ref\\": \\"AWS::Partition\\"
+              },
+              \\"zoneId\\"
+            ]
+          }
         },
         \\"HostedZoneId\\": {
           \\"Ref\\": \\"WebsiteHostedZoneD4FAEADF\\"
@@ -284,7 +330,15 @@ exports[`WebsiteConstruct synthetizes properly 1`] = `
               \\"DomainName\\"
             ]
           },
-          \\"HostedZoneId\\": \\"Z2FDTNDATAQYW2\\"
+          \\"HostedZoneId\\": {
+            \\"Fn::FindInMap\\": [
+              \\"AWSCloudFrontPartitionHostedZoneIdMap\\",
+              {
+                \\"Ref\\": \\"AWS::Partition\\"
+              },
+              \\"zoneId\\"
+            ]
+          }
         },
         \\"HostedZoneId\\": {
           \\"Ref\\": \\"WebsiteHostedZoneD4FAEADF\\"
@@ -498,6 +552,16 @@ exports[`WebsiteConstruct synthetizes properly 1`] = `
       \\"DeletionPolicy\\": \\"Delete\\"
     }
   },
+  \\"Mappings\\": {
+    \\"AWSCloudFrontPartitionHostedZoneIdMap\\": {
+      \\"aws\\": {
+        \\"zoneId\\": \\"Z2FDTNDATAQYW2\\"
+      },
+      \\"aws-cn\\": {
+        \\"zoneId\\": \\"Z3RFFRIM2A3IF5\\"
+      }
+    }
+  },
   \\"Parameters\\": {
     \\"AssetParameters8ee8fb524eef3fdcf0c8f7b3a096bc2b85686756e8a3c7176c033e494f985168S3Bucket84802930\\": {
       \\"Type\\": \\"String\\",
@@ -596,6 +660,8 @@ exports[`WebsiteConstruct synthetizes properly using certificateArn 1`] = `
           \\"IPV6Enabled\\": true,
           \\"Origins\\": [
             {
+              \\"ConnectionAttempts\\": 3,
+              \\"ConnectionTimeout\\": 10,
               \\"DomainName\\": {
                 \\"Fn::GetAtt\\": [
                   \\"WebsiteBucket4326D7C2\\",
@@ -626,7 +692,15 @@ exports[`WebsiteConstruct synthetizes properly using certificateArn 1`] = `
               \\"DomainName\\"
             ]
           },
-          \\"HostedZoneId\\": \\"Z2FDTNDATAQYW2\\"
+          \\"HostedZoneId\\": {
+            \\"Fn::FindInMap\\": [
+              \\"AWSCloudFrontPartitionHostedZoneIdMap\\",
+              {
+                \\"Ref\\": \\"AWS::Partition\\"
+              },
+              \\"zoneId\\"
+            ]
+          }
         },
         \\"HostedZoneId\\": {
           \\"Ref\\": \\"WebsiteHostedZoneD4FAEADF\\"
@@ -645,7 +719,15 @@ exports[`WebsiteConstruct synthetizes properly using certificateArn 1`] = `
               \\"DomainName\\"
             ]
           },
-          \\"HostedZoneId\\": \\"Z2FDTNDATAQYW2\\"
+          \\"HostedZoneId\\": {
+            \\"Fn::FindInMap\\": [
+              \\"AWSCloudFrontPartitionHostedZoneIdMap\\",
+              {
+                \\"Ref\\": \\"AWS::Partition\\"
+              },
+              \\"zoneId\\"
+            ]
+          }
         },
         \\"HostedZoneId\\": {
           \\"Ref\\": \\"WebsiteHostedZoneD4FAEADF\\"
@@ -664,7 +746,15 @@ exports[`WebsiteConstruct synthetizes properly using certificateArn 1`] = `
               \\"DomainName\\"
             ]
           },
-          \\"HostedZoneId\\": \\"Z2FDTNDATAQYW2\\"
+          \\"HostedZoneId\\": {
+            \\"Fn::FindInMap\\": [
+              \\"AWSCloudFrontPartitionHostedZoneIdMap\\",
+              {
+                \\"Ref\\": \\"AWS::Partition\\"
+              },
+              \\"zoneId\\"
+            ]
+          }
         },
         \\"HostedZoneId\\": {
           \\"Ref\\": \\"WebsiteHostedZoneD4FAEADF\\"
@@ -876,6 +966,16 @@ exports[`WebsiteConstruct synthetizes properly using certificateArn 1`] = `
       },
       \\"UpdateReplacePolicy\\": \\"Delete\\",
       \\"DeletionPolicy\\": \\"Delete\\"
+    }
+  },
+  \\"Mappings\\": {
+    \\"AWSCloudFrontPartitionHostedZoneIdMap\\": {
+      \\"aws\\": {
+        \\"zoneId\\": \\"Z2FDTNDATAQYW2\\"
+      },
+      \\"aws-cn\\": {
+        \\"zoneId\\": \\"Z3RFFRIM2A3IF5\\"
+      }
     }
   },
   \\"Parameters\\": {
