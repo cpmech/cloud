@@ -11,6 +11,7 @@ export let defaultResponseURL: string;
 //   reason -- reason for failure, if any, to convey to the user
 // OUTPUT:
 //   Promise that is resolved on success, or rejected on connection error or HTTP error response
+// Ref: https://github.com/aws/aws-cdk/blob/master/packages/%40aws-cdk/aws-certificatemanager/lambda-packages/dns_validated_certificate_handler/lib/index.js
 export const report = (
   event: any,
   context: any,
@@ -19,7 +20,7 @@ export const report = (
   responseData?: any,
   reason?: string,
 ) => {
-  return new Promise((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     const https = require('https');
     const { URL } = require('url');
 
