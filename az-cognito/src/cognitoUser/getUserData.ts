@@ -9,6 +9,9 @@ export const getUserData = (user: CognitoUser): Promise<UserData> =>
       if (err) {
         return reject(err);
       }
+      if (!data) {
+        return reject("data is undefined");
+      }
       return resolve(data);
     });
   });
