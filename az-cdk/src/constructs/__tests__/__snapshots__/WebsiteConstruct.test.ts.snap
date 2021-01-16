@@ -518,13 +518,13 @@ exports[`WebsiteConstruct synthetizes properly 1`] = `
             ]
           }
         },
-        \\"Handler\\": \\"index.verifyDomain\\",
         \\"Role\\": {
           \\"Fn::GetAtt\\": [
             \\"WebsiteVerifyDomainFunctionServiceRole77BB87BB\\",
             \\"Arn\\"
           ]
         },
+        \\"Handler\\": \\"index.verifyDomain\\",
         \\"Runtime\\": \\"nodejs12.x\\",
         \\"Timeout\\": 60
       },
@@ -934,13 +934,13 @@ exports[`WebsiteConstruct synthetizes properly using certificateArn 1`] = `
             ]
           }
         },
-        \\"Handler\\": \\"index.verifyDomain\\",
         \\"Role\\": {
           \\"Fn::GetAtt\\": [
             \\"WebsiteVerifyDomainFunctionServiceRole77BB87BB\\",
             \\"Arn\\"
           ]
         },
+        \\"Handler\\": \\"index.verifyDomain\\",
         \\"Runtime\\": \\"nodejs12.x\\",
         \\"Timeout\\": 60
       },

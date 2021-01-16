@@ -395,13 +395,13 @@ exports[`LambdaApiConstruct (customDomain) synthetizes properly 1`] = `
             ]
           }
         },
-        \\"Handler\\": \\"index.route53Alias\\",
         \\"Role\\": {
           \\"Fn::GetAtt\\": [
             \\"LambdaApiRoute53AliasFunctionServiceRole172D112F\\",
             \\"Arn\\"
           ]
         },
+        \\"Handler\\": \\"index.route53Alias\\",
         \\"Runtime\\": \\"nodejs12.x\\",
         \\"Timeout\\": 60
       },
@@ -536,13 +536,13 @@ exports[`LambdaApiConstruct (customDomain) synthetizes properly 1`] = `
             ]
           }
         },
-        \\"Handler\\": \\"index.handler\\",
         \\"Role\\": {
           \\"Fn::GetAtt\\": [
             \\"LambdaApiHelloServiceRole7B3F9417\\",
             \\"Arn\\"
           ]
         },
+        \\"Handler\\": \\"index.handler\\",
         \\"Runtime\\": \\"nodejs12.x\\"
       },
       \\"DependsOn\\": [
@@ -1001,13 +1001,13 @@ exports[`LambdaApiConstruct (dynamo and bucket) synthetizes properly 1`] = `
             ]
           }
         },
-        \\"Handler\\": \\"index.handler\\",
         \\"Role\\": {
           \\"Fn::GetAtt\\": [
             \\"LambdaApiHelloServiceRole7B3F9417\\",
             \\"Arn\\"
           ]
         },
+        \\"Handler\\": \\"index.handler\\",
         \\"Runtime\\": \\"nodejs12.x\\"
       },
       \\"DependsOn\\": [
@@ -1481,19 +1481,19 @@ exports[`LambdaApiConstruct (layers) synthetizes properly 1`] = `
             ]
           }
         },
-        \\"Handler\\": \\"index.handler\\",
         \\"Role\\": {
           \\"Fn::GetAtt\\": [
             \\"LambdaApiHelloServiceRole7B3F9417\\",
             \\"Arn\\"
           ]
         },
-        \\"Runtime\\": \\"nodejs12.x\\",
+        \\"Handler\\": \\"index.handler\\",
         \\"Layers\\": [
           {
             \\"Ref\\": \\"LambdaApiLayersCommonLibsB5C11B1B\\"
           }
-        ]
+        ],
+        \\"Runtime\\": \\"nodejs12.x\\"
       },
       \\"DependsOn\\": [
         \\"LambdaApiHelloServiceRole7B3F9417\\"
@@ -1929,13 +1929,13 @@ exports[`LambdaApiConstruct (protected) synthetizes properly 1`] = `
             ]
           }
         },
-        \\"Handler\\": \\"index.handler\\",
         \\"Role\\": {
           \\"Fn::GetAtt\\": [
             \\"LambdaApiHelloServiceRole7B3F9417\\",
             \\"Arn\\"
           ]
         },
+        \\"Handler\\": \\"index.handler\\",
         \\"Runtime\\": \\"nodejs12.x\\"
       },
       \\"DependsOn\\": [
@@ -2328,13 +2328,13 @@ exports[`LambdaApiConstruct synthetizes properly 1`] = `
             ]
           }
         },
-        \\"Handler\\": \\"index.handler\\",
         \\"Role\\": {
           \\"Fn::GetAtt\\": [
             \\"LambdaApiHelloServiceRole7B3F9417\\",
             \\"Arn\\"
           ]
         },
+        \\"Handler\\": \\"index.handler\\",
         \\"Runtime\\": \\"nodejs12.x\\"
       },
       \\"DependsOn\\": [
@@ -2714,13 +2714,13 @@ exports[`LambdaApiConstruct synthetizes using dirDist and python 1`] = `
             ]
           }
         },
-        \\"Handler\\": \\"lambda.handler\\",
         \\"Role\\": {
           \\"Fn::GetAtt\\": [
             \\"LambdaApiHelloServiceRole7B3F9417\\",
             \\"Arn\\"
           ]
         },
+        \\"Handler\\": \\"lambda.handler\\",
         \\"Runtime\\": \\"python3.7\\"
       },
       \\"DependsOn\\": [
@@ -3100,13 +3100,13 @@ exports[`LambdaApiConstruct synthetizes without subroute 1`] = `
             ]
           }
         },
-        \\"Handler\\": \\"index.handler\\",
         \\"Role\\": {
           \\"Fn::GetAtt\\": [
             \\"LambdaApiHelloServiceRole7B3F9417\\",
             \\"Arn\\"
           ]
         },
+        \\"Handler\\": \\"index.handler\\",
         \\"Runtime\\": \\"nodejs12.x\\"
       },
       \\"DependsOn\\": [

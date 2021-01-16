@@ -75,13 +75,13 @@ exports[`LambdaConstruct synthetizes properly 1`] = `
             ]
           }
         },
-        \\"Handler\\": \\"index.handler\\",
         \\"Role\\": {
           \\"Fn::GetAtt\\": [
             \\"LambdaServiceRoleFC57F673\\",
             \\"Arn\\"
           ]
         },
+        \\"Handler\\": \\"index.handler\\",
         \\"Runtime\\": \\"nodejs12.x\\"
       },
       \\"DependsOn\\": [

@@ -154,13 +154,13 @@ exports[`Route53WithEmailConstruct synthetizes properly 1`] = `
             ]
           }
         },
-        \\"Handler\\": \\"index.verifyDomain\\",
         \\"Role\\": {
           \\"Fn::GetAtt\\": [
             \\"Route53WithEmailConstructVerifyDomainFunctionServiceRole07F90F01\\",
             \\"Arn\\"
           ]
         },
+        \\"Handler\\": \\"index.verifyDomain\\",
         \\"Runtime\\": \\"nodejs12.x\\",
         \\"Timeout\\": 60
       },

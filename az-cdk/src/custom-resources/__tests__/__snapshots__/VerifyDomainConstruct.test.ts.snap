@@ -131,13 +131,13 @@ exports[`VerifyDomainConstruct  synthetizes properly 1`] = `
             ]
           }
         },
-        \\"Handler\\": \\"index.verifyDomain\\",
         \\"Role\\": {
           \\"Fn::GetAtt\\": [
             \\"VerifyDomainFunctionServiceRole9C64A2F3\\",
             \\"Arn\\"
           ]
         },
+        \\"Handler\\": \\"index.verifyDomain\\",
         \\"Runtime\\": \\"nodejs12.x\\",
         \\"Timeout\\": 60
       },

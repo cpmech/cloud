@@ -260,13 +260,13 @@ exports[`ReceiveEmailSQSConstruct synthetizes properly 1`] = `
             ]
           }
         },
-        \\"Handler\\": \\"index.sesDefaultRuleSet\\",
         \\"Role\\": {
           \\"Fn::GetAtt\\": [
             \\"ReceiveEmailSQSDefaultRuleSetFunctionServiceRole7ED6552F\\",
             \\"Arn\\"
           ]
         },
+        \\"Handler\\": \\"index.sesDefaultRuleSet\\",
         \\"Runtime\\": \\"nodejs12.x\\",
         \\"Timeout\\": 60
       },

@@ -217,13 +217,13 @@ exports[`CognitoConstruct + Identity Providers synthetizes properly 1`] = `
             ]
           }
         },
-        \\"Handler\\": \\"index.cognitoEnableProviders\\",
         \\"Role\\": {
           \\"Fn::GetAtt\\": [
             \\"CognitoEnableProvidersFunctionServiceRole74154750\\",
             \\"Arn\\"
           ]
         },
+        \\"Handler\\": \\"index.cognitoEnableProviders\\",
         \\"Runtime\\": \\"nodejs12.x\\",
         \\"Timeout\\": 60
       },
@@ -354,13 +354,13 @@ exports[`CognitoConstruct + Identity Providers synthetizes properly 1`] = `
             ]
           }
         },
-        \\"Handler\\": \\"index.cognitoPoolDomain\\",
         \\"Role\\": {
           \\"Fn::GetAtt\\": [
             \\"CognitoPoolDomainFunctionServiceRole9723885F\\",
             \\"Arn\\"
           ]
         },
+        \\"Handler\\": \\"index.cognitoPoolDomain\\",
         \\"Runtime\\": \\"nodejs12.x\\",
         \\"Timeout\\": 60
       },
@@ -535,13 +535,13 @@ exports[`CognitoConstruct + Lambda Triggers synthetizes properly 1`] = `
             ]
           }
         },
-        \\"Handler\\": \\"cognitoPostConfirm.handler\\",
         \\"Role\\": {
           \\"Fn::GetAtt\\": [
             \\"CognitoPostConfirmServiceRole7954D5B6\\",
             \\"Arn\\"
           ]
         },
+        \\"Handler\\": \\"cognitoPostConfirm.handler\\",
         \\"Runtime\\": \\"nodejs12.x\\",
         \\"Timeout\\": 60
       },
