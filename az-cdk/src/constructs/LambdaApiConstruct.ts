@@ -92,7 +92,7 @@ export class LambdaApiConstruct extends Construct {
       allLayers = new LambdaLayersConstruct(this, 'Layers', { list });
     }
 
-    props.lambdas.forEach(spec => {
+    props.lambdas.forEach((spec) => {
       if (!spec.unprotected && !props.cognitoId) {
         throw new Error('cognitoId is required for protected routes');
       }
@@ -127,14 +127,14 @@ export class LambdaApiConstruct extends Construct {
 
       if (spec.subroute) {
         const subres = res.addResource(spec.subroute);
-        spec.httpMethods.forEach(method => {
+        spec.httpMethods.forEach((method) => {
           const m = subres.addMethod(method, integration);
           if (!spec.unprotected) {
             authorizer.protectRoute(m);
           }
         });
       } else {
-        spec.httpMethods.forEach(method => {
+        spec.httpMethods.forEach((method) => {
           const m = res.addMethod(method, integration);
           if (!spec.unprotected) {
             authorizer.protectRoute(m);
@@ -143,8 +143,8 @@ export class LambdaApiConstruct extends Construct {
       }
 
       if (spec.extraPermissions) {
-        spec.extraPermissions.forEach(s => {
-          (lambda.role as IRole).addToPolicy(
+        spec.extraPermissions.forEach((s) => {
+          (lambda.role as IRole).addToPrincipalPolicy(
             new PolicyStatement({
               actions: [s],
               resources: ['*'],
@@ -155,8 +155,8 @@ export class LambdaApiConstruct extends Construct {
 
       if (spec.accessDynamoTables) {
         const region = lambda.stack.region;
-        spec.accessDynamoTables.forEach(t => {
-          (lambda.role as IRole).addToPolicy(
+        spec.accessDynamoTables.forEach((t) => {
+          (lambda.role as IRole).addToPrincipalPolicy(
             new PolicyStatement({
               actions: ['dynamodb:*'],
               resources: [
@@ -169,8 +169,8 @@ export class LambdaApiConstruct extends Construct {
       }
 
       if (spec.accessBuckets) {
-        spec.accessBuckets.forEach(b => {
-          (lambda.role as IRole).addToPolicy(
+        spec.accessBuckets.forEach((b) => {
+          (lambda.role as IRole).addToPrincipalPolicy(
             new PolicyStatement({
               actions: ['s3:*'],
               resources: [`arn:aws:s3:::${b}`, `arn:aws:s3:::${b}/*`],

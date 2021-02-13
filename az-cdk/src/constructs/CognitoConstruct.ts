@@ -67,7 +67,7 @@ export class CognitoConstruct extends Construct {
         timeout: Duration.minutes(1),
       });
 
-      (postConfirmation.role as IRole).addToPolicy(
+      (postConfirmation.role as IRole).addToPrincipalPolicy(
         new PolicyStatement({
           actions: ['cognito-idp:*'],
           resources: ['*'],
@@ -75,7 +75,7 @@ export class CognitoConstruct extends Construct {
       );
 
       if (props.postConfirmSendEmail) {
-        (postConfirmation.role as IRole).addToPolicy(
+        (postConfirmation.role as IRole).addToPrincipalPolicy(
           new PolicyStatement({
             actions: ['ses:SendEmail'],
             resources: ['*'],
@@ -84,7 +84,7 @@ export class CognitoConstruct extends Construct {
       }
 
       if (props.postConfirmDynamoTable) {
-        (postConfirmation.role as IRole).addToPolicy(
+        (postConfirmation.role as IRole).addToPrincipalPolicy(
           new PolicyStatement({
             actions: ['dynamodb:*'],
             resources: [

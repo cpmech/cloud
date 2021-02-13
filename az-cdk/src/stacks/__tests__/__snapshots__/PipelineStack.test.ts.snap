@@ -193,7 +193,7 @@ exports[`PipelineStack (with notifications) synthetizes properly 1`] = `
         },
         \\"Environment\\": {
           \\"ComputeType\\": \\"BUILD_GENERAL1_SMALL\\",
-          \\"Image\\": \\"aws/codebuild/nodejs:10.14.1\\",
+          \\"Image\\": \\"aws/codebuild/standard:2.0\\",
           \\"ImagePullCredentialsType\\": \\"CODEBUILD\\",
           \\"PrivilegedMode\\": false,
           \\"Type\\": \\"LINUX_CONTAINER\\"
@@ -775,7 +775,7 @@ exports[`PipelineStack synthetizes using secretsManager 1`] = `
         },
         \\"Environment\\": {
           \\"ComputeType\\": \\"BUILD_GENERAL1_SMALL\\",
-          \\"Image\\": \\"aws/codebuild/nodejs:10.14.1\\",
+          \\"Image\\": \\"aws/codebuild/standard:2.0\\",
           \\"ImagePullCredentialsType\\": \\"CODEBUILD\\",
           \\"PrivilegedMode\\": false,
           \\"Type\\": \\"LINUX_CONTAINER\\"
@@ -1256,7 +1256,7 @@ exports[`PipelineStack synthetizes using ssmSecret 1`] = `
               \\"Value\\": \\"1.0\\"
             }
           ],
-          \\"Image\\": \\"aws/codebuild/nodejs:10.14.1\\",
+          \\"Image\\": \\"aws/codebuild/standard:2.0\\",
           \\"ImagePullCredentialsType\\": \\"CODEBUILD\\",
           \\"PrivilegedMode\\": false,
           \\"Type\\": \\"LINUX_CONTAINER\\"
@@ -1737,7 +1737,7 @@ exports[`PipelineStack synthetizes using ssmSecret and NPM 1`] = `
               \\"Value\\": \\"1.0\\"
             }
           ],
-          \\"Image\\": \\"aws/codebuild/nodejs:10.14.1\\",
+          \\"Image\\": \\"aws/codebuild/standard:2.0\\",
           \\"ImagePullCredentialsType\\": \\"CODEBUILD\\",
           \\"PrivilegedMode\\": false,
           \\"Type\\": \\"LINUX_CONTAINER\\"

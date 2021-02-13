@@ -42,7 +42,7 @@ export class WebsitePipelineStack extends Stack {
 
     const project = new PipelineProject(this, 'Project', {
       environment: {
-        buildImage: LinuxBuildImage.UBUNTU_14_04_NODEJS_10_14_1,
+        buildImage: LinuxBuildImage.STANDARD_2_0,
       },
       environmentVariables: props.envars ? envars2cdk(props.envars) : {},
       buildSpec: BuildSpec.fromObject({
@@ -58,7 +58,7 @@ export class WebsitePipelineStack extends Stack {
             commands: [
               `aws s3 cp --recursive --acl public-read ./${assets} s3://${name}/`,
               ...nocacheFiles.map(
-                f =>
+                (f) =>
                   `aws s3 cp --acl public-read --cache-control="${nocacheOptions}" ./${assets}/${f} s3://${name}/`,
               ),
               `aws cloudfront create-invalidation --distribution-id ${distroId} --paths ` +
@@ -75,7 +75,7 @@ export class WebsitePipelineStack extends Stack {
 
     bucket.grantPut(project);
 
-    (project.role as IRole).addToPolicy(
+    (project.role as IRole).addToPrincipalPolicy(
       new PolicyStatement({
         actions: ['cloudfront:CreateInvalidation'],
         resources: ['*'],

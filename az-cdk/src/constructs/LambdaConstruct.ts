@@ -26,7 +26,7 @@ export class LambdaConstruct extends Construct {
 
     let layers: ILayerVersion[] | undefined;
     if (props.layerArns) {
-      layers = props.layerArns.map(arn => LayerVersion.fromLayerVersionArn(this, 'Layer', arn));
+      layers = props.layerArns.map((arn) => LayerVersion.fromLayerVersionArn(this, 'Layer', arn));
     }
 
     const lambda = new Function(this, 'Lambda', {
@@ -43,8 +43,8 @@ export class LambdaConstruct extends Construct {
     this.functionArn = lambda.functionArn;
 
     if (props.extraPermissions) {
-      props.extraPermissions.forEach(s => {
-        lambda.role?.addToPolicy(
+      props.extraPermissions.forEach((s) => {
+        lambda.role?.addToPrincipalPolicy(
           new PolicyStatement({
             actions: [s],
             resources: ['*'],
@@ -55,8 +55,8 @@ export class LambdaConstruct extends Construct {
 
     if (props.accessDynamoTables) {
       const region = lambda.stack.region;
-      props.accessDynamoTables.forEach(t => {
-        lambda.role?.addToPolicy(
+      props.accessDynamoTables.forEach((t) => {
+        lambda.role?.addToPrincipalPolicy(
           new PolicyStatement({
             actions: ['dynamodb:*'],
             resources: [
@@ -69,8 +69,8 @@ export class LambdaConstruct extends Construct {
     }
 
     if (props.accessBuckets) {
-      props.accessBuckets.forEach(b => {
-        lambda.role?.addToPolicy(
+      props.accessBuckets.forEach((b) => {
+        lambda.role?.addToPrincipalPolicy(
           new PolicyStatement({
             actions: ['s3:*'],
             resources: [`arn:aws:s3:::${b}`, `arn:aws:s3:::${b}/*`],

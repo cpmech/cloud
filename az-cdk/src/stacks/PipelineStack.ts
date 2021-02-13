@@ -39,7 +39,7 @@ export class PipelineStack extends Stack {
 
     const project = new PipelineProject(this, 'Project', {
       environment: {
-        buildImage: LinuxBuildImage.UBUNTU_14_04_NODEJS_10_14_1,
+        buildImage: LinuxBuildImage.STANDARD_2_0,
       },
       environmentVariables: props.envars ? envars2cdk(props.envars) : {},
       buildSpec: BuildSpec.fromObject({
@@ -59,8 +59,8 @@ export class PipelineStack extends Stack {
     });
 
     const services = ['cloudformation', 's3', 'iam', ...props.services];
-    services.forEach(s => {
-      (project.role as IRole).addToPolicy(
+    services.forEach((s) => {
+      (project.role as IRole).addToPrincipalPolicy(
         new PolicyStatement({
           actions: [`${s}:*`],
           resources: ['*'],
