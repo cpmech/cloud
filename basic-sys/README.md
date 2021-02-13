@@ -5,7 +5,7 @@ This repo implements some basic functions to read/write files and execute extern
 ## Installation
 
 ```bash
-yarn add @cpmech/basic-sys
+npm install @cpmech/basic-sys
 ```
 
 ## Example

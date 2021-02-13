@@ -5,7 +5,7 @@ This package implements code for managing environment variables
 ## Installation
 
 ```bash
-yarn add @cpmech/envars
+npm install @cpmech/envars
 ```
 
 ## Example

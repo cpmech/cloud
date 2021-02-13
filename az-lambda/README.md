@@ -5,7 +5,7 @@ Tools for implementing AWS Lambda functions.
 ## Installation
 
 ```bash
-yarn add @cpmech/az-lambda
+npm install @cpmech/az-lambda
 ```
 
 ## Example

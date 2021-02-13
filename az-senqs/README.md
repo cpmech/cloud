@@ -5,7 +5,7 @@ az-senqs assits on the implementation of AmaZon AWS Email, Notification, and Que
 ## Installation
 
 ```bash
-yarn add @cpmech/az-senqs
+npm install @cpmech/az-senqs
 ```
 
 ## Example

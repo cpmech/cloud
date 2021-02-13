@@ -5,5 +5,5 @@ az-cdk-crl (AmaZon CDK Custom Resource Lambdas) implements the lambda functions 
 ## Installation
 
 ```bash
-yarn add @cpmech/az-cdk-crl
+npm install @cpmech/az-cdk-crl
 ```

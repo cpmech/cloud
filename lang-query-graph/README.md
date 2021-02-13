@@ -5,7 +5,7 @@ lang-query-graph (LQG <-> GQL) implements code for helping with GraphQL.
 ## Installation
 
 ```bash
-yarn add @cpmech/lang-query-graph
+npm install @cpmech/lang-query-graph
 ```
 
 ## Example

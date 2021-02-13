@@ -5,7 +5,7 @@ az-cdk implements some constructs for use with the fantastic AWS CDK tool.
 ## Installation
 
 ```bash
-yarn add @cpmech/az-cdk
+npm install @cpmech/az-cdk
 ```
 
 ## Examples

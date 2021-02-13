@@ -16,9 +16,9 @@
     "build": "rm -rf dist && rollup --config rollup.config.js",
     "ddb:dk": "bash ./localdb/ddb_docker_run.bash",
     "ddb:bs": "bash ./localdb/ddb_bootstrap.bash",
-    "pretest": "yarn ddb:dk && yarn ddb:bs",
-    "precov": "yarn ddb:dk && yarn ddb:bs",
-    "pretw": "yarn ddb:dk && yarn ddb:bs"
+    "pretest": "npm run ddb:dk && npm run ddb:bs",
+    "precov": "npm run ddb:dk && npm run ddb:bs",
+    "pretw": "npm run ddb:dk && npm run ddb:bs"
   },
   "files": [
     "dist"

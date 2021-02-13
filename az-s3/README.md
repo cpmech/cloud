@@ -7,5 +7,5 @@ work in progress
 ## Installation
 
 ```bash
-yarn add @cpmech/az-s3
+npm install @cpmech/az-s3
 ```

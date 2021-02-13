@@ -5,7 +5,7 @@ v1.11.0
 ## Installation
 
 ```bash
-yarn add @cpmech/js2ts
+npm install @cpmech/js2ts
 ```
 
 ## Usage

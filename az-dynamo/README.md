@@ -5,7 +5,7 @@ Tools for implementing DynamoDB.
 ## Installation
 
 ```bash
-yarn add @cpmech/az-dynamo
+npm install @cpmech/az-dynamo
 ```
 
 ## Example

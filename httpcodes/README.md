@@ -7,7 +7,7 @@ See [Wikipedia](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
 ## Installation
 
 ```bash
-yarn add @cpmech/httpcodes
+npm install @cpmech/httpcodes
 ```
 
 ## Usage

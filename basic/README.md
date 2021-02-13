@@ -5,7 +5,7 @@ This repo implements some basic/auxiliary/helper Javascript (Typescript) code.
 ## Installation
 
 ```bash
-yarn add @cpmech/basic
+npm install @cpmech/basic
 ```
 
 ## Example
