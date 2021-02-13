@@ -16,6 +16,7 @@ export interface IWebsitePipelineStackProps extends StackProps {
   githubRepo: string; // e.g. myrepo (not the full path)
   githubUser: string; // the user (owner) of the GH repo
   githubSecret: SecretValue; // the secret to access GitHub
+  githubBranch?: string; // e.g. "main"
   websiteBucketName: string; // e.g. "mydomain.com-website"
   cloudfrontDistributionId: string; // cloudfront distribution id
   assetsDir?: string; // default is 'dist'
@@ -87,6 +88,7 @@ export class WebsitePipelineStack extends Stack {
       actionName: 'SourceAction',
       owner: props.githubUser,
       repo: props.githubRepo,
+      branch: props.githubBranch || 'main',
       oauthToken: props.githubSecret,
       output: sourceOutput,
     });

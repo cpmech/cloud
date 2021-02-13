@@ -16,6 +16,7 @@ export interface IPipelineStackProps extends StackProps {
   githubRepo: string; // e.g. myrepo (not the full path)
   githubUser: string; // the user (owner) of the GH repo
   githubSecret: SecretValue; // the secret to access GitHub
+  githubBranch?: string; // default = "main"
   services: string[]; // e.g. ['apigateway','lambda'] => to set permissions
   group?: string; // e.g. service [default=service]
   envars?: Ienvars; // environment variables
@@ -73,6 +74,7 @@ export class PipelineStack extends Stack {
       actionName: 'SourceAction',
       owner: props.githubUser,
       repo: props.githubRepo,
+      branch: props.githubBranch || 'main',
       oauthToken: props.githubSecret,
       output: sourceOutput,
     });

@@ -317,7 +317,7 @@ exports[`PipelineStack (with notifications) synthetizes properly 1`] = `
                 \\"Configuration\\": {
                   \\"Owner\\": \\"cpmech\\",
                   \\"Repo\\": \\"myrepo\\",
-                  \\"Branch\\": \\"master\\",
+                  \\"Branch\\": \\"main\\",
                   \\"OAuthToken\\": \\"{{resolve:ssm:gh-token-path:1}}\\",
                   \\"PollForSourceChanges\\": false
                 },
@@ -899,7 +899,7 @@ exports[`PipelineStack synthetizes using secretsManager 1`] = `
                 \\"Configuration\\": {
                   \\"Owner\\": \\"cpmech\\",
                   \\"Repo\\": \\"myrepo\\",
-                  \\"Branch\\": \\"master\\",
+                  \\"Branch\\": \\"main\\",
                   \\"OAuthToken\\": \\"{{resolve:secretsmanager:gh-token-path:SecretString:::}}\\",
                   \\"PollForSourceChanges\\": false
                 },
@@ -1380,7 +1380,7 @@ exports[`PipelineStack synthetizes using ssmSecret 1`] = `
                 \\"Configuration\\": {
                   \\"Owner\\": \\"cpmech\\",
                   \\"Repo\\": \\"myrepo\\",
-                  \\"Branch\\": \\"master\\",
+                  \\"Branch\\": \\"main\\",
                   \\"OAuthToken\\": \\"{{resolve:ssm:gh-token-path:1}}\\",
                   \\"PollForSourceChanges\\": false
                 },
@@ -1861,7 +1861,7 @@ exports[`PipelineStack synthetizes using ssmSecret and NPM 1`] = `
                 \\"Configuration\\": {
                   \\"Owner\\": \\"cpmech\\",
                   \\"Repo\\": \\"myrepo\\",
-                  \\"Branch\\": \\"master\\",
+                  \\"Branch\\": \\"main\\",
                   \\"OAuthToken\\": \\"{{resolve:ssm:gh-token-path:1}}\\",
                   \\"PollForSourceChanges\\": false
                 },

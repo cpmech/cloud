@@ -316,7 +316,7 @@ exports[`WebsitePipelineStack (with notifications) synthetizes properly 1`] = `
                 \\"Configuration\\": {
                   \\"Owner\\": \\"cpmech\\",
                   \\"Repo\\": \\"myrepo\\",
-                  \\"Branch\\": \\"master\\",
+                  \\"Branch\\": \\"main\\",
                   \\"OAuthToken\\": \\"{{resolve:ssm:gh-token-path:1}}\\",
                   \\"PollForSourceChanges\\": false
                 },
@@ -909,7 +909,7 @@ exports[`WebsitePipelineStack synthetizes properly 1`] = `
                 \\"Configuration\\": {
                   \\"Owner\\": \\"cpmech\\",
                   \\"Repo\\": \\"myrepo\\",
-                  \\"Branch\\": \\"master\\",
+                  \\"Branch\\": \\"main\\",
                   \\"OAuthToken\\": \\"{{resolve:ssm:gh-token-path:1}}\\",
                   \\"PollForSourceChanges\\": false
                 },
