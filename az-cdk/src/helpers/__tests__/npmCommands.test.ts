@@ -10,7 +10,7 @@ describe('npmCommands', () => {
   });
 
   it('use Yarn works', () => {
-    const res = npmCommands(true);
+    const res = npmCommands('', true);
     expect(res).toEqual({
       install: [
         'curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -',
