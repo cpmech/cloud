@@ -1,6 +1,6 @@
 {
   "name": "@cpmech/az-cognito",
-  "version": "3.28.1",
+  "version": "3.29.0",
   "license": "MIT",
   "author": {
     "name": "Dorival Pedroso",
@@ -31,7 +31,7 @@
     "Cognito"
   ],
   "devDependencies": {
-    "@cpmech/envars": "^2.22.1",
+    "@cpmech/envars": "^2.23.0",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.27",
     "@types/node-fetch": "^2.5.8",
@@ -49,8 +49,8 @@
     "uuid": "^8.3.2"
   },
   "dependencies": {
-    "@cpmech/az-senqs": "^3.27.1",
-    "@cpmech/basic": "^4.22.1",
+    "@cpmech/az-senqs": "^3.28.0",
+    "@cpmech/basic": "^4.23.0",
     "aws-amplify": "^3.3.18",
     "aws-sdk": "^2.843.0"
   }
