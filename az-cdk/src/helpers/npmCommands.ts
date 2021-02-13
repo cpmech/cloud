@@ -3,7 +3,7 @@ export interface INPMCommands {
   build: string[];
 }
 
-export const npmCommands = (useYarn: boolean = false): INPMCommands => {
+export const npmCommands = (extraBeforeTest = '', useYarn = false): INPMCommands => {
   if (useYarn) {
     return {
       install: [
@@ -17,6 +17,8 @@ export const npmCommands = (useYarn: boolean = false): INPMCommands => {
   }
   return {
     install: ['npm install'],
-    build: ['npm run test', 'npm run build'],
+    build: extraBeforeTest
+      ? [extraBeforeTest, 'npm run test', 'npm run build']
+      : ['npm run test', 'npm run build'],
   };
 };

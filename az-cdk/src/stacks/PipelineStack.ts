@@ -20,6 +20,7 @@ export interface IPipelineStackProps extends StackProps {
   services: string[]; // e.g. ['apigateway','lambda'] => to set permissions
   group?: string; // e.g. service [default=service]
   envars?: Ienvars; // environment variables
+  npmBeforeTest?: string; // extra command before test; "npm install" to force postinstall hook
   useYarn?: boolean; // default: use NPM
   notificationEmails?: string[]; // emails to receive notifications
   useConfirmation?: boolean;
@@ -32,7 +33,7 @@ export class PipelineStack extends Stack {
 
     const group = props.group || 'service';
     const stage = props.stage || '';
-    const cmds = npmCommands(props.useYarn);
+    const cmds = npmCommands(props.npmBeforeTest, props.useYarn);
 
     const commands = props.useYarn
       ? [`yarn cdk ${group} deploy ${stage} --require-approval never`]

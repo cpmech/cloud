@@ -22,6 +22,7 @@ export interface IWebsitePipelineStackProps extends StackProps {
   assetsDir?: string; // default is 'dist'
   nocacheFiles?: string[]; // default [index.html]
   envars?: Ienvars; // environment variables
+  npmBeforeTest?: string; // extra command before test; "npm install" to force postinstall hook
   useYarn?: boolean; // default: use NPM
   notificationEmails?: string[]; // emails to receive notifications
   useConfirmation?: boolean;
@@ -36,7 +37,7 @@ export class WebsitePipelineStack extends Stack {
     const nocachePaths = '/' + nocacheFiles.join(' /');
     const nocacheOptions = 'max-age=0, no-cache, no-store, must-revalidate';
     const distroId = props.cloudfrontDistributionId;
-    const cmds = npmCommands(props.useYarn);
+    const cmds = npmCommands(props.npmBeforeTest, props.useYarn);
 
     const bucket = Bucket.fromBucketName(this, 'Deployment', props.websiteBucketName);
     const name = bucket.bucketName;
