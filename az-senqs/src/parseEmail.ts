@@ -19,6 +19,7 @@ const extractCode = (message: string, notices: string[], codeLen: number): strin
 export const extractCodeFromEmail = async (
   emailContent: string,
   notices: string[] = [
+    '<p>Your confirmation code is <b>',
     'Your confirmation code is ',
     'Your verification code is ',
     'Your code is ',

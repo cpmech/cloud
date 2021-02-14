@@ -57,6 +57,24 @@ Key = 123-456
 
 `;
 
+const content3 = `From: 111111@c22222.com
+To: 33333@44444.com
+Subject: CODE
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Message-ID: <1111111111111111@email.amazonses.com>
+Date: Mon, 8 Jul 2019 05:22:47 +0000
+X-SES-Outgoing: 2019.07.08-54.240.8.23
+Feedback-ID: 1.us-east-1.11111111111
+
+<p>Hello,<p/>
+<p>Thank you for registering an account with us!</p>
+<p>Your confirmation code is <b>654321<b></p>
+<p>Cheers!</p>
+
+`;
+
 describe('extractCodeFromEmail', () => {
   test('works (simple content)', async () => {
     const res = await extractCodeFromEmail(
@@ -85,6 +103,11 @@ describe('extractCodeFromEmail', () => {
   test('works (simple email)', async () => {
     const res = await extractCodeFromEmail(content2, ['Key = '], 7);
     expect(res).toBe('123-456');
+  });
+
+  test('works (with html email)', async () => {
+    const res = await extractCodeFromEmail(content3);
+    expect(res).toBe('654321');
   });
 });
 
