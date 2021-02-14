@@ -83,7 +83,7 @@ describe('extractCodeFromEmail', () => {
   });
 
   test('works (simple email)', async () => {
-    const res = await extractCodeFromEmail(content2, ['Key ='], 7);
+    const res = await extractCodeFromEmail(content2, ['Key = '], 7);
     expect(res).toBe('123-456');
   });
 });

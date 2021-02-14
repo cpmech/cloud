@@ -8,7 +8,7 @@ const extractCode = (message: string, notices: string[], codeLen: number): strin
     if (dat) {
       const l = notice.length;
       const i = dat.index;
-      const r = msg.substring(i + l + 1, i + l + codeLen + 1).trim();
+      const r = msg.substring(i + l, i + l + codeLen).trim();
       return r;
     }
   }
@@ -19,12 +19,12 @@ const extractCode = (message: string, notices: string[], codeLen: number): strin
 export const extractCodeFromEmail = async (
   emailContent: string,
   notices: string[] = [
-    'Your confirmation code is',
-    'Your verification code is',
-    'Your code is',
-    'The confirmation code is',
-    'The verification code is',
-    'The code is',
+    'Your confirmation code is ',
+    'Your verification code is ',
+    'Your code is ',
+    'The confirmation code is ',
+    'The verification code is ',
+    'The code is ',
   ],
   codeLen: number = 6,
 ) => {
