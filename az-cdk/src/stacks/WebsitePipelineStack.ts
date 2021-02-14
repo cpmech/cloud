@@ -1,6 +1,6 @@
 import { Construct, Stack, StackProps, SecretValue, RemovalPolicy } from '@aws-cdk/core';
 import { Artifact, Pipeline } from '@aws-cdk/aws-codepipeline';
-import { PipelineProject, LinuxBuildImage, BuildSpec } from '@aws-cdk/aws-codebuild';
+import { PipelineProject, LinuxBuildImage, BuildSpec, IBuildImage } from '@aws-cdk/aws-codebuild';
 import {
   GitHubSourceAction,
   CodeBuildAction,
@@ -26,6 +26,7 @@ export interface IWebsitePipelineStackProps extends StackProps {
   useYarn?: boolean; // default: use NPM
   notificationEmails?: string[]; // emails to receive notifications
   useConfirmation?: boolean;
+  buildImage?: IBuildImage; // see https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html
 }
 
 export class WebsitePipelineStack extends Stack {
@@ -44,7 +45,7 @@ export class WebsitePipelineStack extends Stack {
 
     const project = new PipelineProject(this, 'Project', {
       environment: {
-        buildImage: LinuxBuildImage.STANDARD_2_0,
+        buildImage: props.buildImage || LinuxBuildImage.STANDARD_5_0,
       },
       environmentVariables: props.envars ? envars2cdk(props.envars) : {},
       buildSpec: BuildSpec.fromObject({
