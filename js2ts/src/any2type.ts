@@ -13,11 +13,11 @@ import { logErr } from './logErr';
 //       (6) simple means:  string, number, boolean
 //           i.e arrays must be "simple" as string[], number[], boolean[]
 //       (7) optional fields can only handle shallow (first) fields
-export function any2type<T extends Iany, K extends keyof T>(
+export function any2type<T extends Iany>(
   reference: T,
   origin: Iany | null,
   verbose: boolean = false,
-  optionalShallowFields?: { [key: string]: boolean },
+  optionalShallowFields?: { [key in keyof T]?: boolean },
 ): null | T {
   // check for non-null target
   if (!origin) {
