@@ -1,8 +1,24 @@
-import camelcase from 'lodash.camelcase';
-
-export const camelize = (name: string, firstUpper: boolean = false): string => {
+/** camelize will return the camelized word BUT it needs a separator!
+ * @remarks already camelized words will be destroyed: e.g. logoInc => logoinc
+ */
+export const camelize = (
+  name: string,
+  firstUpper: boolean = false,
+  separator: string = '_',
+): string => {
   if (firstUpper) {
-    return camelcase(name).replace(/./, (m) => m.toUpperCase());
+    return name
+      .split(separator)
+      .map((w) => w.toLowerCase().replace(/./, (m) => m.toUpperCase()))
+      .join('');
   }
-  return camelcase(name);
+  return name
+    .split(separator)
+    .map((w, i) => {
+      if (i > 0) {
+        return w.toLowerCase().replace(/./, (m) => m.toUpperCase());
+      }
+      return w.toLowerCase();
+    })
+    .join('');
 };
