@@ -10,11 +10,11 @@ describe('camelize (firstUpper is false)', () => {
   });
 
   test('DORIVAL pedroso => dorivalPedroso', () => {
-    expect(camelize('DORIVAL pedroso', false, ' ')).toBe('dorivalPedroso');
+    expect(camelize('DORIVAL pedroso', false)).toBe('dorivalPedroso');
   });
 
-  test('doriVAL@pedrOSO => dorivalPedroso', () => {
-    expect(camelize('doriVAL@pedrOSO', false, '@')).toBe('dorivalPedroso');
+  test('dorival@pedroso => dorivalPedroso', () => {
+    expect(camelize('dorival@pedroso', false)).toBe('dorivalPedroso');
   });
 });
 
@@ -28,10 +28,14 @@ describe('camelize (firstUpper is true)', () => {
   });
 
   test('DORIVAL pedroso => DorivalPedroso', () => {
-    expect(camelize('DORIVAL pedroso', true, ' ')).toBe('DorivalPedroso');
+    expect(camelize('DORIVAL pedroso', true)).toBe('DorivalPedroso');
   });
 
   test('doriVAL@pedrOSO => DorivalPedroso', () => {
-    expect(camelize('doriVAL@pedrOSO', true, '@')).toBe('DorivalPedroso');
+    expect(camelize('dorival@pedroso', true)).toBe('DorivalPedroso');
+  });
+
+  test('logoWhatsapp => logoWhatsapp', () => {
+    expect(camelize('logoWhatsapp')).toBe('logoWhatsapp');
   });
 });
