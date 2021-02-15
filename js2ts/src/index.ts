@@ -1,4 +1,5 @@
-export { any2type } from './any2type';
-export { arrayAny2type } from './arrayany2type';
-export { getProp, hasSameProp } from './helpers';
-export { Iany } from './types';
+export * from './checkType';
+export * from './checkTypes';
+export * from './helpers';
+export * from './logErr';
+export * from './types';
