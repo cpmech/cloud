@@ -1,6 +1,6 @@
 import { Iany } from '@cpmech/js2ts';
 import { ILambda, IResult, IEvent, IContext } from '../types';
-import { any2params } from './any2params';
+import { checkParams } from './checkParams';
 import { response } from '../response';
 
 // makeHandlerWithQueryParams makes a Lambda handler for requests with Query data (e.g. GET)
@@ -12,7 +12,7 @@ function makeHandlerWithQueryParams<T extends Iany>(
     // convert parameters
     let params: T;
     try {
-      params = any2params(referenceQueryParams, event.queryStringParameters);
+      params = checkParams(referenceQueryParams, event.queryStringParameters);
     } catch (error) {
       return response.badRequest(error.message);
     }

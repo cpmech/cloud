@@ -1,7 +1,7 @@
 import { Iany } from '@cpmech/js2ts';
 import querystring from 'querystring';
 import { ILambda, IResult, IEvent, IContext } from '../types';
-import { any2params } from './any2params';
+import { checkParams } from './checkParams';
 import { response } from '../response';
 
 // makeHandlerWithEncodedBody makes a Lambda handler for requests with URL encoded data (e.g. HTML forms using POST)
@@ -19,7 +19,7 @@ function makeHandlerWithEncodedBody<T extends Iany>(
     let params: T;
     try {
       const inputParams = querystring.parse(event.body);
-      params = any2params(referenceData, inputParams);
+      params = checkParams(referenceData, inputParams);
     } catch (error) {
       return response.badRequest(error.message);
     }

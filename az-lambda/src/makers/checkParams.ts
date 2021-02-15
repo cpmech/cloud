@@ -1,12 +1,12 @@
 import { WITH_FEEDBACK } from '../helpers/constants';
-import { Iany, any2type } from '@cpmech/js2ts';
+import { Iany, checkType } from '@cpmech/js2ts';
 
 // any2params converts any input to typed-parameters.
 // on success, returns the typed parameters
 // on failure, throws error
 // WITH_FEEDBACK adds the string representation of the reference into the error message
-function any2params<T extends Iany>(referenceParams: T, inputParams: any): T {
-  const params = any2type(referenceParams, inputParams);
+function checkParams<T extends Iany>(referenceParams: T, inputParams: any): T {
+  const params = checkType(referenceParams, inputParams);
   if (params) {
     return params;
   }
@@ -17,4 +17,4 @@ function any2params<T extends Iany>(referenceParams: T, inputParams: any): T {
   throw new Error(`The input parameters are wrong.`);
 }
 
-export { any2params };
+export { checkParams };

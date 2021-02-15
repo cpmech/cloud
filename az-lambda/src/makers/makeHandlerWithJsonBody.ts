@@ -1,6 +1,6 @@
 import { Iany } from '@cpmech/js2ts';
 import { ILambda, IResult, IEvent, IContext } from '../types';
-import { any2params } from './any2params';
+import { checkParams } from './checkParams';
 import { response } from '../response';
 
 // makeHandlerWithJsonBody makes a Lambda handler for requests with JSON data (e.g. POST)
@@ -18,7 +18,7 @@ function makeHandlerWithJsonBody<T extends Iany>(
     let params: T;
     try {
       const inputParams = JSON.parse(event.body);
-      params = any2params(referenceJsonBody, inputParams);
+      params = checkParams(referenceJsonBody, inputParams);
     } catch (error) {
       return response.badRequest(error.message);
     }
