@@ -37,7 +37,7 @@
     "@cpmech/envars": "^2.24.0",
     "@types/jest": "^26.0.20",
     "@types/mailparser": "^3.0.1",
-    "@types/node": "^14.14.27",
+    "@types/node": "^14.14.28",
     "@types/nodemailer": "^6.4.0",
     "@types/uuid": "^8.3.0",
     "jest": "^26.6.3",
