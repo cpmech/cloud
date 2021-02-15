@@ -1,6 +1,6 @@
 {
   "name": "@cpmech/az-cdk",
-  "version": "8.4.0",
+  "version": "8.5.0",
   "license": "MIT",
   "author": {
     "name": "Dorival Pedroso",
@@ -66,12 +66,12 @@
     "@aws-cdk/aws-sns-subscriptions": "^1.89.0",
     "@aws-cdk/aws-sqs": "^1.89.0",
     "@aws-cdk/core": "^1.89.0",
-    "@cpmech/az-cdk-crl": "^2.31.0",
-    "@cpmech/az-cognito": "^3.31.0",
-    "@cpmech/az-dynamo": "^3.34.0",
-    "@cpmech/az-senqs": "^3.30.0",
-    "@cpmech/basic": "^4.24.0",
-    "@cpmech/js2ts": "^2.22.0",
+    "@cpmech/az-cdk-crl": "^2.32.0",
+    "@cpmech/az-cognito": "^3.32.0",
+    "@cpmech/az-dynamo": "^3.35.0",
+    "@cpmech/az-senqs": "^3.31.0",
+    "@cpmech/basic": "^4.25.0",
+    "@cpmech/js2ts": "^2.23.0",
     "aws-sdk": "^2.843.0"
   }
 }
