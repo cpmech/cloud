@@ -38,7 +38,7 @@ export interface ICustomApiDomainName {
 export interface ILambdaApiProps {
   gatewayName: string; // e.g. 'Myapp'
   lambdas: ILambdaApiSpec[];
-  cognitoId?: string; // cognito Id for authorization protection. not needed if no route is protected
+  cognitoPoolId?: string; // cognito PoolId for authorization protection. not needed if no route is protected
   customDomain?: ICustomApiDomainName; // ignored if any entry is empty or 'null'
   useLayers?: boolean; // commonLayers. will use default layers
   dirLayers?: string; // commonLayers. default = 'layers'
@@ -73,9 +73,9 @@ export class LambdaApiConstruct extends Construct {
     }
 
     let authorizer: AuthorizerConstruct;
-    if (props.cognitoId) {
+    if (props.cognitoPoolId) {
       authorizer = new AuthorizerConstruct(this, 'Authorizer', {
-        cognitoUserPoolId: props.cognitoId,
+        cognitoUserPoolId: props.cognitoPoolId,
         restApiId: api.restApiId,
       });
     }
@@ -93,8 +93,8 @@ export class LambdaApiConstruct extends Construct {
     }
 
     props.lambdas.forEach((spec) => {
-      if (!spec.unprotected && !props.cognitoId) {
-        throw new Error('cognitoId is required for protected routes');
+      if (!spec.unprotected && !props.cognitoPoolId) {
+        throw new Error('cognitoPoolId is required for protected routes');
       }
 
       let layers: ILayerVersion[] | undefined;

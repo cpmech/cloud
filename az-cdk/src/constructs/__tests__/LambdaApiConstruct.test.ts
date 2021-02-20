@@ -68,7 +68,7 @@ describe('LambdaApiConstruct (protected)', () => {
     const stack = new Stack(app, 'Stack');
     new LambdaApiConstruct(stack, 'LambdaApi', {
       gatewayName: 'TestApi',
-      cognitoId: 'us-east-1_abcdefgh',
+      cognitoPoolId: 'us-east-1_abcdefgh',
       lambdas: [
         {
           filenameKey: 'index',
@@ -89,7 +89,7 @@ describe('LambdaApiConstruct (layers)', () => {
     const stack = new Stack(app, 'Stack');
     new LambdaApiConstruct(stack, 'LambdaApi', {
       gatewayName: 'TestApi',
-      cognitoId: 'us-east-1_abcdefgh',
+      cognitoPoolId: 'us-east-1_abcdefgh',
       lambdas: [
         {
           filenameKey: 'index',
@@ -116,7 +116,7 @@ describe('LambdaApiConstruct (customDomain)', () => {
     };
     new LambdaApiConstruct(stack, 'LambdaApi', {
       gatewayName: 'TestApi',
-      cognitoId: 'us-east-1_abcdefgh',
+      cognitoPoolId: 'us-east-1_abcdefgh',
       lambdas: [
         {
           filenameKey: 'index',
