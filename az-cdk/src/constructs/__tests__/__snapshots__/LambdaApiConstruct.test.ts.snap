@@ -402,7 +402,7 @@ exports[`LambdaApiConstruct (customDomain) synthetizes properly 1`] = `
           ]
         },
         \\"Handler\\": \\"index.route53Alias\\",
-        \\"Runtime\\": \\"nodejs12.x\\",
+        \\"Runtime\\": \\"nodejs14.x\\",
         \\"Timeout\\": 60
       },
       \\"DependsOn\\": [
@@ -543,7 +543,7 @@ exports[`LambdaApiConstruct (customDomain) synthetizes properly 1`] = `
           ]
         },
         \\"Handler\\": \\"index.handler\\",
-        \\"Runtime\\": \\"nodejs12.x\\"
+        \\"Runtime\\": \\"nodejs14.x\\"
       },
       \\"DependsOn\\": [
         \\"LambdaApiHelloServiceRole7B3F9417\\"
@@ -1008,7 +1008,7 @@ exports[`LambdaApiConstruct (dynamo and bucket) synthetizes properly 1`] = `
           ]
         },
         \\"Handler\\": \\"index.handler\\",
-        \\"Runtime\\": \\"nodejs12.x\\"
+        \\"Runtime\\": \\"nodejs14.x\\"
       },
       \\"DependsOn\\": [
         \\"LambdaApiHelloServiceRoleDefaultPolicyA20AA335\\",
@@ -1403,7 +1403,7 @@ exports[`LambdaApiConstruct (layers) synthetizes properly 1`] = `
           }
         },
         \\"CompatibleRuntimes\\": [
-          \\"nodejs12.x\\"
+          \\"nodejs14.x\\"
         ],
         \\"Description\\": \\"Common NodeJS Libraries\\",
         \\"LicenseInfo\\": \\"MIT\\"
@@ -1493,7 +1493,7 @@ exports[`LambdaApiConstruct (layers) synthetizes properly 1`] = `
             \\"Ref\\": \\"LambdaApiLayersCommonLibsB5C11B1B\\"
           }
         ],
-        \\"Runtime\\": \\"nodejs12.x\\"
+        \\"Runtime\\": \\"nodejs14.x\\"
       },
       \\"DependsOn\\": [
         \\"LambdaApiHelloServiceRole7B3F9417\\"
@@ -1936,7 +1936,7 @@ exports[`LambdaApiConstruct (protected) synthetizes properly 1`] = `
           ]
         },
         \\"Handler\\": \\"index.handler\\",
-        \\"Runtime\\": \\"nodejs12.x\\"
+        \\"Runtime\\": \\"nodejs14.x\\"
       },
       \\"DependsOn\\": [
         \\"LambdaApiHelloServiceRole7B3F9417\\"
@@ -2335,7 +2335,7 @@ exports[`LambdaApiConstruct synthetizes properly 1`] = `
           ]
         },
         \\"Handler\\": \\"index.handler\\",
-        \\"Runtime\\": \\"nodejs12.x\\"
+        \\"Runtime\\": \\"nodejs14.x\\"
       },
       \\"DependsOn\\": [
         \\"LambdaApiHelloServiceRole7B3F9417\\"
@@ -3107,7 +3107,7 @@ exports[`LambdaApiConstruct synthetizes without subroute 1`] = `
           ]
         },
         \\"Handler\\": \\"index.handler\\",
-        \\"Runtime\\": \\"nodejs12.x\\"
+        \\"Runtime\\": \\"nodejs14.x\\"
       },
       \\"DependsOn\\": [
         \\"LambdaApiHelloServiceRole7B3F9417\\"

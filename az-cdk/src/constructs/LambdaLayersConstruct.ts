@@ -1,11 +1,12 @@
 import { Construct } from '@aws-cdk/core';
 import { Code, Runtime, LayerVersion, ILayerVersion } from '@aws-cdk/aws-lambda';
+import { defaults } from '../defaults';
 
 export interface ILayer {
   name: string;
   arn?: string; // will use existent layer and ignore the other options
   description?: string;
-  runtime?: Runtime;
+  runtime?: Runtime; // see defaults.runtime
   dirLayer?: string;
   license?: string;
 }
@@ -15,14 +16,13 @@ export interface ILambdaLayersProps {
 }
 
 const defaultDescription = 'Common NodeJS Libraries';
-const defaultRuntime = Runtime.NODEJS_12_X;
 const defaultDirLayer = 'layers';
 const defaultLicense = 'MIT';
 
 export const commonLayer: ILayer = {
   name: 'CommonLibs',
   description: defaultDescription,
-  runtime: defaultRuntime,
+  runtime: defaults.runtime,
   dirLayer: defaultDirLayer,
   license: defaultLicense,
 };
@@ -37,14 +37,14 @@ export class LambdaLayersConstruct extends Construct {
     const specs: ILayer[] =
       props && props.list && props.list.length > 0 ? props.list : [commonLayer];
 
-    specs.forEach(spec => {
+    specs.forEach((spec) => {
       let layer: ILayerVersion;
       if (spec.arn) {
         layer = LayerVersion.fromLayerVersionArn(this, spec.name, spec.arn);
       } else {
         layer = new LayerVersion(this, spec.name, {
           code: Code.fromAsset(spec.dirLayer || defaultDirLayer),
-          compatibleRuntimes: [spec.runtime || defaultRuntime],
+          compatibleRuntimes: [spec.runtime || defaults.runtime],
           description: spec.description || defaultDescription,
           license: spec.license || defaultLicense,
         });

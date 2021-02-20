@@ -8,6 +8,7 @@ import { LambdaLayersConstruct, ILayer, commonLayer } from './LambdaLayersConstr
 import { AuthorizerConstruct } from './AuthorizerConstruct';
 import { Route53AliasConstruct } from '../custom-resources/Route53AliasConstruct';
 import { addCorsToApiResource } from '../helpers/addCorsToApiResource';
+import { defaults } from '../defaults';
 
 export interface ILambdaApiSpec {
   filenameKey: string; // example 'index' (without .js extension)
@@ -22,7 +23,7 @@ export interface ILambdaApiSpec {
   envars?: Iany; // environmental variables passed to lambda function
   timeout?: Duration; // timeout
   memorySize?: number; // memory size
-  runtime?: Runtime; // default = NODEJS_12_X
+  runtime?: Runtime; // see defaults.runtime
   dirDist?: string; // default = 'dist'
   layers?: string[]; // name of required layers
   noCommonLayers?: boolean; // will not use commonLayers
@@ -111,7 +112,7 @@ export class LambdaApiConstruct extends Construct {
       }
 
       const lambda = new Function(this, camelize(spec.route, true), {
-        runtime: spec.runtime || Runtime.NODEJS_12_X,
+        runtime: spec.runtime || defaults.runtime,
         code: Code.fromAsset(spec.dirDist || 'dist'),
         handler: `${spec.filenameKey}.${spec.handlerName}`,
         environment: spec.envars,

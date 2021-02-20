@@ -3,11 +3,13 @@ import { Function, Code, Runtime } from '@aws-cdk/aws-lambda';
 import { CustomResource, CustomResourceProvider } from '@aws-cdk/aws-cloudformation';
 import { PolicyStatement } from '@aws-cdk/aws-iam';
 import { crlDir } from './crlDir';
+import { defaults } from '../defaults';
 
 export interface IVerifyDomainProps {
   hostedZoneId: string;
   domain: string;
   certificateArn?: string;
+  runtime?: Runtime; // see defaults.runtime
 }
 
 export class VerifyDomainConstruct extends Construct {
@@ -17,9 +19,9 @@ export class VerifyDomainConstruct extends Construct {
     const certificateArn = props.certificateArn || 'null';
 
     const fcn = new Function(this, 'Function', {
-      code: Code.asset(crlDir),
+      code: Code.fromAsset(crlDir),
       handler: 'index.verifyDomain',
-      runtime: Runtime.NODEJS_12_X,
+      runtime: props.runtime || defaults.runtime,
       timeout: Duration.minutes(1),
     });
 
@@ -34,7 +36,7 @@ export class VerifyDomainConstruct extends Construct {
 
     const r53Actions = ['route53:ChangeResourceRecordSets', 'route53:GetChange'];
 
-    sesActions.forEach(action => {
+    sesActions.forEach((action) => {
       fcn.addToRolePolicy(
         new PolicyStatement({
           actions: [action],
@@ -43,7 +45,7 @@ export class VerifyDomainConstruct extends Construct {
       );
     });
 
-    r53Actions.forEach(action => {
+    r53Actions.forEach((action) => {
       fcn.addToRolePolicy(
         new PolicyStatement({
           actions: [action],

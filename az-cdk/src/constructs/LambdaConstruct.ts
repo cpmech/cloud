@@ -2,6 +2,7 @@ import { Construct, Duration } from '@aws-cdk/core';
 import { Code, Function, Runtime, ILayerVersion, LayerVersion } from '@aws-cdk/aws-lambda';
 import { PolicyStatement } from '@aws-cdk/aws-iam';
 import { Iany } from '@cpmech/basic';
+import { defaults } from '../defaults';
 
 export interface ILambdaProps {
   filenameKey: string; // example 'index' (without .js extension)
@@ -9,7 +10,7 @@ export interface ILambdaProps {
   envars?: Iany; // environmental variables passed to lambda function
   timeout?: Duration; // timeout
   memorySize?: number; // memory size
-  runtime?: Runtime; // default = NODEJS_12_X
+  runtime?: Runtime; // see defaults.runtime
   dirDist?: string; // default = 'dist'
   layerArns?: string[]; // ARNs of needed layers
   extraPermissions?: string[]; // e.g. ['ses:SendEmail']
@@ -30,7 +31,7 @@ export class LambdaConstruct extends Construct {
     }
 
     const lambda = new Function(this, 'Lambda', {
-      runtime: props.runtime || Runtime.NODEJS_12_X,
+      runtime: props.runtime || defaults.runtime,
       code: Code.fromAsset(props.dirDist || 'dist'),
       handler: `${props.filenameKey}.${props.handlerName}`,
       layers,

@@ -5,12 +5,14 @@ import { PolicyStatement } from '@aws-cdk/aws-iam';
 import { AliasTarget } from 'aws-sdk/clients/route53';
 import { apiGatewayHostedZoneId } from '../helpers/apiGatewayHostedZoneId';
 import { crlDir } from './crlDir';
+import { defaults } from '../defaults';
 
 export interface IRoute53AliasProps {
   hostedZoneId: string;
   prefixedDomain: string; // e.g. 'api1-dev.mydomain.com'
   apiDomainNameAlias: string; // from RestApi.DomainName
   apiRegion?: string; // default = us-east-1
+  runtime?: Runtime; // see defaults.runtime
 }
 
 export class Route53AliasConstruct extends Construct {
@@ -18,15 +20,15 @@ export class Route53AliasConstruct extends Construct {
     super(scope, id);
 
     const fcn = new Function(this, 'Function', {
-      code: Code.asset(crlDir),
+      code: Code.fromAsset(crlDir),
       handler: 'index.route53Alias',
-      runtime: Runtime.NODEJS_12_X,
+      runtime: props.runtime || defaults.runtime,
       timeout: Duration.minutes(1),
     });
 
     const actions = ['route53:ChangeResourceRecordSets', 'route53:GetChange'];
 
-    actions.forEach(action => {
+    actions.forEach((action) => {
       fcn.addToRolePolicy(
         new PolicyStatement({
           actions: [action],

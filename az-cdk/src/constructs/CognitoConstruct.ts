@@ -12,6 +12,7 @@ import { IRole, PolicyStatement } from '@aws-cdk/aws-iam';
 import { Iany } from '@cpmech/basic';
 import { LambdaLayersConstruct } from './LambdaLayersConstruct';
 import { CognitoEnableProvidersConstruct, CognitoPoolDomainConstruct } from '../custom-resources';
+import { defaults } from '../defaults';
 
 export interface ICognitoProps {
   poolName: string;
@@ -28,6 +29,7 @@ export interface ICognitoProps {
   postConfirmTrigger?: boolean; // will need a lambda called cognitoPostConfirm.handler (uses CommonLibs layers too)
   postConfirmSendEmail?: boolean; // postConfirm function needs access to SES to send emails
   postConfirmDynamoTable?: string; // postConfirm function needs access to this DynamoDB Table
+  postConfirmRuntime?: Runtime; // see defaults.runtime
   noSelfSignUp?: boolean;
   userVerification?: UserVerificationConfig;
   useLayers?: boolean; // lambda triggers will use layers
@@ -59,7 +61,7 @@ export class CognitoConstruct extends Construct {
       }
 
       postConfirmation = new Function(this, 'PostConfirm', {
-        runtime: Runtime.NODEJS_12_X,
+        runtime: props.postConfirmRuntime || defaults.runtime,
         code: Code.fromAsset(props.dirDist || 'dist'),
         handler: `cognitoPostConfirm.handler`,
         layers: layers ? layers.all : undefined,

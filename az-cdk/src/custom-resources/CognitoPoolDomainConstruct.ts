@@ -3,10 +3,12 @@ import { Function, Code, Runtime } from '@aws-cdk/aws-lambda';
 import { CustomResource, CustomResourceProvider } from '@aws-cdk/aws-cloudformation';
 import { PolicyStatement } from '@aws-cdk/aws-iam';
 import { crlDir } from './crlDir';
+import { defaults } from '../defaults';
 
 export interface ICognitoPoolDomainProps {
   userPoolId: string;
   domainPrefix: string;
+  runtime?: Runtime; // see defaults.runtime
 }
 
 export class CognitoPoolDomainConstruct extends Construct {
@@ -14,9 +16,9 @@ export class CognitoPoolDomainConstruct extends Construct {
     super(scope, id);
 
     const fcn = new Function(this, 'Function', {
-      code: Code.asset(crlDir),
+      code: Code.fromAsset(crlDir),
       handler: 'index.cognitoPoolDomain',
-      runtime: Runtime.NODEJS_12_X,
+      runtime: props.runtime || defaults.runtime,
       timeout: Duration.minutes(1),
     });
 
