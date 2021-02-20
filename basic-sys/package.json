@@ -31,11 +31,11 @@
   "devDependencies": {
     "@types/fs-extra": "^9.0.7",
     "@types/jest": "^26.0.20",
-    "@types/node": "^14.14.28",
+    "@types/node": "^14.14.31",
     "jest": "^26.6.3",
     "prettier": "^2.2.1",
     "rollup": "^2.39.0",
-    "rollup-plugin-typescript2": "^0.29.0",
+    "rollup-plugin-typescript2": "^0.30.0",
     "ts-jest": "^26.5.1",
     "ts-node": "^9.1.1",
     "tslint": "^6.1.3",
