@@ -13,7 +13,9 @@ exports[`ReceiveEmailSQSConstruct synthetizes properly 1`] = `
       \\"Type\\": \\"AWS::SQS::Queue\\",
       \\"Properties\\": {
         \\"QueueName\\": \\"admin_here_com\\"
-      }
+      },
+      \\"UpdateReplacePolicy\\": \\"Delete\\",
+      \\"DeletionPolicy\\": \\"Delete\\"
     },
     \\"ReceiveEmailSQSQueue0PolicyA9BF0D7F\\": {
       \\"Type\\": \\"AWS::SQS::QueuePolicy\\",
@@ -75,7 +77,9 @@ exports[`ReceiveEmailSQSConstruct synthetizes properly 1`] = `
       \\"Type\\": \\"AWS::SQS::Queue\\",
       \\"Properties\\": {
         \\"QueueName\\": \\"tester_here_com\\"
-      }
+      },
+      \\"UpdateReplacePolicy\\": \\"Delete\\",
+      \\"DeletionPolicy\\": \\"Delete\\"
     },
     \\"ReceiveEmailSQSQueue1PolicyEB4798A5\\": {
       \\"Type\\": \\"AWS::SQS::QueuePolicy\\",

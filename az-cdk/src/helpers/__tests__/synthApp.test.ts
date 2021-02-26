@@ -6,6 +6,8 @@ const reference = {
   Resources: {
     TheQueue65E0D6C7: {
       Type: 'AWS::SQS::Queue',
+      UpdateReplacePolicy: 'Delete',
+      DeletionPolicy: 'Delete',
     },
   },
 };
