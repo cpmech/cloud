@@ -33,7 +33,7 @@ describe('response', () => {
     expect(response.badRequest('400')).toEqual({
       statusCode: 400,
       headers: corsHeaders,
-      body: '{"errorMessage":"[ERROR] 400"}',
+      body: '{"errorMessage":"400"}',
     });
   });
 
@@ -41,7 +41,7 @@ describe('response', () => {
     expect(response.unauthorized('401')).toEqual({
       statusCode: 401,
       headers: corsHeaders,
-      body: '{"errorMessage":"[ERROR] 401"}',
+      body: '{"errorMessage":"401"}',
     });
   });
 
@@ -49,7 +49,7 @@ describe('response', () => {
     expect(response.forbidden('403')).toEqual({
       statusCode: 403,
       headers: corsHeaders,
-      body: '{"errorMessage":"[ERROR] 403"}',
+      body: '{"errorMessage":"403"}',
     });
   });
 
@@ -57,7 +57,7 @@ describe('response', () => {
     expect(response.notFound('404')).toEqual({
       statusCode: 404,
       headers: corsHeaders,
-      body: '{"errorMessage":"[ERROR] 404"}',
+      body: '{"errorMessage":"404"}',
     });
   });
 
@@ -65,7 +65,7 @@ describe('response', () => {
     expect(response.unprocessable('422')).toEqual({
       statusCode: 422,
       headers: corsHeaders,
-      body: '{"errorMessage":"[ERROR] 422"}',
+      body: '{"errorMessage":"422"}',
     });
   });
 
@@ -73,7 +73,7 @@ describe('response', () => {
     expect(response.serverError('500')).toEqual({
       statusCode: 500,
       headers: corsHeaders,
-      body: '{"errorMessage":"[ERROR] 500"}',
+      body: '{"errorMessage":"500"}',
     });
   });
 });
@@ -107,7 +107,7 @@ describe('response (with headers)', () => {
     expect(response.badRequest('400', headers)).toEqual({
       statusCode: 400,
       headers: { ...headers, ...corsHeaders },
-      body: '{"errorMessage":"[ERROR] 400"}',
+      body: '{"errorMessage":"400"}',
     });
   });
 
@@ -115,7 +115,7 @@ describe('response (with headers)', () => {
     expect(response.unauthorized('401', headers)).toEqual({
       statusCode: 401,
       headers: { ...headers, ...corsHeaders },
-      body: '{"errorMessage":"[ERROR] 401"}',
+      body: '{"errorMessage":"401"}',
     });
   });
 
@@ -123,7 +123,7 @@ describe('response (with headers)', () => {
     expect(response.forbidden('403', headers)).toEqual({
       statusCode: 403,
       headers: { ...headers, ...corsHeaders },
-      body: '{"errorMessage":"[ERROR] 403"}',
+      body: '{"errorMessage":"403"}',
     });
   });
 
@@ -131,7 +131,7 @@ describe('response (with headers)', () => {
     expect(response.notFound('404', headers)).toEqual({
       statusCode: 404,
       headers: { ...headers, ...corsHeaders },
-      body: '{"errorMessage":"[ERROR] 404"}',
+      body: '{"errorMessage":"404"}',
     });
   });
 
@@ -139,7 +139,7 @@ describe('response (with headers)', () => {
     expect(response.unprocessable('422', headers)).toEqual({
       statusCode: 422,
       headers: { ...headers, ...corsHeaders },
-      body: '{"errorMessage":"[ERROR] 422"}',
+      body: '{"errorMessage":"422"}',
     });
   });
 
@@ -147,7 +147,7 @@ describe('response (with headers)', () => {
     expect(response.serverError('500', headers)).toEqual({
       statusCode: 500,
       headers: { ...headers, ...corsHeaders },
-      body: '{"errorMessage":"[ERROR] 500"}',
+      body: '{"errorMessage":"500"}',
     });
   });
 });

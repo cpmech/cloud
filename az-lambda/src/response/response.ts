@@ -2,6 +2,32 @@ import { status } from '@cpmech/httpcodes';
 import { IResult } from '../types';
 import { corsHeaders } from './corsHeaders';
 
+const success = (
+  code: number,
+  data: any,
+  headers: any = {},
+  returnRawData: boolean = false,
+): IResult => {
+  return {
+    statusCode: code,
+    headers: { ...headers, ...corsHeaders },
+    body: returnRawData ? data : JSON.stringify(data),
+  };
+};
+
+const failure = (
+  code: number,
+  errorMessage: string,
+  headers: any = {},
+  returnRawData: boolean = false,
+): IResult => {
+  return {
+    statusCode: code,
+    headers: { ...headers, ...corsHeaders },
+    body: returnRawData ? errorMessage : JSON.stringify({ errorMessage }),
+  };
+};
+
 const ok = (data: any, headers: any = {}, returnRawData: boolean = false): IResult => {
   return {
     statusCode: status.success.ok,
@@ -34,9 +60,7 @@ const badRequest = (
   return {
     statusCode: status.clientError.badRequest,
     headers: { ...headers, ...corsHeaders },
-    body: returnRawData
-      ? errorMessage
-      : JSON.stringify({ errorMessage: '[ERROR] ' + errorMessage }),
+    body: returnRawData ? errorMessage : JSON.stringify({ errorMessage }),
   };
 };
 
@@ -48,9 +72,7 @@ const unauthorized = (
   return {
     statusCode: status.clientError.unauthorized,
     headers: { ...headers, ...corsHeaders },
-    body: returnRawData
-      ? errorMessage
-      : JSON.stringify({ errorMessage: '[ERROR] ' + errorMessage }),
+    body: returnRawData ? errorMessage : JSON.stringify({ errorMessage }),
   };
 };
 
@@ -62,9 +84,7 @@ const forbidden = (
   return {
     statusCode: status.clientError.forbidden,
     headers: { ...headers, ...corsHeaders },
-    body: returnRawData
-      ? errorMessage
-      : JSON.stringify({ errorMessage: '[ERROR] ' + errorMessage }),
+    body: returnRawData ? errorMessage : JSON.stringify({ errorMessage }),
   };
 };
 
@@ -76,9 +96,7 @@ const notFound = (
   return {
     statusCode: status.clientError.notFound,
     headers: { ...headers, ...corsHeaders },
-    body: returnRawData
-      ? errorMessage
-      : JSON.stringify({ errorMessage: '[ERROR] ' + errorMessage }),
+    body: returnRawData ? errorMessage : JSON.stringify({ errorMessage }),
   };
 };
 
@@ -90,9 +108,7 @@ const unprocessable = (
   return {
     statusCode: status.clientError.unprocessable,
     headers: { ...headers, ...corsHeaders },
-    body: returnRawData
-      ? errorMessage
-      : JSON.stringify({ errorMessage: '[ERROR] ' + errorMessage }),
+    body: returnRawData ? errorMessage : JSON.stringify({ errorMessage }),
   };
 };
 
@@ -104,13 +120,13 @@ const serverError = (
   return {
     statusCode: status.serverError.internal,
     headers: { ...headers, ...corsHeaders },
-    body: returnRawData
-      ? errorMessage
-      : JSON.stringify({ errorMessage: '[ERROR] ' + errorMessage }),
+    body: returnRawData ? errorMessage : JSON.stringify({ errorMessage }),
   };
 };
 
 export const response = {
+  success,
+  failure,
   ok,
   created,
   accepted,

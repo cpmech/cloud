@@ -47,11 +47,11 @@ const eventBodyWrong: IEvent = {
 
 const s = JSON.stringify(zeroParams);
 const m0 = 'hello world A B';
-const m1a = `[ERROR] The input parameters are wrong.`;
-const m1b = `[ERROR] The input parameters are wrong. The correct format is ${s}`;
-const m2 = `[ERROR] ${'STOP'}`;
-const m3 = `[ERROR] event.body must be provided`;
-const m4 = `[ERROR] The input parameters are wrong.`;
+const m1a = `The input parameters are wrong.`;
+const m1b = `The input parameters are wrong. The correct format is ${s}`;
+const m2 = `STOP`;
+const m3 = `event.body must be provided`;
+const m4 = `The input parameters are wrong.`;
 const b0 = JSON.stringify({ message: m0 });
 const b1a = JSON.stringify({ errorMessage: m1a });
 const b1b = JSON.stringify({ errorMessage: m1b });

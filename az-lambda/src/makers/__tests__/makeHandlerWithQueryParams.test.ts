@@ -32,9 +32,9 @@ const eventWrong: IEvent = {
 
 const s = JSON.stringify(zeroParams);
 const m0 = 'hello world A B';
-const m1a = `[ERROR] The input parameters are wrong.`;
-const m1b = `[ERROR] The input parameters are wrong. The correct format is ${s}`;
-const m2 = `[ERROR] ${'STOP'}`;
+const m1a = `The input parameters are wrong.`;
+const m1b = `The input parameters are wrong. The correct format is ${s}`;
+const m2 = `STOP`;
 const b0 = JSON.stringify({ message: m0 });
 const b1a = JSON.stringify({ errorMessage: m1a });
 const b1b = JSON.stringify({ errorMessage: m1b });
