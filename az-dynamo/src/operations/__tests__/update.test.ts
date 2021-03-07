@@ -94,7 +94,7 @@ describe('update operation', () => {
   it('should create new ACCESS data, if non-existent', async () => {
     const key = { itemId: 'update', aspect: 'ACCESS' };
     const updated = await update(tableName, key, {
-      // <<<<<<<<<<<<<<<<<<<<<<< must remove the key to call the update
+      ...key,
       fullName: 'New Robot',
       confirmed: true,
       confirmMessageCount: 8,
