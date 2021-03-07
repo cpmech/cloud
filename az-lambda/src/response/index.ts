@@ -1,1 +1,2 @@
-export { response } from './response';
+export * from './corsHeaders';
+export * from './response';
