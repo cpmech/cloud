@@ -5,6 +5,22 @@ const data = { a: 'data' };
 const headers = { Authorization: 'Bearer TOKEN_GOES_HERE' };
 
 describe('response', () => {
+  test('success works', () => {
+    expect(response.success(200, data)).toEqual({
+      statusCode: 200,
+      headers: corsHeaders,
+      body: '{"a":"data"}',
+    });
+  });
+
+  test('failure works', () => {
+    expect(response.failure(400, 'got 400')).toEqual({
+      statusCode: 400,
+      headers: corsHeaders,
+      body: '{"errorMessage":"got 400"}',
+    });
+  });
+
   test('ok works', () => {
     expect(response.ok(data)).toEqual({
       statusCode: 200,
