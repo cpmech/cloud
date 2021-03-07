@@ -15,6 +15,18 @@ const correctExpressionAttributeValues = {
   ':x3': { a: 'a', b: 456, c: false, d: { tooDeep: 'yes' } },
 };
 
+const noUndefCorrectUpdateExpression = 'SET #y0 = :x0, #y1 = :x1, #y2 = :x2';
+const noUndefCorrectExpressionAttributeNames = {
+  '#y0': 'alpha',
+  '#y1': 'beta',
+  '#y2': 'gamma',
+};
+const noUndefCorrectExpressionAttributeValues = {
+  ':x0': 'alpha',
+  ':x1': 123,
+  ':x2': true,
+};
+
 describe('any2updateData', () => {
   it('converts data properly with primaryKeyNames', () => {
     const obj: Iany = {
@@ -55,5 +67,19 @@ describe('any2updateData', () => {
     expect(res.UpdateExpression).toBe(correctUpdateExpression);
     expect(res.ExpressionAttributeNames).toEqual(correctExpressionAttributeNames);
     expect(res.ExpressionAttributeValues).toEqual(correctExpressionAttributeValues);
+  });
+
+  it('should remove undefined entries', () => {
+    const obj: Iany = {
+      alpha: 'alpha',
+      beta: 123,
+      gamma: true,
+      delta: undefined,
+      quadrant: undefined,
+    };
+    const res = any2updateData(obj, []);
+    expect(res.UpdateExpression).toBe(noUndefCorrectUpdateExpression);
+    expect(res.ExpressionAttributeNames).toEqual(noUndefCorrectExpressionAttributeNames);
+    expect(res.ExpressionAttributeValues).toEqual(noUndefCorrectExpressionAttributeValues);
   });
 });

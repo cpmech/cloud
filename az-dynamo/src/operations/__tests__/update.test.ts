@@ -22,6 +22,13 @@ const cleanUp = async () => {
         ExpressionAttributeValues: { ':x': 3 },
       })
       .promise();
+    await ddb
+      .update({
+        TableName: tableName,
+        Key: { itemId: 'update', aspect: 'ACCESS' },
+        UpdateExpression: `REMOVE someNull`,
+      })
+      .promise();
   } catch (_) {}
 };
 
@@ -109,5 +116,30 @@ describe('update operation', () => {
     const key = { itemId: 'update', aspect: 'ACCESS' };
     const res = await update(tableName, key, {});
     expect(res).toBeNull();
+  });
+
+  it('should ignore undefined fields', async () => {
+    const key = { itemId: 'update', aspect: 'ACCESS' };
+    const updated = await update(tableName, key, {
+      ...key,
+      fullName: 'New Robot in the Delta Quadrant',
+      confirmed: true,
+      confirmMessageCount: 8,
+      delta: undefined,
+      quadrant: undefined,
+      someNull: null,
+    });
+    const correct = {
+      ...key,
+      indexSK: '2020-01-19T01:02:06Z',
+      email: 'update@operation.com',
+      fullName: 'New Robot in the Delta Quadrant',
+      confirmed: true,
+      confirmMessageCount: 8,
+      someNull: null,
+    };
+    expect(updated).toEqual(correct);
+    const res = await ddb.get({ TableName: tableName, Key: key }).promise();
+    expect(res.Item).toEqual(correct);
   });
 });

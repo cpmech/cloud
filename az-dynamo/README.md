@@ -44,3 +44,7 @@ console.log(res4);
 
 await removeItem(table, key);
 ```
+
+## News
+
+Amazon DynamoDB now supports empty values for non-key String and Binary attributes in DynamoDB tables: https://aws.amazon.com/about-aws/whats-new/2020/05/amazon-dynamodb-now-supports-empty-values-for-non-key-string-and-binary-attributes-in-dynamodb-tables/
