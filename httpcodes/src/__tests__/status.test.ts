@@ -1,4 +1,4 @@
-import { status } from '../status';
+import { status, statusCodes, code2status, validateCode } from '../status';
 
 describe('success', () => {
   test('200', () => {
@@ -45,5 +45,54 @@ describe('clientError', () => {
 describe('serverError', () => {
   test('500', () => {
     expect(status.serverError.internal).toBe(500);
+  });
+});
+
+describe('statusCode', () => {
+  it('should contain all codes', () => {
+    expect(statusCodes).toStrictEqual({
+      ok: 200,
+      created: 201,
+      accepted: 202,
+      movedPermanently: 301,
+      found: 302,
+      seeOther: 303,
+      badRequest: 400,
+      unauthorized: 401,
+      forbidden: 403,
+      notFound: 404,
+      unprocessable: 422,
+      internal: 500,
+    });
+  });
+});
+
+describe('code2status', () => {
+  it('should map back to statusCodes', () => {
+    expect(Object.keys(code2status).map((k) => Number(k))).toStrictEqual(
+      Object.values(statusCodes),
+    );
+    expect(Object.values(code2status)).toStrictEqual(Object.keys(statusCodes));
+  });
+});
+
+describe('validateCode', () => {
+  it('should capture invalid input', () => {
+    expect(validateCode('')).toBeNull();
+    expect(validateCode(undefined)).toBeNull();
+    expect(validateCode(null)).toBeNull();
+    expect(validateCode('nada')).toBeNull();
+    expect(validateCode('-1')).toBeNull();
+    expect(validateCode('0')).toBeNull();
+    expect(validateCode('+1')).toBeNull();
+    expect(validateCode([])).toBeNull();
+    expect(validateCode({})).toBeNull();
+    expect(validateCode({ crazy: 400 })).toBeNull();
+  });
+  it('should return correct values', () => {
+    expect(validateCode('400')).toBe(400);
+    expect(validateCode(400)).toBe(400);
+    expect(validateCode('200')).toBe(200);
+    expect(validateCode(200)).toBe(200);
   });
 });
