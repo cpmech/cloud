@@ -4,7 +4,7 @@ console.log('\n\n## az-cognito ###########################################');
 
 const cacheRoot = '/tmp/rollup_typescript_cache';
 
-const config = ['cjs', 'esm'].map(format => {
+const config = ['cjs', 'esm'].map((format) => {
   return {
     input: {
       index: 'src/index.ts',
