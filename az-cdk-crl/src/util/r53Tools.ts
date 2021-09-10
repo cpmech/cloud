@@ -8,7 +8,7 @@ export const r53changeRecordSets = async (
   action: 'UPSERT' | 'DELETE' = 'UPSERT',
 ) => {
   // array with changes
-  const Changes: AWS.Route53.Change[] = recordSets.map(r => ({
+  const Changes: AWS.Route53.Change[] = recordSets.map((r) => ({
     Action: action,
     ResourceRecordSet: r,
   }));

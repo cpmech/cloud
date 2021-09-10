@@ -63,13 +63,8 @@ export const cognitoEnableProviders = async (event: any, context: any) => {
     }
 
     // extract input
-    const {
-      UserPoolId,
-      UserPoolClientId,
-      Providers,
-      CallbackUrls,
-      LogoutUrls,
-    } = event.ResourceProperties;
+    const { UserPoolId, UserPoolClientId, Providers, CallbackUrls, LogoutUrls } =
+      event.ResourceProperties;
 
     // set the physical resource Id
     const resourceId = UserPoolId;
@@ -100,6 +95,6 @@ export const cognitoEnableProviders = async (event: any, context: any) => {
     //
     // handle errors
   } catch (err) {
-    await report(event, context, 'FAILED', '', null, err.message);
+    await report(event, context, 'FAILED', '', null, `${err}`);
   }
 };

@@ -18,7 +18,7 @@ describe('report', () => {
     try {
       await res;
     } catch (error) {
-      expect(error.message).toBe('connect ECONNREFUSED 127.0.0.1:443');
+      expect(`${error}`).toBe('Error: connect ECONNREFUSED 127.0.0.1:443');
     }
   });
 });

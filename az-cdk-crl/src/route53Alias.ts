@@ -87,6 +87,6 @@ export const route53Alias = async (event: any, context: any) => {
     //
     // handle errors
   } catch (err) {
-    await report(event, context, 'FAILED', '', null, err.message);
+    await report(event, context, 'FAILED', '', null, `${err}`);
   }
 };

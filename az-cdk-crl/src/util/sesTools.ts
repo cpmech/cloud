@@ -27,7 +27,7 @@ export const sesDispatchVerifyIdentityAndDkim = async (
   // results
   return [
     sesTXTrecordSet(domainName, r1.VerificationToken),
-    ...r2.DkimTokens.map(t => sesDKIMrecordSet(domainName, t)),
+    ...r2.DkimTokens.map((t) => sesDKIMrecordSet(domainName, t)),
   ];
 };
 
@@ -54,7 +54,7 @@ export const sesDescribeVerifyIdentityAndDkim = async (
   if (hasProp(r2.DkimAttributes, domainName)) {
     const attr = r2.DkimAttributes[domainName];
     if (attr.DkimTokens) {
-      attr.DkimTokens.forEach(t => recordSets.push(sesDKIMrecordSet(domainName, t)));
+      attr.DkimTokens.forEach((t) => recordSets.push(sesDKIMrecordSet(domainName, t)));
     }
   }
 

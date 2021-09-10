@@ -14,12 +14,12 @@ const createOrUpdateDefaultRuleSet = async (emails: string[], topicArns: string[
   let hasDefaultRuleSet = false;
   let existentNames: string[] = [];
   if (sets.RuleSets) {
-    const drs = sets.RuleSets.find(s => s.Name === DEFAULT_RULE_SET);
+    const drs = sets.RuleSets.find((s) => s.Name === DEFAULT_RULE_SET);
     if (drs) {
       hasDefaultRuleSet = true;
       const res = await ses.describeReceiptRuleSet({ RuleSetName: DEFAULT_RULE_SET }).promise();
       if (res.Rules) {
-        existentNames = res.Rules.map(r => r.Name);
+        existentNames = res.Rules.map((r) => r.Name);
       }
     }
   }
@@ -71,12 +71,12 @@ const deleteRulesFromDefaultRuleSet = async (emails: string[]) => {
   let hasDefaultRuleSet = false;
   let existentNames: string[] = [];
   if (sets.RuleSets) {
-    const drs = sets.RuleSets.find(s => s.Name === DEFAULT_RULE_SET);
+    const drs = sets.RuleSets.find((s) => s.Name === DEFAULT_RULE_SET);
     if (drs) {
       hasDefaultRuleSet = true;
       const res = await ses.describeReceiptRuleSet({ RuleSetName: DEFAULT_RULE_SET }).promise();
       if (res.Rules) {
-        existentNames = res.Rules.map(r => r.Name);
+        existentNames = res.Rules.map((r) => r.Name);
       }
     }
   }
@@ -159,6 +159,6 @@ export const sesDefaultRuleSet = async (event: any, context: any) => {
     //
     // handle errors
   } catch (err) {
-    await report(event, context, 'FAILED', '', null, err.message);
+    await report(event, context, 'FAILED', '', null, `${err}`);
   }
 };
