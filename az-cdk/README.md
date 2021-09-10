@@ -10,8 +10,6 @@ npm install @cpmech/az-cdk
 
 ## Examples
 
-[See more working examples here](https://github.com/cpmech/az-cdk-examples)
-
 ### Website
 
 Creates Route53, S3, and Cloudfront resources, in addition of taking care of all permissions.
