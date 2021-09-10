@@ -1,6 +1,6 @@
 {
   "name": "@cpmech/az-s3",
-  "version": "2.37.0",
+  "version": "2.38.0",
   "license": "MIT",
   "author": {
     "name": "Dorival Pedroso",
@@ -31,7 +31,7 @@
     "S3"
   ],
   "devDependencies": {
-    "@cpmech/envars": "^2.29.0",
+    "@cpmech/envars": "^2.30.0",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.9.1",
     "jest": "^27.1.1",
@@ -45,8 +45,8 @@
     "typescript": "^4.4.2"
   },
   "dependencies": {
-    "@cpmech/basic": "^4.29.0",
-    "@cpmech/util": "^1.32.0",
+    "@cpmech/basic": "^4.30.0",
+    "@cpmech/util": "^1.33.0",
     "aws-sdk": "^2.986.0"
   }
 }
