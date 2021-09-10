@@ -14,14 +14,14 @@ function makeHandlerWithQueryParams<T extends Iany>(
     try {
       params = checkParams(referenceQueryParams, event.queryStringParameters);
     } catch (error) {
-      return response.badRequest(error.message);
+      return response.badRequest(`${error}`);
     }
 
     // call function
     try {
       return await func(params);
     } catch (error) {
-      return response.serverError(error.message);
+      return response.serverError(`${error}`);
     }
   };
 }

@@ -4,7 +4,7 @@ console.log('\n\n## az-lambda ############################################');
 
 const cacheRoot = '/tmp/rollup_typescript_cache';
 
-const config = ['cjs', 'esm'].map(format => {
+const config = ['cjs', 'esm'].map((format) => {
   return {
     input: {
       index: 'src/index.ts',
@@ -15,7 +15,7 @@ const config = ['cjs', 'esm'].map(format => {
         format,
       },
     ],
-    external: ['aws-sdk', '@cpmech/httpcodes', '@cpmech/js2ts', 'querystring'],
+    external: ['aws-sdk', '@cpmech/httpcodes', '@cpmech/js2ts', 'url'],
     plugins: [
       typescript({
         cacheRoot,

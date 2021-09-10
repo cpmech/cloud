@@ -20,14 +20,14 @@ function makeHandlerWithJsonBody<T extends Iany>(
       const inputParams = JSON.parse(event.body);
       params = checkParams(referenceJsonBody, inputParams);
     } catch (error) {
-      return response.badRequest(error.message);
+      return response.badRequest(`${error}`);
     }
 
     // call function
     try {
       return await func(params);
     } catch (error) {
-      return response.serverError(error.message);
+      return response.serverError(`${error}`);
     }
   };
 }

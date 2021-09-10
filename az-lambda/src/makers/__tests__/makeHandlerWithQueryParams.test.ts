@@ -4,7 +4,6 @@ import { response } from '../../response';
 import { zeroEvent, zeroContext } from '../../zero';
 import { makeHandlerWithQueryParams } from '../makeHandlerWithQueryParams';
 import { IResult, IEvent } from '../../types';
-import { switchWithFeedback } from '../../helpers';
 
 interface IParams {
   a: string;
@@ -30,11 +29,10 @@ const eventWrong: IEvent = {
   queryStringParameters: { aa: 'AA', b: 'B' },
 };
 
-const s = JSON.stringify(zeroParams);
 const m0 = 'hello world A B';
-const m1a = `The input parameters are wrong.`;
-const m1b = `The input parameters are wrong. The correct format is ${s}`;
-const m2 = `STOP`;
+const m1a = `Error: The input parameters are wrong.`;
+const m1b = `Error: The input parameters are wrong.`;
+const m2 = `Error: STOP`;
 const b0 = JSON.stringify({ message: m0 });
 const b1a = JSON.stringify({ errorMessage: m1a });
 const b1b = JSON.stringify({ errorMessage: m1b });
@@ -61,35 +59,5 @@ describe('makeHandlerWithQueryParams', () => {
     const res = await handler(eventCorrect, zeroContext);
     expect(res.statusCode).toBe(status.serverError.internal);
     expect(res.body).toEqual(b2);
-  });
-});
-
-describe('makeHandlerWithQueryParams (with feedback)', () => {
-  test('it works', async () => {
-    switchWithFeedback();
-    const handler = makeHandlerWithQueryParams(zeroParams, func);
-    const res = await handler(eventCorrect, zeroContext);
-    expect(res.statusCode).toBe(status.success.ok);
-    expect(res.headers).toEqual(corsHeaders);
-    expect(res.body).toEqual(b0);
-    switchWithFeedback();
-  });
-
-  test('it fails [badRequest]', async () => {
-    switchWithFeedback();
-    const handler = makeHandlerWithQueryParams(zeroParams, func);
-    const res = await handler(eventWrong, zeroContext);
-    expect(res.statusCode).toBe(status.clientError.badRequest);
-    expect(res.body).toEqual(b1b);
-    switchWithFeedback();
-  });
-
-  test('it fails [internal server error]', async () => {
-    switchWithFeedback();
-    const handler = makeHandlerWithQueryParams(zeroParams, funcThatThrows);
-    const res = await handler(eventCorrect, zeroContext);
-    expect(res.statusCode).toBe(status.serverError.internal);
-    expect(res.body).toEqual(b2);
-    switchWithFeedback();
   });
 });
