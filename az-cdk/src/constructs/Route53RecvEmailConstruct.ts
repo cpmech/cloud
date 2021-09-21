@@ -5,7 +5,7 @@ import { VerifyDomainConstruct } from '../custom-resources/VerifyDomainConstruct
 export interface IRoute53RecvEmailProps {
   domain: string; // e.g. mydomain.com
   comment?: string; // e.g. My awesome domain
-  hostedZoneId?: string; // use an existend hosted zone, otherwise create a new (public) one
+  hostedZoneId?: string; // use an existent hosted zone, otherwise create a new (public) one
   certificateArn?: string; // Arn of an existent and VALID certificate. Use empty or 'null' to skip use of certificate
 }
 

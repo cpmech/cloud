@@ -9,7 +9,7 @@ import {
 
 export interface IDynamoTable {
   name: string; // name of table
-  partitionKey: string; // name of partiton key (the value will be string)
+  partitionKey: string; // name of partition key (the value will be string)
   partitionKeyType?: AttributeType; // [default = STRING]
   sortKey?: string; // name of sort key (the value will be string)
   sortKeyType?: AttributeType; // [default = STRING]
@@ -55,10 +55,10 @@ export class DynamoConstruct extends Construct {
 
       // indices
       if (t.gsis) {
-        t.gsis.forEach(gsi => table.addGlobalSecondaryIndex(gsi));
+        t.gsis.forEach((gsi) => table.addGlobalSecondaryIndex(gsi));
       }
       if (t.lsis) {
-        t.lsis.forEach(lsi => table.addLocalSecondaryIndex(lsi));
+        t.lsis.forEach((lsi) => table.addLocalSecondaryIndex(lsi));
       }
 
       // save

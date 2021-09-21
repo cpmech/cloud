@@ -16,9 +16,9 @@ export interface IWebsiteProps {
   domain: string; // e.g. mydomain.com
   prefix?: string; // e.g. 'app' for deploying app.mydomain.com ('www' will not be created then)
   skipMX?: boolean; // skip setting MX record set
-  skipVerification?: boolean; // skip domain verificaton
+  skipVerification?: boolean; // skip domain verification
   comment?: string; // e.g. My awesome domain
-  hostedZoneId?: string; // use an existend hosted zone, otherwise create a new (public) one
+  hostedZoneId?: string; // use an existent hosted zone, otherwise create a new (public) one
   certificateArn?: string; // Arn of an existent and VALID certificate. Use empty or 'null' to skip use of certificate
   errorCodes?: number[]; // default = 403, 404
   errorRoute?: string; // default = /index.html
@@ -82,7 +82,7 @@ export class WebsiteConstruct extends Construct {
         },
       ],
       priceClass: PriceClass.PRICE_CLASS_ALL,
-      errorConfigurations: errorCodes.map(code => ({
+      errorConfigurations: errorCodes.map((code) => ({
         errorCachingMinTtl: 300,
         errorCode: code,
         responseCode: 200,
