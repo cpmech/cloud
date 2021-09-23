@@ -17,7 +17,7 @@ const obj3 = {
   super: 'super',
   hello: 'world',
   ultra: { nested: { structure: 'with', many: 'things', in: { it: 0 } } },
-  array: ['a', '1', 'b', 'c', '666'], // nust not have mixed types or objects
+  array: ['a', '1', 'b', 'c', '666'], // must not have mixed types or objects
 };
 
 describe('copySimple', () => {
