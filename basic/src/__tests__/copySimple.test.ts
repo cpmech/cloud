@@ -63,7 +63,7 @@ describe('copySimple', () => {
     });
   });
 
-  it('modfifying the copy should not affect the original object', () => {
+  it('modifying the copy should not affect the original object', () => {
     const res1 = {
       first: '',
       second: '',
