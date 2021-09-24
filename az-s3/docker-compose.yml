@@ -1,0 +1,11 @@
+version: '3.2'
+services:
+  localstack:
+    image: localstack/localstack:latest
+    container_name: azs3_localstack
+    ports:
+      - '4566:4566'
+      - '4571:4571'
+    environment:
+      - SERVICES=s3
+      - DEBUG=0

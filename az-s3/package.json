@@ -15,8 +15,8 @@
     "cov": "jest --coverage",
     "build": "rm -rf dist && rollup --config rollup.config.js",
     "integ": "jest -c jest.config-integ.js --verbose",
-    "integw": "jest -c jest.config-integ.js --verbose --watch",
-    "integc": "jest -c jest.config-integ.js --verbose --coverage"
+    "integ:w": "jest -c jest.config-integ.js --verbose --watch",
+    "integ:c": "jest -c jest.config-integ.js --verbose --coverage"
   },
   "files": [
     "dist"
@@ -32,8 +32,11 @@
   ],
   "devDependencies": {
     "@cpmech/envars": "^2.31.0",
+    "@types/ip": "^1.1.0",
     "@types/jest": "^27.0.2",
     "@types/node": "^16.9.4",
+    "axios": "^0.21.4",
+    "ip": "^1.1.5",
     "jest": "^27.2.1",
     "prettier": "^2.4.1",
     "rollup": "^2.56.3",

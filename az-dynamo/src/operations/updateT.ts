@@ -17,7 +17,7 @@ export interface IUpdateTItem {
 //       (3) the primaryKey (partition or sort) MAY be present in 'data'
 // ex: ConditionExpression: "attribute_not_exists(username)"
 //
-// The return data is retrived using the transactGet method
+// The return data is retrieved using the transactGet method
 // as in the getT of this library. In this case, the order is
 // the SAME as the input.
 //
@@ -63,7 +63,7 @@ export const updateT = async (
     }));
     const res = await ddb.transactGet({ TransactItems: params }).promise();
     if (res.Responses) {
-      return res.Responses.map(r => r.Item || {});
+      return res.Responses.map((r) => r.Item || {});
     }
     return [];
   }
