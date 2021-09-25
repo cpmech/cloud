@@ -1,5 +1,5 @@
 import AWS from 'aws-sdk';
-import { adminFindUserByEmail, adminAddUserToGroup } from '../admin';
+import { adminFindUserByEmail, adminAddUserToGroup, adminListUserGroups } from '../admin';
 import { initEnvars } from '@cpmech/envars';
 
 jest.setTimeout(20000);
@@ -33,20 +33,7 @@ describe('addUserToGroup', () => {
     await adminAddUserToGroup(envars.CLOUD_COGNITO_POOLID, user.Username, 'travellers', true);
 
     // check
-    const cognito = new AWS.CognitoIdentityServiceProvider({ region: 'us-east-1' });
-    const res = await cognito
-      .adminListGroupsForUser({
-        UserPoolId: envars.CLOUD_COGNITO_POOLID,
-        Username: user.Username,
-      })
-      .promise();
-    if (!res.Groups) {
-      fail('cannot get groups');
-    }
-    const groupData = res.Groups.find((g) => g.GroupName === 'travellers');
-    if (!groupData) {
-      fail('cannot get group data');
-    }
-    expect(groupData.GroupName).toBe('travellers');
+    const groups = await adminListUserGroups(envars.CLOUD_COGNITO_POOLID, user.Username);
+    expect(groups.includes('travellers')).toBeTruthy();
   });
 });
