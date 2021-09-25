@@ -1,7 +1,6 @@
 import Enquirer from 'enquirer';
 import { IEnvars, initEnvars } from '@cpmech/envars';
-import { ICognitoEnvars, initCognitoTools } from './cognitoUtil';
-import { signUpAskCode } from './cognitoUtil';
+import { ICognitoEnvars, initCognitoTools, signUpAskCode } from './cognitoUtil';
 
 const envars: IEnvars = {
   CLOUD_COGNITO_POOLID: '',

@@ -1,6 +1,5 @@
 import { IEnvars, initEnvars } from '@cpmech/envars';
-import { ICognitoEnvars, initCognitoTools } from './cognitoUtil';
-import { signIn } from './cognitoUtil';
+import { ICognitoEnvars, initCognitoTools, signIn } from './cognitoUtil';
 
 const envars: IEnvars = {
   CLOUD_COGNITO_POOLID: '',
