@@ -1,10 +1,10 @@
 import { hasProp } from '@cpmech/basic';
-import { Ienvars } from './types';
+import { IEnvars } from './types';
 
 // initEnvars initializes envars with the values from process.env
 // NOTE: existent process.env variables will be overwritten
-export const initEnvars = (envars: Ienvars, allowEmptyVar: boolean = false) => {
-  Object.keys(envars).forEach(key => {
+export const initEnvars = (envars: IEnvars, allowEmptyVar: boolean = false) => {
+  Object.keys(envars).forEach((key) => {
     if (!hasProp(process.env, key)) {
       throw new Error(`cannot find environment variable named "${key}"`);
     }

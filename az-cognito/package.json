@@ -15,8 +15,13 @@
     "cov": "jest --coverage",
     "build": "rm -rf dist && rollup --config rollup.config.js",
     "integ": "jest -c jest.config-integ.js --verbose --runInBand",
-    "integw": "jest -c jest.config-integ.js --verbose --watch",
-    "integc": "jest -c jest.config-integ.js --verbose --coverage"
+    "integ:w": "jest -c jest.config-integ.js --verbose --watch",
+    "integ:c": "jest -c jest.config-integ.js --verbose --coverage",
+    "tsnode": "ts-node -O '{\"module\":\"commonjs\",\"resolveJsonModule\":true}'",
+    "createTestUsers": "npm run tsnode ./src/tools/xNewTesters.ts",
+    "xNewTesters": "npm run tsnode ./src/tools/xNewTesters.ts",
+    "xSignUp": "npm run tsnode ./src/tools/xSignUp.ts",
+    "xTesterTokens": "npm run tsnode ./src/tools/xTesterTokens.ts"
   },
   "files": [
     "dist"
@@ -41,10 +46,11 @@
     "@types/aws-lambda": "^8.10.83",
     "@types/jest": "^27.0.2",
     "@types/node": "^16.9.4",
-    "@types/node-fetch": "^3.0.2",
+    "@types/node-fetch": "^2.5.8",
     "@types/uuid": "^8.3.1",
+    "enquirer": "^2.3.6",
     "jest": "^27.2.1",
-    "node-fetch": "^3.0.0",
+    "node-fetch": "^2.6.1",
     "prettier": "^2.4.1",
     "rollup": "^2.56.3",
     "rollup-plugin-typescript2": "^0.30.0",

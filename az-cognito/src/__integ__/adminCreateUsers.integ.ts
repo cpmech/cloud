@@ -9,21 +9,12 @@ import { initEnvars } from '@cpmech/envars';
 
 jest.setTimeout(20000);
 
-/////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////
-//                                                                 //
-//  the user pool name is:    az-cognito-testing                   //
-//                                                                 //
-//  NOTE: This user pool was created "by hand" in the AWS Console  //
-//                                                                 //
-/////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////
-
 const envars = {
-  USER_POOL_ID: '',
-  USER_POOL_CLIENT_ID: '',
-  BENDER_USERNAME: '',
-  QUEUE_URL: '',
+  CLOUD_COGNITO_POOLID: '',
+  CLOUD_COGNITO_CLIENTID: '',
+  CLOUD_RECV_DOMAIN: '',
+  CLOUD_RECV_QUEUE_URL: '',
+  CLOUD_BENDER_USERNAME: '',
 };
 
 initEnvars(envars);
@@ -33,10 +24,10 @@ let username1 = '';
 
 afterEach(async () => {
   if (username0) {
-    await adminDeleteUser(envars.USER_POOL_ID, username0);
+    await adminDeleteUser(envars.CLOUD_COGNITO_POOLID, username0);
   }
   if (username1) {
-    await adminDeleteUser(envars.USER_POOL_ID, username1);
+    await adminDeleteUser(envars.CLOUD_COGNITO_POOLID, username1);
   }
 });
 
@@ -44,16 +35,16 @@ describe('adminCreateUsers', () => {
   it('should create two users', async () => {
     // create
     const usernames = await adminCreateUsers(
-      envars.USER_POOL_ID,
-      envars.USER_POOL_CLIENT_ID,
+      envars.CLOUD_COGNITO_POOLID,
+      envars.CLOUD_COGNITO_CLIENTID,
       [
         {
-          email: `tester+${v4()}@azcdk.xyz`,
+          email: `tester+${v4()}@${envars.CLOUD_RECV_DOMAIN}`,
           password: '123paSSword$',
           groups: 'testers',
         },
         {
-          email: `tester+${v4()}@azcdk.xyz`,
+          email: `tester+${v4()}@${envars.CLOUD_RECV_DOMAIN}`,
           password: '456paSSword$',
           groups: 'visitors,travellers',
         },
@@ -66,15 +57,15 @@ describe('adminCreateUsers', () => {
     username1 = usernames[1];
 
     // check email verified
-    const attrs0 = await adminGetAttributes(envars.USER_POOL_ID, username0);
-    const attrs1 = await adminGetAttributes(envars.USER_POOL_ID, username1);
+    const attrs0 = await adminGetAttributes(envars.CLOUD_COGNITO_POOLID, username0);
+    const attrs1 = await adminGetAttributes(envars.CLOUD_COGNITO_POOLID, username1);
     expect(attrs0.email_verified).toBe('true');
     expect(attrs1.email_verified).toBe('true');
 
     // check groups
-    const groups0 = await adminListUserGroups(envars.USER_POOL_ID, username0);
-    const groups1 = await adminListUserGroups(envars.USER_POOL_ID, username1);
-    expect(groups0).toEqual(['testers']);
-    expect(groups1).toEqual(['travellers', 'visitors']);
+    const groups0 = await adminListUserGroups(envars.CLOUD_COGNITO_POOLID, username0);
+    const groups1 = await adminListUserGroups(envars.CLOUD_COGNITO_POOLID, username1);
+    expect(groups0.some((g) => ['testers'].includes(g))).toBeTruthy();
+    expect(groups1.some((g) => ['travellers', 'visitors'].includes(g))).toBeTruthy();
   });
 });

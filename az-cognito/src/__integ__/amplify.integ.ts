@@ -1,6 +1,5 @@
 import fetch from 'node-fetch';
 (global as any).fetch = fetch;
-
 import AWS from 'aws-sdk';
 import Amplify from '@aws-amplify/core';
 import Auth from '@aws-amplify/auth';
@@ -13,20 +12,11 @@ import { getUserAttributes, getUserData, getTokenPayload } from '../cognitoUser'
 
 jest.setTimeout(100000);
 
-/////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////
-//                                                                 //
-//  the user pool name is:    az-cognito-testing                   //
-//                                                                 //
-//  NOTE: This user pool was created "by hand" in the AWS Console  //
-//                                                                 //
-/////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////
-
 const envars = {
-  USER_POOL_ID: '',
-  USER_POOL_CLIENT_ID: '',
-  QUEUE_URL: '',
+  CLOUD_COGNITO_POOLID: '',
+  CLOUD_COGNITO_CLIENTID: '',
+  CLOUD_RECV_DOMAIN: '',
+  CLOUD_RECV_QUEUE_URL: '',
 };
 
 initEnvars(envars);
@@ -38,8 +28,8 @@ AWS.config.update({
 Amplify.configure({
   Auth: {
     region: 'us-east-1',
-    userPoolId: envars.USER_POOL_ID,
-    userPoolWebClientId: envars.USER_POOL_CLIENT_ID,
+    userPoolId: envars.CLOUD_COGNITO_POOLID,
+    userPoolWebClientId: envars.CLOUD_COGNITO_CLIENTID,
   },
 });
 
@@ -51,11 +41,11 @@ let emailReceiptHandle: string = '';
 const cleanUp = async () => {
   try {
     if (emailReceiptHandle) {
-      await deleteEmail(emailReceiptHandle, envars.QUEUE_URL);
+      await deleteEmail(emailReceiptHandle, envars.CLOUD_RECV_QUEUE_URL);
       console.log('... email deleted successfully ...');
     }
     if (username) {
-      await adminDeleteUser(envars.USER_POOL_ID, username);
+      await adminDeleteUser(envars.CLOUD_COGNITO_POOLID, username);
       console.log('... user deleted successfully ...');
     }
   } catch (err) {
@@ -64,7 +54,7 @@ const cleanUp = async () => {
 };
 
 beforeEach(() => {
-  email = `tester+${v4()}@azcdk.xyz`;
+  email = `tester+${v4()}@${envars.CLOUD_RECV_DOMAIN}`;
   username = '';
   emailReceiptHandle = '';
 });
@@ -95,7 +85,7 @@ describe('cognito', () => {
 
     await sleep(1000);
     console.log('2: receiving email');
-    const r = await receiveEmail(email, envars.QUEUE_URL);
+    const r = await receiveEmail(email, envars.CLOUD_RECV_QUEUE_URL);
     emailReceiptHandle = r.receiptHandle;
 
     console.log('3: extracting code from email');
@@ -104,7 +94,7 @@ describe('cognito', () => {
 
     console.log('4: confirming email with given code');
     await Auth.confirmSignUp(username, code);
-    const userJustConfirmed = await adminFindUserByEmail(envars.USER_POOL_ID, email);
+    const userJustConfirmed = await adminFindUserByEmail(envars.CLOUD_COGNITO_POOLID, email);
     expect(userJustConfirmed.Data.email).toBe(email);
     expect(userJustConfirmed.Data.email_verified).toBe('true');
 
