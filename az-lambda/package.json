@@ -31,15 +31,15 @@
     "@cpmech/basic": "^4.32.0",
     "@cpmech/httpcodes": "^3.29.0",
     "@cpmech/js2ts": "^2.29.0",
-    "aws-sdk": "^2.991.0"
+    "aws-sdk": "^2.995.0"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.83",
     "@types/jest": "^27.0.2",
-    "@types/node": "^16.9.4",
+    "@types/node": "^16.9.6",
     "jest": "^27.2.1",
     "prettier": "^2.4.1",
-    "rollup": "^2.56.3",
+    "rollup": "^2.57.0",
     "rollup-plugin-typescript2": "^0.30.0",
     "ts-jest": "^27.0.5",
     "tslint": "^6.1.3",
