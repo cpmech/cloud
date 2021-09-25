@@ -1,1 +1,2 @@
-export { initEnvars } from './initEnvars';
+export * from './initEnvars';
+export * from './types';

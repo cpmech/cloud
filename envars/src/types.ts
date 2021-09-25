@@ -1,3 +1,3 @@
-export interface Ienvars {
+export interface IEnvars {
   [key: string]: string;
 }
