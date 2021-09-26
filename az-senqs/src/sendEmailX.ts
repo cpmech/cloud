@@ -10,16 +10,32 @@ export interface IEmailAttachment {
 export interface ISendEmailX {
   sender: string;
   receivers: string[];
+  cc?: string[];
+  bcc?: string[];
+  replyTo?: string;
+  inReplyTo?: string;
   subject: string;
-  message: string;
+  text?: string;
+  html?: string;
   attachments?: IEmailAttachment[];
   sqsConfig?: AWS.SQS.ClientConfiguration;
 }
 
-export const sendEmailX = async (mail: ISendEmailX) => {
-  const { sender, receivers, subject, message, attachments } = mail;
+export const sendEmailX = async ({
+  sender,
+  receivers,
+  cc,
+  bcc,
+  replyTo,
+  inReplyTo,
+  subject,
+  text,
+  html,
+  attachments,
+  sqsConfig,
+}: ISendEmailX) => {
   const transporter = nodemailer.createTransport({
-    SES: new AWS.SES(mail.sqsConfig),
+    SES: new AWS.SES(sqsConfig),
   });
 
   const formattedAttachments = attachments?.map(
@@ -29,8 +45,13 @@ export const sendEmailX = async (mail: ISendEmailX) => {
   return await transporter.sendMail({
     from: sender,
     to: receivers,
+    cc,
+    bcc,
+    replyTo,
+    inReplyTo,
     subject,
-    text: message,
+    text,
+    html,
     attachments: formattedAttachments,
   });
 };

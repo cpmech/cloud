@@ -14,13 +14,12 @@ describe('sendEmailX', () => {
     await sendEmailX({
       sender: 'me@here.co',
       receivers: ['me@there.co'],
-      message: 'Hello',
+      text: 'Hello',
       subject: 'World',
       attachments: [
         {
           filename: 'react-image.png',
-          path:
-            'https://blog.rocketseat.com.br/content/images/2019/03/React-Hooks-Comoutilizar--motivac-o-es-eexemplos-pra-ticos.png',
+          path: 'https://blog.rocketseat.com.br/content/images/2019/03/React-Hooks-Comoutilizar--motivac-o-es-eexemplos-pra-ticos.png',
         },
       ],
     });
@@ -30,13 +29,12 @@ describe('sendEmailX', () => {
     const sentMail = await sendEmailX({
       sender: 'me@here.co',
       receivers: ['me@there.co'],
-      message: 'Hello',
+      text: 'Hello',
       subject: 'World',
       attachments: [
         {
           filename: 'react-image.png',
-          path:
-            'https://blog.rocketseat.com.br/content/images/2019/03/React-Hooks-Comoutilizar--motivac-o-es-eexemplos-pra-ticos.png',
+          path: 'https://blog.rocketseat.com.br/content/images/2019/03/React-Hooks-Comoutilizar--motivac-o-es-eexemplos-pra-ticos.png',
         },
       ],
     });
@@ -49,8 +47,7 @@ describe('sendEmailX', () => {
       attachments: [
         {
           filename: 'react-image.png',
-          path:
-            'https://blog.rocketseat.com.br/content/images/2019/03/React-Hooks-Comoutilizar--motivac-o-es-eexemplos-pra-ticos.png',
+          path: 'https://blog.rocketseat.com.br/content/images/2019/03/React-Hooks-Comoutilizar--motivac-o-es-eexemplos-pra-ticos.png',
         },
       ],
     });
@@ -60,7 +57,7 @@ describe('sendEmailX', () => {
     const sentMail = await sendEmailX({
       sender: 'me@here.co',
       receivers: ['me@there.co'],
-      message: 'Hello',
+      text: 'Hello',
       subject: 'World',
     });
 
