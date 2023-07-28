@@ -28,8 +28,8 @@
     "kall": "lerna exec --concurrency 1 npm run type-check",
     "ncu": "lerna exec --concurrency 1 ncu",
     "ncu:u": "bash ./scripts/ncu_u.bash",
-    "dist": "npm run ball && npm run kall && npm run tall && lerna publish",
-    "dist:force": "npm run ball && npm run kall && npm run tall && lerna version --force-publish",
+    "dist": "npm run ball && npm run kall && npm run tall && lerna publish && bash ./scripts/push_to_npm.bash",
+    "dist:force": "npm run ball && npm run kall && npm run tall && lerna version --force-publish && bash ./scripts/push_to_npm.bash",
     "distX": "lerna publish"
   },
   "devDependencies": {
