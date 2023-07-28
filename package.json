@@ -29,6 +29,7 @@
     "ncu": "lerna exec --concurrency 1 ncu",
     "ncu:u": "bash ./scripts/ncu_u.bash",
     "dist": "npm run ball && npm run kall && npm run tall && lerna publish",
+    "dist:force": "npm run ball && npm run kall && npm run tall && lerna version --force-publish",
     "distX": "lerna publish"
   },
   "devDependencies": {
