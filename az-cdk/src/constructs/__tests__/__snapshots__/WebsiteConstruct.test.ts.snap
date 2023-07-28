@@ -6,10 +6,10 @@ exports[`WebsiteConstruct (prefixed) synthetizes properly using certificateArn 1
     \\"WebsiteHostedZoneD4FAEADF\\": {
       \\"Type\\": \\"AWS::Route53::HostedZone\\",
       \\"Properties\\": {
-        \\"Name\\": \\"mydomain.com.\\",
         \\"HostedZoneConfig\\": {
           \\"Comment\\": \\"My app website\\"
-        }
+        },
+        \\"Name\\": \\"mydomain.com.\\"
       }
     },
     \\"WebsiteHostedZoneCaaAmazonF67E60BB\\": {
@@ -174,10 +174,10 @@ exports[`WebsiteConstruct synthetizes properly 1`] = `
     \\"WebsiteHostedZoneD4FAEADF\\": {
       \\"Type\\": \\"AWS::Route53::HostedZone\\",
       \\"Properties\\": {
-        \\"Name\\": \\"mydomain.com.\\",
         \\"HostedZoneConfig\\": {
           \\"Comment\\": \\"My nice website\\"
-        }
+        },
+        \\"Name\\": \\"mydomain.com.\\"
       }
     },
     \\"WebsiteHostedZoneCaaAmazonF67E60BB\\": {
@@ -585,10 +585,10 @@ exports[`WebsiteConstruct synthetizes properly using certificateArn 1`] = `
     \\"WebsiteHostedZoneD4FAEADF\\": {
       \\"Type\\": \\"AWS::Route53::HostedZone\\",
       \\"Properties\\": {
-        \\"Name\\": \\"mydomain.com.\\",
         \\"HostedZoneConfig\\": {
           \\"Comment\\": \\"My nice website\\"
-        }
+        },
+        \\"Name\\": \\"mydomain.com.\\"
       }
     },
     \\"WebsiteHostedZoneCaaAmazonF67E60BB\\": {

@@ -562,7 +562,13 @@ exports[`CognitoConstruct + Lambda Triggers synthetizes properly 1`] = `
             \\"Arn\\"
           ]
         },
-        \\"Principal\\": \\"cognito-idp.amazonaws.com\\"
+        \\"Principal\\": \\"cognito-idp.amazonaws.com\\",
+        \\"SourceArn\\": {
+          \\"Fn::GetAtt\\": [
+            \\"CognitoPoolB9CB508B\\",
+            \\"Arn\\"
+          ]
+        }
       }
     },
     \\"CognitoPoolB9CB508B\\": {

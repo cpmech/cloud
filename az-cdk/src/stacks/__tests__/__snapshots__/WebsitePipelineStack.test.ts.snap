@@ -207,6 +207,9 @@ exports[`WebsitePipelineStack (with notifications) synthetizes properly 1`] = `
           \\"BuildSpec\\": \\"{\\\\n  \\\\\\"version\\\\\\": \\\\\\"0.2\\\\\\",\\\\n  \\\\\\"phases\\\\\\": {\\\\n    \\\\\\"install\\\\\\": {\\\\n      \\\\\\"commands\\\\\\": [\\\\n        \\\\\\"npm install\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\"build\\\\\\": {\\\\n      \\\\\\"commands\\\\\\": [\\\\n        \\\\\\"npm run test\\\\\\",\\\\n        \\\\\\"npm run build\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\"post_build\\\\\\": {\\\\n      \\\\\\"commands\\\\\\": [\\\\n        \\\\\\"aws s3 cp --recursive --acl public-read ./dist s3://mydomain.com-website/\\\\\\",\\\\n        \\\\\\"aws s3 cp --acl public-read --cache-control=\\\\\\\\\\\\\\"max-age=0, no-cache, no-store, must-revalidate\\\\\\\\\\\\\\" ./dist/index.html s3://mydomain.com-website/\\\\\\",\\\\n        \\\\\\"aws cloudfront create-invalidation --distribution-id 1234567-0001234123 --paths /index.html\\\\\\"\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\"artifacts\\\\\\": {\\\\n    \\\\\\"files\\\\\\": [\\\\n      \\\\\\"**/*\\\\\\"\\\\n    ],\\\\n    \\\\\\"base-directory\\\\\\": \\\\\\"dist\\\\\\"\\\\n  }\\\\n}\\",
           \\"Type\\": \\"CODEPIPELINE\\"
         },
+        \\"Cache\\": {
+          \\"Type\\": \\"NO_CACHE\\"
+        },
         \\"EncryptionKey\\": \\"alias/aws/s3\\"
       }
     },
@@ -799,6 +802,9 @@ exports[`WebsitePipelineStack synthetizes properly 1`] = `
         \\"Source\\": {
           \\"BuildSpec\\": \\"{\\\\n  \\\\\\"version\\\\\\": \\\\\\"0.2\\\\\\",\\\\n  \\\\\\"phases\\\\\\": {\\\\n    \\\\\\"install\\\\\\": {\\\\n      \\\\\\"commands\\\\\\": [\\\\n        \\\\\\"curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -\\\\\\",\\\\n        \\\\\\"echo \\\\\\\\\\\\\\"deb https://dl.yarnpkg.com/debian/ stable main\\\\\\\\\\\\\\" | tee /etc/apt/sources.list.d/yarn.list\\\\\\",\\\\n        \\\\\\"sudo apt-get update && sudo apt-get install yarn\\\\\\",\\\\n        \\\\\\"yarn\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\"build\\\\\\": {\\\\n      \\\\\\"commands\\\\\\": [\\\\n        \\\\\\"yarn test\\\\\\",\\\\n        \\\\\\"yarn build\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\"post_build\\\\\\": {\\\\n      \\\\\\"commands\\\\\\": [\\\\n        \\\\\\"aws s3 cp --recursive --acl public-read ./dist s3://mydomain.com-website/\\\\\\",\\\\n        \\\\\\"aws s3 cp --acl public-read --cache-control=\\\\\\\\\\\\\\"max-age=0, no-cache, no-store, must-revalidate\\\\\\\\\\\\\\" ./dist/index.html s3://mydomain.com-website/\\\\\\",\\\\n        \\\\\\"aws cloudfront create-invalidation --distribution-id 1234567-0001234123 --paths /index.html\\\\\\"\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\"artifacts\\\\\\": {\\\\n    \\\\\\"files\\\\\\": [\\\\n      \\\\\\"**/*\\\\\\"\\\\n    ],\\\\n    \\\\\\"base-directory\\\\\\": \\\\\\"dist\\\\\\"\\\\n  }\\\\n}\\",
           \\"Type\\": \\"CODEPIPELINE\\"
+        },
+        \\"Cache\\": {
+          \\"Type\\": \\"NO_CACHE\\"
         },
         \\"EncryptionKey\\": \\"alias/aws/s3\\"
       }

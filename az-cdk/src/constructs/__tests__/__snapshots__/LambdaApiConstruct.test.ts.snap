@@ -79,7 +79,10 @@ exports[`LambdaApiConstruct (customDomain) synthetizes properly 1`] = `
           \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\"
         },
         \\"StageName\\": \\"prod\\"
-      }
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApiAccount4308A17A\\"
+      ]
     },
     \\"LambdaApiTestApihello287B32B7\\": {
       \\"Type\\": \\"AWS::ApiGateway::Resource\\",
@@ -438,12 +441,12 @@ exports[`LambdaApiConstruct (customDomain) synthetizes properly 1`] = `
     \\"LambdaApiAuthorizer8AC8C11E\\": {
       \\"Type\\": \\"AWS::ApiGateway::Authorizer\\",
       \\"Properties\\": {
+        \\"Name\\": \\"authorizer\\",
         \\"RestApiId\\": {
           \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
         },
         \\"Type\\": \\"COGNITO_USER_POOLS\\",
         \\"IdentitySource\\": \\"method.request.header.Authorization\\",
-        \\"Name\\": \\"authorizer\\",
         \\"ProviderARNs\\": [
           {
             \\"Fn::Join\\": [
@@ -686,7 +689,10 @@ exports[`LambdaApiConstruct (dynamo and bucket) synthetizes properly 1`] = `
           \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\"
         },
         \\"StageName\\": \\"prod\\"
-      }
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApiAccount4308A17A\\"
+      ]
     },
     \\"LambdaApiTestApihello287B32B7\\": {
       \\"Type\\": \\"AWS::ApiGateway::Resource\\",
@@ -1140,7 +1146,10 @@ exports[`LambdaApiConstruct (layers) synthetizes properly 1`] = `
           \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\"
         },
         \\"StageName\\": \\"prod\\"
-      }
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApiAccount4308A17A\\"
+      ]
     },
     \\"LambdaApiTestApihello287B32B7\\": {
       \\"Type\\": \\"AWS::ApiGateway::Resource\\",
@@ -1335,12 +1344,12 @@ exports[`LambdaApiConstruct (layers) synthetizes properly 1`] = `
     \\"LambdaApiAuthorizer8AC8C11E\\": {
       \\"Type\\": \\"AWS::ApiGateway::Authorizer\\",
       \\"Properties\\": {
+        \\"Name\\": \\"authorizer\\",
         \\"RestApiId\\": {
           \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
         },
         \\"Type\\": \\"COGNITO_USER_POOLS\\",
         \\"IdentitySource\\": \\"method.request.header.Authorization\\",
-        \\"Name\\": \\"authorizer\\",
         \\"ProviderARNs\\": [
           {
             \\"Fn::Join\\": [
@@ -1636,7 +1645,10 @@ exports[`LambdaApiConstruct (protected) synthetizes properly 1`] = `
           \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\"
         },
         \\"StageName\\": \\"prod\\"
-      }
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApiAccount4308A17A\\"
+      ]
     },
     \\"LambdaApiTestApihello287B32B7\\": {
       \\"Type\\": \\"AWS::ApiGateway::Resource\\",
@@ -1831,12 +1843,12 @@ exports[`LambdaApiConstruct (protected) synthetizes properly 1`] = `
     \\"LambdaApiAuthorizer8AC8C11E\\": {
       \\"Type\\": \\"AWS::ApiGateway::Authorizer\\",
       \\"Properties\\": {
+        \\"Name\\": \\"authorizer\\",
         \\"RestApiId\\": {
           \\"Ref\\": \\"LambdaApiTestApiCDC7EDDF\\"
         },
         \\"Type\\": \\"COGNITO_USER_POOLS\\",
         \\"IdentitySource\\": \\"method.request.header.Authorization\\",
-        \\"Name\\": \\"authorizer\\",
         \\"ProviderARNs\\": [
           {
             \\"Fn::Join\\": [
@@ -2067,7 +2079,10 @@ exports[`LambdaApiConstruct synthetizes properly 1`] = `
           \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F3203932b7210765647843d6fd51bb09e\\"
         },
         \\"StageName\\": \\"prod\\"
-      }
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApiAccount4308A17A\\"
+      ]
     },
     \\"LambdaApiTestApihello287B32B7\\": {
       \\"Type\\": \\"AWS::ApiGateway::Resource\\",
@@ -2465,7 +2480,10 @@ exports[`LambdaApiConstruct synthetizes using dirDist and python 1`] = `
           \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F7cc5eda69bb9e7c7542a03f11bb5690a\\"
         },
         \\"StageName\\": \\"prod\\"
-      }
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApiAccount4308A17A\\"
+      ]
     },
     \\"LambdaApiTestApihello287B32B7\\": {
       \\"Type\\": \\"AWS::ApiGateway::Resource\\",
@@ -2851,7 +2869,10 @@ exports[`LambdaApiConstruct synthetizes without subroute 1`] = `
           \\"Ref\\": \\"LambdaApiTestApiDeploymentC09FA65F7cc5eda69bb9e7c7542a03f11bb5690a\\"
         },
         \\"StageName\\": \\"prod\\"
-      }
+      },
+      \\"DependsOn\\": [
+        \\"LambdaApiTestApiAccount4308A17A\\"
+      ]
     },
     \\"LambdaApiTestApihello287B32B7\\": {
       \\"Type\\": \\"AWS::ApiGateway::Resource\\",
