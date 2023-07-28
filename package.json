@@ -32,6 +32,6 @@
     "distX": "lerna publish"
   },
   "devDependencies": {
-    "lerna": "4.0.0"
+    "lerna": "7.1.4"
   }
 }

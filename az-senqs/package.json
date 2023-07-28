@@ -44,7 +44,7 @@
     "nodemailer": "^6.6.5",
     "prettier": "^2.4.1",
     "rollup": "^2.57.0",
-    "rollup-plugin-typescript2": "^0.30.0",
+    "rollup-plugin-typescript2": "^0.31.0",
     "ts-jest": "^27.0.5",
     "ts-node": "^10.2.1",
     "tslint": "^6.1.3",
