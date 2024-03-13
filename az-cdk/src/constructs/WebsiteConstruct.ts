@@ -10,6 +10,7 @@ import {
 import { CloudFrontTarget } from '@aws-cdk/aws-route53-targets';
 import { Bucket } from '@aws-cdk/aws-s3';
 import { CloudFrontWebDistribution, PriceClass, AliasConfiguration } from '@aws-cdk/aws-cloudfront';
+import { Runtime } from '@aws-cdk/aws-lambda';
 import { VerifyDomainConstruct } from '../custom-resources/VerifyDomainConstruct';
 
 export interface IWebsiteProps {
@@ -22,6 +23,7 @@ export interface IWebsiteProps {
   certificateArn?: string; // Arn of an existent and VALID certificate. Use empty or 'null' to skip use of certificate
   errorCodes?: number[]; // default = 403, 404
   errorRoute?: string; // default = /index.html
+  runtimeForVErify?: Runtime; // see defaults.runtime
 }
 
 // Website creates bucket, cloudformation, certificate, and route53 data for a website
@@ -143,6 +145,7 @@ export class WebsiteConstruct extends Construct {
           hostedZoneId: zone.hostedZoneId,
           domain: props.domain,
           certificateArn,
+          runtime: props.runtimeForVErify,
         });
       }
     }

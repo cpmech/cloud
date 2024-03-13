@@ -45,7 +45,7 @@ exports[`LambdaLayersConstruct synthetizes properly 1`] = `
           }
         },
         \\"CompatibleRuntimes\\": [
-          \\"nodejs14.x\\"
+          \\"nodejs16.x\\"
         ],
         \\"Description\\": \\"Common NodeJS Libraries\\",
         \\"LicenseInfo\\": \\"MIT\\"

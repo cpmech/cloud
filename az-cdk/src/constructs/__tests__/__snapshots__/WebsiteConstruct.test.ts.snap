@@ -525,7 +525,7 @@ exports[`WebsiteConstruct synthetizes properly 1`] = `
           ]
         },
         \\"Handler\\": \\"index.verifyDomain\\",
-        \\"Runtime\\": \\"nodejs14.x\\",
+        \\"Runtime\\": \\"nodejs16.x\\",
         \\"Timeout\\": 60
       },
       \\"DependsOn\\": [
@@ -941,7 +941,7 @@ exports[`WebsiteConstruct synthetizes properly using certificateArn 1`] = `
           ]
         },
         \\"Handler\\": \\"index.verifyDomain\\",
-        \\"Runtime\\": \\"nodejs14.x\\",
+        \\"Runtime\\": \\"nodejs16.x\\",
         \\"Timeout\\": 60
       },
       \\"DependsOn\\": [
